@@ -1,30 +1,21 @@
 import React, { Component } from 'react'
+import {BrowserRouter, Route } from 'react-router-dom';
+
+import Home from './Components/Home';
+import SideBar from './Components/SideBar';
+import Recent from './Components/Recent';
 
 export default class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      test: [],
-      loading: true
-    }
-  }
-
-  async componentDidMount() {
-    const response = await fetch('/test')
-    const data = await response.json()
-    this.setState({test: data});
-    let result = await data;
-    if(result) {
-      this.setState({loading: false})
-    }
-  }
-
 
   render() {
-    return (
-      <div>
-        {this.state.loading ? <h1> Hello</h1> : <h1>{this.state.test[0].id}</h1>}
-      </div>
+    return (      
+      <BrowserRouter>
+      <div className="app_container">
+        <SideBar />
+          <Route exact path='/' component={Home} />
+         <Route path='/recent' component={Recent} />
+         </div>
+      </BrowserRouter>      
     )
   }
 }
