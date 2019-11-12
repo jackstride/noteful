@@ -1,38 +1,34 @@
 import React, { Component } from 'react'
 
 import {Link} from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Logo from '../images/noteful_logo.svg';
-import Home from '../images/home-solid.svg';
-import Clock from '../images/clock-solid.svg';
-import Task from '../images/task.svg';
-import Note from '../images/sticky-note-solid.svg';
-import Calendar from '../images/calendar.svg';
 
 export default class SideBar extends Component {
         navItems = [
             {
-                iconsrc: Home,
+                iconsrc: 'home',
                 link: '/',
                 name: 'Home'
             },
             {
-                iconsrc: Clock,
+                iconsrc: "clock",
                 link: '/recent',
                 name: 'Recent'
             },
             {
-                iconsrc: Task,
+                iconsrc: "tasks",
                 link: '/',
                 name: 'To Do'
             },
             {
-                iconsrc: Note,
+                iconsrc: "sticky-note",
                 link: '/',
                 name: 'Notes'
             },
             {
-                iconsrc: Calendar,
+                iconsrc: "calendar-week",
                 link: '/',
                 name: 'Events'
             },
@@ -52,7 +48,7 @@ export default class SideBar extends Component {
                             {this.navItems.map((item, index) => {
                                 return(
                             <div className="nav_item">
-                                <img className = "icon" src={item.iconsrc} ></img>
+                                <FontAwesomeIcon icon={item.iconsrc} style={{color: "ffffff", fontSize: "32px" }}/>
                                 <li><Link to={item.link}>{item.name}</Link></li>
                             </div>
                             )
