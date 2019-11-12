@@ -59,7 +59,9 @@ export default class SideBar extends Component {
                             })}                        
                         </ul>
                     </nav>
+                    
                 </div>
+                <hr className="nav_sep"></hr>
             </div>
         )
     }

@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 
+import searchIcon from '../images/search-solid.svg';
+
 export default class Search extends Component {
     render() {
         return (
             <div className="search_bar">
-                <input type ="text" name="query" placeholder="search by #"></input>                
+                <div className="search_icon"><img src={searchIcon} alt="search"></img></div>
+                <input type ="text" name="query" placeholder="Quick Find #"></input>                
             </div>
         )
     }
