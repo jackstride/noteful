@@ -24,7 +24,7 @@ export default class SideBar extends Component {
             },
             {
                 iconsrc: "sticky-note",
-                link: '/',
+                link: '/AddNote',
                 name: 'Notes'
             },
             {

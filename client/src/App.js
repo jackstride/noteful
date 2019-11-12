@@ -8,6 +8,7 @@ import Home from './Home';
 import SideNav from './Components/SideNav';
 import Recent from './Components/Recent';
 import TopBar from './Components/TopBar'
+import AddNote from './AddNote'
 
 library.add(faHome,faClock,faTasks,faStickyNote,faCalendarWeek)
 
@@ -21,6 +22,7 @@ export default class App extends Component {
         <TopBar />
         <Route exact path='/' component={Home} />
          <Route path='/recent' component={Recent} />
+         <Route path='/AddNote' component={AddNote} />
          </div>
       </BrowserRouter>      
     )
