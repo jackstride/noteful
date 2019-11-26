@@ -66,7 +66,19 @@ export default class R_Form extends Component {
     }
   };
 
+  
+
   render() {
+
+document.addEventListener("keyup", function(event) {
+  // If "caps lock" is pressed, display the warning text
+  if (event.getModifierState("CapsLock")) {
+    console.log('down')
+  } else {
+    console.log('up')
+  }
+});
+  
     return (
       <div>
       <form onSubmit={this.handleSubmit}>
