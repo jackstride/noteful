@@ -19,7 +19,7 @@ export default class SideBar extends Component {
             },
             {
                 iconsrc: "tasks",
-                link: '/',
+                link: '/todo',
                 name: 'To Do'
             },
             {

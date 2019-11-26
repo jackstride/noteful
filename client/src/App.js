@@ -11,6 +11,7 @@ import TopBar from './Components/TopBar'
 import AddNote from './AddNote'
 import LogIn from './Components/LogIn/LogIn.js'
 import Register from './Components/Register/Register';
+import ToDo from './Components/ToDo/ToDo'
 
 library.add(faHome,faClock,faTasks,faStickyNote,faCalendarWeek)
 
@@ -37,6 +38,7 @@ export default class App extends Component {
     <Route exact path='/' component={Home} />
      <Route path='/recent' component={Recent} />
      <Route path='/AddNote' component={AddNote} />
+     <Route path='/ToDo' component={ToDo} />
      </div>
      )
   }

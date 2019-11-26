@@ -54,7 +54,7 @@ export default class R_Form extends Component {
     if (valid) {
       console.log("form sent")
       axios
-        .post("/register", this.state)
+        .post("/user/register", this.state)
         .then(response => {
           console.log(response);
         })
@@ -70,14 +70,14 @@ export default class R_Form extends Component {
 
   render() {
 
-document.addEventListener("keyup", function(event) {
-  // If "caps lock" is pressed, display the warning text
-  if (event.getModifierState("CapsLock")) {
-    console.log('down')
-  } else {
-    console.log('up')
-  }
-});
+// // document.addEventListener("keyup", function(event) {
+// //   // If "caps lock" is pressed, display the warning text
+// //   if (event.getModifierState("CapsLock")) {
+// //     console.log('down')
+// //   } else {
+// //     console.log('up')
+// //   }
+// });
   
     return (
       <div>

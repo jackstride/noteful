@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const ConnectDB = require("./dbConnect");
 
 const userRoute = require('./routes/User');
+const toDoRoute = require('./routes/toDo');
 
 //Connect To Database
 ConnectDB();
@@ -17,7 +18,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 
-app.use('/register', userRoute);
+app.use('/user', userRoute);
+app.use('/add', toDoRoute);
 
 
 
