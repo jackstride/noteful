@@ -9,6 +9,7 @@ const ConnectDB = require("./dbConnect");
 
 const userRoute = require('./routes/User');
 const toDoRoute = require('./routes/toDo');
+const authRoute = require('./routes/auth')
 
 //Connect To Database
 ConnectDB();
@@ -20,9 +21,8 @@ app.use(bodyParser.json());
 
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);
-
-
-
+app.use('/test', authRoute);
+ 
 
 
 

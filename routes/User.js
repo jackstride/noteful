@@ -3,8 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-let jtw = require('jsonwebtoken');
-
+let jtw = require("jsonwebtoken");
 
 const User = require("../models/User");
 
@@ -68,17 +67,19 @@ router.post("/login", (req, res) => {
           });
         }
         if (result) {
-          const token = jtw.sign({
+
+          const payload = {
             email: user[0].email,
             userId: user[0].id
-          },process.env.JWT_KEY,
-          {
+          };
+
+          jtw.sign(payload, process.env.JWT_KEY, {
             expiresIn: "1h"
-          })
-          return res.status(200).json({ 
-            message: "successful",
-            token: token,
-         });
+          },(err,token) => {
+            if(err) throw err;
+            res.json({token})
+          });
+          
         }
       });
     })

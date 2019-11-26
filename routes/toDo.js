@@ -3,11 +3,14 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const ToDo = require("../models/ToDo");
-const checkAuth = require('../routes/Authenticate');
+const User = require('../models/User')
 
-router.post('/', checkAuth, (req,res) => {
+const checkAuth = require('../middleware/auth');
 
+router.post('/', checkAuth, async (req,res) => {
 
+    const user = await User.findById(req.user.email).select('-password');
+    res.json(user);
 
 
 })
