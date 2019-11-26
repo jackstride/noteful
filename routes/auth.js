@@ -16,6 +16,7 @@ require('dotenv').config()
 router.get('/', auth, async (req,res) => {
         const user =  await User.findById(req.user.userId).select('-password')
         res.json(user);
+        
 });
 
 
