@@ -1,7 +1,11 @@
 import React, { Component } from "react";
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import axios from "axios";
 
-export default class R_Form extends Component {
+import { register } from  '../../actions/authActions';
+
+ class R_Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,66 +14,39 @@ export default class R_Form extends Component {
     };
   }
 
-  validate = (formValues) => {
-    
-    let errors = [];
-    console.log(errors);
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+    register: PropTypes.func.isRequired
+  }
 
-    if (!formValues.firstName) {
-      errors.push('Please Enter your first name.')
+  componentDidUpdate(prevProps,prevState) {
+    const {error} = this.props;
+    console.log(error);
+    if(error !== prevProps.error) {
+     if(error.id === 'REGISTER_FAIL') {
+       this.setState({errors: [...prevState.errors, error.message.error]});
+     }
     }
-    if (!formValues.lastName) {
-      errors.push('Please Enter your last name.')
-    }
-    if (!formValues.email.includes("@")) {
-      errors.push('Please enter a valid email address.')
-    }
-    if (!formValues.password) {
-      errors.push('Please enter a strong password.')
-    }
-    if(errors.length === 0) {
-      return true;
-    }
-    if(errors) {
-      this.setState(({
-        errors
-      }))
-      return false;
-    }
-  };
+    
+  }
+
+
 
   handleSubmit = event => {
     event.preventDefault();
-
+    this.setState({errors: []})
     let { formValues  } = this.state;
-
     formValues.firstName = event.target.firstName.value;
     formValues.lastName = event.target.lastName.value;
     formValues.email = event.target.email.value;
     formValues.password = event.target.password.value;
     this.setState({ formValues});
-    this.setState({errors:[]});
-    const valid = this.validate(formValues)   
-    
-    if (valid) {
-      console.log("form sent")
-      axios
-        .post("/user/register", this.state)
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    } else {
-      console.log("false");
-    }
-  };
-
+    this.props.register(formValues);
+}
   
 
-  render() {
-
+  render(){
 // // document.addEventListener("keyup", function(event) {
 // //   // If "caps lock" is pressed, display the warning text
 // //   if (event.getModifierState("CapsLock")) {
@@ -109,7 +86,7 @@ export default class R_Form extends Component {
       <h2> Whoops! There appears to be some errors: Please see below:</h2>
       {this.state.errors.map((error,index) => {
         return(
-          <li><span className="error">{error}</span></li>
+          <li key={`${error}${index}`}><span className="error">{error}</span></li>
         )
       })}
        </div> : null
@@ -118,3 +95,14 @@ export default class R_Form extends Component {
     );
   }
 }
+
+
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  error: state.error
+})
+
+
+export default connect(
+  mapStateToProps, {register}) (R_Form)
