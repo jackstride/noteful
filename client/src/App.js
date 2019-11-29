@@ -28,9 +28,14 @@ import ToDo from "./Components/ToDo/ToDo";
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      auth: store.getState().auth.isAuthenticated,
+    }
+  }
   componentDidMount(){
     store.dispatch(loadUser());
-    console.log(store.getState().auth.isAuthenticated);
   }
 
 
@@ -90,5 +95,4 @@ class App extends Component {
 }
 
 
-
-export default App
+export default (App);
