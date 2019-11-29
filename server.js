@@ -18,9 +18,8 @@ ConnectDB();
 // Enable Body Parster to accept request.
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cors());
 app.use(cookieParser());
-
+app.use(cors());
 
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);

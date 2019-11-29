@@ -47,9 +47,9 @@ export default class SideBar extends Component {
                         <ul>
                             {this.navItems.map((item, index) => {
                                 return(
-                            <div className="nav_item">
+                            <div key={item + index} className="nav_item">
                                 <FontAwesomeIcon icon={item.iconsrc} style={{color: "ffffff", fontSize: "32px" }}/>
-                                <li><Link to={item.link}>{item.name}</Link></li>
+                                <li ><Link to={item.link}>{item.name}</Link></li>
                             </div>
                             )
                             })}                        

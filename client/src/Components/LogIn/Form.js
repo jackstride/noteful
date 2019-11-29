@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import axios from "axios";
+import {useHistory, Redirect} from 'react-router-dom';
 
 import {login} from '../../actions/authActions';
 
@@ -19,7 +20,8 @@ class Form extends Component {
     formValues.password = event.target.password.value;
     this.setState({ formValues });
     this.props.login(formValues);
-  };
+    
+  }; 
 
   render() {
     return (

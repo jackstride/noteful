@@ -99,12 +99,7 @@ router.post("/login", (req, res) => {
               expiresIn: "1h"
             },
             (err, token) => {
-              console.log("getting token")
-              res.cookie("access_token", token, {
-                maxAge: 90000,
-                httpOnly: true
-              });
-              console.log("token set");
+              res.cookie('access_token', token, {maxAge: 90000,httpOnly: true});
               res.status(200);
             }
           );
