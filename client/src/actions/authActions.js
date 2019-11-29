@@ -77,3 +77,21 @@ export const register = (formValues) => dispatch => {
       });
     });
 };
+
+
+
+export const login = (formValues) => dispatch => {
+
+  axios
+  .post("/user/login", formValues)
+  .then(res => {
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
+    })
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+}

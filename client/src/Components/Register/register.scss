@@ -19,69 +19,6 @@
             padding-bottom: 20px;
         }
 
-        .form_container {
-            width: 50%;
-            height: 70%;
-            font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-            text-align: center;
-
-            .reg_logo img{
-                height: 50px;
-            }
-            
-            span {
-                color: gray;
-            }
-            span a {
-                color: blue;
-                font-size: 14px;
-            }
-
-
-            form {
-                width: 100%;
-                height: 100%;
-                border-radius: 12px;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-top: 20px;
-
-                input {
-                    display: block;
-                    width: 80%;
-                    height: 52px;
-                    border: 2px solid lightgray;
-                    border-radius: 4px;
-                    margin: 20px 0px 20px 0px;
-                    
-                    color: black;
-                    font-size: 18px;
-                    padding-left: 5px;
-                }
-
-                input[type=submit]{
-                    background-color: $darkblue;
-                    color: $whiteText;
-                    font-size: 20px;
-                    border: none;
-                    cursor: pointer;
-                }
-
-                input::placeholder {
-                    color: lightgray;
-                    font-size: 18px;
-                    padding-left: 5px;
-                }
-                
-            }
-
-            .reg_logo {
-                width: 100%;
-                padding-bottom: 20px;
-            }
-        }
     }
 
     .right {

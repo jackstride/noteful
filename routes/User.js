@@ -17,21 +17,16 @@ router.post(
     check("email", "This is a test").isEmail()
   ],
   (req, res) => {
-  
     const errors = validationResult(req);
-
-    
-
 
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .json({ error: errors.array().map((key) => {
-          return key.msg
-        })})
+        .json({ error: "Please enter all fields highlighted red" });
     }
-    
+
     let { firstName, lastName, email, password } = req.body;
+
     let saltRounds = 15;
 
     User.find({
@@ -48,7 +43,6 @@ router.post(
             if (err) {
               res.status(500).json({ err });
             }
-            console.log(password);
             bcrypt.hash(password, salt).then(hash => {
               password = hash;
               const user = new User({
@@ -74,7 +68,7 @@ router.post(
 );
 
 router.post("/login", (req, res) => {
-  let { email, password } = req.body.formValues;
+  let { email, password } = req.body;
 
   User.find({ email })
     .exec()
@@ -84,12 +78,14 @@ router.post("/login", (req, res) => {
           message: "Auth Failed"
         });
       }
+
       bcrypt.compare(password, user[0].password, (err, result) => {
         if (err) {
           return res.status(401).json({
             message: "Auth Failed"
           });
         }
+
         if (result) {
           const payload = {
             email: user[0].email,
@@ -103,8 +99,13 @@ router.post("/login", (req, res) => {
               expiresIn: "1h"
             },
             (err, token) => {
-              if (err) throw err;
-              res.json({ token });
+              console.log("getting token")
+              res.cookie("access_token", token, {
+                maxAge: 90000,
+                httpOnly: true
+              });
+              console.log("token set");
+              res.status(200);
             }
           );
         }

@@ -28,10 +28,7 @@ import { register } from  '../../actions/authActions';
        this.setState({errors: [...prevState.errors, error.message.error]});
      }
     }
-    
   }
-
-
 
   handleSubmit = event => {
     event.preventDefault();
@@ -58,6 +55,16 @@ import { register } from  '../../actions/authActions';
   
     return (
       <div>
+        {this.state.errors.length > 0 ?
+      <div className ="register_errors">
+      <h2>There appears to be some errors:</h2>
+      {this.state.errors.map((error,index) => {
+        return(
+          <li key={`${error}${index}`}><span className="error">{error}</span></li>
+        )
+      })}
+       </div> : null
+        }
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
@@ -65,7 +72,7 @@ import { register } from  '../../actions/authActions';
           placeholder="First Name eg. Dave"
         ></input>
 
-        <input
+        <input className={{}}
           type="text"
           name="lastName"
           placeholder="Last Name eg. Smith"
@@ -80,17 +87,6 @@ import { register } from  '../../actions/authActions';
         <input type="password" name="password" placeholder="Password"></input>
         <input type="submit" name="submit"></input>
       </form>
-
-      {this.state.errors.length > 0 ?
-      <div className ="register_errors">
-      <h2> Whoops! There appears to be some errors: Please see below:</h2>
-      {this.state.errors.map((error,index) => {
-        return(
-          <li key={`${error}${index}`}><span className="error">{error}</span></li>
-        )
-      })}
-       </div> : null
-        }
       </div>
     );
   }
