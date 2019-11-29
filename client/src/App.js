@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
@@ -9,7 +9,7 @@ import {
   faCalendarWeek
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 import store from "./store";
 import {loadUser} from './actions/authActions'
 
@@ -22,9 +22,18 @@ import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
 
+
+
+
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
-export default class App extends Component {
+class App extends Component {
+  componentDidMount(){
+    store.dispatch(loadUser());
+    console.log(store.getState().auth.isAuthenticated);
+  }
+
+
   LogInContainer = () => {
     return <Route path="/login" component={LogIn} />;
   };
@@ -46,21 +55,40 @@ export default class App extends Component {
     );
   };
 
-  componentDidMount(){
-    store.dispatch(loadUser());
+  // Check for authenticaition
+
+
+   AuthRoute = ({ children, ...rest }) => {
+    return (
+      <Route {...rest}
+        render={({ location }) =>
+        store.getState().auth.isAuthenticated ? (
+            children) 
+          : (<Redirect to={{ pathname: "/login", state: { from: location }}}/>)
+        }
+      />
+    );
   }
 
-  render() {
+  
+
+  render() {    
     return (
       <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={this.LogInContainer} />
           <Route exact path="/register" component={this.RegisterContainer} />
+          {/* <this.AuthRoute> */}
           <Route component={this.DefaultContainer} />
+          {/* </this.AuthRoute> */}
         </Switch>
       </BrowserRouter>
       </Provider>
     );
   }
 }
+
+
+
+export default App

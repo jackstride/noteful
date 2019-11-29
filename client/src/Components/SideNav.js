@@ -35,7 +35,6 @@ export default class SideBar extends Component {
         ]
     
     render() {
-        console.log(this.navItems);
         return (
             <div className="nav_sidebar">
                 <div className="branding">

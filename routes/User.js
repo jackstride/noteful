@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
 
+const auth = require('../middleware/auth')
+
 let jtw = require("jsonwebtoken");
 
 const User = require("../models/User");
@@ -99,8 +101,10 @@ router.post("/login", (req, res) => {
               expiresIn: "1h"
             },
             (err, token) => {
-              res.cookie('access_token', token, {maxAge: 90000,httpOnly: true});
-              res.status(200);
+              console.log("helllo")
+              res.cookie("access_token", token, {maxAge: 900000,httpOnly: true});
+              console.log(res);
+              res.sendStatus(200);
             }
           );
         }

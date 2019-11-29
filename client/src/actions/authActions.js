@@ -21,7 +21,8 @@ export const loadUser = () => (dispatch, getState) => {
   });
 
   //Get token from loca storage
-  const token = getState().auth.token;
+  // const token = document.cookie.auth_token;
+  
   //Headers
   const config = {
     headers: {
@@ -29,12 +30,12 @@ export const loadUser = () => (dispatch, getState) => {
     }
   };
 
-  // If token, add to heaers
-  if (token) {
-    config.headers["x-auth-token"] = token;
-  }
+  // If token, add to headers
+  // if (token) {
+  //   config.headers["x-auth-token"] = token;
+  // }
   axios
-    .get("/test", config)
+    .get("/auth", config)
     .then(res =>
       dispatch({
         type: USER_LOADED,
@@ -81,9 +82,8 @@ export const register = (formValues) => dispatch => {
 
 
 export const login = (formValues) => dispatch => {
-
   axios
-  .post("/user/login", formValues)
+  .post("/user/login", formValues, {withCredentials: true})
   .then(res => {
     dispatch({
       type: LOGIN_SUCCESS,

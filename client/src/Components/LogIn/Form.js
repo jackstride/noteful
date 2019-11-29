@@ -9,7 +9,8 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formValues: {}
+      formValues: {},
+      sent: false,
     };
   }
 
@@ -20,8 +21,12 @@ class Form extends Component {
     formValues.password = event.target.password.value;
     this.setState({ formValues });
     this.props.login(formValues);
-    
+    this.setState({sent: true})
+    console.log(this.props);
   }; 
+
+  
+  
 
   render() {
     return (
@@ -30,7 +35,7 @@ class Form extends Component {
           <input type="text" name="email"></input>
           <label> Password</label>
           <input type="password" name="password"></input>
-          <input type="submit" name="submit"></input>        
+          <input style={this.state.sent ? {backgroundColor:"green"} : null}type="submit" name="submit"></input>        
       </form>
     );
   }

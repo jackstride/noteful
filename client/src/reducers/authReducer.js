@@ -11,7 +11,7 @@ import {
 
 const initalState = {
   token: null,
-  isAuthenticated: null,
+  isAuthenticated: false,
   isLoading: false,
   user: null
 };
