@@ -16,7 +16,7 @@ router.post(
     check("firstName", "Enter a first name")
       .not()
       .isEmpty(),
-    check("email", "This is a test").isEmail()
+    check("email", "There is no email").isEmail()
   ],
   (req, res) => {
     const errors = validationResult(req);
@@ -24,9 +24,10 @@ router.post(
     if (!errors.isEmpty()) {
       return res
         .status(422)
-        .json({ error: "Please enter all fields highlighted red" });
+        .json({ error: errors.array().map(err => err.msg) });
     }
 
+    // Make errors into an array always 
     let { firstName, lastName, email, password } = req.body;
 
     let saltRounds = 15;

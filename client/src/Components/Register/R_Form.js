@@ -25,7 +25,7 @@ import { register } from  '../../actions/authActions';
     console.log(error);
     if(error !== prevProps.error) {
      if(error.id === 'REGISTER_FAIL') {
-       this.setState({errors: [...prevState.errors, error.message.error]});
+       this.setState({errors: [...prevState.errors, ...error.message.error]});
      }
     }
   }
