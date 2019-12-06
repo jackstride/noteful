@@ -22,7 +22,6 @@ class Form extends Component {
     this.setState({ formValues });
     this.props.login(formValues);
     this.setState({sent: true})
-    console.log(this.props);
   }; 
 
   

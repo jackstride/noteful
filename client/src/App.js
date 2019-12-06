@@ -11,7 +11,7 @@ import {
 
 import { Provider, connect } from "react-redux";
 import store from "./store";
-import {loadUser} from './actions/authActions'
+import { loadUser } from "./actions/authActions";
 
 import Home from "./Home";
 import SideNav from "./Components/SideNav";
@@ -22,22 +22,12 @@ import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
 
-
-
-
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      auth: store.getState().auth.isAuthenticated,
-    }
-  }
-  componentDidMount(){
+  componentDidMount() {
     store.dispatch(loadUser());
   }
-
 
   LogInContainer = () => {
     return <Route path="/login" component={LogIn} />;
@@ -46,6 +36,10 @@ class App extends Component {
   RegisterContainer = () => {
     return <Route path="/register" component={Register} />;
   };
+
+  mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+  });
 
   DefaultContainer = () => {
     return (
@@ -62,37 +56,44 @@ class App extends Component {
 
   // Check for authenticaition
 
-
-   AuthRoute = ({ children, ...rest }) => {
+  AuthRoute = ({ component: Component, ...rest }) => {
     return (
-      <Route {...rest}
-        render={({ location }) =>
-        store.getState().auth.isAuthenticated ? (
-            children) 
-          : (<Redirect to={{ pathname: "/login", state: { from: location }}}/>)
-        }
+      <Route
+        {...rest}
+        render={props => {
+          if (this.props.isAuthenticated == false) {            
+             return <Component {...props} />;
+          }
+          else {
+            return (
+              <Redirect
+                to={{
+                  pathname: "/login",
+                  state: { from: props.location }
+                }}
+              />
+            );
+          }
+        }}
       />
     );
-  }
+  };
 
-  
-
-  render() {    
+  render() {
     return (
-      <Provider store={store}>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={this.LogInContainer} />
           <Route exact path="/register" component={this.RegisterContainer} />
-          {/* <this.AuthRoute> */}
-          <Route component={this.DefaultContainer} />
-          {/* </this.AuthRoute> */}
+          <this.AuthRoute  component={this.DefaultContainer} />
         </Switch>
       </BrowserRouter>
-      </Provider>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
 
-export default (App);
+export default connect(mapStateToProps)(App);
