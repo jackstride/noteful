@@ -10,7 +10,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { connect } from "react-redux";
-import store from "./store";
 import { loadUser } from "./actions/authActions";
 
 import Home from "./Home";
@@ -21,15 +20,12 @@ import AddNote from "./AddNote";
 import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
-import { timingSafeEqual } from "crypto";
-import { LOGIN_SUCCESS } from "./actions/types";
 
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
 class App extends Component {  
-  async componentDidMount() {
-    await this.props.isAuthenticated();
-    console.log(this.props)
+   componentDidMount() {
+     this.props.isAuthenticated();
   }
   
   LogInContainer = () => {
@@ -55,11 +51,12 @@ class App extends Component {
 
   // Check for authenticaition
 
-  AuthRoute = ({ component: Component, props, ...rest }) => {
+  AuthRoute = ({ component: Component, ...rest }) => {
+    console.log(this.props)
     return (
       <Route
         {...rest}
-        render={props => {
+        render={(props) => {
           if (this.props.auth.isAuthenticated) {
             return <Component {...props} />;
           } 
@@ -68,7 +65,7 @@ class App extends Component {
               <Redirect
                 to={{
                   pathname: "/login",
-                  state: { from: this.props.location }
+                  state: { from: props.location }
                 }}
               />
             );
@@ -77,6 +74,8 @@ class App extends Component {
       />
     );
   };
+
+  
 
   render() {
     return (
@@ -102,5 +101,6 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -21,12 +21,12 @@ export default class Weather extends Component {
 
 
 async componentDidMount() {
-    const response = await fetch (this.url);
-    const json = await response.json(); 
-    this.setState({temp: (json.main.temp -32) * 5%9, location: json.name})
-    const icons = `http://openweathermap.org/img/wn/${json.weather[0].icon}.png`
-    this.setState({icon: icons})
-    this.changeBackground(this.state.icon);
+    // const response = await fetch (this.url);
+    // const json = await response.json(); 
+    // this.setState({temp: (json.main.temp -32) * 5%9, location: json.name})
+    // const icons = `http://openweathermap.org/img/wn/${json.weather[0].icon}.png`
+    // this.setState({icon: icons})
+    // this.changeBackground(this.state.icon);
 }
     render() { 
         return (
