@@ -19,9 +19,6 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({
     type: USER_LOADING
   });
-
-  //Get token from loca storage
-  // const token = document.cookie.auth_token;
   
   //Headers
   const config = {
@@ -90,8 +87,14 @@ export const login = (formValues) => dispatch => {
       payload: res.data
     })
   })
-  .catch(error => {
-    console.log(error);
+  .catch(err => {
+    dispatch(
+    returnErrors(err.response.data, err.response.state, 'LOGIN_FAIL')
+  )
+  dispatch({
+    type: LOGIN_FAIL
+  })
+
   });
 
 }

@@ -9,7 +9,7 @@ import {
   faCalendarWeek
 } from "@fortawesome/free-solid-svg-icons";
 
-import { Provider, connect } from "react-redux";
+import { connect } from "react-redux";
 import store from "./store";
 import { loadUser } from "./actions/authActions";
 
@@ -21,14 +21,17 @@ import AddNote from "./AddNote";
 import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
+import { timingSafeEqual } from "crypto";
+import { LOGIN_SUCCESS } from "./actions/types";
 
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
-class App extends Component {
-  componentDidMount() {
-    store.dispatch(loadUser());
+class App extends Component {  
+  async componentDidMount() {
+    await this.props.isAuthenticated();
+    console.log(this.props)
   }
-
+  
   LogInContainer = () => {
     return <Route path="/login" component={LogIn} />;
   };
@@ -36,10 +39,6 @@ class App extends Component {
   RegisterContainer = () => {
     return <Route path="/register" component={Register} />;
   };
-
-  mapStateToProps = state => ({
-    isAuthenticated: state.auth.isAuthenticated
-  });
 
   DefaultContainer = () => {
     return (
@@ -56,20 +55,20 @@ class App extends Component {
 
   // Check for authenticaition
 
-  AuthRoute = ({ component: Component, ...rest }) => {
+  AuthRoute = ({ component: Component, props, ...rest }) => {
     return (
       <Route
         {...rest}
         render={props => {
-          if (this.props.isAuthenticated == false) {            
-             return <Component {...props} />;
-          }
+          if (this.props.auth.isAuthenticated) {
+            return <Component {...props} />;
+          } 
           else {
             return (
               <Redirect
                 to={{
                   pathname: "/login",
-                  state: { from: props.location }
+                  state: { from: this.props.location }
                 }}
               />
             );
@@ -85,15 +84,23 @@ class App extends Component {
         <Switch>
           <Route exact path="/login" component={this.LogInContainer} />
           <Route exact path="/register" component={this.RegisterContainer} />
-          <this.AuthRoute  component={this.DefaultContainer} />
+          <this.AuthRoute component={this.DefaultContainer} />
         </Switch>
       </BrowserRouter>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
-});
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    isAuthenticated: () => {
+      dispatch(loadUser());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
