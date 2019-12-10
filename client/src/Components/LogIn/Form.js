@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
+import PropTypes from "prop-types";
 import axios from "axios";
 import {useHistory, Redirect} from 'react-router-dom';
 
@@ -14,6 +15,12 @@ class Form extends Component {
     };
   }
 
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+    error: PropTypes.object.isRequired,
+  }
+
+
   handleSubmit = event => {
     event.preventDefault();
     let { formValues } = this.state;
@@ -23,10 +30,7 @@ class Form extends Component {
     this.props.login(formValues);
     this.setState({sent: true})
   }; 
-
-  
-  
-
+    
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -42,10 +46,12 @@ class Form extends Component {
 
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = state => {  
+  return {
   isAuthenticated: state.auth.isAuthenticated,
   error: state.error
-});
+  }
+}
 
 
 

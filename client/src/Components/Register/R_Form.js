@@ -100,5 +100,6 @@ const mapStateToProps = state => ({
 })
 
 
+
 export default connect(
   mapStateToProps, {register}) (R_Form)

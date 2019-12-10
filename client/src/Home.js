@@ -29,9 +29,13 @@ class Home extends Component {
 }
 
 
+  const mapStateToProps = state => {{
+      return {auth: state.auth}
+  }}
   
   
   
-  
-  export default Home
+  export default connect(mapStateToProps) (Home);
+
+
   

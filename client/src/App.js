@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import PropTypes from 'prop-types';
 import {
   faHome,
   faClock,
@@ -11,6 +12,7 @@ import {
 
 import { connect } from "react-redux";
 import { loadUser } from "./actions/authActions";
+import store from  './store'
 
 import Home from "./Home";
 import SideNav from "./Components/SideNav";
@@ -24,10 +26,35 @@ import ToDo from "./Components/ToDo/ToDo";
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
 class App extends Component {  
-   componentDidMount() {
-     this.props.isAuthenticated();
+  constructor(props) {
+    super(props) 
+    this.state = {
+      isAuthenticated: false,
+    }
   }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  }
+
+   componentDidMount() {
+     console.log(this.props)
+     store.dispatch(loadUser());
+    //  this.props.isAuthenticated();
+  }
+
+  // static getDerivedStateFromProps(props, prevState) {    
+  //   if(prevState.isAuthenticated != props.auth.isAuthenticated)
+  //   {
+  //    console.log("hello " + props.auth.isAuthenticated)
+  //   return  {
+  //     isAuthenticated: props.auth.isAuthenticated,
+  //   } 
+  // }
+  // return null
+  // }
   
+
   LogInContainer = () => {
     return <Route path="/login" component={LogIn} />;
   };
@@ -49,15 +76,15 @@ class App extends Component {
     );
   };
 
-  // Check for authenticaition
-
   AuthRoute = ({ component: Component, ...rest }) => {
-    console.log(this.props)
+   let test = this.props.auth;
+   console.log(test);
     return (
       <Route
         {...rest}
         render={(props) => {
-          if (this.props.auth.isAuthenticated) {
+          if (this.props.auth) {
+            console.log("yes")
             return <Component {...props} />;
           } 
           else {
@@ -79,6 +106,8 @@ class App extends Component {
 
   render() {
     return (
+      <div>
+      <h1> {(this.props.auth.toString())}</h1>
       <BrowserRouter>
         <Switch>
           <Route exact path="/login" component={this.LogInContainer} />
@@ -86,21 +115,22 @@ class App extends Component {
           <this.AuthRoute component={this.DefaultContainer} />
         </Switch>
       </BrowserRouter>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  auth: state.auth
-})
+const mapStateToProps = (state) => {
+  return {auth: state.auth.isAuthenticated}
+}
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    isAuthenticated: () => {
-      dispatch(loadUser());
-    }
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     isAuthenticated: () => {
+//       dispatch(loadUser());
+//     }
+//   };
+// };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

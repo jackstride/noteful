@@ -19,11 +19,14 @@ const initalState = {
 export default (state = initalState, action) => {
   switch (action.type) {
     case USER_LOADING:
+      console.log("loading")
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        isAuthenticated: true,
       };
     case USER_LOADED:
+      console.log("user Loaded")
       return {
         ...state,
         isAuthenticated: true,
@@ -32,6 +35,7 @@ export default (state = initalState, action) => {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
+        console.log("reg/login")
       return {
         ...state,
         ...action.payload,
@@ -42,6 +46,7 @@ export default (state = initalState, action) => {
       case LOGIN_FAIL:
       case LOGOUT_SUCCESS:
       case REGISTER_FAIL:
+          console.log("fail")
     return {
         ...state,
         token: null,
