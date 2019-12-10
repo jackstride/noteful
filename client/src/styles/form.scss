@@ -2,15 +2,15 @@
     width: 50%;
     height: 70%;
     font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    text-align: center;
 
-    .reg_logo img{
+    .reg_logo img {
         height: 50px;
     }
-    
+
     span {
         color: gray;
     }
+
     span a {
         color: blue;
         font-size: 14px;
@@ -24,7 +24,6 @@
         background-color: white;
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin-top: 20px;
 
         input {
@@ -34,7 +33,7 @@
             border: 2px solid lightgray;
             border-radius: 4px;
             margin: 20px 0px 20px 0px;
-            
+
             color: black;
             font-size: 18px;
             padding-left: 5px;
@@ -44,7 +43,7 @@
             border: 1px solid red;
         }
 
-        input[type=submit]{
+        input[type=submit] {
             background-color: $darkblue;
             color: $whiteText;
             font-size: 20px;
@@ -57,11 +56,6 @@
             font-size: 18px;
             padding-left: 5px;
         }
-        
-    }
 
-    .reg_logo {
-        width: 100%;
-        padding-bottom: 20px;
     }
 }

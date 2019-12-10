@@ -6,14 +6,17 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  GETTING_URL,
+  GOT_URL
 } from "../actions/types";
 
 const initalState = {
   token: null,
   isAuthenticated: false,
   isLoading: false,
-  user: null
+  user: null,
+  url: null
 };
 
 export default (state = initalState, action) => {
@@ -54,6 +57,19 @@ export default (state = initalState, action) => {
         isAuthenticated: false,
         isLoading: false,
     }
+    case GETTING_URL:
+      return {
+        ...state,
+        isLoading: true,
+        url: action.payload
+      }
+      case GOT_URL:
+        console.log("GOT URL")
+        return{
+          ...state,
+          isLoading:false,
+          token: action.payload,
+        }
     default:
         return state;
   }

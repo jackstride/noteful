@@ -9,17 +9,18 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  GETTING_URL,
+  GOT_URL
 } from "./types";
 
-
-//LoadUser
+//Load user
 export const loadUser = () => (dispatch, getState) => {
   //User Loading
   dispatch({
     type: USER_LOADING
   });
-  
+
   //Headers
   const config = {
     headers: {
@@ -27,10 +28,6 @@ export const loadUser = () => (dispatch, getState) => {
     }
   };
 
-  // If token, add to headers
-  // if (token) {
-  //   config.headers["x-auth-token"] = token;
-  // }
   axios
     .get("/dashboard", config)
     .then(res =>
@@ -47,17 +44,13 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
-export const register = (formValues) => dispatch => {
+export const register = formValues => dispatch => {
   const config = {
     headers: {
       "Content-Type": "application/json"
     }
   };
 
-  // Create request
-
-//   formValues = JSON.stringify(formValues)
-  
   axios
     .post("user/register", formValues)
     .then(res =>
@@ -76,25 +69,44 @@ export const register = (formValues) => dispatch => {
     });
 };
 
-
-
-export const login = (formValues) => dispatch => {
+export const login = formValues => dispatch => {
   axios
-  .post("/user/login", formValues, {withCredentials: true})
-  .then(res => {
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
+    .post("/user/login", formValues, { withCredentials: true })
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
     })
-  })
-  .catch(err => {
-    dispatch(
-    returnErrors(err.response.data, err.response.state, 'LOGIN_FAIL')
-  )
-  dispatch({
-    type: LOGIN_FAIL
-  })
+    .catch(err => {
+      dispatch(
+        returnErrors(err.response.data, err.response.state, "LOGIN_FAIL")
+      );
+      dispatch({
+        type: LOGIN_FAIL
+      });
+    });
+};
 
-  });
 
-}
+
+
+
+// export const googleLogin = () => dispatch => {
+//   axios.post("/user/login/google")
+//   .then(res => {
+//   dispatch({
+//      type: GETTING_URL,
+//       payload: res.data });
+//   });
+// };
+
+
+// export const gotGoogle = () => dispatch => {
+//   axios.get('user/auth/google').then(res => {
+//     dispatch({
+//       type: GOT_URL,
+//       payload: res.data
+//     })
+//   })
+// }

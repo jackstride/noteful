@@ -3,12 +3,12 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { check, validationResult } = require("express-validator");
-
-const auth = require('../middleware/auth')
-
-let jtw = require("jsonwebtoken");
+const jtw = require("jsonwebtoken");
+const auth = require("../middleware/auth");
+const axios = require("axios");
 
 const User = require("../models/User");
+
 
 router.post(
   "/register",
@@ -27,7 +27,7 @@ router.post(
         .json({ error: errors.array().map(err => err.msg) });
     }
 
-    // Make errors into an array always 
+    // Make errors into an array always
     let { firstName, lastName, email, password } = req.body;
 
     let saltRounds = 15;
@@ -102,8 +102,11 @@ router.post("/login", (req, res) => {
               expiresIn: "1h"
             },
             (err, token) => {
-              console.log("helllo")
-              res.cookie("access_token", token, {maxAge: 900000,httpOnly: true});
+              console.log("helllo");
+              res.cookie("access_token", token, {
+                maxAge: 900000,
+                httpOnly: true
+              });
               console.log(res);
               res.sendStatus(200);
             }
@@ -116,5 +119,7 @@ router.post("/login", (req, res) => {
       res.status(500).json({ err });
     });
 });
+
+
 
 module.exports = router;
