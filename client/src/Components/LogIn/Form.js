@@ -19,9 +19,10 @@ class Form extends Component {
     isAuthenticated: PropTypes.bool,
     error: PropTypes.object.isRequired,
   }
+  
 
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     let { formValues } = this.state;
     formValues.email = event.target.email.value;
@@ -29,6 +30,7 @@ class Form extends Component {
     this.setState({ formValues });
     this.props.login(formValues);
     this.setState({sent: true})
+    this.props.history.push("/");
   }; 
     
   render() {

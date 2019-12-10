@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   faHome,
   faClock,
@@ -11,10 +11,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { connect } from "react-redux";
-import { loadUser } from "./actions/authActions";
-import store from  './store'
-
-import Home from "./Home";
+import { loadUser, checkAuth } from "./actions/authActions";
+import store from "./store";
+import Home from './home'
+import Dashboard from "./Components/Dashboard/Home";
 import SideNav from "./Components/SideNav";
 import Recent from "./Components/Recent";
 import TopBar from "./Components/TopBar";
@@ -22,38 +22,44 @@ import AddNote from "./AddNote";
 import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
+import AuthRoute from "./privateRoute";
 
 library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
-class App extends Component {  
+class App extends Component {
   constructor(props) {
-    super(props) 
+    super(props);
     this.state = {
-      isAuthenticated: false,
-    }
+      isAuthenticated: false
+    };
   }
 
   static propTypes = {
-    isAuthenticated: PropTypes.bool,
-  }
+    isAuthenticated: PropTypes.bool
+  };
 
-   componentDidMount() {
-     console.log(this.props)
-     store.dispatch(loadUser());
+  componentDidMount() {
+    store.dispatch(loadUser());
+    if(this.props.auth.isAuthenticated){
+      console.log('hello')
+    }
     //  this.props.isAuthenticated();
   }
 
-  // static getDerivedStateFromProps(props, prevState) {    
+  // static getDerivedStateFromProps(props, prevState) {
   //   if(prevState.isAuthenticated != props.auth.isAuthenticated)
   //   {
   //    console.log("hello " + props.auth.isAuthenticated)
   //   return  {
   //     isAuthenticated: props.auth.isAuthenticated,
-  //   } 
+  //   }
   // }
   // return null
   // }
-  
+
+  HomeContainer = () => {
+    return <Route path="/" component={Home} />;
+  }
 
   LogInContainer = () => {
     return <Route path="/login" component={LogIn} />;
@@ -68,61 +74,41 @@ class App extends Component {
       <div className="app_container">
         <SideNav />
         <TopBar />
-        <Route exact path="/" component={Home} />
-        <Route path="/recent" component={Recent} />
-        <Route path="/AddNote" component={AddNote} />
-        <Route path="/ToDo" component={ToDo} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard/recent" component={Recent} />
+        <Route path="/dashboard/AddNote" component={AddNote} />
+        <Route path="/dashboard/ToDo" component={ToDo} />
       </div>
     );
   };
 
-  AuthRoute = ({ component: Component, ...rest }) => {
-   let test = this.props.auth;
-   console.log(test);
-    return (
-      <Route
-        {...rest}
-        render={(props) => {
-          if (this.props.auth) {
-            console.log("yes")
-            return <Component {...props} />;
-          } 
-          else {
-            return (
-              <Redirect
-                to={{
-                  pathname: "/login",
-                  state: { from: props.location }
-                }}
-              />
-            );
-          }
-        }}
-      />
-    );
-  };
-
-  
-
   render() {
     return (
       <div>
-      <h1> {(this.props.auth.toString())}</h1>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/login" component={this.LogInContainer} />
-          <Route exact path="/register" component={this.RegisterContainer} />
-          <this.AuthRoute component={this.DefaultContainer} />
-        </Switch>
-      </BrowserRouter>
+        <h1> {this.props.auth.isAuthenticated.toString()}</h1>
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/login"
+              render={props => <this.LogInContainer {...props} />}
+            />
+            <Route exact path="/register" component={this.RegisterContainer} />
+            <Route exact path="/" component={this.HomeContainer} />
+            <AuthRoute
+              authed={this.props.auth}
+              component={this.DefaultContainer}
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {auth: state.auth.isAuthenticated}
-}
+const mapStateToProps = state => {
+  return { auth: state.auth };
+};
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -131,6 +117,5 @@ const mapStateToProps = (state) => {
 //     }
 //   };
 // };
-
 
 export default connect(mapStateToProps)(App);

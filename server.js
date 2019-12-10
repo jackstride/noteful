@@ -28,7 +28,7 @@ app.use(cors());
 
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);
-app.use('/auth', authRoute);
+app.use('/dashboard', authRoute);
  
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

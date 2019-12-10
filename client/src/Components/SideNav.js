@@ -9,7 +9,7 @@ export default class SideBar extends Component {
         navItems = [
             {
                 iconsrc: 'home',
-                link: '/',
+                link: '/dashboard',
                 name: 'Home'
             },
             {

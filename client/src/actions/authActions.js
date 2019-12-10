@@ -12,8 +12,8 @@ import {
   REGISTER_FAIL
 } from "./types";
 
-// Check token and load user
 
+//LoadUser
 export const loadUser = () => (dispatch, getState) => {
   //User Loading
   dispatch({
@@ -32,7 +32,7 @@ export const loadUser = () => (dispatch, getState) => {
   //   config.headers["x-auth-token"] = token;
   // }
   axios
-    .get("/auth", config)
+    .get("/dashboard", config)
     .then(res =>
       dispatch({
         type: USER_LOADED,
