@@ -11,13 +11,12 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 //Google auth 
-router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+router.get('/google', passport.authenticate('google', { scope: ['profile', "email"] }));
 
   
-router.get("/google/callback",passport.authenticate("google", { failureRedirect: "/test", session: false }), (req, res) => {
-      console.log("hit");
+router.get("/google/callback",passport.authenticate("google", { session: false }), (req, res) => {
       let token = req.user.token;
-      console.log(token)
+      res.redirect("http://localhost:3000?token=" + token)
     }
   );
 

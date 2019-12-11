@@ -18,17 +18,16 @@ ConnectDB();
 const app = express();
 
 // Enable Body Parster to accept request.
-app.use(function(req, res, next) {  
-  res.header('Access-Control-Allow-Origin', "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Acess-Control-Allow-Credentials", "true");
-  next();
-}); 
+app.use('*', function(req, res, next) {
+  //replace localhost:8080 to the ip address:port of your server
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  res.header('Access-Control-Allow-Credentials', true);
+  next(); 
+  });
 
-app.all('/*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+app.options('*', cors());
 
 passport.serializeUser((user,done) => {
   done(null,user);
@@ -39,7 +38,7 @@ passport.deserializeUser((user,done) => {
 })
 
 app.use(passport.initialize());
-app.use(cors({origin: "http://localhost:3000"}));
+app.use(cors({origin: "http://localhost:3000",credentials: true, allowedHeaders: "Content-Type"}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -49,7 +48,7 @@ app.use(cookieParser());
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);
 app.use('/dashboard', authRoute);
-app.use('/auth', socialAuthRoute);
+app.use('/auth',cors(), socialAuthRoute);
  
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
