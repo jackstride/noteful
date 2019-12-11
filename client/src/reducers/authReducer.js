@@ -26,6 +26,7 @@ export default (state = initalState, action) => {
         ...state,
         isLoading: true,
         isAuthenticated: true,
+        url: action.payload
       };
     case USER_LOADED:
       console.log("user Loaded")

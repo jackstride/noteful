@@ -9,21 +9,24 @@ const axios = require("axios");
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-router.get(
-    "/google",
-    passport.authenticate('google', { scope: ["profile", "email"]})
-  );
+
+//Google auth 
+router.get('/google', passport.authenticate('google', { scope: ['profile'] }));
+
   
-  router.get(
-    "/google/callback",
-    passport.authenticate("google", { failureRedirect: "/test", session: false }),
-    (req, res) => {
-      res.redirect("/test")
-        console.log(res);
+router.get("/google/callback",passport.authenticate("google", { failureRedirect: "/test", session: false }), (req, res) => {
+      console.log("hit");
       let token = req.user.token;
       console.log(token)
     }
   );
+
+//   router.get("/google/callback",passport.authenticate("google"), (req, res) => {
+//     console.log("hit");
+//     let token = req.user.token;
+//     console.log(token)
+//   }
+// );
   
   module.exports = router;
   

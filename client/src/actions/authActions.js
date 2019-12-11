@@ -28,20 +28,27 @@ export const loadUser = () => (dispatch, getState) => {
     }
   };
 
-  axios
-    .get("/dashboard", config)
-    .then(res =>
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      })
-    )
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR
-      });
-    });
+  // axios.get('/auth/google/callback').then(res => {
+  //   console.log(res)
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // })
+
+  // axios
+  //   .get("/dashboard", config)
+  //   .then(res =>
+  //     dispatch({
+  //       type: USER_LOADED,
+  //       payload: res.data
+  //     })
+  //   )
+  //   .catch(err => {
+  //     dispatch(returnErrors(err.response.data, err.response.status));
+  //     dispatch({
+  //       type: AUTH_ERROR
+  //     });
+  //   });
 };
 
 export const register = formValues => dispatch => {
@@ -106,11 +113,11 @@ export const googleLogin = () => dispatch => {
 };
 
 
-// export const gotGoogle = () => dispatch => {
-//   axios.get('user/auth/google').then(res => {
-//     dispatch({
-//       type: GOT_URL,
-//       payload: res.data
-//     })
-//   })
-// }
+export const gotGoogle = () => dispatch => {
+  axios.get('/auth/google/callback').then(res => {
+    dispatch({
+      type: GOT_URL,
+      payload: res.data
+    })
+  })
+}
