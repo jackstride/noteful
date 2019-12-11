@@ -8,7 +8,6 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   GETTING_URL,
-  GOT_URL
 } from "../actions/types";
 
 const initalState = {
@@ -58,18 +57,11 @@ export default (state = initalState, action) => {
         isLoading: false,
     }
     case GETTING_URL:
+      console.log("getting")
       return {
         ...state,
-        isLoading: true,
-        url: action.payload
+        url: action.payload,
       }
-      case GOT_URL:
-        console.log("GOT URL")
-        return{
-          ...state,
-          isLoading:false,
-          token: action.payload,
-        }
     default:
         return state;
   }

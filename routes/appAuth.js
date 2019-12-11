@@ -8,14 +8,14 @@ const auth = require('../middleware/auth')
 
 require('dotenv').config()
 
-
+//This was disabled as it redirects to login
 
 // @route GET api/auth
 // @Desc Get logged in urser
 // @access Private
-router.get('/',auth, async (req,res) => {
-        const user =  await User.findById(req.user.userId).select('-password');
-        res.send(user);
+router.get('/', async (req,res) => {
+        //const user =  await User.findById(req.user.userId).select('-password');
+        //res.send(user);
 });
 
 

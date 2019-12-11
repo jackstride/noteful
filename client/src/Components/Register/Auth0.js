@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {googleLogin} from '../../actions/authActions';
 
 
 class SocialLogin extends Component {
@@ -8,6 +9,10 @@ class SocialLogin extends Component {
         this.state = {
             url: null
         }
+    }
+
+    handleSubmit = () => {
+      window.location.href ="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fauth%2Fgoogle%2Fcallback&scope=profile%20email&client_id=525473027813-feds73kf7h3ongpbma72ib2uh51ib4ep.apps.googleusercontent.com"
     }
 
   render() {
@@ -24,12 +29,12 @@ class SocialLogin extends Component {
 //   isAuth: state.auth.isAuthenticated,
 // });
 
-// const mapDispatchToProps = (dispatch,state) => {
-//   return {
-//     google: () => {
-//       dispatch(googleLogin());
-//     }
-//   };
-// };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    google: () => {
+      dispatch(googleLogin());
+    }
+  };
+};
 
-export default (SocialLogin);
+export default connect(null,mapDispatchToProps)(SocialLogin);

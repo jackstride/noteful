@@ -20,15 +20,15 @@ import { register } from  '../../actions/authActions';
     register: PropTypes.func.isRequired
   }
 
-  componentDidUpdate(prevProps,prevState) {
-    const {error} = this.props;
-    console.log(error);
-    if(error !== prevProps.error) {
-     if(error.id === 'REGISTER_FAIL') {
-       this.setState({errors: [...prevState.errors, ...error.message.error]});
-     }
-    }
-  }
+  // componentDidUpdate(prevProps,prevState) {
+  //   const {error} = this.props;
+  //   console.log(error);
+  //   if(error !== prevProps.error) {
+  //    if(error.id === 'REGISTER_FAIL') {
+  //      this.setState({errors: [...prevState.errors, ...error.message.error]});
+  //    }
+  //   }
+  // }
 
   handleSubmit = event => {
     event.preventDefault();

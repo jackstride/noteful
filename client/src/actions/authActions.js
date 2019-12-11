@@ -92,14 +92,18 @@ export const login = formValues => dispatch => {
 
 
 
-// export const googleLogin = () => dispatch => {
-//   axios.post("/user/login/google")
-//   .then(res => {
-//   dispatch({
-//      type: GETTING_URL,
-//       payload: res.data });
-//   });
-// };
+export const googleLogin = () => dispatch => {
+  axios.get("/auth/google",{
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+  .then(res => {
+  dispatch({
+     type: GETTING_URL,
+      payload: res.data });
+  });
+};
 
 
 // export const gotGoogle = () => dispatch => {

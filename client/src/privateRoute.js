@@ -4,8 +4,6 @@ import { BrowserRouter, Route, Switch, Redirect, withRouter } from "react-router
 import { connect } from "react-redux";
 
  function AuthRoute({ component: Component, authed, ...rest },) {
-     console.log(authed)
-     let test = false;
     return (
         <Route
             {...rest}
@@ -26,11 +24,6 @@ import { connect } from "react-redux";
     }
 
 
-// const mapStateToProps = (state) => {
-//   {
-//     console.log(state);
-//     return { isAuth: state.auth }; // change this line
-//   }
-// };
+
 
 export default withRouter((AuthRoute));

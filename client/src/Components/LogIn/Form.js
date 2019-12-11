@@ -30,7 +30,7 @@ class Form extends Component {
     this.setState({ formValues });
     this.props.login(formValues);
     this.setState({sent: true})
-    this.props.history.push("/");
+    this.props.history.push("/dashboard");
   }; 
     
   render() {

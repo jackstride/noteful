@@ -6,9 +6,10 @@ const { check, validationResult } = require("express-validator");
 const jtw = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const axios = require("axios");
+const passport = require('passport')
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 const User = require("../models/User");
-
 
 router.post(
   "/register",
@@ -119,7 +120,5 @@ router.post("/login", (req, res) => {
       res.status(500).json({ err });
     });
 });
-
-
 
 module.exports = router;
