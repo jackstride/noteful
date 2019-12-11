@@ -14,7 +14,6 @@ import { connect } from "react-redux";
                     <Redirect
                         to={{
                             pathname: "/login",
-                            state: { from: props.location }
                         }}
                     />
                 )
@@ -26,4 +25,4 @@ import { connect } from "react-redux";
 
 
 
-export default withRouter((AuthRoute));
+export default (AuthRoute);

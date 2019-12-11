@@ -17,9 +17,10 @@ passport.use(
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "http://localhost:3000/auth/google/callback"
-
     },
     (accessToken,refreshToken,profile,done) => {
+        localStorage.setItem("hello", "Cheese");
+        console.log(accessToken)
         let userData = {
             email: profile.emails[0].value,
             name: profile.displayName,

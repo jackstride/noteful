@@ -43,13 +43,13 @@ app.use(cookieParser());
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);
 app.use('/dashboard', authRoute);
-app.use('/auth', socialAuthRoute);
+app.use('/api/auth', socialAuthRoute);
  
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
-// app.get("/*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "index.html"));
-// });
-// app.use(express.static("build"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+app.use(express.static("build"));

@@ -73,17 +73,10 @@ class App extends Component {
         <h1>{this.props.auth.isAuthenticated.toString()}</h1>
         <BrowserRouter>
           <Switch>
-            <Route
-              exact
-              path="/login"
-              render={props => <this.LogInContainer {...props} />}
-            />
+          <Route exact path ="/" component={this.HomeContainer} />
+            <Route path="/login" render={props => <this.LogInContainer {...props} />} />
             <Route path ="/register" component={this.RegisterContainer} />
-            <Route exact path ="/" component={this.HomeContainer} />
-            <AuthRoute
-              authed={this.props.auth}
-              component={this.DefaultContainer}
-            />
+            <AuthRoute path="/dashboard" authed={this.props.auth} component={this.DefaultContainer} />
           </Switch>
         </BrowserRouter>
       </div>

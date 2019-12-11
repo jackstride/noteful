@@ -13,9 +13,15 @@ require('dotenv').config()
 // @route GET api/auth
 // @Desc Get logged in urser
 // @access Private
-router.get('/', async (req,res) => {
-        //const user =  await User.findById(req.user.userId).select('-password');
-        //res.send(user);
+router.get('/', auth,  async (req,res) => {
+        try {
+        console.log(req)
+         const user =  await User.findById(req.user.userId).select('-password');
+        res.send(user);
+        }
+        catch(err) {
+                res.send(401).json({err: "User not found"})
+        }
 });
 
 
