@@ -17,7 +17,6 @@ import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";
 import SideNav from "./Components/SideNav";
 import Recent from "./Components/Recent";
-import TopBar from "./Components/TopBar";
 import AddNote from "./AddNote";
 import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
@@ -58,7 +57,6 @@ class App extends Component {
     return (
       <div className="app_container">
         <SideNav />
-        <TopBar />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/dashboard/recent" component={Recent} />
         <Route path="/dashboard/AddNote" component={AddNote} />
@@ -70,7 +68,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>{this.props.auth.isAuthenticated.toString()}</h1>
         <BrowserRouter>
           <Switch>
           <Route exact path ="/" component={this.HomeContainer} />
