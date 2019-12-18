@@ -19,7 +19,7 @@ h1 {
 h2 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: $HeadingGrey;
-    font-size: 32px;
+    font-size: 42px;
 }
 
 h3 {
@@ -27,6 +27,7 @@ h3 {
     font-size: 14px;
     color: $SubGrey;
     letter-spacing: -.5px;
+    font-weight: 700;
 }
 
 h4 {
@@ -37,13 +38,12 @@ h4 {
 }
 
 
-
-
 p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: $SubGrey;
     font-size: 18px;
 }
+
 .app_container {
     display: grid;
     grid-template-columns: 310px calc(100% - 310px);
@@ -133,7 +133,7 @@ nav a {
 .web_nav {
     width: 100%;
     height: 100px;
-
+    background-color: $Background;
 
     .center_center {
         justify-content: space-between;
@@ -384,14 +384,19 @@ nav a {
     height: 100%;
     width: 100%;
     background-color: $Background;
+
+    h1 {
+        text-align: center;
+    }
 }
+
+
 
 .welcome_page {
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
 
     .header_tagline {
         display: flex;
@@ -456,10 +461,10 @@ nav a {
 
 
 .shape_style {
-    
-	background: #F1F3F6;
+
+    background: #F1F3F6;
     box-shadow: rgba(0, 0, 0, 0.05) -3px 3px 6px, rgba(0, 0, 0, 0.055) -20px 20px 55px, rgba(255, 255, 255, 0.6) -2px 2px 2px 1px inset, rgba(255, 255, 255, 0.4) 2px 2px 3px 0px inset, rgba(0, 0, 0, 0.05) 1px 1px 2px 0px inset;
-    border:1px solid rgba(255,255,255,.05);
+    border: 1px solid rgba(255, 255, 255, .05);
 }
 
 .circle {
@@ -477,14 +482,14 @@ nav a {
     width: 100%;
     height: 100%;
     position: absolute;
-    
+    pointer-events: none;
 
     :first-child {
         position: relative;
         left: 25%;
     }
 
-    :nth-child(2){
+    :nth-child(2) {
         position: absolute;
         right: 25%;
         rotate: 45deg;
@@ -498,22 +503,51 @@ nav a {
 
 /* Feature */
 
-.feature_container{
+.feature_container {
     width: 50%;
-    height: 400px;
+    height: 700px;
     align-self: flex-end;
     border-radius: 22px;
+    margin-bottom: 50px;
 
     .inner_container {
         width: 90%;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: fit-content;
     }
 
-    h2 {
-        padding-right: 100px;
+    .features {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+    }
+
+    div {
+        padding: 20px 20px 20px 0px;
+    }
+
+
+    .i_features {
+        display: grid;
+        grid-template-columns: 10% 90%;
+        grid-template-rows: 50% 50%;
+
+        .font_icon {
+            grid-column: 1;
+            grid-row: 1/2;
+        }
+
+        h3 {
+            grid-column-start: 2;
+            grid-row: 1;
+            text-align: left;
+        }
+
+        p {
+            grid-column: 2;
+            grid-row: 2;
+            text-align: left;
+            width: 70%;
+        }
+
     }
 }
 
@@ -526,28 +560,36 @@ nav a {
 footer {
     width: 100%;
     height: 300px;
-     img {
-         width: 200px;
-     }
+    background-color: $Background;
+
+    img {
+        width: 150px;
+    }
+}
+
+.footer_hr {
+    border-top: 1px $SubGrey solid;
 }
 
 
-.footer_nav {    
-display: flex;
-flex-direction: row;
-align-items: center;
+.footer_nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 
-ul {
-    padding: 50px;
-}
+    ul {
+        padding: 50px;
+    }
 
-a {
-    text-decoration: none;
-    color: $SubGrey;
-    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    
-    font-size: 16px;
+    li {
+        padding: 5px;
+    }
 
-}
+    a {
+        text-decoration: none;
+        color: $SubGrey;
+        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 16px;
+    }
 
 }

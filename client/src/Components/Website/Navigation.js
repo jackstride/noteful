@@ -25,11 +25,11 @@ export default class Navigation extends Component {
           <nav className="website_nav_login">
             <ul>
               <li>
-                <Link to="/dashboard">Sign Up</Link>
+                <Link to="/register">Sign Up</Link>
               </li>
               <span className="circle_border">
               <li>
-                <Link to="/dashboard">Login</Link>
+                <Link to="/login">Login</Link>
               </li>
               </span>
             </ul>

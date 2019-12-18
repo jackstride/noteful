@@ -1,16 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { library } from "@fortawesome/fontawesome-svg-core";
 import PropTypes from "prop-types";
-import {
-  faHome,
-  faClock,
-  faTasks,
-  faStickyNote,
-  faCalendarWeek
-} from "@fortawesome/free-solid-svg-icons";
-
 import { connect } from "react-redux";
+
 import { loadUser, checkAuth } from "./actions/authActions";
 import store from "./store";
 import Home from "./home";
@@ -22,8 +14,9 @@ import LogIn from "./Components/LogIn/LogIn.js";
 import Register from "./Components/Register/Register";
 import ToDo from "./Components/ToDo/ToDo";
 import AuthRoute from "./privateRoute";
+import Navigation from "./Components/Website/Navigation";
+import Footer from './Components/Footer'
 
-library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek);
 
 class App extends Component {
   constructor(props) {
@@ -42,7 +35,13 @@ class App extends Component {
   }
 
   HomeContainer = () => {
-    return <Route path="/" component={Home} />;
+    return (
+      <div>
+      <Navigation />
+      <Route path="/" component={Home} />
+      <Footer />
+      </div>
+      ) 
   };
 
   LogInContainer = () => {

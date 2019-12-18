@@ -53,10 +53,11 @@ export default class footer extends Component {
       return(
     <footer>     
            <div className="inner_container">
-               
+           <hr className="footer_hr"></hr>
                <div className="footer_nav">
                <div className="footer_logo">
                    <img src={Logo}></img>
+                   <p style={{fontSize: '14px', width: '60%'}}>Work smart with your notes,tasks and events.</p>
                </div>
                <ul>
                    {this.state.nav.slice(0,3).map((test) => (

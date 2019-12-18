@@ -3,7 +3,6 @@ import { render } from 'react-dom'
 import App from "./App";
 import { Provider, connect } from "react-redux";
 import store from "./store";
-
 import "./App.scss";
 
 import * as serviceWorker from "./serviceWorker";
