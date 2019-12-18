@@ -9,7 +9,7 @@ export default class Navigation extends Component {
       <div className="web_nav">
         <div className="inner_container center_center">
           <img alt="NoteFul Logo" src={Logo}></img>
-          <nav class="website_nav">
+          <nav className="website_nav">
             <ul>
               <li>
                 <Link to="/dashboard">Features</Link>

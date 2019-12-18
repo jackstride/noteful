@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 
 import Navigation from "./Components/Website/Navigation";
+import Footer from './Components/Footer'
 
 import Pablo from "./images/app_preview.jpg";
 
@@ -42,6 +43,7 @@ export default class home extends Component {
             </div>
           </div>
         </div>
+      <Footer />
       </div>
     );
   }
