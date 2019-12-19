@@ -6,7 +6,7 @@ import Logo from "../../images/noteful_bw.svg";
 export default class Navigation extends Component {
   render() {
     return (
-      <div className="web_nav">
+      <div className="website_navigation">
         <div className="inner_container center_center">
           <Link to="/">
           <img alt="NoteFul Logo" src={Logo}></img>

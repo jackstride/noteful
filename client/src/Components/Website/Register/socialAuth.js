@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { googleLogin } from "../../actions/authActions";
 
@@ -20,7 +19,7 @@ class SocialLogin extends Component {
 
   render() {
     return (
-      <div className="auth0">
+      <div className="social_auth">
         <div className="google_auth">
           <span>
             <img src={Google}></img>

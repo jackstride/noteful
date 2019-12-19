@@ -1,29 +1,25 @@
 import React, { Component } from "react";
 
-import { BrowserRouter, Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
- function AuthRoute({ component: Component, authed, ...rest },) {
-     
-    return (
-        <Route
-            {...rest}
-            render={props =>
-                authed.isAuthenticated === true ? (
-                    <Component {...props} />
-                ) : (
-                    <Redirect
-                        to={{
-                            pathname: "/login",
-                        }}
-                    />
-                )
-            }
-        />
-      );
-    }
+function AuthRoute({ component: Component, authed, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authed.isAuthenticated === true ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login"
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
-
-
-
-export default (AuthRoute);
+export default AuthRoute;

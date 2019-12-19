@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux'
 
-import Form from "./Form";
+import Form from "./loginForm";
+import SocialAuth from '../Register/socialAuth'
 
  class LogIn extends Component {
 
@@ -12,8 +13,11 @@ import Form from "./Form";
       <div className="center_container">
         <div className="login_container">
           <h1>Welcome</h1>
+          <p>Sign in to continue</p>
           <div className="form_container">
             <Form history={this.props.history} />
+            <p> Or </p>
+            <SocialAuth />
           </div>
         </div>
       </div>

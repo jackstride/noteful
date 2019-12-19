@@ -20,8 +20,8 @@ export default class hamNav extends Component {
     
   render() {
     return (
-      <div className="ham_nav">
-        <div id="nav-icon3" className={this.state.isToggled ? 'open' : null} onClick={this.toggleHam}>
+      <div className="ham_nav" >
+        <div id="nav-icon3" className={this.state.isToggled ? 'open' : null} onClick={this.toggleHam} >
           <span></span>
           <span></span>
           <span></span>

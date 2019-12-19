@@ -8,11 +8,8 @@ import store from "./store";
 import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";
 import SideNav from "./Components/SideNav";
-import Recent from "./Components/Recent";
-import AddNote from "./AddNote";
-import LogIn from "./Components/LogIn/LogIn.js";
+import LogIn from "./Components/LogIn/logIn.js";
 import Register from "./Components/Register/Register";
-import ToDo from "./Components/ToDo/ToDo";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
 import Footer from './Components/Footer'
@@ -45,9 +42,6 @@ class App extends Component {
       <div className="app_container">
         <SideNav />
         <Route path="/dashboard" component={Dashboard} />
-        <Route path="/dashboard/recent" component={Recent} />
-        <Route path="/dashboard/AddNote" component={AddNote} />
-        <Route path="/dashboard/ToDo" component={ToDo} />
       </div>
     );
   };

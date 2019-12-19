@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
-import axios from "axios";
-import {useHistory, Redirect} from 'react-router-dom';
 
-import {login} from '../../actions/authActions';
+import {login} from '../../../actions/authActions';
 
 class Form extends Component {
   constructor(props) {
@@ -35,12 +33,10 @@ class Form extends Component {
   }; 
     
   render() {
-    return (
+    return (      
       <form onSubmit={this.handleSubmit}>
-          <label> Username</label>
-          <input type="text" name="email"></input>
-          <label> Password</label>
-          <input type="password" name="password"></input>
+          <input type="text" name="email" placeholder="Email Address"></input>
+          <input type="password" name="password" placeholder="Password"></input>
           <input style={this.state.sent ? {backgroundColor:"green"} : null}type="submit" name="submit"></input>        
       </form>
     );

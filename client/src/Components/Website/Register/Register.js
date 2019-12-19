@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 
 import Space from "../..//images/shapes.svg";
-
-import R_Form from "./R_Form";
-import Auth0 from './Auth0'
+import RegisterForm from './registerForm';
+import SocialAuth from './socialAuth.js';
 
 export default class Register extends Component {
   render() {
@@ -18,8 +17,8 @@ export default class Register extends Component {
           <div className="form_container">
               <h2> Create Your Free Account </h2>
               <span>Already have an account? <Link to="/login">Click Here</Link></span>
-              <Auth0 history={this.props.history} />
-              <R_Form />
+              <SocialAuth history={this.props.history} />
+              <RegisterForm />
             </div>
         </div>
       </div>

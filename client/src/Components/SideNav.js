@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from "../images/noteful_bw.svg";
-import HamNav from "./hamNav";
+import HamNav from "./Dashboard/Navigation/hamNav";
 import Folders from './Dashboard/Nav_widgets/Folders'
 import ToDo from './Dashboard/Nav_widgets/ToDo'
 
@@ -38,7 +36,7 @@ export default class SideBar extends Component {
 
   render() {
     return (
-      <div className="nav_sidebar">
+      <div className="dashboard_sidebar">
         <div className="nav-header">
           <div className="branding">
             <img src={Logo} alt="NoteFul App"></img>
@@ -49,7 +47,6 @@ export default class SideBar extends Component {
             <Folders />
             <ToDo />
         </div>
-        <hr className="nav_sep"></hr>
       </div>
     );
   }
