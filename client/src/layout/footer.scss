@@ -1,0 +1,36 @@
+footer {
+    width: 100%;
+    height: 300px;
+    background-color: $Background;
+
+    img {
+        width: 150px;
+    }
+}
+
+hr.footer_hr {
+    border-top: 2px solid lightgray;
+}
+
+
+.footer_nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    ul {
+        padding: 50px;
+    }
+
+    li {
+        padding: 5px;
+    }
+
+    a {
+        text-decoration: none;
+        color: $SubGrey;
+        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 16px;
+    }
+
+}

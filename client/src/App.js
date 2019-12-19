@@ -8,8 +8,8 @@ import store from "./store";
 import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";
 import SideNav from "./Components/SideNav";
-import LogIn from "./Components/LogIn/logIn.js";
-import Register from "./Components/Register/Register";
+import LogIn from "./Components/Website/LogIn/logIn.js";
+import Register from "./Components/Website/Register/Register";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
 import Footer from './Components/Footer'

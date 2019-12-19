@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 
-import Space from "../..//images/shapes.svg";
+import Space from "../../../images/shapes.svg";
 import RegisterForm from './registerForm';
 import SocialAuth from './socialAuth.js';
 

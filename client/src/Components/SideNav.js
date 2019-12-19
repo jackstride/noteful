@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom'
 
 import Logo from "../images/noteful_bw.svg";
 import HamNav from "./Dashboard/Navigation/hamNav";
@@ -39,7 +40,9 @@ export default class SideBar extends Component {
       <div className="dashboard_sidebar">
         <div className="nav-header">
           <div className="branding">
+            <Link to="/">
             <img src={Logo} alt="NoteFul App"></img>
+            </Link>
           </div>
           <HamNav />
         </div>

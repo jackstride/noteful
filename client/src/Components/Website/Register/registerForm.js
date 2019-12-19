@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from "axios";
 
-import { register } from  '../../actions/authActions';
+import { register } from  '../../../actions/authActions';
 
  class R_Form extends Component {
   constructor(props) {

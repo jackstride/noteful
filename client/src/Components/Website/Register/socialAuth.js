@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { googleLogin } from "../../actions/authActions";
 
-import Twitter from "../../images/twitter.svg";
-import Google from "../../images/google.svg";
+import Twitter from "../../../images/twitter.svg";
+import Google from "../../../images/google.svg";
 
 class SocialLogin extends Component {
   constructor(props) {
@@ -42,12 +41,5 @@ class SocialLogin extends Component {
 //   isAuth: state.auth.isAuthenticated,
 // });
 
-const mapDispatchToProps = dispatch => {
-  return {
-    google: () => {
-      dispatch(googleLogin());
-    }
-  };
-};
 
-export default connect(null, mapDispatchToProps)(SocialLogin);
+export default (SocialLogin);
