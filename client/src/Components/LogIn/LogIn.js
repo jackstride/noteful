@@ -11,6 +11,7 @@ import Form from "./Form";
     return (
       <div className="center_container">
         <div className="login_container">
+          <h1>Welcome</h1>
           <div className="form_container">
             <Form history={this.props.history} />
           </div>

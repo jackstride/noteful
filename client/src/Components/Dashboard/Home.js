@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import SideNav from '../SideNav';
 import {connect} from 'react-redux'
 
 

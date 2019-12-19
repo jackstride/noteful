@@ -8,7 +8,9 @@ export default class Navigation extends Component {
     return (
       <div className="web_nav">
         <div className="inner_container center_center">
+          <Link to="/">
           <img alt="NoteFul Logo" src={Logo}></img>
+          </Link>
           <nav className="website_nav">
             <ul>
               <li>

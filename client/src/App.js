@@ -19,12 +19,6 @@ import Footer from './Components/Footer'
 
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isAuthenticated: false
-    };
-  }
 
   static propTypes = {
     isAuthenticated: PropTypes.bool
@@ -38,18 +32,12 @@ class App extends Component {
     return (
       <div>
       <Navigation />
-      <Route path="/" component={Home} />
+      <Route exact path="/" component={Home} />
+      <Route path="/login" render={props => <LogIn {...props} />} />
+      <Route path ="/register" component={Register} />
       <Footer />
       </div>
       ) 
-  };
-
-  LogInContainer = () => {
-    return <Route path="/login" component={LogIn} />;
-  };
-
-  RegisterContainer = () => {
-    return <Route path="/register" component={Register} />;
   };
 
   DefaultContainer = () => {
@@ -63,16 +51,14 @@ class App extends Component {
       </div>
     );
   };
-
+//Route path "/" last as switch mates the first instance
   render() {
     return (
       <div>
         <BrowserRouter>
           <Switch>
-          <Route exact path ="/" component={this.HomeContainer} />
-            <Route path="/login" render={props => <this.LogInContainer {...props} />} />
-            <Route path ="/register" component={this.RegisterContainer} />
             <AuthRoute path="/dashboard" authed={this.props.auth} component={this.DefaultContainer} />
+            <Route path ="/" component={this.HomeContainer} />
           </Switch>
         </BrowserRouter>
       </div>

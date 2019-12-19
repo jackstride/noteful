@@ -5,33 +5,32 @@
     flex-direction: row;
     background-color: $BG;
 
+    h2 {
+        margin: 10px 0px 10px 0px;
+    }
+
     .left {
-        width: 30%;
-        background-image: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+        width: 50%;
+        background-color: $Background;
         height: 100%;
         display: flex;
         flex-direction: column;
-        background-color: $darkblue;
 
         img {
             width: 100%;
         }
-
-        .register_text {
-            padding:50px;
-        }
     }
 
     .right {
-        background-color: #FDFDFD;
-        width: 70%;
+        background-color: $Background;
+        width: 50%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
 
-        h2 {
-            font-size: 28px;
+        span {
+            margin: 10px 0px 10px 0px;
         }
     }
 }
@@ -43,6 +42,58 @@
 
 
 .auth0 {
-    height: 100px;
-    background-color: blue;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+
+    >* {
+        margin: 10px;
+    }
+
+    span {
+        display: block;
+        height: 100%;
+        width: 15%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        img {
+            width: 50%;
+        }
+    }
+
+    p,
+    a {
+        color: white;
+        font-size: 12px;
+        margin: 0 auto;
+        text-decoration: none;
+    }
+
+}
+
+
+
+
+/* Social */
+
+.google_auth {
+    width: 50%;
+    background-color: #4285F4;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.twitter_auth {
+    width: 50%;
+    background-color: #00ACED;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

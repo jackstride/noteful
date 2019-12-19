@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect, withRouter } from "react-router
 import { connect } from "react-redux";
 
  function AuthRoute({ component: Component, authed, ...rest },) {
+     
     return (
         <Route
             {...rest}
