@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FolderSchema = new Schema({
-    name: {
+    user_id: {
+        type: String,
+        required: true,
+    },
+    folder_name: {
         type: String,
         required: true,
     },
