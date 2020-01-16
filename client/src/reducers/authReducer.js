@@ -11,7 +11,6 @@ import {
 } from "../actions/types";
 
 const initalState = {
-  token: null,
   isAuthenticated: false,
   isLoading: false,
   user: null,
@@ -52,7 +51,6 @@ export default (state = initalState, action) => {
           console.log("loggedout")
     return {
         ...state,
-        token: null,
         user: null,
         isAuthenticated: false,
         isLoading: false,

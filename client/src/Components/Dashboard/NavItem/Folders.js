@@ -1,15 +1,20 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
+import React, { Component, Fragment, useState } from "react";
+import { connect, useDispatch } from "react-redux";
 
-import { addFolder } from "../../../actions/FolderActions";
+import { addFolder, getFolder } from "../../../actions/FolderActions";
 
 class Folders extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      isShown: false
+      isShown: false, 
     };
+  }
+
+
+  componentDidMount(){
+    this.props.getFolder(this.props.userId);
+    console.log(this.props);
   }
 
   toggleAddFolder = () => {
@@ -25,7 +30,7 @@ class Folders extends Component {
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="folder_content">
-          {isShown ? folderSubmit() : null}
+          {isShown ? <FolderSubmit addFolder={this.props.addFolder} userid={this.props.userId} /> : null}
           <ul>
             <li>
               <a href="#"> University </a>
@@ -45,15 +50,22 @@ class Folders extends Component {
     );
   }
 }
+const mapStateToProps = state => {  
+  return {
+  userId: state.auth.user._id,
+}
+}
 
+export default connect(mapStateToProps, {addFolder,getFolder}) (Folders);
 
-export default Folders
+let FolderSubmit = props => {
 
-let folderSubmit = props => {
   const hanldeSubmit = e => {
     e.preventDefault();
-    let name = e.target.folder_name.value;
-    addFolder(name);
+    let folderValue = {};
+    folderValue.name = e.target.folder_name.value;
+    folderValue.id = props.userid
+    props.addFolder(folderValue);
   };
 
   return (
@@ -65,6 +77,3 @@ let folderSubmit = props => {
     </Fragment>
   );
 };
-
-
-connect(null,addFolder)(folderSubmit)
