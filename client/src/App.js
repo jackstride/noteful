@@ -11,7 +11,8 @@ import LogIn from "./Components/Website/LogIn/logIn.js";
 import Register from "./Components/Website/Register/Register";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
-import Footer from './Components/Website/Footer'
+import Footer from './Components/Website/Footer';
+import LogOut from './Components/Website/logout.js';
 
 
 class App extends Component {
@@ -31,6 +32,7 @@ class App extends Component {
       <Route exact path="/" component={Home} />
       <Route path="/login" render={props => <LogIn {...props} />} />
       <Route path ="/register" component={Register} />
+      <Route path ="/logout" component={LogOut} />
       <Footer />
       </div>
       ) 

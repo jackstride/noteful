@@ -49,7 +49,7 @@ export default (state = initalState, action) => {
       case LOGIN_FAIL:
       case LOGOUT_SUCCESS:
       case REGISTER_FAIL:
-          console.log("fail")
+          console.log("loggedout")
     return {
         ...state,
         token: null,

@@ -6,8 +6,8 @@ const { check, validationResult } = require("express-validator");
 const jtw = require("jsonwebtoken");
 const auth = require("../middleware/auth");
 const axios = require("axios");
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 const User = require("../models/User");
 
@@ -72,7 +72,6 @@ router.post(
 );
 
 router.post("/login", (req, res) => {
-  
   let { email, password } = req.body;
 
   User.find({ email })
@@ -120,6 +119,11 @@ router.post("/login", (req, res) => {
       console.log(err);
       res.status(500).json({ err });
     });
+});
+
+router.get("/logout", (req, res) => {
+  res.clearCookie('access_token').sendStatus(200);
+  console.log(req.cookies)
 });
 
 module.exports = router;

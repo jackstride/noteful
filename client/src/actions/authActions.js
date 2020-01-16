@@ -96,6 +96,20 @@ export const login = formValues => dispatch => {
 };
 
 
+export const logout = () => dispatch => {
+  axios.get("/user/logout",{},{withCredentials: true})
+  .then(
+    res => {
+    dispatch({
+      type: LOGOUT_SUCCESS,
+    })
+  })
+  .catch(err => {
+    console.log(err);
+  })
+}
+
+
 
 
 

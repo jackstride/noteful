@@ -1,22 +1,40 @@
-
-
 /* Dashboard Navigation */
 
 .dashboard_navigation {
-    width: 100px;
+    width: 400px;
     height: 100%;
     background-color: black;
 }
 
 
-.nav_container {
-    height: fit-content;
+.dashboard_navigation:hover {
+    /* Goes in when not in use */
+}
+
+
+
+
+/* Profile */
+
+.profile_container {
+    height: 125px;
     width: 100%;
+    background-color: blue;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    top: 50px;
+    flex-direction: row;
+}
+
+
+
+.app_search {
+
+    input {
+        width: 100%;
+        height: 25px;
+        background-color: lightgray;
+        border: none;
+        border-radius: 5px;
+    }
 }
 
 

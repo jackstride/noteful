@@ -5,7 +5,8 @@ import {
   faTasks,
   faStickyNote,
   faCalendarWeek,
-  faCloud
+  faCloud,
+  faCog,
 } from "@fortawesome/free-solid-svg-icons";
 
-library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek,faCloud);
+library.add(faHome, faClock, faTasks, faStickyNote, faCalendarWeek,faCloud,faCog);
