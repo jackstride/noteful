@@ -3,21 +3,55 @@
     flex-direction: column;
     align-items: center;
 
-    .header_tagline {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        z-index: 1;
+    header {
+        height: calc(100vh - 125px);
+        width: 100%;
+
+        >* {
+            position: relative;
+            top: 20%;
+        }
+
+        .inner_container {
+            display: flex;
+            flex-direction: row;
+        }
+
+
+        .header_text {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+
+            .header_small {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            >* {
+                padding: 10px 0px;
+            }
+
+            hr {
+                margin-left: 50px;
+            }
+        }
+
+
+
+        .header_text {
+            width: 50%;
+            height: fit-content;
+        }
     }
-    .header_tagline>* {
-        padding: 20px;
-    }
+
 
     .app_preview_image {
         padding: 50px;
         z-index: 1;
-        
+
         img {
             width: 100%;
             border-radius: 12px;
@@ -25,19 +59,12 @@
 
     }
 
-    span {
-        font-size: 72px;
-        font-style: italic;
-        line-height: 100px;
-    }
-
-
     input {
         width: 200px;
         height: 50px;
-        border-radius: 22px;
         border: none;
-        background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+        background-image: linear-gradient(90deg, #FFB677 0%, #FF8364 100%);
+        border-radius: 24px;
         font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
         font-weight: normal;
         color: $whiteText;
@@ -122,7 +149,7 @@
         grid-template-columns: 50% 50%;
         grid-template-rows: 50% 50%;
         padding-top: 50px;
-    }        
+    }
 
     .i_features {
         display: grid;
@@ -133,10 +160,12 @@
             grid-column: 1;
             grid-row: 1/2;
         }
+
         h3 {
             grid-column-start: 2;
             grid-row: 1;
         }
+
         p {
             grid-column: 2;
             grid-row: 2;

@@ -1,0 +1,88 @@
+
+
+/* Dashboard Navigation */
+
+.dashboard_navigation {
+    width: 100px;
+    height: 100%;
+    background-color: black;
+}
+
+
+.nav_container {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    top: 50px;
+}
+
+
+/* Folder Widget */
+
+.folder_widget {
+    height: calc(100vh / 5);
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.folder_header {
+    width: 90%;
+    height: 10%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.folder_content {
+    background-color: $widgetGrey;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 8px;
+    height: 90%;
+
+    ul {
+        width: 90%;
+        margin: 0 auto;
+        padding: 10px;
+}
+    li {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+
+    li:hover {
+        background-color: #ECEAEA;
+        border-radius: 12px;
+        width: 100%;
+    }
+    
+    li a {
+        font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 14px;
+        color: $black;
+        font-weight: normal;
+        text-decoration: none;
+    }
+    
+}
+
+.plus {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background:
+        linear-gradient($black, $black),
+        linear-gradient($black, $black);
+    background-position: center;
+    background-size: 30% 2px, 2px 30%;
+    /*thickness = 2px, length = 50% (25px)*/
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

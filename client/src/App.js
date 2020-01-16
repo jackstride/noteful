@@ -7,12 +7,11 @@ import { loadUser, checkAuth } from "./actions/authActions";
 import store from "./store";
 import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";
-import SideNav from "./Components/SideNav";
 import LogIn from "./Components/Website/LogIn/logIn.js";
 import Register from "./Components/Website/Register/Register";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
-import Footer from './Components/Footer'
+import Footer from './Components/Website/Footer'
 
 
 class App extends Component {
@@ -40,7 +39,6 @@ class App extends Component {
   DefaultContainer = () => {
     return (
       <div className="app_container">
-        <SideNav />
         <Route path="/dashboard" component={Dashboard} />
       </div>
     );

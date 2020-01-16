@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./fontawesome";
 
 import Pablo from "./images/app_preview.jpg";
+import Tiles from "./images/header_tile.svg";
 
 export default class home extends Component {
   constructor(props) {
@@ -46,39 +47,56 @@ export default class home extends Component {
     return (
       <div className="home_app_container">
         <div className="welcome_page">
-          <div className="BG_SHAPES">
+          <header>
+            <div className="inner_container">
+              <div className="header_text">
+                <div className="header_small">
+                  <h3>We think it's time.</h3>
+                  <hr></hr>
+                </div>
+                <h1>
+                  Type with <br></br>noteful.
+                </h1>
+                <p>
+                  {" "}
+                  It's time to switch away from paper and begin with Noteful.
+                  Sign up today. Free of charge
+                </p>
+                <input
+                  type="button"
+                  onClick={this.handleSubmit}
+                  value="Register"
+                ></input>
+              </div>
+              <div className="header_image">
+                <img src={Tiles} alt="Tiles"></img>
+              </div>
+            </div>
+          </header>
+          {/* <div className="BG_SHAPES">
             <div className="circle shape_style"></div>
             <div className="rectangle shape_style"></div>
-          </div>
-          <div className="header_tagline">
-            <h1>
-              Get <span>Organised</span>
-              <br></br> with noteful..
-            </h1>
-            <h3>Sign up today. Free of charge.</h3>
-            <input
-              type="button"
-              onClick={this.handleSubmit}
-              value="Register"
-            ></input>
-          </div>
-          <div className="app_preview_image">
-            <img src={Pablo} href="noteful Preview"></img>
-          </div>
+          </div> */}
+
           <div className="feature_container shape_style">
             <div className="inner_container">
               <div className="feautre_heading">
-              <h2>Features</h2>
+                <h2>Features</h2>
               </div>
               <div className="features">
-              {this.state.features.map(test => (
-                <div className="i_features">
-                  <FontAwesomeIcon className="font_icon" style={{color: '#323232'}} icon={test.icon} size='2x'/>
-                  <h3>{test.heading}</h3>
-                  <p>{test.tagline}</p>
+                {this.state.features.map(test => (
+                  <div className="i_features">
+                    <FontAwesomeIcon
+                      className="font_icon"
+                      style={{ color: "#323232" }}
+                      icon={test.icon}
+                      size="2x"
+                    />
+                    <h3>{test.heading}</h3>
+                    <p>{test.tagline}</p>
                   </div>
-              ))}
-               </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

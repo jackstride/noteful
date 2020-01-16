@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 
-import Logo from '../images/noteful_bw.svg';
+import Logo from '../../images/noteful_bw.svg';
 
 export default class footer extends Component {
   constructor(props) {
