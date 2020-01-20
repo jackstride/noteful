@@ -13,3 +13,4 @@ export const GOT_URL = "GOT_URL"
 export const FOLDER_SUCCESS = "FOLDER_SUCCESS";
 export const FOLDER_LOADED = "FOLDER_LOADED";
 export const FOLDER_REMOVE = "FOLDER_REMOVE";
+export const FOLDER_DELETE = "FOLDER_DELETE";

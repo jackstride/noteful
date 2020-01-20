@@ -1,7 +1,7 @@
 import React, { Component, Fragment, useState } from "react";
 import { connect } from "react-redux";
 import {Link} from 'react-router-dom';
-import { addFolder, getFolder } from "../../../actions/FolderActions";
+import { addFolder, getFolder, deleteFolder } from "../../../actions/FolderActions";
 
 class Folders extends Component {
   constructor(props) {
@@ -20,11 +20,16 @@ class Folders extends Component {
     this.setState({ isShown: !this.state.isShown });
   };
 
+  removeFolder = (id) => {
+    
+  }
+
   showFolders = () => {
     return (
     <ul>
     {this.props.folder.map((key, index) => (
-      <li><Link to="#">{key.folder_name}</Link></li>
+      <li><Link to="#">{key.folder_name}</Link>
+      <p style={{color: "black"}}> Bin</p></li>
     ))}
     </ul>
     )
@@ -55,7 +60,7 @@ const mapStateToProps = state => {
 }
 }
 
-export default connect(mapStateToProps, {addFolder,getFolder}) (Folders);
+export default connect(mapStateToProps, {addFolder,getFolder,deleteFolder}) (Folders);
 
 
 let FolderSubmit = props => {
@@ -71,8 +76,8 @@ let FolderSubmit = props => {
   return (
     <Fragment>
       <form className="f_form" onSubmit={hanldeSubmit}>
-        <input name="folder_name" type="text"></input>
-        <input type="submit"></input>
+        <input name="folder_name" placeholder="Add Folder" type="text"></input>
+        <input type="submit" style={{display:"none"}}></input>
       </form>
     </Fragment>
   );
