@@ -25,6 +25,7 @@ class App extends Component {
     store.dispatch(loadUser());
   }
 
+
   HomeContainer = () => {
     return (
       <div>

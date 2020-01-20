@@ -34,7 +34,7 @@ class Form extends Component {
     
   render() {
     return (      
-      <form onSubmit={this.handleSubmit}>
+      <form className="auth_form" onSubmit={this.handleSubmit}>
           <input type="text" name="email" placeholder="Email Address"></input>
           <input type="password" name="password" placeholder="Password"></input>
           <input style={this.state.sent ? {backgroundColor:"green"} : null}type="submit" name="submit"></input>        

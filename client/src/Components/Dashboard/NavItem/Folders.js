@@ -1,6 +1,6 @@
 import React, { Component, Fragment, useState } from "react";
-import { connect, useDispatch } from "react-redux";
-
+import { connect } from "react-redux";
+import {Link} from 'react-router-dom';
 import { addFolder, getFolder } from "../../../actions/FolderActions";
 
 class Folders extends Component {
@@ -14,12 +14,21 @@ class Folders extends Component {
 
   componentDidMount(){
     this.props.getFolder(this.props.userId);
-    console.log(this.props);
   }
 
   toggleAddFolder = () => {
     this.setState({ isShown: !this.state.isShown });
   };
+
+  showFolders = () => {
+    return (
+    <ul>
+    {this.props.folder.map((key, index) => (
+      <li><Link to="#">{key.folder_name}</Link></li>
+    ))}
+    </ul>
+    )
+  }
 
   render() {
     let { isShown } = this.state;
@@ -30,21 +39,10 @@ class Folders extends Component {
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="folder_content">
-          {isShown ? <FolderSubmit addFolder={this.props.addFolder} userid={this.props.userId} /> : null}
-          <ul>
-            <li>
-              <a href="#"> University </a>
-            </li>
-            <li>
-              <a href="#"> Work </a>
-            </li>
-            <li>
-              <a href="#"> Thesis Introuduction </a>
-            </li>
-            <li>
-              <a href="#"> Events </a>
-            </li>
-          </ul>
+        {isShown ? <FolderSubmit addFolder={this.props.addFolder} userid={this.props.userId} /> : null}
+        <div className="folder_names">
+          {this.showFolders()}
+          </div>
         </div>
       </div>
     );
@@ -53,24 +51,26 @@ class Folders extends Component {
 const mapStateToProps = state => {  
   return {
   userId: state.auth.user._id,
+  folder: state.folder.data
 }
 }
 
 export default connect(mapStateToProps, {addFolder,getFolder}) (Folders);
+
 
 let FolderSubmit = props => {
 
   const hanldeSubmit = e => {
     e.preventDefault();
     let folderValue = {};
-    folderValue.name = e.target.folder_name.value;
+    folderValue.folder_name = e.target.folder_name.value;
     folderValue.id = props.userid
     props.addFolder(folderValue);
   };
 
   return (
     <Fragment>
-      <form onSubmit={hanldeSubmit}>
+      <form className="f_form" onSubmit={hanldeSubmit}>
         <input name="folder_name" type="text"></input>
         <input type="submit"></input>
       </form>

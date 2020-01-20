@@ -65,7 +65,7 @@ import { register } from  '../../../actions/authActions';
       })}
        </div> : null
         }
-      <form onSubmit={this.handleSubmit}>
+      <form className="auth_form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           name="firstName"

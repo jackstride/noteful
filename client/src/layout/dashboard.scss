@@ -91,6 +91,11 @@
     
 }
 
+.folder_names {
+    overflow-x: auto;
+    height: inherit;
+}
+
 .plus {
     display: inline-block;
     width: 30px;
@@ -103,4 +108,14 @@
     /*thickness = 2px, length = 50% (25px)*/
     background-repeat: no-repeat;
     cursor: pointer;
+}
+
+
+
+/* Folder Form */
+
+.f_form {
+    position: relative;
+    width: inherit;
+    background: transparent;
 }

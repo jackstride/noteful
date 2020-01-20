@@ -105,7 +105,7 @@ router.post("/login", (req, res) => {
             (err, token) => {
               console.log("helllo");
               res.cookie("access_token", token, {
-                maxAge: 900000,
+                maxAge: 9000000,
                 httpOnly: true
               });
               console.log(res);
