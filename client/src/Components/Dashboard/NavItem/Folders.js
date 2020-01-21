@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
   addFolder,
   getFolder,
-  deleteFolder
+  removeFolder,
+
 } from "../../../actions/FolderActions";
 
 class Folders extends Component {
@@ -23,25 +24,18 @@ class Folders extends Component {
     this.setState({ isShown: !this.state.isShown });
   };
 
-  deleteClick = id => {
-    this.props.deleteFolder(id);
+  onRemoveFolder = (e,id) => {
+    e.preventDefault();
+    this.props.removeFolder(id);
   };
 
   showFolders = () => {
     return (
       <ul>
-        {this.props.folder.map((key, index) => (
-          <React.Fragment key={index}>
-            <li key={index}>
-              <Link to="#">{key.folder_name}</Link>
-            </li>
-            <button
-              style={{ color: "black" }}
-              onClick={this.deleteClick.bind(this,key._id)}
-            >
-              delete{" "}
-            </button>
-          </React.Fragment>
+        {this.props.folder.map((key, index) => (          
+            <form onSubmit={(e) => this.onRemoveFolder(e,key._id)}>
+              <input type="submit" value={key.folder_name}></input>
+            </form>
         ))}
       </ul>
     );
@@ -65,6 +59,7 @@ class Folders extends Component {
           <div className="folder_names">{this.showFolders()}</div>
         </div>
       </div>
+      
     );
   }
 }
@@ -75,7 +70,13 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addFolder, getFolder, deleteFolder })(
+const mapDispatchToProps = dispatch => ({
+  removeFolder: (id) => dispatch( removeFolder(id) ),
+  addFolder: (id) => dispatch( addFolder(id) ),
+  getFolder: (id) => dispatch( getFolder(id) )
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(
   Folders
 );
 

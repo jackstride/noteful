@@ -28,16 +28,17 @@ router.get("/folders/:userid", (req, res) => {
 
 
 router.delete("/folders/:folderid", (req,res) => {
-  
   let id = req.params.folderid;
-  console.log(id);
-
-  // Folder.findByIdAndRemove( id , false, (res =>  {
-  //   console.log(res);
-  // }))
-   
   
 
+  Folder.findByIdAndRemove(id, (err,res) => {
+    if (err) {
+      console.log(err)
+    }
+  })
+
+  res.sendStatus(200);
+  
   
 });
 

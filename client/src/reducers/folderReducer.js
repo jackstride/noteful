@@ -1,4 +1,4 @@
-import { FOLDER_SUCCESS, FOLDER_LOADED, FOLDER_DELETE } from "../actions/types";
+import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER } from "../actions/types";
 
 const initalState = {
   user_id: null,
@@ -15,16 +15,15 @@ export default (state = initalState, action) => {
         data: [action.payload, ...state.data]
       };
     case FOLDER_LOADED:
-      console.log("GOT FOLDERS")
       return {
         ...state,
         data: action.payload
       };
-      case FOLDER_DELETE:
-      console.log("TEST")
+    case REMOVE_FOLDER:
+      console.log("REDUCER REMOVED")
       return {
         ...state,
-        data: null,
+        data: state.data.filter(data => data._id !== action.payload)
       }
     default:
       return state;
