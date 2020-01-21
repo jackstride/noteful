@@ -55,22 +55,22 @@ export default class footer extends Component {
            <hr className="footer_hr"></hr>
                <div className="footer_nav">
                <div className="footer_logo">
-                   <img src={Logo}></img>
+                   <img alt="Noteful Logo" src={Logo}></img>
                    <p style={{fontSize: '14px', width: '60%'}}>Work smart with your notes,tasks and events.</p>
                </div>
                <ul>
-                   {this.state.nav.slice(0,3).map((test) => (
-                       <li><Link to={test.link}>{test.title}</Link></li>
+                   {this.state.nav.slice(0,3).map((test,index) => (
+                       <li key={test + index}><Link to={test.link}>{test.title}</Link></li>
                    ))}
                    </ul>
                    <ul>
-                   {this.state.nav.slice(3,6).map((test) => (
-                       <li><Link to={test.link}>{test.title}</Link></li>
+                   {this.state.nav.slice(3,6).map((test,index) => (
+                       <li key={test + index}><Link to={test.link}>{test.title}</Link></li>
                    ))}
                    </ul>
                    <ul>
-                   {this.state.nav.slice(6,9).map((test) => (
-                       <li><Link to={test.link}>{test.title}</Link></li>
+                   {this.state.nav.slice(6,9).map((test,index) => (
+                       <li key={test + index}><Link to={test.link}>{test.title}</Link></li>
                    ))}
                    </ul>
                </div>

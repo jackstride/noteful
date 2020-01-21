@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
-import {logout } from '../../../actions/authActions'
 
 let profile = props => {
   return (

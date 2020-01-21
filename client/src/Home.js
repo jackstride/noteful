@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./fontawesome";
 
-import Pablo from "./images/app_preview.jpg";
 import Tiles from "./images/header_tile.svg";
 
 export default class home extends Component {
@@ -84,8 +83,8 @@ export default class home extends Component {
                 <h2>Features</h2>
               </div>
               <div className="features">
-                {this.state.features.map(test => (
-                  <div className="i_features">
+                {this.state.features.map((test,index) => (
+                  <div className="i_features" key={test + index} >
                     <FontAwesomeIcon
                       className="font_icon"
                       style={{ color: "#323232" }}

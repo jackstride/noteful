@@ -11,7 +11,7 @@ export default class Register extends Component {
       <div>
         <div className="reg_container">        
           <div className="left">
-            <img src={Space}></img>
+            <img alt="circles and squares" src={Space}></img>
           </div>
           <div className="right">
           <div className="form_container">

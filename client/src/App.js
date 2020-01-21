@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { loadUser, checkAuth } from "./actions/authActions";
+import { loadUser } from "./actions/authActions";
 import store from "./store";
 import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";

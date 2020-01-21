@@ -2,14 +2,12 @@ import axios from "axios";
 
 import { FOLDER_SUCCESS, FOLDER_LOADED, FOLDER_DELETE } from "./types";
 
-//Add folder
-
 export const addFolder = folder_name => dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
+  // const config = {
+  //   headers: {
+  //     "Content-Type": "application/json"
+  //   }
+  // };
   axios
     .post("api/addFolder", folder_name)
     .then(res =>
@@ -25,7 +23,7 @@ export const addFolder = folder_name => dispatch => {
 
 export const getFolder = id => dispatch => {
   axios
-    .get(`/api/folders/${id}`)
+    .get(`api/folders/${id}`)
     .then(res =>
       dispatch({
         type: FOLDER_LOADED,
@@ -37,16 +35,13 @@ export const getFolder = id => dispatch => {
     });
 };
 
-export const deleteFolder = id => dispatch => {
-  axios
-    .delete(`/api/folders/${id}`)
+export const deleteFolder = (id) => dispatch => {
+  axios.delete(`api/folders/${id}`)
     .then(res =>
       dispatch({
         type: FOLDER_DELETE,
-        payload: res
+        payload: id
       })
     )
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(err => console.log(err));
 };

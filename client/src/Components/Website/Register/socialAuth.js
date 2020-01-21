@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
 import Twitter from "../../../images/twitter.svg";
 import Google from "../../../images/google.svg";
@@ -21,13 +20,13 @@ class SocialLogin extends Component {
       <div className="social_auth">
         <div className="google_auth">
           <span>
-            <img src={Google}></img>
+            <img alt="Sign up with google" src={Google}></img>
           </span>
           <p><a href="http://localhost:5000/auth/google">Sign up with Google</a></p>
         </div>
         <div className="twitter_auth">
           <span>
-            <img src={Twitter}></img>
+            <img alt="Sign up with twitter" src={Twitter}></img>
           </span>
           <p>Sign up with google</p>
         </div>

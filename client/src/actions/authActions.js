@@ -28,13 +28,6 @@ export const loadUser = () => (dispatch, getState) => {
     }
   };
 
-  // axios.get('/auth/google/callback').then(res => {
-  //   console.log(res)
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // })
-
   axios
     .get("/dashboard", config)
     .then(res =>
