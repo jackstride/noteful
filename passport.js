@@ -23,6 +23,12 @@ passport.use(
             name: profile.displayName,
             token: accessToken,
         };
+        console.log(userData)
         done(null,userData)
+
+        //Next steps
+        // Save user in database
+        //Check is user exists
+        //Research More
     })
 );
