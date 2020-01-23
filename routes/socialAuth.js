@@ -16,6 +16,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', "emai
   
 router.get("/google/callback",passport.authenticate("google", { session: false }), (req, res) => {
       let token = req.user.token;
+      console.log("THIS IS THE OTHER " + token);
       
       // res.cookie("google_token", token, {
       //   maxAge: 9000000,

@@ -22,6 +22,8 @@ passport.use(
     },
     (accessToken,refreshToken,profile,done) => {
 
+        console.log(accessToken);
+
         User.find({email: profile.emails[0].value})
         .then(user => {
             if(user.length) {
