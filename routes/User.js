@@ -103,7 +103,6 @@ router.post("/login", (req, res) => {
               expiresIn: "1h"
             },
             (err, token) => {
-              console.log("helllo");
               res.cookie("access_token", token, {
                 maxAge: 9000000,
                 httpOnly: true
