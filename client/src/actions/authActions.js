@@ -31,7 +31,6 @@ export const loadUser = () => (dispatch, getState) => {
   axios
     .get("/dashboard", config)
     .then(res => {
-      console.log(res);
       dispatch({
         type: USER_LOADED,
         payload: res.data
@@ -101,7 +100,7 @@ export const logout = () => dispatch => {
     })
   })
   .catch(err => {
-    console.log(err);
+    
   })
 }
 

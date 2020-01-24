@@ -13,6 +13,7 @@ const toDoRoute = require('./routes/toDo');
 const authRoute = require('./routes/appAuth')
 const socialAuthRoute = require('./routes/socialAuth');
 const FolderRoute = require('./routes/folder');
+const tasksRoute = require('./routes/tasks');
 
 //Connect To Database
 ConnectDB();
@@ -51,6 +52,7 @@ app.use('/add', toDoRoute);
 app.use('/dashboard', authRoute);
 app.use('/auth',cors(), socialAuthRoute);
 app.use('/api',cors(), FolderRoute);
+app.use('/api',cors(), tasksRoute);
  
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));

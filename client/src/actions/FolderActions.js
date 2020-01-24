@@ -27,7 +27,7 @@ export const getFolder = id => dispatch => {
   axios
     .get(`api/folders/${id}`)
     .then(res => {
-      console.log("Fired")
+      
       dispatch({
         type: FOLDER_LOADED,
         payload: res.data
@@ -45,9 +45,6 @@ export const removeFolder = id => dispatch => {
         type: REMOVE_FOLDER,
         payload: id
       })
-      if(!res) {
-        console.log("NOT RES")
-      }
     })
   
     };

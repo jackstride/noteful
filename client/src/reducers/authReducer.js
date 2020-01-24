@@ -20,7 +20,6 @@ const initalState = {
 export default (state = initalState, action) => {
   switch (action.type) {
     case USER_LOADING:
-      console.log("loading")
       return {
         ...state,
         isLoading: true,
@@ -28,7 +27,6 @@ export default (state = initalState, action) => {
         url: action.payload
       };
     case USER_LOADED:
-      console.log("user Loaded")
       return {
         ...state,
         isAuthenticated: true,
@@ -37,7 +35,6 @@ export default (state = initalState, action) => {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-        console.log("reg/login")
       return {
         ...state,
         ...action.payload,
@@ -48,7 +45,6 @@ export default (state = initalState, action) => {
       case LOGIN_FAIL:
       case LOGOUT_SUCCESS:
       case REGISTER_FAIL:
-          console.log("loggedout")
     return {
         ...state,
         user: null,
@@ -56,7 +52,6 @@ export default (state = initalState, action) => {
         isLoading: false,
     }
     case GETTING_URL:
-      console.log("getting")
       return {
         ...state,
         url: action.payload,

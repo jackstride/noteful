@@ -1,7 +1,7 @@
 /* Dashboard Navigation */
 
 .dashboard_navigation {
-    width: 400px;
+    width: 300px;
     height: 100%;
     background-color: $widgetGrey;
 }
@@ -19,18 +19,72 @@
 .profile_container {
     height: 125px;
     width: 100%;
-    background-color: blue;
     display: flex;
     flex-direction: row;
+
+    .profile_image {
+        height: 100%;
+        width: 20%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .p_image {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background-color: lightgray;
+
+    }
+
+
+    .profile_logout {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        a {
+            font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            text-decoration: none;
+            font-size: 10px;
+            color: $SubGrey;
+        }
+
+    }
+
+    .profile_setting {
+        width: 30%;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
 }
 
 
+//Search 
 
 .app_search {
 
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px 0px;
+
+    :placeholder-shown {
+        padding-left: 10px;
+    }
+
+    :active {
+        padding-left: 10px;
+
+    }
+
     input {
         width: 100%;
-        height: 25px;
+        height: 30px;
         background-color: lightgray;
         border: none;
         border-radius: 5px;
@@ -38,9 +92,12 @@
 }
 
 
+
+
+
 /* Folder Widget */
 
-.folder_widget {
+.widget {
     height: calc(100vh / 5);
     width: 80%;
     margin: 0 auto;
@@ -48,7 +105,7 @@
     padding-bottom: 20px;
 }
 
-.folder_header {
+.widget_header {
     width: 100%;
     height: 10%;
     margin: 0 auto;
@@ -58,40 +115,61 @@
     justify-content: space-between;
 }
 
-.folder_content {
+.widget_content {
     background-color: $widgetGrey;
     width: 100%;
     margin: 0 auto;
     border-radius: 8px;
     height: 90%;
 
+    div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        right: 20px;
+    }
+
     ul {
         width: 100%;
         margin: 0 auto;
         padding: 10px 0px;
-}
+    }
+
     li {
         padding-top: 5px;
         padding-bottom: 5px;
+        width: 100%;
     }
 
     li:hover {
-        background-color: #ECEAEA;
         border-radius: 12px;
         width: 100%;
+        background-color: $orangeShade;
     }
-    
+
     li a {
         font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
         font-size: 14px;
         color: $black;
         font-weight: normal;
         text-decoration: none;
+
+
     }
-    
+
+    a:hover {
+        color: $orange;
+    }
+
 }
 
-.folder_names {
+.w_contents {
     overflow-x: auto;
     height: inherit;
 }
