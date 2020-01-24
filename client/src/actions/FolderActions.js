@@ -10,11 +10,13 @@ export const addFolder = folder_name => dispatch => {
   // };
   axios
     .post("api/addFolder", folder_name)
-    .then(res =>
+    .then(res => {
+      console.log(res);
       dispatch({
         type: FOLDER_SUCCESS,
-        payload: folder_name
+        payload: res.data.folder
       })
+    }
     )
     .catch(err => {
       console.log(err);

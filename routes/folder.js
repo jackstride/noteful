@@ -15,7 +15,7 @@ router.post("/addFolder", (req, res) => {
     folder_name: folder_name,
   });
   folder.save().then(result => {
-    res.status(201).json({ message: "added Folder" });
+    res.status(201).json({ message: "added Folder", folder: result });
   });
 });
 
@@ -29,6 +29,7 @@ router.get("/folders/:userid", (req, res) => {
 
 router.delete("/folders/:folderid", (req,res) => {
   let id = req.params.folderid;
+  console.log(id);
   
 
   Folder.findByIdAndRemove(id, (err,res) => {
