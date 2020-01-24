@@ -1,63 +1,66 @@
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const mongoose = require('mongoose')
 
-const User = require('./models/User');
+const User = require("./models/User");
 
-require('dotenv').config()
+require("dotenv").config();
 
-passport.serializeUser((user,done) => {
-    done(null,user);
-})
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
 
-passport.deserializeUser((user,done) => {
-    done(null,user)
-})
-
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
 
 passport.use(
-    new GoogleStrategy({
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:5000/auth/google/callback"
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      callbackURL: "http://localhost:5000/auth/google/callback"
     },
-    (accessToken,refreshToken,profile,done) => {
+    (accessToken, refreshToken, profile, done) => {
 
-        console.log(accessToken);
+      let generateId = new mongoose.Types.ObjectId(profile.id + "112");
 
-        User.find({email: profile.emails[0].value})
+      User.find({ email: profile.emails[0].value })
         .then(user => {
-            if(user.length) {
-                console.log("there is a user")
-            }
-            else {
-                // Sign up the user here
-                const user = new User({
-                    _id: profile.id,
-                    firstName: profile.name.givenName,
-                    lastName: profile.name.familyName,
-                    email:profile.emails[0].value,
-                    password: null,
-                })
-
-                console.log(user);
-            }
+          if (user.length) {
+            // User already exists// 
             
-        }).catch(err => {
-            console.log(err)
+          } else {
+
+            // Sign up the user here
+            const user = new User({
+              _id: generateId,
+              firstName: profile.name.givenName,
+              lastName: profile.name.familyName,
+              email: profile.emails[0].value,
+              password: null
+            });
+            user.save().then(result => {});
+          }
         })
+        .catch(err => {
+          console.log(err);
+        });
 
-        
+      let userData = {
+        _id: generateId,
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value,
+        token: accessToken
+      };
+      
+      done(null, userData);
 
-        let userData = {
-            email: profile.emails[0].value,
-            name: profile.displayName,
-            token: accessToken,
-        };
-        done(null,userData)
-
-        //Next steps
-        // Save user in database
-        //Check is user exists
-        //Research More
-    })
+      //Next steps
+      // Save user in database
+      //Check is user exists
+      //Research More
+    }
+  )
 );

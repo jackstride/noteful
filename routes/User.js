@@ -93,7 +93,7 @@ router.post("/login", (req, res) => {
         if (result) {
           const payload = {
             email: user[0].email,
-            userId: user[0].id
+            _id: user[0].id
           };
 
           jtw.sign(

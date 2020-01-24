@@ -15,33 +15,31 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', "emai
 
   
 router.get("/google/callback",passport.authenticate("google", { session: false }), (req, res) => {
-      let token = req.user.token;
-      console.log("THIS IS THE OTHER " + token);
       
-      // res.cookie("google_token", token, {
-      //   maxAge: 9000000,
-      //   httpOnly: true
-      // });
-      res.redirect("http://localhost:3000?token=" + token)
+      const payload = {
+        _id: req.user._id,
+        email: req.user.email,
+        name: ` ${req.user.firstName} ${req.user.lastName}`,
+      }
+      
+
+      jtw.sign(
+        payload,
+        process.env.JWT_KEY,
+        {
+          expiresIn: "1h"
+        },
+        (err, token) => {
+          res.cookie("access_token", token, {
+            maxAge: 9000000,
+            httpOnly: true
+          });
+          console.log(res);
+          res.redirect("http://localhost:3000/dashboard")
+        }
+      );
     }
   );
-
-  // const payload = {
-  //   email: req.userData.email,
-  //   name: req.userData.name,
-  // }
-  // console.log(req.userData)
-  
-  //  res.cookie("google_token",
-  //  jwt.sign(payload,
-  //   process.env.JWT_KEY,{
-  //   expiresIn: "1h"
-  // }),
-  // {
-  //   maxAge: 9000000,
-  //   httpOnly: true
-  // });
-  // res.redirect("http://localhost:3000?token=" + token)
   
   module.exports = router;
   

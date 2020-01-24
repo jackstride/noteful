@@ -30,18 +30,21 @@ export const loadUser = () => (dispatch, getState) => {
 
   axios
     .get("/dashboard", config)
-    .then(res =>
+    .then(res => {
+      console.log(res);
       dispatch({
         type: USER_LOADED,
         payload: res.data
       })
+    }
     )
-    .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status));
-      dispatch({
-        type: AUTH_ERROR
-      });
-    });
+    
+    // .catch(err => {
+    //   dispatch(returnErrors(err.response.data, err.response.status));
+    //   dispatch({
+    //     type: AUTH_ERROR
+    //   });
+    // });
 };
 
 export const register = formValues => dispatch => {
