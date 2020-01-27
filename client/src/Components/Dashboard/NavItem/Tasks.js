@@ -21,8 +21,8 @@ import {toggleTask} from '../../../actions/taskActions';
       <form className="task_form">
       {this.props.data.map((key, index) => 
         <div className="task_data" key={index}>
-        <input type="checkbox" id={`check${index}`} onChange={() => this.handleToggle(key._id)}></input>
-        <label for={`check${index}`}>{key.task_name}</label>
+        <input type="checkbox" checked={key.isCompleted} id={`check${index}`} onChange={() => this.handleToggle(key._id)}></input>
+        <label htmlFor={`check${index}`}>{key.task_name}</label>
         </div>
       )}
       </form>
