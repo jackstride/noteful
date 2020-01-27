@@ -47,3 +47,21 @@ export const deleteTask = id => dispatch => {
 }
 
 
+
+
+export const toggleTask = id => dispatch => {
+  axios.patch(`api/editcomplete/${id}`)
+  .then(res => {
+    dispatch({
+
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+
+
+
+}
+
+

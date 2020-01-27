@@ -6,8 +6,8 @@ import {
   } from "../actions/types";
   
   const initalState = {
-      id: null,
-      isCompleted: false,
+      dataRecieved: false,
+      taskData: []
         
     
   };
@@ -28,7 +28,7 @@ import {
           };
           case GET_TASKS:
               return {
-                  ...state,
+                  dataRecieved: true,
                   taskData: action.payload,
               }
       default:
