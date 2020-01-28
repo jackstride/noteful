@@ -7,12 +7,12 @@ const auth = require("../middleware/auth");
 const Folder = require("../models/Folder");
 
 router.post("/addFolder", (req, res) => {
-  let { folder_name, id } = req.body;
+  let { title, id } = req.body;
 
   const folder = new Folder({
     _id: new mongoose.Types.ObjectId(),
     user_id: id,
-    folder_name: folder_name,
+    folder_name: title,
   });
   folder.save().then(result => {
     res.status(201).json({ message: "added Folder", folder: result });

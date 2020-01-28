@@ -2,14 +2,14 @@ import axios from "axios";
 
 import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER } from "./types";
 
-export const addFolder = folder_name => dispatch => {
+export const addFolder = values => dispatch => {
   // const config = {
   //   headers: {
   //     "Content-Type": "application/json"
   //   }
   // };
   axios
-    .post("api/addFolder", folder_name)
+    .post("api/addFolder", values)
     .then(res => {
       console.log(res);
       dispatch({
@@ -27,7 +27,6 @@ export const getFolder = id => dispatch => {
   axios
     .get(`api/folders/${id}`)
     .then(res => {
-      
       dispatch({
         type: FOLDER_LOADED,
         payload: res.data

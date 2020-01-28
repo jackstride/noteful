@@ -18,7 +18,8 @@ import {connect} from 'react-redux'
 class SideBar extends Component {
 
   componentDidMount(){
-    this.props.loadTasks(this.props.userId)
+    this.props.loadTasks(this.props.userId);
+    this.props.getFolder(this.props.userId);
   }
     
 
