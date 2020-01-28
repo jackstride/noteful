@@ -36,8 +36,9 @@ import React from 'react';
    
     
     click(index) {
-      if(this.props.items[index].callback)
+      if(this.props.items[index].callback()) {
          this.props.items[index].callback();
+      }
      else{
        console.log("callback not registered for the menu item")
      }
