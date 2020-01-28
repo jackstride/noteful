@@ -5,6 +5,8 @@ import Search from './Dashboard/NavItem/search'
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from './Dashboard/NavItem/Tasks'
 
+
+
 import {
   addFolder,
   getFolder,
@@ -24,7 +26,6 @@ class SideBar extends Component {
     
 
   render() {
-  
     return (
       <div className="dashboard_navigation">
       <Profile />
