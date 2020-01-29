@@ -4,8 +4,7 @@ import Profile from './Dashboard/NavItem/profile';
 import Search from './Dashboard/NavItem/search'
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from './Dashboard/NavItem/Tasks'
-
-
+import ContextMenu from './contextMenu';
 
 import {
   addFolder,
@@ -18,7 +17,7 @@ import {loadTasks} from '../actions/taskActions';
 import {connect} from 'react-redux'
 
 class SideBar extends Component {
-
+ 
   componentDidMount(){
     this.props.loadTasks(this.props.userId);
     this.props.getFolder(this.props.userId);
@@ -28,6 +27,7 @@ class SideBar extends Component {
   render() {
     return (
       <div className="dashboard_navigation">
+      <ContextMenu />
       <Profile />
       <Search />
       <Folders />
