@@ -38,7 +38,7 @@ class Folders extends Component {
       <ul>
         {this.props.folder.map((key, index) => (
           <div key={index} style={{ zIndex: "-1" }}>
-            <li key={index}>
+            <li key={index} id={key._id} value={key._id}>
               <Link to="#">{key.folder_name}</Link>
             </li>
             <button
