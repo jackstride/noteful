@@ -41,7 +41,7 @@ class contextmenu extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
+  console.log(this.props)
     var self = this;
     let dashboard = document.querySelectorAll(".w_contents li");
     dashboard.forEach(item => {
@@ -49,20 +49,19 @@ class contextmenu extends React.Component {
         event.preventDefault();
         const clickX = event.clientX;
         const clickY = event.clientY;
-        self.setState({ visible: true, current: item.getAttribute('id'),x: clickX, y: clickY });
+        self.setState({ visible: true,x: clickX, y: clickY });
       });
       
     });
     
 
     document.addEventListener("click", function(event) {
-      
-      // if (!self.contextRef.current) return;
-      // if (self.contextRef.current.id == "customcontext") {
-      //   self.click(event.target.getAttribute("index"));
-      // }
-      if(self.props.third){
-        console.log(self.props.third.current.getAttribute("value"));
+      if (!self.contextRef.current) return;
+      if (self.contextRef.current.id == "customcontext") {
+        self.click(event.target.getAttribute("index"))
+      }
+      if(self.props.third.current.id="test"){
+       self.getValue(self.props.third.current.getAttribute("value"));
       }
       event.preventDefault();
       self.setState({ visible: false, x: 0, y: 0 });
@@ -75,6 +74,11 @@ class contextmenu extends React.Component {
       this.state.menu[index].callback(this.state.current);
     }
   };
+
+
+  getValue = value => {
+    console.log(value);
+  }
 
   returnMenu() {
     var myStyle = {
