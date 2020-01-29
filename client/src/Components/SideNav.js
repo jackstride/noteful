@@ -27,7 +27,6 @@ class SideBar extends Component {
   render() {
     return (
       <div className="dashboard_navigation">
-      <ContextMenu />
       <Profile />
       <Search />
       <Folders />

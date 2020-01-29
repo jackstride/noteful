@@ -17,9 +17,8 @@ class contextmenu extends React.Component {
       visible: false,
       x: 0,
       y: 0,
-      current: '',
       menu: [
-        { label: "Remove", callback: this.remove },
+        { label: "Add", callback: this.remove },
         { label: "Menu item 2", callback: this.itemCallback },
         { label: "Apple", callback: this.itemCallback },
         { label: "This is orange", callback: this.itemCallback },
@@ -30,19 +29,20 @@ class contextmenu extends React.Component {
   }
 
   itemCallback = () => {
-    console.log("hello")
+    
+    
   };
 
 
   remove = (id) => {
-    console.log(id);
+    //console.log(id);
     this.props.removeFolder(id)
-    console.log("HIt");
+   
   }
 
   componentDidMount() {
+    console.log(this.props);
     var self = this;
-
     let dashboard = document.querySelectorAll(".w_contents li");
     dashboard.forEach(item => {
       item.addEventListener("contextmenu", event => {
@@ -51,14 +51,19 @@ class contextmenu extends React.Component {
         const clickY = event.clientY;
         self.setState({ visible: true, current: item.getAttribute('id'),x: clickX, y: clickY });
       });
+      
     });
+    
 
     document.addEventListener("click", function(event) {
-      if (!self.contextRef.current) return;
-      else if (self.contextRef.current.id == "customcontext") {
-        self.click(event.target.getAttribute("index"));
+      
+      // if (!self.contextRef.current) return;
+      // if (self.contextRef.current.id == "customcontext") {
+      //   self.click(event.target.getAttribute("index"));
+      // }
+      if(self.props.third){
+        console.log(self.props.third.current.getAttribute("value"));
       }
-
       event.preventDefault();
       self.setState({ visible: false, x: 0, y: 0 });
     });
@@ -97,7 +102,7 @@ class contextmenu extends React.Component {
     );
   }
 
-  render() {
+  render() {    
     return (
       <div id="cmenu">
         {this.state.visible ? this.returnMenu(this.props.items) : null}

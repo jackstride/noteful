@@ -21,7 +21,7 @@ router.post("/addFolder", (req, res) => {
 
 router.get("/folders/:userid", (req, res) => {
   let {userid} = req.params;
- Folder.find({ user_id: userid }).then(doc => {
+ Folder.find({ user_id: userid }).sort({_id: -1}).then(doc => {
    res.status(200).json(doc)
  })
 });
