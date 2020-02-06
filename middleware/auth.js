@@ -1,18 +1,15 @@
 const jwt = require('jsonwebtoken');
 
-module.exports = (req,res,next) => {
+module.exports = async (req,res,next) => {
 
-    const token = req.cookies.access_token;
-
+    const token = await req.cookies.access_token;
     
     try {
         const decoded = jwt.verify(token, process.env.JWT_KEY);
         req.user = decoded;
-        next()
+        next()   
     }
-
     catch(err) {
         res.status(401).json({message: "Token no valid"})
     }
-    
 }

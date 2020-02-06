@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
+
 import SideNav from '../SideNav';
+import { loadUser } from "../../actions/authActions";
+
 
 
 class Home extends Component {
+
+
     render() {
         return (
             <SideNav />
@@ -10,10 +16,13 @@ class Home extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => ({
+    loadUser: () => dispatch(loadUser()),
+  });
   
   
   
-  export default Home;
+  export default  connect(null,mapDispatchToProps)(Home);
 
 
   

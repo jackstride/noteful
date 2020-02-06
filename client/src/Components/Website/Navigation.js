@@ -4,17 +4,8 @@ import {connect} from 'react-redux'
 
 import Logo from "../../images/noteful_logo.svg";
 
-
-let isAuth = (props) => {
-  return (
-    <h1>is logged in</h1>
-  )
-
-}
-
  class Navigation extends Component {
   render() {
-    console.log(this.props)
     return (
       <div className="website_navigation">
         <div className="inner_container center_center">

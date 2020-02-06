@@ -3,11 +3,19 @@ import {connect} from 'react-redux'
 
 import Form from "./loginForm";
 import SocialAuth from '../Register/socialAuth'
+import { loadUser } from "../../../actions/authActions";
 
  class LogIn extends Component {
+   constructor(props){
+     super(props)
 
+     this.state = {
+       auth: false
+     }
+   }
 
   render() {
+
     
     return (
       <div className="center_container">

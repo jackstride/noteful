@@ -18,6 +18,7 @@ import Support from './pages/support'
 
 
 class App extends Component {
+  
 
   static propTypes = {
     isAuthenticated: PropTypes.bool
@@ -26,6 +27,7 @@ class App extends Component {
   componentDidMount() {
     store.dispatch(loadUser());
   }
+
 
 
   HomeContainer = () => {
@@ -69,4 +71,8 @@ const mapStateToProps = state => {
   return { auth: state.auth };
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  loadUser: () => dispatch(loadUser())
+});
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

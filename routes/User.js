@@ -23,9 +23,9 @@ router.post(
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res
-        .status(422)
-        .json({ error: errors.array().map(err => err.msg) });
+      return res.status(422).json({
+        error: errors.array().map(err => err.msg)
+      });
     }
 
     // Make errors into an array always
@@ -45,7 +45,9 @@ router.post(
         } else {
           bcrypt.genSalt(saltRounds, (err, salt) => {
             if (err) {
-              res.status(500).json({ err });
+              res.status(500).json({
+                err
+              });
             }
             bcrypt.hash(password, salt).then(hash => {
               password = hash;
@@ -59,7 +61,9 @@ router.post(
               user
                 .save()
                 .then(result => {
-                  res.status(201).json({ message: "Register Successful" });
+                  res.status(201).json({
+                    message: "Register Successful"
+                  });
                 })
                 .catch(err => {
                   console.log(err);
@@ -74,7 +78,9 @@ router.post(
 router.post("/login", (req, res) => {
   let { email, password } = req.body;
 
-  User.find({ email })
+  User.find({
+    email
+  })
     .exec()
     .then(user => {
       if (user.length < 1) {
@@ -107,8 +113,7 @@ router.post("/login", (req, res) => {
                 maxAge: 9000000,
                 httpOnly: true
               });
-              console.log(res);
-              res.sendStatus(200);
+              res.status(200).json({user: payload});
             }
           );
         }
@@ -116,13 +121,15 @@ router.post("/login", (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ err });
+      res.status(500).json({
+        err
+      });
     });
 });
 
 router.get("/logout", (req, res) => {
-  res.clearCookie('access_token').sendStatus(200);
-  console.log(req.cookies)
+  res.clearCookie("access_token").sendStatus(200);
+  console.log(req.cookies);
 });
 
 module.exports = router;

@@ -16,34 +16,30 @@ import {
 
 //Load user
 export const loadUser = () => (dispatch, getState) => {
+  console.log("called")
   //User Loading
   dispatch({
     type: USER_LOADING
   });
 
-  //Headers
   const config = {
     headers: {
       "Content-type": "application/json"
     }
   };
 
-  axios
-    .get("/dashboard", config)
-    .then(res => {
-      dispatch({
-        type: USER_LOADED,
-        payload: res.data
-      })
-    }
-    )
-    
-    // .catch(err => {
-    //   dispatch(returnErrors(err.response.data, err.response.status));
-    //   dispatch({
-    //     type: AUTH_ERROR
-    //   });
-    // });
+  axios.get("/dashboard", config).then(res => {
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data
+    });
+  })
+  .catch(err => {
+    dispatch(returnErrors(err.response.data, err.response.status));
+    dispatch({
+      type: AUTH_ERROR
+    });
+  });
 };
 
 export const register = formValues => dispatch => {
@@ -75,6 +71,7 @@ export const login = formValues => dispatch => {
   axios
     .post("/user/login", formValues, { withCredentials: true })
     .then(res => {
+      console.log(res)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
@@ -90,43 +87,37 @@ export const login = formValues => dispatch => {
     });
 };
 
-
 export const logout = () => dispatch => {
-  axios.get("/user/logout",{},{withCredentials: true})
-  .then(
-    res => {
-    dispatch({
-      type: LOGOUT_SUCCESS,
+  axios
+    .get("/user/logout", {}, { withCredentials: true })
+    .then(res => {
+      dispatch({
+        type: LOGOUT_SUCCESS
+      });
     })
-  })
-  .catch(err => {
-    
-  })
-}
-
-
-
-
-
-export const googleLogin = () => dispatch => {
-  axios.get("/auth/google",{
-    headers: {
-      "Access-Control-Allow-Origin": "*"
-    }
-  })
-  .then(res => {
-  dispatch({
-     type: GETTING_URL,
-      payload: res.data });
-  });
+    .catch(err => {});
 };
 
+export const googleLogin = () => dispatch => {
+  axios
+    .get("/auth/google", {
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+    .then(res => {
+      dispatch({
+        type: GETTING_URL,
+        payload: res.data
+      });
+    });
+};
 
 export const gotGoogle = () => dispatch => {
-  axios.get('/auth/google/callback').then(res => {
+  axios.get("/auth/google/callback").then(res => {
     dispatch({
       type: GOT_URL,
       payload: res.data
-    })
-  })
-}
+    });
+  });
+};
