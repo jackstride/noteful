@@ -54,13 +54,12 @@ export default class home extends Component {
                 </div>
                 <div className="header_main">
                 <h1>
-                  Type with <br></br>noteful.
+                  Begin typing with <br></br>noteful.
                 </h1>
                 <h6>
-                  It's time to switch away from paper and begin with Noteful.
-                  Sign up today. Free of charge
+                  Switch away from paper and begin typing with Noteful.
+                  Sign up today. Free of charge!
                 </h6>
-                
                 <input
                   type="button"
                   onClick={this.handleSubmit}
@@ -81,7 +80,7 @@ export default class home extends Component {
             <div className="preview_content">
               <div className="tag_info col-1 inner_container">
                 <h4>
-                  Browsers<br></br>Based.
+                  Browser<br></br>Based.
                 </h4>
                 <h4>
                   Social<br></br>Login.

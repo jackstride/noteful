@@ -14,6 +14,7 @@ import Navigation from "./Components/Website/Navigation";
 import Footer from './Components/Website/Footer';
 import LogOut from './Components/Website/logout.js';
 import Features from './pages/features.js'
+import Support from './pages/support'
 
 
 class App extends Component {
@@ -36,6 +37,7 @@ class App extends Component {
       <Route path ="/register" component={Register} />
       <Route path ="/logout" component={LogOut} />
       <Route path ="/features" component={Features} />
+      <Route path ="/support" component={Support} />
       <Footer />
       </div>
       ) 

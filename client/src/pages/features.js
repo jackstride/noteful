@@ -10,7 +10,7 @@ let Feature = props => {
   return (
       <div className="feature_item">
           <div className="feature_icon">
-          <FontAwesomeIcon icon={props.data.icon} size="lg" />
+          <FontAwesomeIcon icon={props.data.icon} size="2x"/>
           </div>
           <div className="feature_content">
           <h6 style={{color: "black"}}>{props.data.heading}</h6>
@@ -27,7 +27,7 @@ export default class features extends Component {
 
     this.state = {
       section: {
-        heading: "Simple and Smart",
+        heading: "Simple and Smart.",
         text:
           "Smart & simple. Those are the only two words needed to describe noteful. Get access anywhere on any device, offline and online, to manage your notes, mark your to do's and create events ready for the week ahead.",
         image: Illustration
@@ -35,43 +35,43 @@ export default class features extends Component {
       features: [
         {
           heading: "Create Events",
-          text: "THis is some test text",
-          icon: "cog",
+          text: "Simple interface to manage future events.",
+          icon: "calendar-week",
         },
         {
             heading: "Manage Todo's",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Easily Access, add, remove and mark your to do's from the dashboard.",
+            icon: "tasks",
           },
           {
             heading: "Get writing with notes",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Create rich filled notes ready to leave and pick up anytime, anywhere.",
+            icon: "sticky-note",
           },
           {
             heading: "Access Offline",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Get access to everything, even when you're offline.",
+            icon: "cloud",
           },
           {
             heading: "Free Forever",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Noteful will always be a free Web Application for you to enjoy.",
+            icon: "money-bill-wave",
           },
           {
             heading: "Strong Encryption",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Noteful will always encrypt users private information with the last standards.",
+            icon: "lock",
           },
           {
             heading: "Social Sign up",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Don't want to manually create an account? Login with Twitter, Facebook or Google!",
+            icon: "user-plus",
           },
           {
             heading: "Stay Organised",
-            text: "THis is some test text",
-            icon: "cog",
+            text: "Our UI is intuative, easy to learn ready for you to get started out of the box.",
+            icon: "pencil-alt",
           },
       ]
     };

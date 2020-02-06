@@ -3,7 +3,7 @@
 @import './layout/header.scss';
 @import './layout/footer.scss';
 @import './pages/home.scss';
-@import './pages/features.scss';
+@import './pages/pages.scss';
 @import './layout/dashboard.scss';
 @import './layout/hamNav.scss';
 @import './layout/animations.scss';
@@ -11,25 +11,16 @@
 * {
     padding: 0;
     margin: 0;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    /* Webkit */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* IE 10  */
-    -o-user-select: none;
-    user-select: none;
     outline: none;
 }
 
 h1 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
-    font-size: 92px;
+    font-size: 74px;
     color: $whiteText;
     letter-spacing: -1.2px;
-    line-height: 89px;
+    line-height: 82px;
 }
 
 
@@ -69,6 +60,7 @@ h5 {
     color: $whiteText;
     letter-spacing: 0;
     line-height: 22px;
+    font-weight: normal;
  }
 
 
