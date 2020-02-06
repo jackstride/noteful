@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Logo from "../../images/noteful_bw.svg";
+import Logo from "../../images/noteful_logo.svg";
 
 export default class Navigation extends Component {
   render() {
@@ -14,13 +14,13 @@ export default class Navigation extends Component {
           <nav className="website_nav">
             <ul>
               <li>
-                <Link to="/dashboard">Features</Link>
+                <Link to="/features">Features</Link>
               </li>
               <li>
-                <Link to="/dashboard">About</Link>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <Link to="/dashboard">Support</Link>
+                <Link to="/support">Support</Link>
               </li>
             </ul>
           </nav>

@@ -62,7 +62,7 @@ class Folders extends Component {
       <div className="widget">
         <ContextMenu third={this.third}/>
         <div className="widget_header">
-          <h3>FOLDERS</h3>
+          <h5>FOLDERS</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">

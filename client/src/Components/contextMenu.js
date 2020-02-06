@@ -62,6 +62,7 @@ class contextmenu extends React.Component {
       }
       if(self.props.third.current.id="test"){
        self.getValue(self.props.third.current.getAttribute("value"));
+       console.log(self.props.third.curre.target.value);
       }
       event.preventDefault();
       self.setState({ visible: false, x: 0, y: 0 });

@@ -158,7 +158,31 @@
     }
 }
 
-.center_container {
-    background-color: $Background;
+
+.section_container {
+    margin-top: 10%;
 }
+
+
+/* Section  */
+
+
+.section_heading {
+    height: fit-content;
+}
+
+.section_para {
+        height: fit-content;
+}
+
+
+.section_image {
+    display: flex;
+    justify-content: center;
+img {
+    height: 80%;
+    width: 80%;
+}
+}
+
 

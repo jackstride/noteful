@@ -3,6 +3,7 @@
 @import './layout/header.scss';
 @import './layout/footer.scss';
 @import './pages/home.scss';
+@import './pages/features.scss';
 @import './layout/dashboard.scss';
 @import './layout/hamNav.scss';
 @import './layout/animations.scss';
@@ -26,18 +27,35 @@ h1 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: 700;
     font-size: 92px;
-    color: #F3F7FF;
+    color: $whiteText;
     letter-spacing: -1.2px;
     line-height: 89px;
 }
 
+
 h2 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Gelasio', serif;
+    font-weight: 700;
+    font-size: 62px;
     color: $HeadingGrey;
-    font-size: 42px;
+    letter-spacing: -2.38px;
+    line-height: 58px;
 }
 
 h3 {
+    font-family: 'Gelasio', serif;
+    color: $whiteText;
+    font-size: 24px;
+    font-weight: 400;
+}
+h4 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: $whiteText;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+h5 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 14px;
@@ -45,20 +63,21 @@ h3 {
     letter-spacing: 0;
 }
 
-h4 {
-    font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: $blue;
-}
+ h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: $whiteText;
+    letter-spacing: 0;
+    line-height: 22px;
+ }
 
 
 p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    color: #FFFFFF;
+    font-size: 14px;
+    color: $heading;
     letter-spacing: 0;
-    line-height: 22px;
+    line-height: 37px;
 }
 
 li {
@@ -90,7 +109,6 @@ nav a {
 
 .inner_container {
     width: 60%;
-    height: inherit;
     margin: 0 auto;
 }
 
@@ -103,10 +121,13 @@ nav a {
     flex-direction: row;
 }
 
-.home_app_container {
-    height: 100%;
+
+.section_container {
+    height: 50vh;
     width: 100%;
-    background-color: $BlueBackground;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
 }
 
 
