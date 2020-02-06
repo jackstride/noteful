@@ -11,20 +11,16 @@ import "../../../fontawesome";
 
 import WidgetSubmit from "./widgetSubmit";
 
-import ContextMenu from '../../contextMenu'
 
 class Folders extends Component {
+  
+third = React.createRef
   constructor(props) {
     super(props);
     this.state = {
       isShown: false,
-      isLoaded: false,
+      isLoaded: false
     };
-    this.third = React.createRef();
-  }
-
-  componentDidMount() {
-    this.props.getFolder(this.props.userId);
   }
 
   toggleAddFolder = () => {
@@ -33,21 +29,16 @@ class Folders extends Component {
 
   onRemoveFolder = (e, id) => {
     e.preventDefault();
-    this.props.removeFolder(id); 
+    this.props.removeFolder(id);
   };
 
   showFolders = () => {
     return (
-      <ul>
+      <ul id="test">
         {this.props.folder.map((key, index) => (
           <div key={index} style={{ zIndex: "-1" }}>
-            <li key={index} id="test" value={key._id} ref={this.third}>
-              <Link to="#">{key.folder_name}</Link>
-            </li>
-            <button
-              onClick={e => this.onRemoveFolder(e, key._id)}
-              value={key.folder_name}
-            >
+            <li key={index} > <Link to="#">{key.folder_name}</Link></li>
+            <button onClick={e => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
               <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
             </button>
           </div>
@@ -60,7 +51,6 @@ class Folders extends Component {
     let { isShown } = this.state;
     return (
       <div className="widget">
-        <ContextMenu third={this.third}/>
         <div className="widget_header">
           <h5>FOLDERS</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
@@ -72,7 +62,7 @@ class Folders extends Component {
               userid={this.props.userId}
             />
           ) : null}
-          <div className="w_contents">{ this.showFolders()}</div>
+          <div className="w_contents">{this.showFolders()}</div>
         </div>
       </div>
     );

@@ -4,7 +4,6 @@ import Profile from './Dashboard/NavItem/profile';
 import Search from './Dashboard/NavItem/search'
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from './Dashboard/NavItem/Tasks'
-import ContextMenu from './contextMenu';
 
 import {
   addFolder,

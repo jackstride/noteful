@@ -20,7 +20,7 @@ class Todo extends Component {
 
   onRemoveFolder = (e, id) => {
     e.preventDefault();
-    this.props.removeTask(id); 
+    this.props.removeTask(id);
   };
 
   showData = () => {
@@ -62,7 +62,12 @@ class Todo extends Component {
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">
-          {isShown ? <WidgetSubmit addFolder={this.props.addTask} userid={this.props.userId} /> : null}
+          {isShown ? (
+            <WidgetSubmit
+              addFolder={this.props.addTask}
+              userid={this.props.userId}
+            />
+          ) : null}
           <div className="w_contents">{this.showData()}</div>
         </div>
       </div>
