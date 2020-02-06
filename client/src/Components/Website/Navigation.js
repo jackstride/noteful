@@ -1,10 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux'
 
 import Logo from "../../images/noteful_logo.svg";
 
-export default class Navigation extends Component {
+
+let isAuth = (props) => {
+  return (
+    <h1>is logged in</h1>
+  )
+
+}
+
+ class Navigation extends Component {
   render() {
+    console.log(this.props)
     return (
       <div className="website_navigation">
         <div className="inner_container center_center">
@@ -26,6 +36,8 @@ export default class Navigation extends Component {
           </nav>
           <nav className="website_nav_login">
             <ul>
+              {!this.props.auth ?
+              <Fragment>
               <li>
                 <Link to="/register">Sign Up</Link>
               </li>
@@ -33,11 +45,27 @@ export default class Navigation extends Component {
               <li>
                 <Link to="/login">Login</Link>
               </li>
-              </span>
+              </span> 
+              </Fragment>
+                : 
+                <Fragment>
+                <li><Link to="/dashboard">Dashboard</Link></li>
+                <li><Link to="/logout">Logout</Link></li>
+                </Fragment>}
             </ul>
           </nav>
+          
+  
         </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps,null)(Navigation);
