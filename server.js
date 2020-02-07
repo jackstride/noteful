@@ -7,6 +7,7 @@ const ConnectDB = require("./dbConnect");
 const passport = require('passport');
 require("./passport");
 require('dotenv').config()
+const createError = require('http-errors')
 
 const userRoute = require('./routes/User');
 const toDoRoute = require('./routes/toDo');
@@ -44,15 +45,30 @@ app.use(cors({origin: "http://localhost:3000",credentials: true, allowedHeaders:
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
-
-
-
 app.use('/user', userRoute);
 app.use('/add', toDoRoute);
 app.use('/dashboard', authRoute);
 app.use('/auth',cors(), socialAuthRoute);
 app.use('/api',cors(), FolderRoute);
 app.use('/api',cors(), tasksRoute);
+
+app.use((req,res,next) => {
+next(createError(404,"Not Found"))
+})
+
+app.use((err,req,res,next) => {
+  res.status(err.status || 500)
+  res.send({
+    error: {
+      status:err.status || 500,
+      message: err.message
+    }
+  })
+})
+
+
+
+
  
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
