@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
+const {findAll} = require('../queries/databaseQueries');
+
 const Folder = require("../models/Folder");
 
-router.post("/addFolder", (req, res) => {
+router.post("/addFolder", async (req, res) => {
   let { title, id } = req.body;
 
   const folder = new Folder({
@@ -19,11 +21,8 @@ router.post("/addFolder", (req, res) => {
   });
 });
 
-router.get("/folders/:userid", (req, res) => {
-  let {userid} = req.params;
- Folder.find({ user_id: userid }).sort({_id: -1}).then(doc => {
-   res.status(200).json(doc)
- })
+router.get("/folders/:user_id", async (req, res, next ) => {
+  findAll(Folder,req.params)
 });
 
 

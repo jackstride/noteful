@@ -8,12 +8,8 @@ const { userValidationRules, validate } = require("../middleware/validation");
 
 const User = require("../models/User");
 
-router.post(
-  "/register",
-  userValidationRules(),
-  validate,
-  async (req, res, next) => {
-    let { firstName, lastName, email, password } = req.body.formValues;
+router.post("/register", userValidationRules(), validate, async (req, res, next) => {
+    let { firstName, lastName, email, password } = req.body;
 
     let saltRounds = 15;
 
@@ -43,14 +39,13 @@ router.post(
       ? res.status(201).json({ message: "Register Successful"})
       : next(newcreateError(500, "Problem with server"))
     } catch (err) {}
-  }
-);
+  });
 
 router.post("/login", async (req, res, next) => {
 
-  let { email, password } = req.body.formValues;
+  let { email, password } = req.body;
 
-  console.log(email,password)
+  console.log(req.body)
 
   let user = await User.find({email}).exec();
   user.length < 1 
@@ -79,14 +74,8 @@ router.post("/login", async (req, res, next) => {
   } 
 });
 
-
-
-
-
-
 router.get("/logout", (req, res) => {
   res.clearCookie("access_token").sendStatus(200);
-  console.log(req.cookies);
 });
 
 module.exports = router;
