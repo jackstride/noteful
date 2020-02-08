@@ -7,8 +7,11 @@ import {logout} from '../../actions/authActions';
 
     render() {
         return (
-            <div>
-                <h2 onClick={this.props.logout}> Hello </h2>
+            <div className="section_logout">
+                <h2>Are you sure you want to logout?</h2>
+                <p>Click the link below to continue</p>
+                <h2 onClick={this.props.logout}>Click here</h2>
+
             </div>
         )
     }

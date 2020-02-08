@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 
-let profile = props => {
+let Profile = props => {
   return (
     //Get the Name and profile photo
     <div className="profile_container">
@@ -13,7 +14,7 @@ let profile = props => {
         </div>
       </div>
       <div className="profile_logout">
-        <h4>Jack Stride</h4>
+        <h4 style={{color: "black"}}>{props.user}</h4>
         <Link to="/logout">Logout</Link>
       </div>
       <div className="profile_setting">
@@ -28,4 +29,11 @@ let profile = props => {
   );
 };
 
-export default profile;
+
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user.firstName,
+  }
+}
+
+export default connect(mapStateToProps,null)(Profile)
