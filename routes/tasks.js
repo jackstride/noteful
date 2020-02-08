@@ -87,7 +87,7 @@ router.delete('/deletetask/:_id', async (req, res, next) => {
 
   success
   ? res.sendStatus(200)
-  : console.log("fail");
+  : next(createError(500, "There was an error deleting the task "))
 
   
 })
