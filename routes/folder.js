@@ -4,42 +4,44 @@ const mongoose = require("mongoose");
 const { check, validationResult } = require("express-validator");
 const auth = require("../middleware/auth");
 
-const {findAll} = require('../queries/databaseQueries');
-
 const Folder = require("../models/Folder");
 
-router.post("/addFolder", async (req, res) => {
-  let { title, id } = req.body;
+router.post("/addFolder", async (req, res, next) => {
+
+  const { title, id } = req.body;
 
   const folder = new Folder({
     _id: new mongoose.Types.ObjectId(),
     user_id: id,
-    folder_name: title,
+    folder_name: title
   });
-  folder.save().then(result => {
-    res.status(201).json({ message: "added Folder", folder: result });
-  });
+
+  result = await folder.save();
+
+  folder
+  ? res.status(201).json({message: "Folder Added", folder: result})
+  : next(createError(500, "There was an error saving the folder "))
 });
 
-router.get("/folders/:user_id", async (req, res, next ) => {
-  findAll(Folder,req.params)
+router.get("/folders/:user_id", async (req, res, next) => {
+
+  const {user_id} = req.params;
+
+  let folder = await Folder.find({user_id}).sort({_id: -1}).exec()
+
+  folder 
+  ? res.status(201).json({folder})
+  : next(createError(500, "There was an error saving the folder "))
 });
 
-
-router.delete("/folders/:folderid", (req,res) => {
-  let id = req.params.folderid;
-  console.log(id);
+router.delete("/folders/:folderid", async (req, res, next) => {
+  let {folderid} = req.params;
   
+  let result = await Folder.findByIdAndRemove(folderid);
 
-  Folder.findByIdAndRemove(id, (err,res) => {
-    if (err) {
-      console.log(err)
-    }
-  })
+  res ? res.sendStatus(200)
+  : next(createError(500, "There was an error deleting the folder"))
 
-  res.sendStatus(200);
-  
-  
 });
 
 module.exports = router;
