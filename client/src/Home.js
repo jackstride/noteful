@@ -46,6 +46,7 @@ export default class home extends Component {
     return (
       <Fragment>
           <header>
+            <div className="left">
             <div className="inner_container">
               <div className="header_text">
                 <div className="header_small">
@@ -67,16 +68,31 @@ export default class home extends Component {
                 ></input>
                 </div>
               </div>
-              <div className="header_image">
-                <img src={Tiles} alt="Tiles"></img>
               </div>
-            </div>
+              </div>
+              <div className="header_image">
+              </div>
           </header>
 
           <div className="previews">
           <div className="blue_seperator"></div>
             <div className="orange_seperator"></div>
-            <div className="white_seperator"></div>
+            <div className="white_seperator">
+            <div className="app_info inner_container">
+                {this.state.features.map((data, i) => (
+                  <React.Fragment>
+                    <div className="info_block">
+                      <div className="info_header">
+                        <h3 style={{ color: "black" }}>{data.heading}</h3>
+                      </div>
+                      <div className="info_para">
+                        <p style={{ color: "black" }}>{data.text}</p>
+                      </div>
+                    </div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
             <div className="preview_content">
               <div className="tag_info col-1 inner_container">
                 <h4>
@@ -95,20 +111,7 @@ export default class home extends Component {
               <div className="iphone_preview inner_container">
                 <img src={PhonePreview} alt="Noteful dashboard preview"></img>
               </div>
-              <div className="app_info inner_container">
-                {this.state.features.map((data, i) => (
-                  <React.Fragment>
-                    <div className="info_block">
-                      <div className="info_header">
-                        <h3 style={{ color: "black" }}>{data.heading}</h3>
-                      </div>
-                      <div className="info_para">
-                        <p style={{ color: "black" }}>{data.text}</p>
-                      </div>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
+              
             </div>
           </div>
           </Fragment>        

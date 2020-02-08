@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 
-import Logo from "../../images/noteful_logo.svg";
+import Logo from "../../images/noteful_bw.svg";
 
  class Navigation extends Component {
   render() {
@@ -33,9 +33,7 @@ import Logo from "../../images/noteful_logo.svg";
                 <Link to="/register">Sign Up</Link>
               </li>
               <span className="circle_border">
-              <li>
                 <Link to="/login">Login</Link>
-              </li>
               </span> 
               </Fragment>
                 : 
