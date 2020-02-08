@@ -25,7 +25,7 @@ class Folders extends Component {
     e.preventDefault();
     console.log(e.target)
     const {pageX,pageY} = e;
-    this.props.showMenu(pageX,pageY, "Folders")
+    this.props.showMenu(pageX,pageY,"TestContextMenu")
   }
 
   toggleAddFolder = () => {
@@ -57,7 +57,6 @@ class Folders extends Component {
     let { isShown } = this.state;
     return (
       <div className="widget">
-      <ContextMenu />
         <div className="widget_header">
           <h5>FOLDERS</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
@@ -86,7 +85,7 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
   getFolder: id => dispatch(getFolder(id)),
-  showMenu: () => dispatch(getFolder())
+  showMenu: (x,y,getType) => dispatch(showMenu(x,y,getType))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Folders);

@@ -8,26 +8,26 @@ import {showMenu,hideMenu} from '../../actions/contextMenuActions'
 export class ContextMenu extends Component {
 
     componentDidMount() {
-        document.addEventListener("click", this.handleClickOutside, true);
+        document.addEventListener('click', this.handleClickOutside, true);
     }
 
     componentWillUnmount() {
-        document.removeEventListener("click", this.handleClickOutside, true)
+        document.removeEventListener('click', this.handleClickOutside, true);
     }
 
-    handleClickOutside = e => {
-        this.props.showMenu();
-        if(!this.node || !this.node.contains(e.target)) {
+    handleClickOutside = (e) => {
+        if (!this.node || !this.node.contains(e.target) ) {
             this.props.hideMenu();
         }
     }
 
     render() {
-        const {location} = this.props;
+        let {location} = this.props
+        
         return (
                 <MenuPosition
-                left = {location.y}
-                top = {location.x}
+                left = {location.x + 2}
+                top = {location.y}
                 classsName = "contextMenu"
                 nodeRef = {node => this.node = node} >
                     {this.props.children}
@@ -37,8 +37,8 @@ export class ContextMenu extends Component {
 }
   
   const mapDispatchToProps = dispatch => ({
-    hideMenu: () => dispatch( hideMenu ),   
-    showMenu: () => dispatch( showMenu ),    
+    hideMenu: () => dispatch( hideMenu()),   
+    showMenu: () => dispatch( showMenu()),    
   })
 
 

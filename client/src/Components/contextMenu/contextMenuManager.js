@@ -11,7 +11,6 @@ import TestContextMenu from './TestContextMenu';
 
 const menuTypes = {
     TestContextMenu,
-    Folder,
 }
 
 export function contextMenuManagerMapState(state) {
@@ -21,18 +20,24 @@ export function contextMenuManagerMapState(state) {
 }
 
 
-export class ContextMenuManager extends Component {
+class ContextMenuManager extends Component {
 
     render() {
         const {contextMenu} = this.props;
+        
         const {show, location, type, menuArgs = {}} = contextMenu;
+        console.log(type)
 
         let menu = null;
 
         if(show) {
+
             let MenuComponent = menuTypes[type];
 
+            console.log(MenuComponent);
+            
             if(MenuComponent) {
+                
                 menu = (
                     <Portal isOpened={true}>
                         <ContextMenu location={location}>
@@ -42,8 +47,9 @@ export class ContextMenuManager extends Component {
                 )
             }
         }
-
+        console.log(menu)
         return menu;
+        
     }
 }
 

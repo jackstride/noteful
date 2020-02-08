@@ -15,6 +15,8 @@ const MenuPosition = (props) => {
         backgroundColor: "red",
     };
 
+    console.log(props);
+
     return (
         <div style={style} className={props.className} ref={nodeRef}>
             {children}
