@@ -10,7 +10,6 @@ require('dotenv').config()
 const createError = require('http-errors')
 
 const userRoute = require('./routes/User');
-const toDoRoute = require('./routes/toDo');
 const authRoute = require('./routes/appAuth')
 const socialAuthRoute = require('./routes/socialAuth');
 const FolderRoute = require('./routes/folder');
@@ -46,7 +45,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/user', userRoute);
-app.use('/add', toDoRoute);
 app.use('/dashboard', authRoute);
 app.use('/auth',cors(), socialAuthRoute);
 app.use('/api',cors(), FolderRoute);

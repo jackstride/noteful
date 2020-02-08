@@ -8,7 +8,7 @@ export const loadTasks = id => dispatch => {
   axios.get(`api/getTasks/${id}`).then(res => {
     dispatch({
       type: GET_TASKS,
-      payload: res.data
+      payload: res.data.tasks
     });
   });
 };
@@ -51,7 +51,6 @@ export const toggleTask = id => dispatch => {
 // Requires task id
 
 export const removeTask = id => dispatch => {
-  console.log(id);
   axios.delete(`/api/deletetask/${id}`)
   .then(res => {
     dispatch({

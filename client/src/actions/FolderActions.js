@@ -22,7 +22,6 @@ export const getFolder = id => dispatch => {
   axios
     .get(`api/folders/${id}`)
     .then(res => {
-      console.log(res);
       dispatch({
         type: FOLDER_LOADED,
         payload: res.data.folder

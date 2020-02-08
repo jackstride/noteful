@@ -30,7 +30,7 @@ class Todo extends Component {
           <div className="task_data" key={index}>
             <input
               type="checkbox"
-              checked={key.isCompleted}
+              checked={key.isCompleted || false}
               id={`check${index}`}
               onChange={() => this.handleToggle(key._id)}
             ></input>
