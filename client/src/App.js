@@ -15,6 +15,7 @@ import Footer from './Components/Website/Footer';
 import LogOut from './Components/Website/logout.js';
 import Features from './pages/features.js'
 import Support from './pages/support'
+import ContextMenuManager from './Components/contextMenu/contextMenuManager'
 
 
 class App extends Component {
@@ -48,6 +49,7 @@ class App extends Component {
   DefaultContainer = () => {
     return (
       <div className="app_container">
+        <ContextMenuManager />
         <Route path="/dashboard" component={Dashboard} />
       </div>
     );

@@ -1,26 +1,31 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import {
-  addFolder,
-  getFolder,
-  removeFolder
-} from "../../../actions/FolderActions";
+import { addFolder, getFolder, removeFolder} from "../../../actions/FolderActions";
+import {showMenu} from '../../../actions/contextMenuActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
+
+import ContextMenu from '../../contextMenu/contextMenu'
 
 import WidgetSubmit from "./widgetSubmit";
 
 
 class Folders extends Component {
-  
-third = React.createRef
   constructor(props) {
     super(props);
     this.state = {
       isShown: false,
       isLoaded: false
     };
+  }
+
+
+  onRightClicked = (e) => {
+    e.preventDefault();
+    console.log(e.target)
+    const {pageX,pageY} = e;
+    this.props.showMenu(pageX,pageY, "Folders")
   }
 
   toggleAddFolder = () => {
@@ -37,10 +42,11 @@ third = React.createRef
       <ul id="test">
         {this.props.folder.map((key, index) => (
           <div key={index} style={{ zIndex: "-1" }}>
-            <li key={index} > <Link to="#">{key.folder_name}</Link></li>
-            <button onClick={e => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
-              <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
-            </button>
+            <li key={index} onClick={(e) => this.onRightClicked(e)}>
+              <Link to="#">{key.folder_name}</Link></li>
+                <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
+                  <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
+                </button>
           </div>
         ))}
       </ul>
@@ -51,6 +57,7 @@ third = React.createRef
     let { isShown } = this.state;
     return (
       <div className="widget">
+      <ContextMenu />
         <div className="widget_header">
           <h5>FOLDERS</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
@@ -78,7 +85,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
-  getFolder: id => dispatch(getFolder(id))
+  getFolder: id => dispatch(getFolder(id)),
+  showMenu: () => dispatch(getFolder())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Folders);
