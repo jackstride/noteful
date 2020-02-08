@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { addFolder, getFolder, removeFolder} from "../../../actions/FolderActions";
-import {showMenu} from '../../../actions/contextMenuActions';
+import { addFolder, getFolder, removeFolder,toggleFolderOpen} from "../../../actions/FolderActions";
+import {showMenu, hideMenu,} from '../../../actions/contextMenuActions';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
-
-import ContextMenu from '../../contextMenu/contextMenu'
 
 import WidgetSubmit from "./widgetSubmit";
 
@@ -20,19 +18,14 @@ class Folders extends Component {
     };
   }
 
-  
-
-  onRightClicked = (e) => {
-    document.addEventListener('contextmenu', (e) => {
+  onRightClicked = (e) => {    
       e.preventDefault();
-      console.log(e.target)
       const {pageX,pageY} = e;
-      this.props.showMenu(pageX,pageY,"TestContextMenu")  
-    })    
+      this.props.showMenu(pageX,pageY,"TestContextMenu",{name: e.target.name,id: e.target.id})
   }
 
   toggleAddFolder = () => {
-    this.setState({ isShown: !this.state.isShown });
+    this.props.toggleFolderOpen();
   };
 
   onRemoveFolder = (e, id) => {
@@ -41,19 +34,22 @@ class Folders extends Component {
   };
 
   showFolders = () => {
+    if(this.props.folder) {
     return (
-      <ul id="test">
+      <ul>
         {this.props.folder.map((key, index) => (
-          <div key={index} style={{ zIndex: "-1" }}>
-            <li key={index} onMouseEnter={(e) => this.onRightClicked(e)}>
-              <Link to="#">{key.folder_name}</Link></li>
-                <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
+          <div key={index}>
+            <li key={index} onContextMenu={(e) => this.onRightClicked(e)}>
+              <Link id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
+              </li>
+                {/* <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
-                </button>
+                </button> */}
           </div>
         ))}
       </ul>
     );
+        }
   };
 
   render() {
@@ -65,7 +61,7 @@ class Folders extends Component {
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">
-          {isShown ? (
+          {this.props.isOpen ? (
             <WidgetSubmit
               addFolder={this.props.addFolder}
               userid={this.props.userId}
@@ -80,7 +76,8 @@ class Folders extends Component {
 const mapStateToProps = state => {
   return {
     userId: state.auth.user._id,
-    folder: state.folder.data
+    folder: state.folder.data,
+    isOpen: state.folder.isOpen,
   };
 };
 
@@ -88,7 +85,9 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
   getFolder: id => dispatch(getFolder(id)),
-  showMenu: (x,y,getType) => dispatch(showMenu(x,y,getType))
+  showMenu: (x,y,getType,args) => dispatch(showMenu(x,y,getType,args)),
+  hideMenu: () => dispatch(hideMenu()),
+  toggleFolderOpen: ()=>dispatch(toggleFolderOpen())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Folders);

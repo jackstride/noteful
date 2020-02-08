@@ -12,15 +12,15 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case CONTEXT_MENU_SHOW:
-      console.log(action.payload)
+    case CONTEXT_MENU_SHOW:      
       return {
           show: true,
           location: {
             x: action.payload.x,
             y: action.payload.y,
           },
-          type: action.payload.getType
+          type: action.payload.getType,
+          menuArgs: action.payload.args
       };
     case CONTEXT_MENU_HIDE:
       return {

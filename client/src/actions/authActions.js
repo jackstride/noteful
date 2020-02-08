@@ -16,7 +16,6 @@ import {
 
 //Load user
 export const loadUser = () => (dispatch, getState) => {
-  console.log("called")
   //User Loading
   dispatch({
     type: USER_LOADING

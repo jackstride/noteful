@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER } from "./types";
+import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER,TOGGLE_OPEN } from "./types";
 
 export const addFolder = values => dispatch => {
   axios
@@ -41,3 +41,9 @@ export const removeFolder = id => dispatch => {
       })
     })
     };
+
+export const toggleFolderOpen = () => dispatch => {
+  dispatch({
+    type: TOGGLE_OPEN,
+  })
+}

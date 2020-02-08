@@ -5,18 +5,17 @@ import {
 
 
 
-export const showMenu = (x,y,getType) => dispatch => {
+export const showMenu = (x,y,getType,args) => dispatch => {
     dispatch({
         type: CONTEXT_MENU_SHOW,
         payload: {
             x,
             y,
             getType,
+            args,
         }
     })
 }
-
-
 
 export const hideMenu = () => dispatch => {
     dispatch({

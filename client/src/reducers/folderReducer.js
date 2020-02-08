@@ -1,15 +1,15 @@
-import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER } from "../actions/types";
+import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER, TOGGLE_OPEN } from "../actions/types";
 
 const initalState = {
+  isOpen: false,
   user_id: null,
   name: null,
-  data: null
+  data: null,
 };
 
 export default (state = initalState, action) => {
   switch (action.type) {
     case FOLDER_SUCCESS:
-      console.log("folder added");
       return {
         ...state,
         data: [action.payload, ...state.data]
@@ -20,10 +20,14 @@ export default (state = initalState, action) => {
         data: action.payload
       };
     case REMOVE_FOLDER:
-      console.log("REDUCER REMOVED")
       return {
         ...state,
         data: state.data.filter(data => data._id !== action.payload)
+      }
+      case TOGGLE_OPEN:
+      return {
+        ...state,
+        isOpen: !state.isOpen,
       }
     default:
       return state;

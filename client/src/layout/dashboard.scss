@@ -142,8 +142,7 @@
     }
 
     li {
-        padding-top: 5px;
-        padding-bottom: 5px;
+        
         width: 100%;
     }
 
@@ -159,19 +158,27 @@
         color: $black;
         font-weight: normal;
         text-decoration: none;
-
-
     }
+    
 
     a:hover {
         color: $orange;
     }
-
+    
+    a {
+     display: block;
+     width:100%;
+     padding-top: 5px;
+    padding-bottom: 5px;
+    }
 }
 
 .w_contents {
     overflow-x: auto;
     height: inherit;
+
+    
+
 }
 
 .plus {
