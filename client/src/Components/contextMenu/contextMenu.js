@@ -25,11 +25,7 @@ export class ContextMenu extends Component {
         let {location} = this.props
         
         return (
-                <MenuPosition
-                left = {location.x + 2}
-                top = {location.y}
-                classsName = "contextMenu"
-                nodeRef = {node => this.node = node} >
+                <MenuPosition left = {location.x + 2} top = {location.y} className = "contextMenu" nodeRef = {node => this.node = node} >
                     {this.props.children}
                 </MenuPosition>
         )

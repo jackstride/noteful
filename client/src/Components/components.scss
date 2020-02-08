@@ -1,3 +1,21 @@
+/* Context Menu */
+
+.contextMenu {
+    background-color: white;
+    width: 10%;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 12px;
+    li a {
+        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    li {
+        padding-bottom: 10px;
+    }
+}
+
 /* Register and Login Form */
 
 
@@ -22,7 +40,6 @@
         font-size: 14px;
     }
 }
-
 
  form.auth_form {
     width: 100%;

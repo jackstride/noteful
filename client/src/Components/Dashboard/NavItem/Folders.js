@@ -20,12 +20,15 @@ class Folders extends Component {
     };
   }
 
+  
 
   onRightClicked = (e) => {
-    e.preventDefault();
-    console.log(e.target)
-    const {pageX,pageY} = e;
-    this.props.showMenu(pageX,pageY,"TestContextMenu")
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      console.log(e.target)
+      const {pageX,pageY} = e;
+      this.props.showMenu(pageX,pageY,"TestContextMenu")  
+    })    
   }
 
   toggleAddFolder = () => {
@@ -42,7 +45,7 @@ class Folders extends Component {
       <ul id="test">
         {this.props.folder.map((key, index) => (
           <div key={index} style={{ zIndex: "-1" }}>
-            <li key={index} onClick={(e) => this.onRightClicked(e)}>
+            <li key={index} onMouseEnter={(e) => this.onRightClicked(e)}>
               <Link to="#">{key.folder_name}</Link></li>
                 <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>

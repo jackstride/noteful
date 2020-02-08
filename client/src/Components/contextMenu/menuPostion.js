@@ -10,12 +10,7 @@ const MenuPosition = (props) => {
         bottom : props.bottom,
         left: props.left,
         right : props.right,
-        width: "200px",
-        height:"200px",
-        backgroundColor: "red",
     };
-
-    console.log(props);
 
     return (
         <div style={style} className={props.className} ref={nodeRef}>
