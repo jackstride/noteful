@@ -26,26 +26,29 @@ h1 {
 
 
 h2 {
-    font-family: 'Gelasio', serif;
+    font-family: $headingFont;
     font-weight: 700;
-    font-size: 62px;
+    font-size: 28px;
     color: $HeadingGrey;
-    letter-spacing: -2.38px;
-    line-height: 58px;
+    font-family: Eczar-Bold;
+    letter-spacing: 0.95px;
+    text-align: center;
+    line-height: 45px;
 }
 
 h3 {
     font-family: 'Gelasio', serif;
-    color: $whiteText;
+    color: $HeadingGrey;
     font-size: 24px;
     font-weight: 400;
 }
 
 h4 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Lato', sans-serif;
     color: $HeadingGrey;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04px;
+    line-height: 21px;
 }
 
 h5 {
@@ -69,9 +72,11 @@ h6 {
 p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
-    color: $heading;
     letter-spacing: 0;
-    line-height: 37px;
+    line-height: 27px;
+    color: #656464;
+    letter-spacing: 0;
+
 }
 
 li {
@@ -121,12 +126,26 @@ nav a {
 }
 
 
-.section_container {
-    height: 50vh;
+.section_header {
+    background-color: $backgroundColor;
     width: 100%;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
+}
+
+.section_header_text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+    :first-child {
+        margin: 50px 0px 20px 0px;
+        width: 25%;
+    }
+
+    * {
+        width: 30%;
+        text-align: center;
+    }
 }
 
 

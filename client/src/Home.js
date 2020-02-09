@@ -2,17 +2,16 @@ import React, { Component, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./fontawesome";
 
-import Tiles from "./images/header_tile.svg";
-
 import Preview from "./images/browser_preview.jpg";
 import PhonePreview from "./images/iphone_preview.png";
-import blob, { ReactComponent as Blob} from './images/blob.svg';
+import { ReactComponent as Blob } from "./images/blob.svg";
+import Card from "./Components/Website/Card.js";
 
 export default class home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      features: [
+      information: [
         {
           heading: "Type Anywhere.",
           text:
@@ -26,13 +25,28 @@ export default class home extends Component {
         {
           heading: "Easier Workflow.",
           text: "Workflow has never been easier wand simpler. Try it yourself."
-        },
-        {
-          heading: "Dark Mode.",
-          text:
-            "Working late in the evening? Don't worry, we have dark mode for that."
         }
-      ]
+      ],
+      headings: [
+        {
+          header:
+            "Did you know that organising things in one place helps eliminate stress?",
+          main: "We created an online* app for that. You're welcome."
+        }
+      ],
+      cards: [{
+        heading: "Remembers todays tasks.",
+        body: "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
+      },
+      {
+        heading:"Easier Workflow",
+        body: "Workflow has never been easier and simpler. Try it yourself for free."
+      },
+      {
+        heading:"Write Anywhere.",
+        body:"Are you full of interesting ideas or typing up your biography? Start where you last left off on any device and use any browser."
+      }
+    ]
     };
   }
 
@@ -46,72 +60,74 @@ export default class home extends Component {
   render() {
     return (
       <Fragment>
-          <header>
+        <header>
           <div className="absolute_blob">
-                <Blob className="blob" />
+            <Blob className="blob" />
+          </div>
+          <div className="inner_container">
+            <div className="header_text">
+              <div className="header_small">
+                <h4>We think it's time.</h4>
+                <hr></hr>
               </div>
-            <div className="inner_container">
-              <div className="header_text">
-                <div className="header_small">
-                  <h4>We think it's time.</h4>
-                  <hr></hr>
-                </div>
-                <div className="header_main">
+              <div className="header_main">
                 <h1>
-                Goodbye paper..<br></br>
-                Hello noteful!
+                  Goodbye paper..<br></br>
+                  Hello noteful!
                 </h1>
                 <h6>
-                  Switch away from paper and begin typing with Noteful. <br></br>
+                  Switch away from paper and begin typing with Noteful.{" "}
+                  <br></br>
                   Sign up today. Free of charge!
                 </h6>
-                <input type="button" onClick={this.handleSubmit} value="Register"></input>
-                </div>
+                <input
+                  type="button"
+                  onClick={this.handleSubmit}
+                  value="Register"
+                ></input>
               </div>
-              </div>
-          </header>
-
-          <div className="previews">
-          <div className="blue_seperator"></div>
-            <div className="orange_seperator"></div>
-            <div className="white_seperator">
-            <div className="app_info inner_container">
-                {this.state.features.map((data, i) => (
-                  <React.Fragment>
-                    <div className="info_block">
-                      <div className="info_header">
-                        <h3 style={{ color: "black" }}>{data.heading}</h3>
-                      </div>
-                      <div className="info_para">
-                        <p style={{ color: "black" }}>{data.text}</p>
-                      </div>
-                    </div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </div>
-            <div className="preview_content">
-              <div className="tag_info col-1 inner_container">
-                <h4>
-                  Browser<br></br>Based.
-                </h4>
-                <h4>
-                  Social<br></br>Login.
-                </h4>
-                <h4>
-                  All<br></br>Devices.
-                </h4>
-              </div>
-              <div className="dashboard_preview inner_container">
-                <img src={Preview} alt="Noteful dashboard preview"></img>
-              </div>
-              <div className="iphone_preview inner_container">
-                <img src={PhonePreview} alt="Noteful dashboard preview"></img>
-              </div>
-              
             </div>
           </div>
-          </Fragment>        
+        </header>
+        <div className="tag_info">
+          <div className="inner_container">
+            <h4>
+              Browser<br></br>Based.
+            </h4>
+            <h4>
+              Social<br></br>Login.
+            </h4>
+            <h4>
+              All<br></br>Devices.
+            </h4>
+          </div>
+        </div>
+        <SectionHeader data={this.state.headings[0]} />
+        <section className="info_cards">
+          <div className="inner_container"> 
+          <div className="cards_grid">
+            <Card data={this.state.cards[0]} />
+            <div className="cards_row">
+              <Card data={this.state.cards[1]}/>
+              <Card data={this.state.cards[2]}/>
+            </div>
+            </div>
+          </div>
+        </section>
+      </Fragment>
     );
   }
 }
+
+let SectionHeader = props => {
+  return (
+    <section className="section_header">
+      <div className="inner_container">
+        <div className="section_header_text">
+          <h2>{props.data.header}</h2>
+          <h4>{props.data.main}</h4>
+        </div>
+      </div>
+    </section>
+  );
+};
