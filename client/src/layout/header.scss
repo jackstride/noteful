@@ -19,7 +19,7 @@
 
 .website_nav_login {
     span a {
-        color: $purple;
+        color: $backgroundColor;
     }
 }
 
@@ -32,8 +32,8 @@
     a {
         padding: 10px 40px;
         color: $white;
-        background-color: white;
-        background-image: linear-gradient($purple, $purple);
+        background-color: $navGrey;
+        background-image: linear-gradient($backgroundColor,$backgroundColor);
         background-repeat: no-repeat;
         background-size: 0% 50%;
         transition: background-size .5s, color .5s;
@@ -41,7 +41,7 @@
 
     a:hover {
         background-size: 100% 100%;
-        color: $white;
+        color: $navGrey;
     }
 }
 
@@ -51,9 +51,7 @@
 
     a {
         padding: 10px 40px;
-        color: $purple;
-        background-color: $white;
-        background-image: linear-gradient($purple, $purple);
+        background-image: linear-gradient($navGrey, $navGrey);
         background-repeat: no-repeat;
         background-size: 0% 100%;
         transition: background-size .5s, .5s;    
@@ -62,7 +60,7 @@
 
     a:hover {
         background-size: 100% 100%;
-        color: $white;
+        color: $backgroundColor;
     }
     
 }

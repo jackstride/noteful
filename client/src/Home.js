@@ -6,6 +6,7 @@ import Tiles from "./images/header_tile.svg";
 
 import Preview from "./images/browser_preview.jpg";
 import PhonePreview from "./images/iphone_preview.png";
+import blob, { ReactComponent as Blob} from './images/blob.svg';
 
 export default class home extends Component {
   constructor(props) {
@@ -46,7 +47,9 @@ export default class home extends Component {
     return (
       <Fragment>
           <header>
-            <div className="left">
+          <div className="absolute_blob">
+                <Blob className="blob" />
+              </div>
             <div className="inner_container">
               <div className="header_text">
                 <div className="header_small">
@@ -55,22 +58,16 @@ export default class home extends Component {
                 </div>
                 <div className="header_main">
                 <h1>
-                  Begin typing with <br></br>noteful.
+                Goodbye paper..<br></br>
+                Hello noteful!
                 </h1>
                 <h6>
-                  Switch away from paper and begin typing with Noteful.
+                  Switch away from paper and begin typing with Noteful. <br></br>
                   Sign up today. Free of charge!
                 </h6>
-                <input
-                  type="button"
-                  onClick={this.handleSubmit}
-                  value="Register"
-                ></input>
+                <input type="button" onClick={this.handleSubmit} value="Register"></input>
                 </div>
               </div>
-              </div>
-              </div>
-              <div className="header_image">
               </div>
           </header>
 
