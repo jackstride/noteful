@@ -6,6 +6,7 @@ import Preview from "./images/browser_preview.jpg";
 import PhonePreview from "./images/iphone_preview.png";
 import { ReactComponent as Blob } from "./images/blob.svg";
 import Card from "./Components/Website/Card.js";
+import { faMandalorian } from "@fortawesome/free-brands-svg-icons";
 
 export default class home extends Component {
   constructor(props) {
@@ -32,6 +33,10 @@ export default class home extends Component {
           header:
             "Did you know that organising things in one place helps eliminate stress?",
           main: "We created an online* app for that. You're welcome."
+        },
+        {
+          header: "Dark Mode.",
+          main: "Surprisingly 99% of people type in the dark. As a result we created dark mode.. Okay, that's false but we thought it looked nice.",
         }
       ],
       cards: [{
@@ -113,6 +118,18 @@ export default class home extends Component {
             </div>
             </div>
           </div>
+        </section>
+        <hr className="home_sep"></hr>
+        <SectionHeader data={this.state.headings[1]} />
+        <section className="iphone_image">
+          <img src={PhonePreview}></img>
+        </section>
+        <section className="inner_container">
+        <div className="home_features">
+        <Card data={this.state.cards[2]}/>
+        <Card data={this.state.cards[2]}/>
+        <Card data={this.state.cards[2]}/>
+        </div>
         </section>
       </Fragment>
     );

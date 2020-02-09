@@ -82,13 +82,11 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: move 10s ease-in-out infinite;
-    transform: translate(50% 50%);
-
-
 
     svg {
         height: 60%;
+        animation: move 10s ease-in-out infinite;
+    transform: translate(50% 50%);
     }
 }
 /* tag info */
@@ -163,5 +161,38 @@ header {
     :nth-child(2){
         padding: 0px 10px 20px 10px;
     }     
+}
+
+
+
+// Home sep
+.home_sep {
+    width: 70%;
+    border: 2px solid #EEDFD0;
+    margin: 10px auto;
+    
+}
+
+
+
+//iPhone image 
+.iphone_image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.home_features {
+    height: 400px;
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    grid-template-rows: 100%;    
+    margin-left: 20%;
+    .card_container {
+        width: 80%;
+        justify-self: center;
+    }
 }
 

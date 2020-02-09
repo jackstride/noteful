@@ -52,7 +52,6 @@ export default class footer extends Component {
       return(
     <footer>     
            <div className="inner_container">
-           <hr className="footer_hr"></hr>
                <div className="footer_nav">
                <div className="footer_logo">
                    <img alt="Noteful Logo" src={Logo}></img>

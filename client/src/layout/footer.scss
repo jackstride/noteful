@@ -1,7 +1,7 @@
 footer {
     width: 100%;
     height: 300px;
-    background-color: $Background;
+    background-color: $backgroundColor;
 
     img {
         width: 150px;
@@ -9,10 +9,13 @@ footer {
 }
 
 hr.footer_hr {
-    border-top: 2px solid lightgray;
+    border-top: 2px solid lightgrey;
 }
 
-
+footer {
+    display: flex;
+    align-items:center;
+}
 .footer_nav {
     display: flex;
     flex-direction: row;
@@ -24,6 +27,7 @@ hr.footer_hr {
 
     li {
         padding: 5px;
+        display: block;
     }
 
     a {
