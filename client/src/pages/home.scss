@@ -36,6 +36,7 @@ header {
                 hr {
                     margin-left: 50px;
                     padding: 0 !important;
+                    border-bottom: 1px solid black !important;
                 }
             }
         }
@@ -168,9 +169,8 @@ header {
 // Home sep
 .home_sep {
     width: 70%;
-    border: 2px solid #EEDFD0;
+    border: 1px solid #EEDFD0;
     margin: 10px auto;
-    
 }
 
 

@@ -19,7 +19,7 @@ body {
 }
 
 h1 {
-    font-family: $headingFont;
+    font-family: $headingFont, Helvetica, Arial, sans-serif;
     font-weight: 700;
     color: $darkGrey;
     line-height: 82px;
@@ -30,30 +30,31 @@ h1 {
 
 
 h2 {
-    font-family: $headingFont;
+    font-family: $headingFont, Helvetica, Arial, sans-serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 38px;
     color: $HeadingGrey;
     font-family: Eczar-Bold;
     letter-spacing: 0.95px;
     text-align: center;
-    line-height: 45px;
+    line-height: 60px;
 }
 
 h3 {
-    font-family: 'Gelasio', serif;
+    font-family: 'Gelasio', Helvetica, Arial, sans-serif;
     color: $HeadingGrey;
-    font-size: 24px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: normal;
 }
 
 h4 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
     color: $HeadingGrey;
-    font-size: 18px;
+    font-size: 19px;
     letter-spacing: 0.04px;
-    line-height: 21px;
+    line-height: 29px;
     font-weight: normal;
+
 }
 
 h5 {
@@ -66,7 +67,7 @@ h5 {
 
 h6 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 14px;
+    font-size: 16px;
     color: $HeadingGrey;
     letter-spacing: 0;
     line-height: 22px;
@@ -78,7 +79,7 @@ p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     letter-spacing: 0;
-    line-height: 27px;
+    line-height: 22px;
     color: #656464;
     letter-spacing: 0;
 
@@ -95,7 +96,7 @@ a {
 }
 
 nav a {
-    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-family: "HelveticaNeue", "Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     font-size: 14px;
     padding: 14px;
     color: $navGrey;
@@ -144,11 +145,10 @@ nav a {
 
     :first-child {
         margin: 50px 0px 20px 0px;
-        width: 25%;
+        width: 45%
     }
 
     * {
-        width: 30%;
         text-align: center;
     }
 }

@@ -32,7 +32,7 @@ export default class home extends Component {
         {
           header:
             "Did you know that organising things in one place helps eliminate stress?",
-          main: "We created an online* app for that. You're welcome."
+          main: "Using noteful will help keep things in one place."
         },
         {
           header: "Dark Mode.",
@@ -81,7 +81,7 @@ export default class home extends Component {
                   Hello noteful!
                 </h1>
                 <h6>
-                  Switch away from paper and begin typing with Noteful.{" "}
+                  Switch away from paper and begin typing with Noteful.
                   <br></br>
                   Sign up today. Free of charge!
                 </h6>
