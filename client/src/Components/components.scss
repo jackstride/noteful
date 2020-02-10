@@ -4,8 +4,6 @@
     font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     display: flex;
     flex-direction: column;
-    position: relative;
-    top: 15%;
 }
 
  form.auth_form {
@@ -19,7 +17,6 @@
         height: 60px;
         margin: 10px 0px;
         color: black;
-        font-size: 18px;
         background-color: transparent;
         border-radius: 5px;
         border: 3px solid $navGrey;
@@ -33,7 +30,7 @@
     input[type=submit] {
         background-color: $navGrey;
         color: $backgroundColor;
-        font-size: 14px;
+        font-size: 16px;
         border: none;
         cursor: pointer;
     }
@@ -49,10 +46,9 @@
 .reg_container {
     position: relative;
     display: flex;
-    height: 100vh;
     justify-content: center;
     text-align: center;
-    width: 25%;
+    width: 20%;
 }
 
 /* Login Container */
@@ -78,9 +74,10 @@
 }
 
 .login_container {
-    width: 50%;
+    width: 40%;
     font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     display: flex;
+    align-items: center;
     height: 100%;
 
     p {
