@@ -1,71 +1,29 @@
-/* Context Menu */
-
-.contextMenu {
-    background-color: white;
-    width: 10%;
-    height: fit-content;
-    padding: 20px;
-    border-radius: 12px;
-    li a {
-        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-        font-size: 12px;
-        text-decoration: none;
-    }
-    li {
-        padding-bottom: 10px;
-    }
-
-    li:hover {
-        background-color: $orange;
-        
-    }
-}
-
-/* Register and Login Form */
-
-
-/* Form Container*/
+// Form Container
 .form_container {
-    width: 60%;
-    height: fit-content;
+    width: 100%;
     font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     display: flex;
     flex-direction: column;
-
-    .reg_logo img {
-        height: 50px;
-    }
-
-    span {
-        color: gray;
-    }
-
-    span a {
-        color: blue;
-        font-size: 14px;
-    }
+    position: relative;
+    top: 15%;
 }
 
  form.auth_form {
     width: 100%;
-    height: 100%;
-    background-color: $Background;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     input {
-        display: block;
-        width: 80%;
-        height: 52px;
-        margin: 20px 0px 20px 0px;
+        width: 100%;
+        height: 60px;
+        margin: 10px 0px;
         color: black;
         font-size: 18px;
-        padding-left: 5px;
         background-color: transparent;
-        border-image-source: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-        border-image-slice: 1;
-        border-radius: 22px;
+        border-radius: 5px;
+        border: 3px solid $navGrey;
+        width: 100%;
     }
 
     input .error {
@@ -73,60 +31,66 @@
     }
 
     input[type=submit] {
-        background-color: #8EC5FC;
-        background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-        color: $whiteText;
+        background-color: $navGrey;
+        color: $backgroundColor;
         font-size: 14px;
         border: none;
         cursor: pointer;
-        width: 50%;
     }
 
     input::placeholder {
         color: lightgray;
         font-size: 16px;
-        padding-left: 5px;
+        padding-left: 20px;
     }
 }
 
 /* Register Container */
 .reg_container {
-    width: 100%;
-    height: calc(100vh - 300px);
+    position: relative;
     display: flex;
-    flex-direction: row;
-    background-color: $BG;
-
-    .left {
-        width: 50%;
-        background-color: $Background;
-        height: 100%;
-        display: flex;
-
-        img {
-            width: 100%;
-        }
-    }
-
-    .right {
-        background-color: $Background;
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
+    height: 100vh;
+    justify-content: center;
+    text-align: center;
+    width: 25%;
 }
+
 /* Login Container */
+.log_left {
+    width: 40%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.log_right {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        height: 100%;
+        width: 60%;
+    }
+}
+
 .login_container {
     width: 50%;
-    height: 100vh;
+    font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: $Background;
+    height: 100%;
 
+    p {
+        text-align: center;
+    }
+
+    span {
+        color: blue;
+    }
+    
     .social_auth {
         flex-direction: column;
         align-items: center;
@@ -141,42 +105,45 @@
 
 /* Social Auth Componentts */
 .google_auth, .twitter_auth {
-    width: 50%;
-    background-color: #4285F4;
-    height: 50px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 3px solid rgba(25, 28, 31, .5);
+    width: 100%;
+    height: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;
-}
-.twitter_auth {
-    background-color: #00ACED;
 }
 
 .social_auth {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 
     >* {
-        margin: 10px 10px 10px 0px;
+     margin: 10px 0px;
     }
 
     span {
-        height: 100%;
-        width: 50px;
-        background-color: white;
+        position: absolute;
+        height: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        padding-left: 2%;
         img {
-            width: 50%;
+            height: 30%;
         }
     }
     p,a {
-        color: white;
-        font-size: 12px;
+        color: $darkGrey;
+        font-weight: 500;
+        font-size: 14px;
         margin: 0 auto;
         text-decoration: none;
+        padding-left: 5px;
     }
 }
 
@@ -207,4 +174,25 @@ img {
 }
 }
 
+/* Context Menu */
 
+.contextMenu {
+    background-color: white;
+    width: 10%;
+    height: fit-content;
+    padding: 20px;
+    border-radius: 12px;
+    li a {
+        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        font-size: 12px;
+        text-decoration: none;
+    }
+    li {
+        padding-bottom: 10px;
+    }
+
+    li:hover {
+        background-color: $orange;
+        
+    }
+}

@@ -1,28 +1,23 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 
-import Space from "../../../images/shapes.svg";
 import RegisterForm from './registerForm';
 import SocialAuth from './socialAuth.js';
 
 export default class Register extends Component {
   render() {
     return (
-      <div>
+      <section className="register">
         <div className="reg_container">        
-          <div className="left">
-            <img alt="circles and squares" src={Space}></img>
-          </div>
-          <div className="right">
           <div className="form_container">
-              <h2> Create Your Free Account </h2>
-              <span>Already have an account? <Link to="/login">Click Here</Link></span>
-              <SocialAuth history={this.props.history} />
+              <h2>Sign up</h2>
+              <p>Enjoy all features for free!</p>
               <RegisterForm />
+              <span style={{margin:"20px 0px"}}>- - - - - - - -  Or - - - - - - - - </span>
+              <SocialAuth history={this.props.history} /> 
             </div>
-        </div>
       </div>
-      </div>
+      </section>
     );
   }
 }

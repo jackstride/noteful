@@ -26,9 +26,9 @@ class SocialLogin extends Component {
         </div>
         <div className="twitter_auth">
           <span>
-            <img alt="Sign up with twitter" src={Twitter}></img>
+            <img alt="Sign up with Twitter" src={Twitter}></img>
           </span>
-          <p>Sign up with google</p>
+          <p>Sign up with Twitter</p>
         </div>
       </div>
     );

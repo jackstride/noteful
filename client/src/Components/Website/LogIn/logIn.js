@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import Form from "./loginForm";
 import SocialAuth from '../Register/socialAuth'
 import { loadUser } from "../../../actions/authActions";
+import {ReactComponent as Jumping} from'../../../images/jumping.svg';
 
  class LogIn extends Component {
    constructor(props){
@@ -18,17 +19,22 @@ import { loadUser } from "../../../actions/authActions";
 
     
     return (
-      <div className="center_container">
-        <div className="login_container">
-          <h1>Welcome</h1>
-          <p>Sign in to continue</p>
+      <section className="login">
+          <div className="log_left">
+          <div className="login_container">
           <div className="form_container">
+          <h2>Welcome Back!</h2>
+          <p>Don't have an account? <span>Sign up</span></p>
             <Form history={this.props.history} />
-            <p> Or </p>
+            <p style={{margin:"20px 0px"}}>- - - - - - - -  Or - - - - - - - - </p>
             <SocialAuth />
           </div>
-        </div>
-      </div>
+          </div>    
+          </div>
+          <div className="log_right">
+            <Jumping />
+          </div>  
+        </section>
     );
   }
 }
