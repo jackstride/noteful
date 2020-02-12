@@ -1,6 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require('mongoose')
+const TwitterStrategy = require('passport-twitter').Strategy;
 
 const User = require("./models/User");
 
@@ -14,8 +15,7 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-passport.use(
-  new GoogleStrategy(
+passport.use(new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -56,11 +56,23 @@ passport.use(
       };
       
       done(null, userData);
-
-      //Next steps
-      // Save user in database
-      //Check is user exists
-      //Research More
     }
   )
 );
+
+
+
+
+
+
+// Twitter authentication
+
+passport.use(new TwitterStrategy({
+  consumerKey: process.env.TWITTER_CLIENT_ID,
+  consumerSecret: process.env.TWITTER_CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/twitter/callback"
+},
+function(token, tokenSecret, profile, cb) {
+  console.log(profile)
+}
+));

@@ -28,7 +28,7 @@ class SocialLogin extends Component {
           <span>
             <img alt="Sign up with Twitter" src={Twitter}></img>
           </span>
-          <p>Sign up with Twitter</p>
+          <p><a href="http://localhost:5000/auth/twitter">Sign up with Twitter</a></p>
         </div>
       </div>
     );
