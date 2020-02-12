@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 
@@ -6,6 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 
 let Profile = props => {
+
+  const [settings,openSettings] = useState(false);
+
+  
   return (
     //Get the Name and profile photo
     <div className="profile_container">
@@ -15,19 +19,28 @@ let Profile = props => {
       </div>
       <div className="profile_logout">
         <h4 style={{color: "black"}}>{props.user}</h4>
-        <Link to="/logout">Logout</Link>
       </div>
       <div className="profile_setting">
-        <FontAwesomeIcon
-          className="font_icon"
-          style={{ color: "#323232" }}
-          icon="cog"
-          size="xs"
-        />
+        <FontAwesomeIcon onClick={() => openSettings(!settings)} className="font_icon" style={{ color: "#323232" }} icon="cog" size="xs"/>
+        {settings ? <Options /> : null}
       </div>
     </div>
   );
 };
+
+
+
+
+let Options = (props) => {
+  return(
+  <nav className="options">
+    <ul>
+      <li><a href="/settings">Edit your settings</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </nav>
+  )
+}
 
 
 const mapStateToProps = state => {

@@ -58,7 +58,7 @@ class Todo extends Component {
     return (
       <div className="widget">
         <div className="widget_header">
-          <h5>Tasks</h5>
+          <h5>TASKS</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">

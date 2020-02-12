@@ -9,14 +9,12 @@ import {
   REGISTER_FAIL,
   GETTING_URL,
 } from "../actions/types";
-
 const initalState = {
   isAuthenticated: false,
   isLoading: false,
   user: null,
   url: null
 };
-
 export default (state = initalState, action) => {
   switch (action.type) {
     case USER_LOADING:
