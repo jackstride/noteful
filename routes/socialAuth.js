@@ -11,7 +11,9 @@ router.get('/google', passport.authenticate('google', { scope: ['profile', "emai
 
   
 router.get("/google/callback",passport.authenticate("google", { session: false }), (req, res) => {
-      
+
+  console.log(req.user)
+    
       const payload = {
         _id: req.user._id,
         email: req.user.email,
@@ -28,10 +30,9 @@ router.get("/google/callback",passport.authenticate("google", { session: false }
           res.cookie("access_token", token, {
             maxAge: 9000000,
             httpOnly: true
-          });
-          res.redirect("http://localhost:3000/dashboard")
+          }).redirect("http://localhost:3000/dashboard");
         }
-      );
+      ); 
     }
   );
   
@@ -44,6 +45,26 @@ router.get("/google/callback",passport.authenticate("google", { session: false }
   router.get('/twitter', passport.authenticate('twitter'));
 
   router.get('/twitter/callback', passport.authenticate('twitter'), (req,res) => {
-    res.redirect("http://localhost:3000/dashboard")
+
+    const payload = {
+      _id: req.user._id,
+      email: req.user.email,
+      name: req.user.firstName,
+    }
+
+    jtw.sign(
+      payload,
+      process.env.JWT_KEY,
+      {
+        expiresIn: "1h"
+      },
+      (err, token) => {
+        res.cookie("access_token", token, {
+          maxAge: 9000000,
+          httpOnly: true
+        });
+        res.redirect("http://localhost:3000/dashboard")
+      }
+    );
   })
   

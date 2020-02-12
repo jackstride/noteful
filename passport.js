@@ -1,7 +1,7 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const mongoose = require('mongoose')
-const TwitterStrategy = require('passport-twitter').Strategy;
+const mongoose = require("mongoose");
+const TwitterStrategy = require("passport-twitter").Strategy;
 
 const User = require("./models/User");
 
@@ -15,70 +15,80 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-passport.use(new GoogleStrategy(
+passport.use(
+  new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback",
-      includeEmail: true,
+      callbackURL: "http://localhost:5000/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
-
-      let generateId = new mongoose.Types.ObjectId(profile.id + "112");
+      let userData = {
+        _id: new mongoose.Types.ObjectId(),
+        firstName: profile.name.givenName,
+        lastName: profile.name.familyName,
+        email: profile.emails[0].value,
+        password: null,
+        token: accessToken,
+        google_id: profile.id
+      };
 
       User.find({ email: profile.emails[0].value })
         .then(user => {
           if (user.length) {
-            // User already exists// 
-            
+            done(null, user[0]);
           } else {
-
-            // Sign up the user here
-            const user = new User({
-              _id: generateId,
-              firstName: profile.name.givenName,
-              lastName: profile.name.familyName,
-              email: profile.emails[0].value,
-              password: null
+            const user = new User(userData);
+            user.save().then(result => {
+              done(null, userData);
             });
-            user.save().then(result => {});
           }
         })
         .catch(err => {
           console.log(err);
         });
-
-      let userData = {
-        _id: generateId,
-        firstName: profile.name.givenName,
-        lastName: profile.name.familyName,
-        email: profile.emails[0].value,
-        token: accessToken
-      };
-      
-      done(null, userData);
     }
   )
 );
 
-
-
-
-
-
 // Twitter authentication
 
-passport.use(new TwitterStrategy({
-  consumerKey: process.env.TWITTER_CLIENT_ID,
-  consumerSecret: process.env.TWITTER_CLIENT_SECRET,
-  callbackURL: "http://localhost:5000/auth/twitter/callback"
-},
-function(token, tokenSecret, profile, done) {
-  console.log(profile)
-  const payload = {
-    _id: profile._json.id_str,
-    first_name: profile._json.name
-  }
-  done(null,profile)
-}
-));
+passport.use(
+  new TwitterStrategy(
+    {
+      consumerKey: process.env.TWITTER_CLIENT_ID,
+      consumerSecret: process.env.TWITTER_CLIENT_SECRET,
+      callbackURL: "http://localhost:5000/auth/twitter/callback",
+      includeEmail: true
+    },
+    function(token, tokenSecret, profile, done) {
+
+      //Might new auth token for future?
+      console.log(profile);
+      let userData = {
+        _id: new mongoose.Types.ObjectId(),
+        firstName: profile._json.name,
+        lastName: null,
+        email: profile._json.email,
+        password: null,
+        twitter_id: profile._json.id
+      };
+
+      User.find({ email: profile._json.email})
+        .then(user => {
+          if (user.length) {
+            done(null,user[0])
+          } else {
+
+            const user = new User(userData);
+            user.save().then(result => {
+              done(null, userData);
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  )
+);
