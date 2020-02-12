@@ -39,9 +39,20 @@ router.delete("/folders/:folderid", async (req, res, next) => {
   
   let result = await Folder.findByIdAndRemove(folderid);
 
-  res ? res.sendStatus(200)
+  result ? res.sendStatus(200)
   : next(createError(500, "There was an error deleting the folder"))
 
 });
+
+router.put("/folder/update" , async (req,res,next) => {
+
+  let {id, name} = req.body
+  
+  let result = await Folder.findByIdAndUpdate({_id: id},{folder_name: name})
+
+  result ? res.status(200).json({result})
+  : next(createError(500, "There was an error renaming the folder"))
+
+})
 
 module.exports = router;

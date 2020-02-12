@@ -140,7 +140,7 @@ nav.options {
     border-radius: 8px;
     height: 90%;
 
-    div {
+    .input_multiple {
         display: flex;
         justify-content: space-between;
     }
@@ -156,7 +156,7 @@ nav.options {
     ul {
         width: 100%;
         margin: 0 auto;
-        padding: 10px 0px;
+        padding: 0px 0px 10px;
     }
 
     li {
@@ -193,9 +193,7 @@ nav.options {
 .w_contents {
     overflow-x: auto;
     height: inherit;
-
-    
-
+    flex-direction: row;
 }
 
 .plus {
@@ -213,25 +211,33 @@ nav.options {
 }
 
 
+.input_holder {
+
+    .f_form {
+        position: relative;
+        width: inherit;
+        background: transparent;
+    
+        input {
+            user-select: none;
+            border: none;
+            height: auto;
+            width: 100%;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        color: $black;
+        font-weight: 700;
+        padding-top: 10px;
+        }
+    }
+
+}
+
+
 
 /* Folder Form */
 
-.f_form {
-    position: relative;
-    width: inherit;
-    background: transparent;
 
-
-
-    input {
-        background-color: $widgetGrey;
-        user-select: none;
-        border: none;
-        border-bottom: solid 2px lightgray;
-        height: 30px;
-        width: 100%;
-    }
-}
 
 
 

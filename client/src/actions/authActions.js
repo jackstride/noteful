@@ -28,7 +28,6 @@ export const loadUser = () => (dispatch, getState) => {
   };
 
   axios.get("/dashboard", config).then(res => {
-      console.log(res.data)
     dispatch({
       type: USER_LOADED,
       payload: res.data

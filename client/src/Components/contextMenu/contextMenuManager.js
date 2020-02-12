@@ -3,19 +3,20 @@ import {connect} from 'react-redux'
 import {Portal} from 'react-portal';
 
 import ContextMenu from './contextMenu';
-
 import {selectContextMenu} from './contextMenuSelectors';
-import Folder from '../Dashboard/NavItem/Folders'
 
-import TestContextMenu from './TestContextMenu';
 
+import FoldersContextMenu from '../contextMenus/FoldersContextMenu';
+import EditContextMenu from '../contextMenus/editContextMenu'
 const menuTypes = {
-    TestContextMenu,
+    FoldersContextMenu,
+    EditContextMenu,
 }
 
 export function contextMenuManagerMapState(state) {
     return {
-        contextMenu : selectContextMenu(state)
+        contextMenu : selectContextMenu(state),
+        EditContextMenu: selectContextMenu(state)
     };
 }
 

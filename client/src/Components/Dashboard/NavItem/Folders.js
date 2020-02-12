@@ -21,7 +21,7 @@ class Folders extends Component {
   onRightClicked = (e) => {    
       e.preventDefault();
       const {pageX,pageY} = e;
-      this.props.showMenu(pageX,pageY,"TestContextMenu",{name: e.target.name,id: e.target.id})
+      this.props.showMenu(pageX,pageY,"FoldersContextMenu",{name: e.target.name,id: e.target.id})
   }
 
   toggleAddFolder = () => {
@@ -33,18 +33,21 @@ class Folders extends Component {
     this.props.removeFolder(id);
   };
 
+  editNote = e => {
+  }
+
   showFolders = () => {
     if(this.props.folder) {
     return (
       <ul>
         {this.props.folder.map((key, index) => (
-          <div key={index}>
+          <div className="input_multiple" key={index}>
             <li key={index} onContextMenu={(e) => this.onRightClicked(e)}>
-              <Link id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
+              <Link onClick={(e) => this.editNote(e)} id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
               </li>
-                {/* <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
+               <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
-                </button> */}
+                </button>
           </div>
         ))}
       </ul>
@@ -61,13 +64,13 @@ class Folders extends Component {
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">
+          <div className="w_contents">
           {this.props.isOpen ? (
-            <WidgetSubmit
-              addFolder={this.props.addFolder}
-              userid={this.props.userId}
-            />
+            <WidgetSubmit addFolder={this.props.addFolder} userid={this.props.userId}
+/>
           ) : null}
-          <div className="w_contents">{this.showFolders()}</div>
+            {this.showFolders()}
+          </div>
         </div>
       </div>
     );

@@ -20,6 +20,7 @@ export const TOGGLE_TASK = "TOGGLE_TASK"
 export const GET_TASKS = "GET_TASKS"
 export const CONTEXT_MENU_SHOW = "CONTEXT_MENU_SHOW"
 export const CONTEXT_MENU_HIDE = "CONTEXT_MENU_HIDE"
+export const UPDATE_FOLDER = "UPDATE_FOLDER"
 
 
 

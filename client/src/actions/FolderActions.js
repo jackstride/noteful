@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER,TOGGLE_OPEN } from "./types";
+import { FOLDER_SUCCESS, FOLDER_LOADED, REMOVE_FOLDER,TOGGLE_OPEN,UPDATE_FOLDER } from "./types";
 
 export const addFolder = values => dispatch => {
   axios
@@ -47,3 +47,17 @@ export const toggleFolderOpen = () => dispatch => {
     type: TOGGLE_OPEN,
   })
 }
+
+
+
+export const updateFolder = (values) => dispatch => {
+  axios.put('api/folder/update', values)
+  .then((res) => {
+    console.log(res);
+    dispatch({
+      type: UPDATE_FOLDER,
+      payload: values,
+    })
+  })
+}
+
