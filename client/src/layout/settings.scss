@@ -1,0 +1,53 @@
+.settings_container {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 20% 1fr;
+
+    .settings_left {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%; 
+        
+
+        .settings_header {
+            height:200px;
+        }
+
+        .settings_nav_list {
+            width: 100%;            
+
+            ul li {
+                display: block;
+            }
+
+            li {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-size: 22px;
+                padding: 10px 0px;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+
+
+
+.settings_form {
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    input {
+        width: 50%;
+        margin: 20px 0px;
+        height: 45px;
+        border: 2px solid black;
+        border-radius: 4px;
+    }        
+}

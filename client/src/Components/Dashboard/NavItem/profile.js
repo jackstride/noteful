@@ -35,8 +35,8 @@ let Options = (props) => {
   return(
   <nav className="options">
     <ul>
-      <li><a href="/settings">Edit your settings</a></li>
-      <li><a href="/logout">Logout</a></li>
+    <li><Link to="/dashboard/settings">Edit your settings</Link></li>
+    <li><Link to="logout">Logout</Link></li>
     </ul>
   </nav>
   )

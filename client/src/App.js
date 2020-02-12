@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -48,10 +48,10 @@ class App extends Component {
 
   DefaultContainer = () => {
     return (
-      <div className="app_container">
+      <Fragment>
         <ContextMenuManager />
         <Route path="/dashboard" component={Dashboard} />
-      </div>
+        </Fragment>
     );
   };
 //Route path "/" last as switch mates the first instance
