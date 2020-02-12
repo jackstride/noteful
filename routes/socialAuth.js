@@ -44,6 +44,6 @@ router.get("/google/callback",passport.authenticate("google", { session: false }
   router.get('/twitter', passport.authenticate('twitter'));
 
   router.get('/twitter/callback', passport.authenticate('twitter'), (req,res) => {
-    console.log("hit");
+    res.redirect("http://localhost:3000/dashboard")
   })
   

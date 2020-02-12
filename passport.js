@@ -19,7 +19,8 @@ passport.use(new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback"
+      callbackURL: "http://localhost:5000/auth/google/callback",
+      includeEmail: true,
     },
     (accessToken, refreshToken, profile, done) => {
 
@@ -72,7 +73,12 @@ passport.use(new TwitterStrategy({
   consumerSecret: process.env.TWITTER_CLIENT_SECRET,
   callbackURL: "http://localhost:5000/auth/twitter/callback"
 },
-function(token, tokenSecret, profile, cb) {
+function(token, tokenSecret, profile, done) {
   console.log(profile)
+  const payload = {
+    _id: profile._json.id_str,
+    first_name: profile._json.name
+  }
+  done(null,profile)
 }
 ));

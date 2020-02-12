@@ -5,9 +5,9 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const ConnectDB = require("./dbConnect");
 const passport = require('passport');
+const createError = require('http-errors')
 require("./passport");
 require('dotenv').config()
-const createError = require('http-errors')
 
 const userRoute = require('./routes/User');
 const authRoute = require('./routes/appAuth')
@@ -40,6 +40,8 @@ passport.deserializeUser((user,done) => {
 })
 
 app.use(passport.initialize());
+app.use(passport.session());
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
 app.use(cors({origin: "http://localhost:3000",credentials: true, allowedHeaders: "Content-Type"}));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
