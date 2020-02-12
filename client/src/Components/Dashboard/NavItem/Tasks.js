@@ -28,17 +28,9 @@ class Todo extends Component {
       <form className="task_form">
         {this.props.data.map((key, index) => (
           <div className="task_data" key={index}>
-            <input
-              type="checkbox"
-              checked={key.isCompleted || false}
-              id={`check${index}`}
-              onChange={() => this.handleToggle(key._id)}
-            ></input>
+            <input type="checkbox" checked={key.isCompleted || false} id={`check${index}`} onChange={() => this.handleToggle(key._id)}></input>
             <label htmlFor={`check${index}`}>{key.task_name}</label>
-            <button
-              onClick={e => this.onRemoveFolder(e, key._id)}
-              value={key.folder_name}
-            >
+            <button onClick={e => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
               <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
             </button>
           </div>

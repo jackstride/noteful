@@ -13,8 +13,6 @@ import {hideMenu,showMenu} from '../../actions/contextMenuActions';
      }
    }
 
-
-
     handleRemove = (e,id) => {
         e.preventDefault();
         this.props.removeFolder(id);
@@ -34,19 +32,23 @@ import {hideMenu,showMenu} from '../../actions/contextMenuActions';
     }
 
   render() {
-    return (
-      <ul>
-        <li onClick={(e) => this.addNote(e)}>
-          <a href="#">Add New Note</a>
-        </li>
-        <li onClick={(e => this.handleRemove(e,this.props.id))}>
-          <a href="#">Delete Note</a>
-        </li>
-        <li onClick={(e) => this.editNote(e)}>
-          <a href="#">Rename Note</a>
-        </li>
-      </ul>
-    );
+    return(
+      // <ul>
+      //   <li onClick={(e) => this.addNote(e)}>
+      //     <a href="#">Add New Note</a>
+      //   </li>
+      //   <li onClick={(e => this.handleRemove(e,this.props.id))}>
+      //     <a href="#">Delete Note</a>
+      //   </li>
+      //   <li onClick={(e) => this.editNote(e)}>
+      //     <a href="#">Rename Note</a>
+      //   </li>
+      // </ul>
+      
+        this.props.type == "folders" ? <FolderTemplate /> : null
+
+      
+    )
   }
 }
 
@@ -54,6 +56,7 @@ import {hideMenu,showMenu} from '../../actions/contextMenuActions';
 
 const mapStateToProps = state => {
     return {
+        type: state.contextMenu.type,
         name: state.contextMenu.menuArgs.name,
         id: state.contextMenu.menuArgs.id,
         x: state.contextMenu.location.x,
@@ -72,3 +75,22 @@ const mapDispatchToProps = dispatch => ({
 
 
 export default connect(mapStateToProps,mapDispatchToProps)(FolderContextMenu)
+
+
+
+
+let FolderTemplate = props => {
+  return (
+  <ul>
+        <li onClick={(e) => this.addNote(e)}>
+          <a href="#">Add New Note</a>
+        </li>
+        <li onClick={(e => this.handleRemove(e,this.props.id))}>
+          <a href="#">Delete Note</a>
+        </li>
+        <li onClick={(e) => this.editNote(e)}>
+          <a href="#">Rename Note</a>
+        </li>
+      </ul>
+  )
+}

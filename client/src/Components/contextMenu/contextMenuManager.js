@@ -26,13 +26,14 @@ class ContextMenuManager extends Component {
     render() {
         const {contextMenu} = this.props;
         
-        const {show, location, type, menuArgs = {}} = contextMenu;
+        
+        const {type,show, location, getType, menuArgs = {}} = contextMenu;
 
         let menu = null;
 
         if(show) {
 
-            let MenuComponent = menuTypes[type];
+            let MenuComponent = menuTypes[getType];
             
             if(MenuComponent) {
                 menu = (

@@ -21,7 +21,7 @@ class Folders extends Component {
   onRightClicked = (e) => {    
       e.preventDefault();
       const {pageX,pageY} = e;
-      this.props.showMenu(pageX,pageY,"FoldersContextMenu",{name: e.target.name,id: e.target.id})
+      this.props.showMenu("folders",pageX,pageY,"FoldersContextMenu",{name: e.target.name,id: e.target.id})
   }
 
   toggleAddFolder = () => {
@@ -88,7 +88,7 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
   getFolder: id => dispatch(getFolder(id)),
-  showMenu: (x,y,getType,args) => dispatch(showMenu(x,y,getType,args)),
+  showMenu: (type,x,y,getType,args) => dispatch(showMenu(type,x,y,getType,args)),
   hideMenu: () => dispatch(hideMenu()),
   toggleFolderOpen: ()=>dispatch(toggleFolderOpen())
 });
