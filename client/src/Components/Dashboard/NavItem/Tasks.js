@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { toggleTask, addTask, removeTask, toggleOpenTask } from "../../../actions/taskActions";
 import WidgetSubmit from "./widgetSubmit";
-import {showMenu} from '../../../actions/contextMenuActions'
+import {showMenu,hideMenu} from '../../../actions/contextMenuActions'
 
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +21,11 @@ class Todo extends Component {
     e.preventDefault();
     const {pageX,pageY} = e;
     this.props.showMenu(pageX, pageY ,"TasksContextMenu",{name: e.target.name,id: e.target.id})
+}
+
+openAddTask = (e) => {
+  e.preventDefault();
+  this.props.toggleOpenTask();
 }
 
   showData = () => {
@@ -50,7 +55,7 @@ class Todo extends Component {
       <div className="widget">
         <div className="widget_header">
           <h5>TASKS</h5>
-          <div className="plus" onClick={this.props.toggleOpenTask}></div>
+          <div className="plus" onClick={(e) => this.openAddTask(e)}></div>
         </div>
         <div className="widget_content">
           {this.props.isOpen ? (
@@ -79,6 +84,7 @@ const mapDispatchToProps = dispatch => ({
   addTask: values => dispatch(addTask(values)),
   showMenu: (x,y,getType,args) => dispatch(showMenu(x,y,getType,args)),
   toggleOpenTask: () => dispatch(toggleOpenTask()),
+  hideMenu: () => dispatch(hideMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);
