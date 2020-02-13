@@ -13,7 +13,7 @@ class Folders extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isShown: false,
+      show: false,
       isLoaded: false
     };
   }
@@ -33,18 +33,28 @@ class Folders extends Component {
     this.props.removeFolder(id);
   };
 
+  handleHover = (e) => {
+    let item = e.target.nextSibling
+    item.style.display = "block";
+  }
+
+  handleLeave = (e) => {
+    let item = document.querySelectorAll('.input_multiple button')
+    item.forEach(item => item.style.display = "none")
+  }
+
   showFolders = () => {
     if(this.props.folder) {
     return (
       <ul>
         {this.props.folder.map((key, index) => (
           <div className="input_multiple" key={index}>
-            <li key={index} onContextMenu={(e) => this.onRightClicked(e)}>
-              <Link id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
-              </li>
-               <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
+            <li onMouseEnter={(e) => this.handleHover(e)} onMouseLeave={(e) => this.handleLeave(e)} key={index} onContextMenu={(e) => this.onRightClicked(e)}>
+              <Link  id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
+              <button style={{display:"none"}} onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
                 </button>
+              </li>
           </div>
         ))}
       </ul>
