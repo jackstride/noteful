@@ -57,22 +57,6 @@ router.patch("/editcomplete/:_id", async (req, res, next) => {
     next(createError(500, "There was an error saving the task "))
 
   } 
-
-
-
-
-
-
-
-
-
-  // Tasks.find({ _id: id }).then(doc => {
-  //   let complete = doc[0].isCompleted;
-
-  //   Tasks.findOneAndUpdate({ _id: id }, { isCompleted: !complete }).then(
-  //     res.status(200).json({isCompleted: !complete})
-  //   );
-  // });
 });
 
 
@@ -90,6 +74,19 @@ router.delete('/deletetask/:_id', async (req, res, next) => {
   : next(createError(500, "There was an error deleting the task "))
 
   
+})
+
+
+
+router.put("/task/update" , async (req,res,next) => {
+
+  let {id, name} = req.body
+  
+  let result = await Tasks.findByIdAndUpdate({_id: id},{task_name: name})
+
+  result ? res.status(200).json({result})
+  : next(createError(500, "There was an error renaming the folder"))
+
 })
 
 module.exports = router;

@@ -7,7 +7,8 @@ const initialState = {
       y: 0,
   },
   getType: "",
-  menuArgs: undefined
+  menuArgs: undefined,
+  name: null,
 };
 
 export default function(state = initialState, action) {
@@ -20,7 +21,8 @@ export default function(state = initialState, action) {
             y: action.payload.y,
           },
           getType: action.payload.getType,
-          menuArgs: action.payload.args
+          menuArgs: action.payload.args,
+          name: action.payload.name,
       };
     case CONTEXT_MENU_HIDE:
       return {

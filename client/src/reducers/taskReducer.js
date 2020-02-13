@@ -4,6 +4,7 @@ import {
     TOGGLE_TASK,
     GET_TASKS,
     TOGGLE_ADD_TASK,
+    UPDATE_TASK,
   } from "../actions/types";
   
   const initalState = {
@@ -41,6 +42,11 @@ import {
               return {
                   ...state,
                   isOpen: !state.isOpen,
+              }
+              case UPDATE_TASK:
+              return {
+                  ...state,
+                  taskData: state.taskData.map(data => data._id === action.payload.id ? { ...data, task_name: action.payload.name} : data )
               }
       default:
           return state;

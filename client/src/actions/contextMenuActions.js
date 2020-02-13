@@ -5,7 +5,7 @@ import {
 
 
 
-export const showMenu = (x,y,getType,args) => dispatch => {
+export const showMenu = (x,y,getType,args,name) => dispatch => {
     dispatch({
         type: CONTEXT_MENU_SHOW,
         payload: {
@@ -13,6 +13,7 @@ export const showMenu = (x,y,getType,args) => dispatch => {
             y,
             getType,
             args,
+            name,
         }
     })
 }

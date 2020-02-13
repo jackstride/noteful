@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK, GET_TASKS, TOGGLE_ADD_TASK } from "./types";
+import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK, GET_TASKS, TOGGLE_ADD_TASK, UPDATE_TASK } from "./types";
 
 // Load all tasks from the user
 // Requires user ID
@@ -69,4 +69,18 @@ export const toggleOpenTask = () => dispatch => {
   dispatch({
     type: TOGGLE_ADD_TASK,
   })
+}
+
+
+
+export const editTask = values => dispatch => {
+  axios.put('api/task/update', values)
+  .then((res) => {
+    console.log(res);
+    dispatch({
+      type: UPDATE_TASK,
+      payload: values,
+    })
+  })
+  
 }
