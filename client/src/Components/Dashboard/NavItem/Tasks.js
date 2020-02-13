@@ -28,14 +28,25 @@ openAddTask = (e) => {
   this.props.toggleOpenTask();
 }
 
+
+handleHover = (e) => {
+  let item = e.target.nextSibling;
+  item.style.display = "block";
+}
+
+handleLeave = (e) => {
+  let item = document.querySelectorAll('.task_data button')
+  item.forEach(item => item.style.display = "none")
+}
+
   showData = () => {
     return (
       <form className="task_form">
         {this.props.data.map((key, index) => (
-          <div className="task_data" key={index}>
-            <input type="checkbox" checked={key.isCompleted || false} id={`check${index}`} onChange={() => this.handleToggle(key._id)}></input>
-            <label  id={key._id} name={key.task_name} onContextMenu={(e) => this.onRightClicked(e)} htmlFor={`check${index}`}>{key.task_name}</label>
-            <button onClick={e => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
+          <div onMouseLeave={(e) => this.handleLeave(e)} className="task_data" key={index}>
+            <input  type="checkbox" checked={key.isCompleted || false} id={`check${index}`} onChange={() => this.handleToggle(key._id)}></input>
+            <label  onMouseEnter={(e) => this.handleHover(e)} id={key._id} name={key.task_name} onContextMenu={(e) => this.onRightClicked(e)} htmlFor={`check${index}`}>{key.task_name}</label>
+            <button  style={{display:"none"}} onClick={e => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
               <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
             </button>
           </div>

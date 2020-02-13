@@ -60,7 +60,7 @@ router.post("/login", async (req, res, next) => {
 
     jtw.sign(payload,process.env.JWT_KEY,
       {
-        expiresIn: "1h"
+        expiresIn: "2 days"
       }, (err, token) => {
         res.cookie("access_token", token, {
           maxAge: 9000000,

@@ -48,8 +48,8 @@ class Folders extends Component {
     return (
       <ul>
         {this.props.folder.map((key, index) => (
-          <div className="input_multiple" key={index}>
-            <li onMouseEnter={(e) => this.handleHover(e)} onMouseLeave={(e) => this.handleLeave(e)} key={index} onContextMenu={(e) => this.onRightClicked(e)}>
+          <div className="input_multiple" onMouseLeave={(e) => this.handleLeave(e)} key={index}>
+            <li onMouseEnter={(e) => this.handleHover(e)}  key={index} onContextMenu={(e) => this.onRightClicked(e)}>
               <Link  id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
               <button style={{display:"none"}} onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
