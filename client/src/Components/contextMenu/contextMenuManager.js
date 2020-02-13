@@ -8,15 +8,21 @@ import {selectContextMenu} from './contextMenuSelectors';
 
 import FoldersContextMenu from '../contextMenus/FoldersContextMenu';
 import EditContextMenu from '../contextMenus/editContextMenu'
+import TasksContextMenu from '../contextMenus/TasksContextMenu'
+
+
+
 const menuTypes = {
     FoldersContextMenu,
     EditContextMenu,
+    TasksContextMenu
 }
 
 export function contextMenuManagerMapState(state) {
     return {
         contextMenu : selectContextMenu(state),
-        EditContextMenu: selectContextMenu(state)
+        EditContextMenu: selectContextMenu(state),
+        TasksContextMenu: selectContextMenu(state),
     };
 }
 
