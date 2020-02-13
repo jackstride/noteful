@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SideNav from "../SideNav";
 import { loadUser } from "../../actions/authActions";
+import Editor from '../TextEditor/Editor'
 
 import Settings from "./Settings";
 
@@ -14,6 +15,7 @@ class Home extends Component {
       <SideNav />
         <Switch>
           <Route path="/dashboard/settings" component={Settings} />
+          <Route path="/dashboard/notes/" component={Editor} />
         </Switch>
       </BrowserRouter>
       </div>
