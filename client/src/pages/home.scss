@@ -107,29 +107,46 @@ header {
 }
 
 
+//Card
+.card_container {
+    background-color: white;
+    box-shadow: 5px 13px 26px -15px rgba(0,0,0,0.42);
+    border-radius: 13px;
+    align-self: center;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
 
-
-
-
+    h3,p {
+        padding: 5px 10px;
+    }
+}
 
 //Card section
 
+
 .info_cards {
-    height: inherit;
-    background-color: $backgroundColor;
-    position: relative;
+    height: fit-content;
     
     .inner_container {
-        width: 50%;
+        width: 40%;
     }
 }
 
 .cards_grid{
     display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: 100%;
-    grid-gap: 1vw;
-    padding: 1vw;
+    gap: 1vw 1vh;
+
+    .left_card {
+        height: 100%;
+        width: 80%;
+        display: flex;
+        justify-self: end;
+    }
 }
 
 .cards_row {
@@ -137,32 +154,12 @@ header {
     grid-row: 1;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
-    grid-gap: 1vw;
-    padding: 1vw;
-
-    .card_container {
-        justify-self: flex-start;
-    }
+    grid-template-rows: 1fr 1fr;
+    width: 80%;
 }
 
 
-//Card
-.card_container {
-    background-color: white;
-    box-shadow: 5px 13px 26px -15px rgba(0,0,0,0.42);
-    border-radius: 13px;
-    align-self: center;
-    width: 60%;
-    padding: 40px 10px;
-    justify-self: flex-end;
-    :nth-child(1) {
-        padding: 20px 10px 20px 10px ;
-    }
-    :nth-child(2){
-        padding: 0px 10px 20px 10px;
-    }     
-}
+
 
 
 
@@ -184,15 +181,18 @@ header {
 }
 
 
+
 .home_features {
-    height: 400px;
-    display: grid;
-    grid-template-columns: 25% 25% 25%;
-    grid-template-rows: 100%;    
-    margin-left: 20%;
-    .card_container {
-        width: 80%;
-        justify-self: center;
+    .inner_container {
+        width: 40%;
+        margin: 0 auto;
+        height: 300px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: 1fr;
+        gap: 10%;
     }
+
 }
+
 

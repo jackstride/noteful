@@ -111,7 +111,9 @@ export default class home extends Component {
         <section className="info_cards">
           <div className="inner_container"> 
           <div className="cards_grid">
+            <div className="left_card">
             <Card data={this.state.cards[0]} />
+            </div>
             <div className="cards_row">
               <Card data={this.state.cards[1]}/>
               <Card data={this.state.cards[2]}/>
@@ -124,8 +126,8 @@ export default class home extends Component {
         <section className="iphone_image">
           <img src={PhonePreview}></img>
         </section>
-        <section className="inner_container">
-        <div className="home_features">
+        <section className="home_features">
+        <div className="inner_container">
         <Card data={this.state.cards[2]}/>
         <Card data={this.state.cards[2]}/>
         <Card data={this.state.cards[2]}/>
