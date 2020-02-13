@@ -21,7 +21,7 @@ class Folders extends Component {
   onRightClicked = (e) => {    
       e.preventDefault();
       const {pageX,pageY} = e;
-      this.props.showMenu("folders",pageX,pageY,"FoldersContextMenu",{name: e.target.name,id: e.target.id})
+      this.props.showMenu(pageX, pageY ,"FoldersContextMenu",{name: e.target.name,id: e.target.id})
   }
 
   toggleAddFolder = () => {
@@ -33,9 +33,6 @@ class Folders extends Component {
     this.props.removeFolder(id);
   };
 
-  editNote = e => {
-  }
-
   showFolders = () => {
     if(this.props.folder) {
     return (
@@ -43,7 +40,7 @@ class Folders extends Component {
         {this.props.folder.map((key, index) => (
           <div className="input_multiple" key={index}>
             <li key={index} onContextMenu={(e) => this.onRightClicked(e)}>
-              <Link onClick={(e) => this.editNote(e)} id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
+              <Link id={key._id} name={key.folder_name} to="#">{key.folder_name}</Link>
               </li>
                <button onClick={(e) => this.onRemoveFolder(e, key._id)} value={key.folder_name}>
                   <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
@@ -88,7 +85,7 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
   getFolder: id => dispatch(getFolder(id)),
-  showMenu: (type,x,y,getType,args) => dispatch(showMenu(type,x,y,getType,args)),
+  showMenu: (x,y,getType,args) => dispatch(showMenu(x,y,getType,args)),
   hideMenu: () => dispatch(hideMenu()),
   toggleFolderOpen: ()=>dispatch(toggleFolderOpen())
 });

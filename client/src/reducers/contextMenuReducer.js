@@ -1,13 +1,12 @@
 import { CONTEXT_MENU_HIDE, CONTEXT_MENU_SHOW } from "../actions/types";
 
 const initialState = {
-  type: null,
   show: false,
   location: {
       x: 0,
       y: 0,
   },
-  type: "",
+  getType: "",
   menuArgs: undefined
 };
 
@@ -15,7 +14,6 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case CONTEXT_MENU_SHOW:      
       return {
-          type: action.payload.type,
           show: true,
           location: {
             x: action.payload.x,

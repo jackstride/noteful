@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import {updateFolder} from '../../actions/FolderActions'
 
 class EditContextMenu extends Component {
+  
   handleSubmit = e => {
     e.preventDefault();
     let values = {

@@ -33,21 +33,17 @@ import {hideMenu,showMenu} from '../../actions/contextMenuActions';
 
   render() {
     return(
-      // <ul>
-      //   <li onClick={(e) => this.addNote(e)}>
-      //     <a href="#">Add New Note</a>
-      //   </li>
-      //   <li onClick={(e => this.handleRemove(e,this.props.id))}>
-      //     <a href="#">Delete Note</a>
-      //   </li>
-      //   <li onClick={(e) => this.editNote(e)}>
-      //     <a href="#">Rename Note</a>
-      //   </li>
-      // </ul>
-      
-        this.props.type == "folders" ? <FolderTemplate /> : null
-
-      
+      <ul>
+        <li onClick={(e) => this.addNote(e)}>
+          <a href="#">Add New Note</a>
+        </li>
+        <li onClick={(e => this.handleRemove(e,this.props.id))}>
+          <a href="#">Delete Note</a>
+        </li>
+        <li onClick={(e) => this.editNote(e)}>
+          <a href="#">Rename Note</a>
+        </li>
+      </ul>
     )
   }
 }
@@ -72,25 +68,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-
-
 export default connect(mapStateToProps,mapDispatchToProps)(FolderContextMenu)
-
-
-
-
-let FolderTemplate = props => {
-  return (
-  <ul>
-        <li onClick={(e) => this.addNote(e)}>
-          <a href="#">Add New Note</a>
-        </li>
-        <li onClick={(e => this.handleRemove(e,this.props.id))}>
-          <a href="#">Delete Note</a>
-        </li>
-        <li onClick={(e) => this.editNote(e)}>
-          <a href="#">Rename Note</a>
-        </li>
-      </ul>
-  )
-}
