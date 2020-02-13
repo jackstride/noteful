@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK, GET_TASKS } from "./types";
+import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK, GET_TASKS, TOGGLE_ADD_TASK } from "./types";
 
 // Load all tasks from the user
 // Requires user ID
@@ -60,3 +60,13 @@ export const removeTask = id => dispatch => {
   })
   .catch(err=>console.log(err))
 };
+
+
+
+// Toggle open tasks
+
+export const toggleOpenTask = () => dispatch => {
+  dispatch({
+    type: TOGGLE_ADD_TASK,
+  })
+}

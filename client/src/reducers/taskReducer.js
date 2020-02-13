@@ -3,11 +3,13 @@ import {
     REMOVE_TASK,
     TOGGLE_TASK,
     GET_TASKS,
+    TOGGLE_ADD_TASK,
   } from "../actions/types";
   
   const initalState = {
       dataRecieved: false,
-      taskData: []
+      taskData: [],
+      isOpen: null,
         
     
   };
@@ -34,6 +36,11 @@ import {
               return {
                   dataRecieved: true,
                   taskData: action.payload,
+              }
+              case TOGGLE_ADD_TASK:
+              return {
+                  ...state,
+                  isOpen: !state.isOpen,
               }
       default:
           return state;
