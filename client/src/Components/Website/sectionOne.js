@@ -36,7 +36,6 @@ let SectionOne = props => {
         </div>
         <div className="section_card">
           <Card data={{heading: "Jump straight in", body: "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."}} />
-
         </div>
       </section>
     </div>
