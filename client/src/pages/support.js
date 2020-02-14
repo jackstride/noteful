@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
 
 import SectionOne from "../Components/Website/sectionOne";
-import Illustration from "../images/illustration_women.svg";
+
 
 let SocialCard = props => {
   return (
@@ -23,7 +23,6 @@ export default class support extends Component {
         heading: "Help & Support.",
         text:
           "Sometimes there might be issues that we're not aware of, thats where you come in. If you require support or experience any problems with our app then please notify us using the links below. ",
-        image: Illustration
       },
       social: [
         {
@@ -56,7 +55,7 @@ export default class support extends Component {
         </section>
         <div style={{textAlign:"center"}}className="inner_container"><p>Or <br></br>Get the support you need below</p></div>
         <secton className="support_form inner_container">
-            <img src={Illustration}></img>
+            
             <form>
                 <input placeholder="Full Name" type="text"></input>
                 <input placeholder="Email Address" type="text"></input>

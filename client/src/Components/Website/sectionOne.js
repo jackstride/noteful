@@ -1,5 +1,9 @@
 import React from "react";
 
+import Image_One from '../../images/reading_book.png'
+import Card from './Card'
+
+
 let SectionOne = props => {
   const splitHeading = () => {
     let parts = [];
@@ -26,14 +30,13 @@ let SectionOne = props => {
   return (
     <div className="inner_container">
       <section className="section_container">
-        <div className="section_text">
-          <div className="section_heading">{splitHeading()}</div>
-          <div className="section_para">
-            <p>{props.data.text}</p>
-          </div>
+        <div className="header_image">
+          <h1>Start, simple and ready to use</h1>
+          <img src={Image_One} alt="Women reading a book"></img>
         </div>
-        <div className="section_image">
-            <img src={props.data.image}></img>
+        <div className="section_card">
+          <Card data={{heading: "Jump straight in", body: "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."}} />
+
         </div>
       </section>
     </div>

@@ -1,32 +1,18 @@
 /* Features Page */
+
 .features {
-
-    .features_individual {
-        height: fit-content;
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 25% 25% 25% 25%;
-        
-    }
-
-    .feature_item {
-        display: flex;
-        padding: 50px 0px;
-        
-
-        .feature_icon {
-            margin: auto 10px;
-        }
-
-
-        .feature_content {
-            p {
-                line-height: 20px;
-            }
-        }
+    .inner_container {
+        width: 50%
     }
 }
 
+.feature_cards {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3,1fr);
+    height: 350px;
+    gap: 100px
+}
 
 
 

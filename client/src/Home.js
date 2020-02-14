@@ -6,7 +6,7 @@ import Preview from "./images/browser_preview.jpg";
 import PhonePreview from "./images/iphone_preview.png";
 import { ReactComponent as Blob } from "./images/blob.svg";
 import Card from "./Components/Website/Card.js";
-import { faMandalorian } from "@fortawesome/free-brands-svg-icons";
+
 
 export default class home extends Component {
   constructor(props) {
@@ -94,8 +94,8 @@ export default class home extends Component {
             </div>
           </div>
         </header>
+        <div className="inner_container">
         <div className="tag_info">
-          <div className="inner_container">
             <h4>
               Browser<br></br>Based.
             </h4>
@@ -105,34 +105,31 @@ export default class home extends Component {
             <h4>
               All<br></br>Devices.
             </h4>
-          </div>
         </div>
         <SectionHeader data={this.state.headings[0]} />
         <section className="info_cards">
-          <div className="inner_container"> 
           <div className="cards_grid">
             <div className="left_card">
             <Card data={this.state.cards[0]} />
             </div>
-            <div className="cards_row">
+            <div className="cards_col">
               <Card data={this.state.cards[1]}/>
               <Card data={this.state.cards[2]}/>
             </div>
             </div>
-          </div>
         </section>
         <hr className="home_sep"></hr>
         <SectionHeader data={this.state.headings[1]} />
         <section className="iphone_image">
           <img src={PhonePreview}></img>
         </section>
+        
         <section className="home_features">
-        <div className="inner_container">
         <Card data={this.state.cards[2]}/>
         <Card data={this.state.cards[2]}/>
         <Card data={this.state.cards[2]}/>
-        </div>
         </section>
+        </div>
       </Fragment>
     );
   }

@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
 
 import SectionOne from "../Components/Website/sectionOne";
-import Illustration from "../images/illustration_man.svg";
+import Card from '../Components/Website/Card'
+
 
 let Feature = props => {
     console.log(props)
@@ -30,9 +31,24 @@ export default class features extends Component {
         heading: "Simple and Smart.",
         text:
           "Smart & simple. Those are the only two words needed to describe noteful. Get access anywhere on any device, offline and online, to manage your notes, mark your to do's and create events ready for the week ahead.",
-        image: Illustration
+        
       },
       features: [
+        {
+          heading: "Access Offline",
+          body: "Get access to everything, even when you're offline.",
+          icon: "cloud",
+        },
+        {
+          heading: "Strong Encryption",
+          body: "Noteful will always encrypt users private information with the last standards.",
+          icon: "lock",
+        },
+        {
+          heading: "Stay Organised",
+          body: "Our UI is intuative, easy to learn ready for you to get started out of the box.",
+          icon: "pencil-alt",
+        },
         {
           heading: "Create Events",
           text: "Simple interface to manage future events.",
@@ -48,31 +64,19 @@ export default class features extends Component {
             text: "Create rich filled notes ready to leave and pick up anytime, anywhere.",
             icon: "sticky-note",
           },
-          {
-            heading: "Access Offline",
-            text: "Get access to everything, even when you're offline.",
-            icon: "cloud",
-          },
+          
           {
             heading: "Free Forever",
             text: "Noteful will always be a free Web Application for you to enjoy.",
             icon: "money-bill-wave",
           },
-          {
-            heading: "Strong Encryption",
-            text: "Noteful will always encrypt users private information with the last standards.",
-            icon: "lock",
-          },
+          
           {
             heading: "Social Sign up",
             text: "Don't want to manually create an account? Login with Twitter, Facebook or Google!",
             icon: "user-plus",
           },
-          {
-            heading: "Stay Organised",
-            text: "Our UI is intuative, easy to learn ready for you to get started out of the box.",
-            icon: "pencil-alt",
-          },
+          
       ]
     };
   }
@@ -81,14 +85,13 @@ export default class features extends Component {
     return (
       <div>
         <SectionOne data={this.state.section} />
-        <section className="features inner_container">
-          <div className="f_heading">
-            <h2>Features</h2>
+        <section className="features">
+          <div className="inner_container">
+          <div className="feature_cards">
+            <Card data={this.state.features[0]} />
+            <Card data={this.state.features[1]}/>
+            <Card data={this.state.features[2]}/>
           </div>
-          <div className="features_individual">
-              {this.state.features.map((item,i) => 
-                  <Feature data={item} />
-              )}
           </div>
         </section>
       </div>
