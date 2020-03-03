@@ -10,7 +10,6 @@ const Notes = require("../models/Notes");
 router.post("/note/add", async (req, res, next) => {
   //Date feault to time of request
   const { user_id, folder_id, date, body_data } = req.body;
-  console.log(req.body);
 
   const note = new Notes({
     _id: new mongoose.Types.ObjectId(),
@@ -44,7 +43,6 @@ router.delete("/note/delete/:_id", async (req, res, next) => {
 router.get("/note/all/:folder_id", async (req, res, next) => {
   try {
     let { folder_id } = req.params;
-    console.log(folder_id);
 
     let notes = await Notes.find({ folder_id })
       .sort({ _id: -1 })
@@ -65,10 +63,10 @@ router.patch("/note/edit/:_id", async (req, res, next) => {
   let { body_Data } = req.body;
 
   let note = await Notes.find({ _id });
-  console.log(note);
 
   if (note) {
     let update = await Notes.findOneAndUpdate({ _id }, { body_Data });
+    console.log("done");
     update
       ? res.status(200).json({ message: "done" })
       : next(createError(500, "There was an error saving the note "));

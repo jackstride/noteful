@@ -16,7 +16,12 @@ export const getNotes = id => dispatch => {
   });
 };
 
-export const addNote = values => dispatch => {
+export const addNote = () => dispatch => {
+  console.log("hello");
+  let values = {
+    user_id: "5de1207c17910f161383256d",
+    folder_id: "5e455ed9482cad1847638b2e"
+  };
   axios.post(`/api/note/add`, values).then(res => {
     dispatch({
       type: ADD_NOTE

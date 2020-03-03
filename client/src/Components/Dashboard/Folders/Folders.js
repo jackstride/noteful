@@ -1,24 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getNotes } from "../../../actions/NoteActions";
+import { getNotes, addNote } from "../../../actions/NoteActions";
 import { withRouter, Link } from "react-router-dom";
 import FolderItem from "./FolderItem";
 
-let Folders = ({ getNotes, match, notes }) => {
+let Folders = ({ getNotes, match, notes, addNote }) => {
   const id = match.params.folder;
   const [folderId, setFolderId] = useState();
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
     getNotes(id);
-    return () => {
-      console.log("hello");
-    };
   }, [id]);
 
   return (
-    <div>
-      <h2 style={{ textAlign: "left" }}>Folders</h2>
+    <div className="folder_page">
+      <div className="folders_heading">
+        <h3 style={{ textAlign: "left" }}>Folders</h3>
+        <span className="add_folder" onClick={addNote()}>
+          {" "}
+          Add note
+        </span>
+      </div>
+
       <div className="folder_container">
         {notes.length >= 1 ? (
           notes.map(notes => <FolderItem data={notes} />)
@@ -38,7 +42,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  getNotes: id => dispatch(getNotes(id))
+  getNotes: id => dispatch(getNotes(id)),
+  addNote: id => dispatch(addNote)
 });
 
 export default withRouter(

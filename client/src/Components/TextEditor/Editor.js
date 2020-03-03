@@ -13,17 +13,18 @@ const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
-  const [placeNote, setNote] = useState();
-  const [id, setId] = useState();
+  const [placeNote, setNote] = useState("");
+  const [id, setid] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    paramId ? setId(paramId) : console.log("waiting");
-    setNote(note[0]);
+    paramId ? setid(paramId) : console.log("waiting");
+    let test = note.filter(note => note._id == id);
+    setNote(test[0]);
     if (placeNote) {
       setValue(JSON.parse(placeNote.body_Data));
     }
-  }, [id]);
+  }, [paramId, id, placeNote]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
