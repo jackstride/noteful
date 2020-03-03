@@ -35,14 +35,12 @@ const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
       onChange={value => {
         setValue(value);
         const content = JSON.stringify(value);
-
         let values = {
           _id,
           user_id,
           folder_id,
           body_Data: content
         };
-
         editNote(values);
       }}
     >

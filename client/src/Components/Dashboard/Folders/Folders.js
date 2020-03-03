@@ -6,24 +6,24 @@ import FolderItem from "./FolderItem";
 
 let Folders = ({ getNotes, match, notes }) => {
   const id = match.params.folder;
-
-  const [loaded, isLoaded] = useState(false);
+  const [folderId, setFolderId] = useState();
+  const [loading, isLoading] = useState(true);
 
   useEffect(() => {
     getNotes(id);
-    if (notes.length >= 1) {
-      isLoaded(true);
-    }
+    return () => {
+      console.log("hello");
+    };
   }, [id]);
 
   return (
     <div>
       <h2 style={{ textAlign: "left" }}>Folders</h2>
       <div className="folder_container">
-        {loaded ? (
+        {notes.length >= 1 ? (
           notes.map(notes => <FolderItem data={notes} />)
         ) : (
-          <h2> There are no notes</h2>
+          <h1> Hello </h1>
         )}
       </div>
     </div>
