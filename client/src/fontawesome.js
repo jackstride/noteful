@@ -1,5 +1,5 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from '@fortawesome/free-brands-svg-icons'
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHome,
@@ -15,6 +15,10 @@ import {
   faUserPlus,
   faPencilAlt,
   faPaperPlane,
+  faBold,
+  faItalic,
+  faCode,
+  faUnderline
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -32,4 +36,8 @@ library.add(
   faPencilAlt,
   faPaperPlane,
   fab,
+  faBold,
+  faItalic,
+  faCode,
+  faUnderline
 );

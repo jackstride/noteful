@@ -20,73 +20,61 @@ const TextEditor = props => {
   return (
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
       <FormatToolbar>
-        <ToolbarButton Custom={CustomEditor} />
+        <ToolbarButton format="bold" icon="bold" />
+        <ToolbarButton format="italic" icon="italic" />
+        <ToolbarButton format="code" icon="code" />
+        <ToolbarButton format="underline" icon="underline" />
       </FormatToolbar>
       <Editable
         className="main_editor"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
+        spellCheck
         //Defines shortvut Keys
         onKeyDown={event => {
           if (!event.ctrlKey) {
             return;
           }
           // Replace the `onKeyDown` logic with our new commands.
-          switch (event.key) {
-            case "a": {
-              event.preventDefault();
-              CustomEditor.toggleCodeBlock(editor);
-              break;
-            }
+          // switch (event.key) {
+          //   case "a": {
+          //     event.preventDefault();
+          //     CustomEditor.toggleCodeBlock(editor);
+          //     break;
+          //   }
 
-            case "b": {
-              event.preventDefault();
-              CustomEditor.toggleBoldMark(editor);
-              break;
-            }
-          }
+          //   case "b": {
+          //     event.preventDefault();
+          //     CustomEditor.toggleBoldMark(editor);
+          //     break;
+          //   }
+          // }
         }}
       />
     </Slate>
   );
 };
 
-const CustomEditor = {
-  isBoldMarkActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.bold === true,
-      universal: true
-    });
+// const CustomEditor = {
 
-    return !!match;
-  },
+//   toggleBoldMark(editor) {
+//     const isActive = CustomEditor.isBoldMarkActive(editor);
+//     Transforms.setNodes(
+//       editor,
+//       { bold: isActive ? null : true },
+//       { match: n => Text.isText(n), split: true }
+//     );
+//   },
 
-  isCodeBlockActive(editor) {
-    const [match] = Editor.nodes(editor, {
-      match: n => n.type === "code"
-    });
-
-    return !!match;
-  },
-
-  toggleBoldMark(editor) {
-    const isActive = CustomEditor.isBoldMarkActive(editor);
-    Transforms.setNodes(
-      editor,
-      { bold: isActive ? null : true },
-      { match: n => Text.isText(n), split: true }
-    );
-  },
-
-  toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isCodeBlockActive(editor);
-    Transforms.setNodes(
-      editor,
-      { type: isActive ? null : "code" },
-      { match: n => Editor.isBlock(editor, n) }
-    );
-  }
-};
+//   toggleCodeBlock(editor) {
+//     const isActive = CustomEditor.isCodeBlockActive(editor);
+//     Transforms.setNodes(
+//       editor,
+//       { type: isActive ? null : "code" },
+//       { match: n => Editor.isBlock(editor, n) }
+//     );
+//   }
+// };
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
@@ -124,9 +112,7 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <u>{children}</u>;
   }
 
-  let test = <span {...attributes}>{children}</span>;
-  console.log(test);
-  return test;
+  return <span {...attributes}>{children}</span>;
 };
 
 export default TextEditor;
