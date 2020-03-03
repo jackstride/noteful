@@ -18,7 +18,12 @@ import {
   faBold,
   faItalic,
   faCode,
-  faUnderline
+  faUnderline,
+  faList,
+  faListOl,
+  faAlignCenter,
+  faAlignLeft,
+  faAlignRight
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -39,5 +44,10 @@ library.add(
   faBold,
   faItalic,
   faCode,
-  faUnderline
+  faUnderline,
+  faList,
+  faListOl,
+  faAlignCenter,
+  faAlignLeft,
+  faAlignRight
 );

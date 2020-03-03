@@ -52,7 +52,7 @@ let ToolBarButton = ({ format, icon }) => {
         toggleBlock(editor, format);
       }}
     >
-      <FontAwesomeIcon icon={icon} />
+      <FontAwesomeIcon icon={icon} size="1x" />
     </button>
   );
 };

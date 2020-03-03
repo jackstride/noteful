@@ -107,9 +107,9 @@ nav.options {
     input {
         width: 100%;
         height: 30px;
-        background-color: lightgray;
+        background-color: rgb(228, 228, 228);
         border: none;
-        border-radius: 5px;
+        border-radius: 8px;
     }
 }
 
@@ -289,7 +289,7 @@ form.task_form {
         cursor: pointer;
         border-radius: 50%;
         margin-right: 5px;
-        
+
     }
 
     input:checked+label:after {

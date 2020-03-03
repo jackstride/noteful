@@ -8,12 +8,7 @@ import BlockButton from "./BlockButton";
 const TextEditor = props => {
   const editor = useMemo(() => withReact(createEditor()), []);
   // Add the initial value when setting up our state.
-  const [value, setValue] = useState([
-    {
-      type: "paragraph",
-      children: [{ text: "A line of text in a paragraph." }]
-    }
-  ]);
+  const [value, setValue] = useState(initialValue);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -26,6 +21,13 @@ const TextEditor = props => {
         <ToolbarButton format="code" icon="code" />
         <ToolbarButton format="underline" icon="underline" />
         <BlockButton format="heading-one" icon="underline" />
+        <BlockButton format="heading-two" icon="underline" />
+        <BlockButton format="heading-three" icon="underline" />
+        <BlockButton format="list-item" icon="list" />
+        <BlockButton format="numbered-list" icon="list-ol" />
+        <BlockButton format="align-left" icon="align-left" />
+        <BlockButton format="align-center" icon="align-center" />
+        <BlockButton format="align-right" icon="align-right" />
       </FormatToolbar>
       <Editable
         className="main_editor"
@@ -88,10 +90,39 @@ const Element = ({ attributes, children, element }) => {
       return <h1 {...attributes}>{children}</h1>;
     case "heading-two":
       return <h2 {...attributes}>{children}</h2>;
+    case "heading-three":
+      return <h3 {...attributes}>{children}</h3>;
     case "list-item":
       return <li {...attributes}>{children}</li>;
     case "numbered-list":
       return <ol {...attributes}>{children}</ol>;
+    case "align-left":
+      return (
+        <span
+          style={{ display: "flex", justifyContent: "flex-start" }}
+          {...attributes}
+        >
+          <p>{children}</p>
+        </span>
+      );
+    case "align-right":
+      return (
+        <span
+          style={{ display: "flex", justifyContent: "flex-end" }}
+          {...attributes}
+        >
+          <p>{children}</p>
+        </span>
+      );
+    case "align-center":
+      return (
+        <span
+          style={{ display: "flex", justifyContent: "center" }}
+          {...attributes}
+        >
+          <p>{children}</p>
+        </span>
+      );
     default:
       return <p {...attributes}>{children}</p>;
   }
@@ -114,7 +145,73 @@ const Leaf = ({ attributes, children, leaf }) => {
     children = <u>{children}</u>;
   }
 
+  if (leaf.paragraph) {
+    children = <p>{children}</p>;
+  }
+
   return <span {...attributes}>{children}</span>;
 };
+
+const initialValue = [
+  {
+    type: "heading-one",
+    children: [
+      {
+        text: "Create your notes with headings!"
+      }
+    ]
+  },
+  {
+    type: "heading-two",
+    children: [
+      {
+        text: "Or smaller Headings"
+      }
+    ]
+  },
+  {
+    type: "heading-three",
+    children: [
+      {
+        text: "Maybe a smaller one"
+      }
+    ]
+  },
+
+  {
+    type: "paragraph",
+    children: [
+      { text: "This is editable " },
+      { text: "rich", bold: true },
+      { text: " text, " },
+      { text: "much", italic: true },
+      { text: " better than a " },
+      { text: "<textarea>", code: true },
+      { text: "!" }
+    ]
+  },
+  {
+    type: "paragraph",
+    children: [
+      {
+        text:
+          "Since it's rich text, you can do things like turn a selection of text "
+      },
+      { text: "bold", bold: true },
+      {
+        text:
+          ", or add a semantically rendered block quote in the middle of the page, like this:"
+      }
+    ]
+  },
+  {
+    type: "block-quote",
+    children: [{ text: "A wise quote." }]
+  },
+  {
+    type: "paragraph",
+    children: [{ text: "Try it out for yourself!" }]
+  }
+];
 
 export default TextEditor;
