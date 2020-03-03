@@ -3,6 +3,7 @@ import { Editable, withReact, useSlate, Slate } from "slate-react";
 import { Editor, Transforms, createEditor, Text } from "slate";
 import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
+import BlockButton from "./BlockButton";
 
 const TextEditor = props => {
   const editor = useMemo(() => withReact(createEditor()), []);
@@ -24,6 +25,7 @@ const TextEditor = props => {
         <ToolbarButton format="italic" icon="italic" />
         <ToolbarButton format="code" icon="code" />
         <ToolbarButton format="underline" icon="underline" />
+        <BlockButton format="heading-one" icon="underline" />
       </FormatToolbar>
       <Editable
         className="main_editor"
