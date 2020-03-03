@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { Editable, withReact, useSlate, Slate } from "slate-react";
 import { Editor, Transforms, createEditor, Text } from "slate";
+import FormatToolbar from "./FormatToolbar";
+import ToolbarButton from "./ToolbarButton";
 
 const TextEditor = props => {
   const editor = useMemo(() => withReact(createEditor()), []);
@@ -17,14 +19,18 @@ const TextEditor = props => {
 
   return (
     <Slate editor={editor} value={value} onChange={value => setValue(value)}>
+      <FormatToolbar>
+        <ToolbarButton Custom={CustomEditor} />
+      </FormatToolbar>
       <Editable
+        className="main_editor"
         renderElement={renderElement}
         renderLeaf={renderLeaf}
+        //Defines shortvut Keys
         onKeyDown={event => {
           if (!event.ctrlKey) {
             return;
           }
-
           // Replace the `onKeyDown` logic with our new commands.
           switch (event.key) {
             case "a": {
