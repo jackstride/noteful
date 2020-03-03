@@ -4,12 +4,26 @@ import { Editor, Transforms, createEditor, Text } from "slate";
 import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
+import { withRouter, Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { addNote, editNote } from "../../actions/NoteActions";
+import { USER_LOADING } from "../../actions/types";
 
-const TextEditor = props => {
-  console.log("loaded");
+const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
-  // Add the initial value when setting up our state.
+  const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
+  const [placeNote, setNote] = useState();
+  const [id, setId] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    paramId ? setId(paramId) : console.log("waiting");
+    setNote(note[0]);
+    if (placeNote) {
+      setValue(JSON.parse(placeNote.body_Data));
+    }
+  }, [id]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -18,10 +32,18 @@ const TextEditor = props => {
     <Slate
       editor={editor}
       value={value}
-      onChange={value => setValue(value)}
       onChange={value => {
         setValue(value);
         const content = JSON.stringify(value);
+
+        let values = {
+          _id,
+          user_id,
+          folder_id,
+          body_Data: content
+        };
+
+        editNote(values);
       }}
     >
       <FormatToolbar>
@@ -202,4 +224,19 @@ const initialValue = [
   }
 ];
 
-export default TextEditor;
+const mapStateToProps = state => {
+  return {
+    note: state.note.noteData,
+    user_id: state.auth.user._id,
+    folder_id: state.note.noteData[0].folder_id,
+    _id: state.note.noteData[0]._id
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  editNote: values => dispatch(editNote(values))
+});
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(TextEditor)
+);

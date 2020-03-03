@@ -6,11 +6,29 @@ import {
   SUBMIT_NOTE,
   NOTE_LOADED
 } from "../actions/types";
+
 export const getNotes = id => dispatch => {
   axios.get(`/api/note/all/${id}`).then(res => {
     dispatch({
       type: NOTE_LOADED,
       payload: res.data
+    });
+  });
+};
+
+export const addNote = values => dispatch => {
+  axios.post(`/api/note/add`, values).then(res => {
+    dispatch({
+      type: ADD_NOTE
+    });
+  });
+};
+
+export const editNote = values => dispatch => {
+  console.log(values);
+  axios.patch(`/api/note/edit/${values._id}`, values).then(res => {
+    dispatch({
+      type: EDIT_NOTE
     });
   });
 };

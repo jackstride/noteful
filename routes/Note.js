@@ -18,6 +18,8 @@ router.post("/note/add", async (req, res, next) => {
     folder_id: folder_id,
     body_Data: body_data
   });
+
+  console.log(note);
   const result = await note.save();
 
   result
@@ -54,6 +56,24 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
       : next(createError(500, "There was an error saving the folder "));
   } catch {
     next(createError(500, "There was an error saving the folder "));
+  }
+});
+
+// Edit Existing Note
+router.patch("/note/edit/:_id", async (req, res, next) => {
+  let { _id } = req.params;
+  let { body_Data } = req.body;
+
+  let note = await Notes.find({ _id });
+  console.log(note);
+
+  if (note) {
+    let update = await Notes.findOneAndUpdate({ _id }, { body_Data });
+    update
+      ? res.status(200).json({ message: "done" })
+      : next(createError(500, "There was an error saving the note "));
+  } else {
+    next(createError(500, "There was an error saving the note "));
   }
 });
 
