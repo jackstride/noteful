@@ -140,6 +140,17 @@ nav a {
     flex-direction: row;
 }
 
+.folder_container {
+    width: 100%;
+    height: calc(100vh - 150px);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    position: relative;
+    top: 150px;
+}
+
 hr {
     width: 50px;
     border: none;

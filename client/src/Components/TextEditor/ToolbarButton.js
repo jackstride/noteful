@@ -38,7 +38,7 @@ let ToolBarButton = ({ format, icon }) => {
         toggleMark(editor, format);
       }}
     >
-      <FontAwesomeIcon icon={icon} />
+      <FontAwesomeIcon icon={icon} size="lg" />
     </button>
   );
 };

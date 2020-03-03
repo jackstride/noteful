@@ -27,18 +27,20 @@ export const loadUser = () => (dispatch, getState) => {
     }
   };
 
-  axios.get("/dashboard", config).then(res => {
-    dispatch({
-      type: USER_LOADED,
-      payload: res.data
+  axios
+    .get("/dashboard", config)
+    .then(res => {
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch(returnErrors(err.response.data, err.response.status));
+      dispatch({
+        type: AUTH_ERROR
+      });
     });
-  })
-  .catch(err => {
-    dispatch(returnErrors(err.response.data, err.response.status));
-    dispatch({
-      type: AUTH_ERROR
-    });
-  });
 };
 
 export const register = formValues => dispatch => {
@@ -49,7 +51,7 @@ export const register = formValues => dispatch => {
   };
 
   axios
-    .post("user/register", formValues)
+    .post("/user/register", formValues)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -70,7 +72,6 @@ export const login = formValues => dispatch => {
   axios
     .post("/user/login", formValues, { withCredentials: true })
     .then(res => {
-      console.log(res)
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data

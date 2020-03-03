@@ -6,6 +6,7 @@ import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
 
 const TextEditor = props => {
+  console.log("loaded");
   const editor = useMemo(() => withReact(createEditor()), []);
   // Add the initial value when setting up our state.
   const [value, setValue] = useState(initialValue);
@@ -14,7 +15,15 @@ const TextEditor = props => {
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
   return (
-    <Slate editor={editor} value={value} onChange={value => setValue(value)}>
+    <Slate
+      editor={editor}
+      value={value}
+      onChange={value => setValue(value)}
+      onChange={value => {
+        setValue(value);
+        const content = JSON.stringify(value);
+      }}
+    >
       <FormatToolbar>
         <ToolbarButton format="bold" icon="bold" />
         <ToolbarButton format="italic" icon="italic" />
@@ -35,50 +44,29 @@ const TextEditor = props => {
         renderLeaf={renderLeaf}
         spellCheck
         //Defines shortvut Keys
-        onKeyDown={event => {
-          if (!event.ctrlKey) {
-            return;
-          }
-          // Replace the `onKeyDown` logic with our new commands.
-          // switch (event.key) {
-          //   case "a": {
-          //     event.preventDefault();
-          //     CustomEditor.toggleCodeBlock(editor);
-          //     break;
-          //   }
+        // onKeyDown={event => {
+        //   if (!event.ctrlKey) {
+        //     return;
+        //   }
+        //   Replace the `onKeyDown` logic with our new commands.
+        //   switch (event.key) {
+        //     case "a": {
+        //       event.preventDefault();
+        //       CustomEditor.toggleCodeBlock(editor);
+        //       break;
+        //     }
 
-          //   case "b": {
-          //     event.preventDefault();
-          //     CustomEditor.toggleBoldMark(editor);
-          //     break;
-          //   }
-          // }
-        }}
+        //     case "b": {
+        //       event.preventDefault();
+        //       CustomEditor.toggleBoldMark(editor);
+        //       break;
+        //     }
+        //   }
+        // }}
       />
     </Slate>
   );
 };
-
-// const CustomEditor = {
-
-//   toggleBoldMark(editor) {
-//     const isActive = CustomEditor.isBoldMarkActive(editor);
-//     Transforms.setNodes(
-//       editor,
-//       { bold: isActive ? null : true },
-//       { match: n => Text.isText(n), split: true }
-//     );
-//   },
-
-//   toggleCodeBlock(editor) {
-//     const isActive = CustomEditor.isCodeBlockActive(editor);
-//     Transforms.setNodes(
-//       editor,
-//       { type: isActive ? null : "code" },
-//       { match: n => Editor.isBlock(editor, n) }
-//     );
-//   }
-// };
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {

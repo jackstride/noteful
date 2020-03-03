@@ -1,11 +1,18 @@
 import axios from "axios";
 
-import { ADD_TASK, REMOVE_TASK, TOGGLE_TASK, GET_TASKS, TOGGLE_ADD_TASK, UPDATE_TASK } from "./types";
+import {
+  ADD_TASK,
+  REMOVE_TASK,
+  TOGGLE_TASK,
+  GET_TASKS,
+  TOGGLE_ADD_TASK,
+  UPDATE_TASK
+} from "./types";
 
 // Load all tasks from the user
 // Requires user ID
 export const loadTasks = id => dispatch => {
-  axios.get(`api/getTasks/${id}`).then(res => {
+  axios.get(`/api/getTasks/${id}`).then(res => {
     dispatch({
       type: GET_TASKS,
       payload: res.data.tasks
@@ -29,16 +36,14 @@ export const addTask = values => dispatch => {
     .catch(err => console.log(err));
 };
 
-
 //Toggle taks completed or not
 export const toggleTask = id => dispatch => {
   axios
-    .patch(`api/editcomplete/${id}`)
+    .patch(`/api/editcomplete/${id}`)
     .then(res => {
       dispatch({
         type: TOGGLE_TASK,
-        payload: { id: id,
-        isCompleted: res.data.isCompleted }
+        payload: { id: id, isCompleted: res.data.isCompleted }
       });
     })
     .catch(err => {
@@ -46,41 +51,35 @@ export const toggleTask = id => dispatch => {
     });
 };
 
-
 // Delete task
 // Requires task id
 
 export const removeTask = id => dispatch => {
-  axios.delete(`/api/deletetask/${id}`)
-  .then(res => {
-    dispatch({
-      type: REMOVE_TASK,
-      payload: id,
+  axios
+    .delete(`/api/deletetask/${id}`)
+    .then(res => {
+      dispatch({
+        type: REMOVE_TASK,
+        payload: id
+      });
     })
-  })
-  .catch(err=>console.log(err))
+    .catch(err => console.log(err));
 };
-
-
 
 // Toggle open tasks
 
 export const toggleOpenTask = () => dispatch => {
   dispatch({
-    type: TOGGLE_ADD_TASK,
-  })
-}
-
-
+    type: TOGGLE_ADD_TASK
+  });
+};
 
 export const editTask = values => dispatch => {
-  axios.put('api/task/update', values)
-  .then((res) => {
+  axios.put("/api/task/update", values).then(res => {
     console.log(res);
     dispatch({
       type: UPDATE_TASK,
-      payload: values,
-    })
-  })
-  
-}
+      payload: values
+    });
+  });
+};

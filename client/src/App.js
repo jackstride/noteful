@@ -11,16 +11,13 @@ import LogIn from "./Components/Website/LogIn/logIn.js";
 import Register from "./Components/Website/Register/Register";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
-import Footer from './Components/Website/Footer';
-import LogOut from './Components/Website/logout.js';
-import Features from './pages/features.js'
-import Support from './pages/support'
-import ContextMenuManager from './Components/contextMenu/contextMenuManager'
-
+import Footer from "./Components/Website/Footer";
+import LogOut from "./Components/Website/logout.js";
+import Features from "./pages/features.js";
+import Support from "./pages/support";
+import ContextMenuManager from "./Components/contextMenu/contextMenuManager";
 
 class App extends Component {
-  
-
   static propTypes = {
     isAuthenticated: PropTypes.bool
   };
@@ -29,21 +26,19 @@ class App extends Component {
     store.dispatch(loadUser());
   }
 
-
-
   HomeContainer = () => {
     return (
       <div>
-      <Navigation />
-      <Route exact path="/" component={Home} />
-      <Route path="/login" render={props => <LogIn {...props} />} />
-      <Route path ="/register" component={Register} />
-      <Route path ="/logout" component={LogOut} />
-      <Route path ="/features" component={Features} />
-      <Route path ="/support" component={Support} />
-      <Footer />
+        <Navigation />
+        <Route exact path="/" component={Home} />
+        <Route path="/login" render={props => <LogIn {...props} />} />
+        <Route path="/register" component={Register} />
+        <Route path="/logout" component={LogOut} />
+        <Route path="/features" component={Features} />
+        <Route path="/support" component={Support} />
+        <Footer />
       </div>
-      ) 
+    );
   };
 
   DefaultContainer = () => {
@@ -51,17 +46,21 @@ class App extends Component {
       <Fragment>
         <ContextMenuManager />
         <Route path="/dashboard" component={Dashboard} />
-        </Fragment>
+      </Fragment>
     );
   };
-//Route path "/" last as switch mates the first instance
+  //Route path "/" last as switch mates the first instance
   render() {
     return (
-      <div>        
+      <div>
         <BrowserRouter>
           <Switch>
-            <AuthRoute path="/dashboard" authed={this.props.auth} component={this.DefaultContainer} />
-            <Route path ="/" component={this.HomeContainer} />
+            <AuthRoute
+              path="/dashboard"
+              authed={this.props.auth}
+              component={this.DefaultContainer}
+            />
+            <Route path="/" component={this.HomeContainer} />
           </Switch>
         </BrowserRouter>
       </div>
@@ -77,4 +76,4 @@ const mapDispatchToProps = dispatch => ({
   loadUser: () => dispatch(loadUser())
 });
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
