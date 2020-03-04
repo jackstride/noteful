@@ -109,7 +109,7 @@ let FolderItem = React.memo(({ data, remove }) => {
         <div className="folder_item_container">
           <h5>{data.note_title}</h5>
           <h5>{moment(data.date).calendar()}</h5>
-          <h5>{moment(data.date).calendar()}</h5>
+          <h5>{moment(data.date_modified).calendar()}</h5>
         </div>
       </Link>
       <span

@@ -64,12 +64,16 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
 // Edit Existing Note
 router.patch("/note/edit/:_id", async (req, res, next) => {
   let { _id } = req.params;
-  let { body_Data } = req.body;
+  let { body_Data, note_title } = req.body;
+  console.log(note_title);
 
   let note = await Notes.find({ _id });
 
   if (note) {
-    let update = await Notes.findOneAndUpdate({ _id }, { body_Data });
+    let update = await Notes.findOneAndUpdate(
+      { _id },
+      { body_Data, note_title, date_modified: new Date() }
+    );
     update
       ? res.status(200).json({ message: "done" })
       : next(createError(500, "There was an error saving the note "));

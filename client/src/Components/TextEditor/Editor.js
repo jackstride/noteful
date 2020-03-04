@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
-import { Editable, withReact, useSlate, Slate } from "slate-react";
-import { Editor, Transforms, createEditor, Text } from "slate";
+import { Editable, withReact, Slate } from "slate-react";
+import { createEditor, Node } from "slate";
 import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
-import { withRouter, Link } from "react-router-dom";
-import { connect, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 import {
   addNote,
   editNote,
@@ -25,9 +25,7 @@ const TextEditor = ({
   const editor = useMemo(() => withReact(createEditor()), []);
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
-  const [placeNote, setNote] = useState("");
   const [id, setid] = useState("");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     paramId ? setid(paramId) : console.log("waiting");
@@ -35,7 +33,7 @@ const TextEditor = ({
   }, [paramId]);
 
   useEffect(() => {
-    setValue(JSON.parse(note.body_Data));
+    setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
@@ -47,16 +45,19 @@ const TextEditor = ({
         editor={editor}
         value={value}
         onChange={value => {
-          console.log(value);
+          // console.log(Node.child(editor));
           setValue(value);
           const content = JSON.stringify(value);
-          let values = {
+          let note_title =
+            value[0].children[0].text || value[0].children[0].children[0].text;
+          const values = {
             _id,
+            note_title,
             user_id,
             folder_id,
             body_Data: content
           };
-          // editNote(values);
+          editNote(values);
         }}
       >
         <FormatToolbar>
