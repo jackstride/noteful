@@ -9,16 +9,13 @@ const Notes = require("../models/Notes");
 // Add a note
 router.post("/note/add", async (req, res, next) => {
   //Date feault to time of request
-  const { user_id, folder_id, date, body_data } = req.body;
+  const { user_id, folder_id, body_data } = req.body;
 
   const note = new Notes({
     _id: new mongoose.Types.ObjectId(),
-    user_id: user_id,
-    folder_id: folder_id,
-    body_Data: body_data
+    user_id,
+    folder_id
   });
-
-  console.log(note);
   const result = await note.save();
 
   result
@@ -29,6 +26,7 @@ router.post("/note/add", async (req, res, next) => {
 // Working
 // Delete a note
 router.delete("/note/delete/:_id", async (req, res, next) => {
+  console.log("hit");
   const { _id } = req.params;
 
   let success = await Notes.findByIdAndRemove(_id);
@@ -54,7 +52,6 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
         .sort({ _id: -1 })
         .exec();
     }
-    console.log(notes);
 
     notes
       ? res.status(201).json({ notes })

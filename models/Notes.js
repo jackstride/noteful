@@ -2,6 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const NotesSchema = new Schema({
+  note_title: {
+    type: String,
+    default: "Untitled"
+  },
   user_id: {
     type: String
   },
@@ -9,6 +13,10 @@ const NotesSchema = new Schema({
     type: String
   },
   date: {
+    type: Date,
+    default: Date.now
+  },
+  date_modified: {
     type: Date,
     default: Date.now
   },

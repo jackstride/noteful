@@ -11,7 +11,6 @@ import {
 //Notes by folder id
 export const getNotes = id => dispatch => {
   axios.get(`/api/note/all/${id}`).then(res => {
-    console.log(res);
     dispatch({
       type: NOTE_LOADED,
       payload: res.data
@@ -19,15 +18,11 @@ export const getNotes = id => dispatch => {
   });
 };
 
-export const addNote = () => dispatch => {
-  console.log("hello");
-  let values = {
-    user_id: "5de1207c17910f161383256d",
-    folder_id: "5e455ed9482cad1847638b2e"
-  };
+export const addNote = values => dispatch => {
   axios.post(`/api/note/add`, values).then(res => {
     dispatch({
-      type: ADD_NOTE
+      type: ADD_NOTE,
+      payload: res.data.note
     });
   });
 };
@@ -42,10 +37,19 @@ export const editNote = values => dispatch => {
 
 export const getNoteById = _id => dispatch => {
   axios.get(`/api/note/${_id}`).then(res => {
-    console.log(res);
     dispatch({
       type: SINGLE_NOTE,
       payload: res.data.note
+    });
+  });
+};
+
+export const removeNote = _id => dispatch => {
+  axios.delete(`/api/note/delete/${_id}`).then(res => {
+    console.log(res);
+    dispatch({
+      type: DELETE_NOTE,
+      payload: _id
     });
   });
 };

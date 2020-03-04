@@ -1,31 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { connect } from "react-redux";
-import { getNotes, addNote } from "../../../actions/NoteActions";
+import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
 import { withRouter, Link } from "react-router-dom";
-import FolderItem from "./FolderItem";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../../fontawesome";
 
-let Folders = ({ getNotes, match, notes, addNote }) => {
-  const id = match.params.folder;
+const moment = require("moment");
+
+let Folders = ({
+  getNotes,
+  match,
+  notes,
+  addNote,
+  user_id,
+  folder,
+  removeNote
+}) => {
+  const paramId = match.params.folder;
   const [folderId, setFolderId] = useState();
   const [loading, isLoading] = useState(true);
 
   useEffect(() => {
-    getNotes(id);
-  }, [id]);
+    getNotes(paramId);
+  }, [paramId]);
+
+  const handleRemoveNote = _id => {
+    removeNote(_id);
+  };
+
+  const handleRemove = useCallback(_id => {
+    console.log(_id);
+    handleRemoveNote(_id);
+  }, []);
+
+  let handleAddNote = () => {
+    let values = {
+      user_id,
+      folder_id: paramId
+    };
+    addNote(values);
+  };
 
   return (
     <div className="folder_page">
       <div className="folders_heading">
-        <h3 style={{ textAlign: "left" }}>Folders</h3>
-        <span className="add_folder" onClick={addNote()}>
-          {" "}
-          Add note
+        <h3 style={{ textAlign: "left" }}>Folder Name</h3>
+        <span
+          className="add_folder"
+          onClick={() => {
+            handleAddNote();
+          }}
+        >
+          <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
         </span>
       </div>
 
       <div className="folder_container">
         {notes.length >= 1 ? (
-          notes.map(notes => <FolderItem data={notes} />)
+          notes.map((notes, index) => (
+            <FolderItem key={index} data={notes} remove={handleRemove} />
+          ))
         ) : (
           <h1> Hello </h1>
         )}
@@ -36,16 +70,41 @@ let Folders = ({ getNotes, match, notes, addNote }) => {
 
 const mapStateToProps = state => {
   return {
-    id: state.auth.user._id,
-    notes: state.note.noteData
+    user_id: state.auth.user._id,
+    notes: state.note.noteData,
+    folder: state.folder.data
   };
 };
 
 const mapDispatchToProps = dispatch => ({
   getNotes: id => dispatch(getNotes(id)),
-  addNote: id => dispatch(addNote)
+  addNote: values => dispatch(addNote(values)),
+  removeNote: id => dispatch(removeNote(id))
 });
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Folders)
 );
+
+let FolderItem = React.memo(({ data, remove }) => {
+  console.log(remove);
+  return (
+    <div className="folder_item">
+      <Link to={`/dashboard/notes/${data._id}`}>
+        <div className="folder_item_container">
+          <h5>{data.note_title}</h5>
+          <h5>{moment().calendar(data.date)}</h5>
+          <h5>{moment().calendar(data.date_modified)}</h5>
+        </div>
+      </Link>
+      <span
+        style={{ zIndex: "2", cursor: "pointer" }}
+        onClick={() => {
+          remove(data._id);
+        }}
+      >
+        <FontAwesomeIcon icon="trash" color="grey" size="1x"></FontAwesomeIcon>
+      </span>
+    </div>
+  );
+});

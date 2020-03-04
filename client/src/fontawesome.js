@@ -23,7 +23,8 @@ import {
   faListOl,
   faAlignCenter,
   faAlignLeft,
-  faAlignRight
+  faAlignRight,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -49,5 +50,6 @@ library.add(
   faListOl,
   faAlignCenter,
   faAlignLeft,
-  faAlignRight
+  faAlignRight,
+  faPlus
 );

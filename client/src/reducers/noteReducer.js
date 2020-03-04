@@ -20,10 +20,20 @@ export default (state = initalState, action) => {
         ...state,
         noteData: action.payload.notes
       };
+    case ADD_NOTE:
+      return {
+        ...state,
+        noteData: [...state.noteData, action.payload]
+      };
     case SINGLE_NOTE:
       return {
         ...state,
         singleNoteData: action.payload
+      };
+    case DELETE_NOTE:
+      return {
+        ...state,
+        noteData: state.noteData.filter(note => note._id != action.payload)
       };
 
     default:
