@@ -2,6 +2,7 @@
     width: 300px;
     height: 100vh;
     position: relative;
+    z-index: 1;
 }
 
 .hover_open {
@@ -354,6 +355,7 @@ form.task_form {
         display: flex;
         flex-direction: row;
         align-items: center;
+        height: 50px;
 
         span {
             height: 40px;
@@ -366,6 +368,11 @@ form.task_form {
             color: white;
             cursor: pointer;
             margin-left: 10px;
+            transition: all .25s ease;
+        }
+
+        span:hover {
+            transform: scale(1.2, 1.2);
         }
     }
 }
@@ -377,11 +384,20 @@ form.task_form {
     grid-template-columns: minmax(80%, 1fr) minmax(20%, 1fr);
     align-items: center;
     margin-top: 20px;
+    border-bottom: 1.3px solid rgb(204, 204, 204);
+
+
+    h5 {
+        font-size: 14px;
+        font-weight: 500;
+        color: $navGrey;
+        padding-left: 10px;
+    }
 }
 
 .folder_item:hover {
     background-color: #ebebeb;
-    border-radius: 20px;
+
 }
 
 .folder_item_container {
@@ -392,17 +408,13 @@ form.task_form {
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     align-items: center;
 
+
     span {
         z-index: 1;
     }
 
 
-    h5 {
-        font-size: 14px;
-        font-weight: 500;
-        color: $navGrey;
-        padding-left: 10px;
-    }
+
 }
 
 

@@ -5,14 +5,13 @@ import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
 import { withRouter, Link } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import {
   addNote,
   editNote,
   getNoteById,
   getNotes
 } from "../../actions/NoteActions";
-import { USER_LOADING } from "../../actions/types";
 
 const TextEditor = ({
   match,
@@ -33,69 +32,79 @@ const TextEditor = ({
   useEffect(() => {
     paramId ? setid(paramId) : console.log("waiting");
     getNoteById(paramId);
-    setValue(JSON.parse(note.body_Data));
   }, [paramId]);
+
+  useEffect(() => {
+    setValue(JSON.parse(note.body_Data));
+  }, [note]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
   return (
-    <Slate
-      editor={editor}
-      value={value}
-      onChange={value => {
-        setValue(value);
-        const content = JSON.stringify(value);
-        let values = {
-          _id,
-          user_id,
-          folder_id,
-          body_Data: content
-        };
-        // editNote(values);
-      }}
-    >
-      <FormatToolbar>
-        <ToolbarButton format="bold" icon="bold" />
-        <ToolbarButton format="italic" icon="italic" />
-        <ToolbarButton format="code" icon="code" />
-        <ToolbarButton format="underline" icon="underline" />
-        <BlockButton format="heading-one" icon="underline" />
-        <BlockButton format="heading-two" icon="underline" />
-        <BlockButton format="heading-three" icon="underline" />
-        <BlockButton format="list-item" icon="list" />
-        <BlockButton format="numbered-list" icon="list-ol" />
-        <BlockButton format="align-left" icon="align-left" />
-        <BlockButton format="align-center" icon="align-center" />
-        <BlockButton format="align-right" icon="align-right" />
-      </FormatToolbar>
-      <Editable
-        className="main_editor"
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        spellCheck
-        //Defines shortvut Keys
-        // onKeyDown={event => {
-        //   if (!event.ctrlKey) {
-        //     return;
-        //   }
-        //   Replace the `onKeyDown` logic with our new commands.
-        //   switch (event.key) {
-        //     case "a": {
-        //       event.preventDefault();
-        //       CustomEditor.toggleCodeBlock(editor);
-        //       break;
-        //     }
+    <div className="editor_container">
+      <Slate
+        editor={editor}
+        value={value}
+        onChange={value => {
+          console.log(value);
+          setValue(value);
+          const content = JSON.stringify(value);
+          let values = {
+            _id,
+            user_id,
+            folder_id,
+            body_Data: content
+          };
+          // editNote(values);
+        }}
+      >
+        <FormatToolbar>
+          <ToolbarButton format="bold" icon="bold" />
+          <ToolbarButton format="italic" icon="italic" />
+          <span className="editor_spacer"></span>
+          <ToolbarButton format="code" icon="code" />
+          <ToolbarButton format="underline" icon="underline" />
+          <BlockButton format="heading-one" icon="underline" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="heading-two" icon="underline" />
+          <BlockButton format="heading-three" icon="underline" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="list-item" icon="list" />
+          <BlockButton format="numbered-list" icon="list-ol" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="align-left" icon="align-left" />
+          <BlockButton format="align-center" icon="align-center" />
+          <BlockButton format="align-right" icon="align-right" />
+        </FormatToolbar>
+        <Editable
+          className="main_editor"
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          spellCheck
+          //Defines shortvut Keys
+          // onKeyDown={event => {
+          //   if (!event.ctrlKey) {
+          //     return;
+          //   }
+          //   Replace the `onKeyDown` logic with our new commands.
+          //   switch (event.key) {
+          //     case "a": {
+          //       event.preventDefault();
+          //       CustomEditor.toggleCodeBlock(editor);
+          //       break;
+          //     }
 
-        //     case "b": {
-        //       event.preventDefault();
-        //       CustomEditor.toggleBoldMark(editor);
-        //       break;
-        //     }
-        //   }
-        // }}
-      />
-    </Slate>
+          //     case "b": {
+          //       event.preventDefault();
+          //       CustomEditor.toggleBoldMark(editor);
+          //       break;
+          //     }
+          //   }
+          // }}
+        />
+      </Slate>
+    </div>
   );
 };
 
@@ -236,7 +245,9 @@ const initialValue = [
 const mapStateToProps = state => {
   return {
     note: state.note.singleNoteData,
-    user_id: state.auth.user._id
+    user_id: state.auth.user._id,
+    _id: state.note.singleNoteData._id,
+    folder_id: state.note.singleNoteData.folder_id
   };
 };
 

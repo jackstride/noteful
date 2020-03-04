@@ -64,6 +64,14 @@ let Folders = ({
       </div>
 
       <div className="folder_container">
+        <div className="folder_item">
+          <div className="folder_item_container">
+            <span></span>
+            <h5>Date Created:</h5>
+            <h5>Date Modified:</h5>
+          </div>
+          <h5> Delete </h5>
+        </div>
         {notes.length >= 1 ? (
           notes.map((notes, index) => (
             <FolderItem key={index} data={notes} remove={handleRemove} />
@@ -100,11 +108,12 @@ let FolderItem = React.memo(({ data, remove }) => {
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
           <h5>{data.note_title}</h5>
-          <h5>{moment().calendar(data.date)}</h5>
-          <h5>{moment().calendar(data.date_modified)}</h5>
+          <h5>{moment(data.date).calendar()}</h5>
+          <h5>{moment(data.date).calendar()}</h5>
         </div>
       </Link>
       <span
+        style={{ cursor: "pointer" }}
         onClick={() => {
           remove(data._id);
         }}

@@ -7,7 +7,6 @@ import PhonePreview from "./images/iphone_preview.png";
 import { ReactComponent as Blob } from "./images/blob.svg";
 import Card from "./Components/Website/Card.js";
 
-
 export default class home extends Component {
   constructor(props) {
     super(props);
@@ -36,22 +35,27 @@ export default class home extends Component {
         },
         {
           header: "Dark Mode.",
-          main: "Surprisingly 99% of people type in the dark. As a result we created dark mode.. Okay, that's false but we thought it looked nice.",
+          main:
+            "Surprisingly 99% of people type in the dark. As a result we created dark mode.. Okay, that's false but we thought it looked nice."
         }
       ],
-      cards: [{
-        heading: "Remembers todays tasks.",
-        body: "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
-      },
-      {
-        heading:"Easier Workflow",
-        body: "Workflow has never been easier and simpler. Try it yourself for free."
-      },
-      {
-        heading:"Write Anywhere.",
-        body:"Are you full of interesting ideas or typing up your biography? Start where you last left off on any device and use any browser."
-      }
-    ]
+      cards: [
+        {
+          heading: "Remembers todays tasks.",
+          body:
+            "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
+        },
+        {
+          heading: "Easier Workflow",
+          body:
+            "Workflow has never been easier and simpler. Try it yourself for free."
+        },
+        {
+          heading: "Write Anywhere.",
+          body:
+            "Are you full of interesting ideas or typing up your biography? Start where you last left off on any device and use any browser."
+        }
+      ]
     };
   }
 
@@ -95,7 +99,7 @@ export default class home extends Component {
           </div>
         </header>
         <div className="inner_container">
-        <div className="tag_info">
+          <div className="tag_info">
             <h4>
               Browser<br></br>Based.
             </h4>
@@ -105,30 +109,30 @@ export default class home extends Component {
             <h4>
               All<br></br>Devices.
             </h4>
-        </div>
-        <SectionHeader data={this.state.headings[0]} />
-        <section className="info_cards">
-          <div className="cards_grid">
-            <div className="left_card">
-            <Card data={this.state.cards[0]} />
+          </div>
+          <SectionHeader data={this.state.headings[0]} />
+          <section className="info_cards">
+            <div className="cards_grid">
+              <div className="left_card">
+                <Card data={this.state.cards[0]} />
+              </div>
+              <div className="cards_col">
+                <Card data={this.state.cards[1]} />
+                <Card data={this.state.cards[2]} />
+              </div>
             </div>
-            <div className="cards_col">
-              <Card data={this.state.cards[1]}/>
-              <Card data={this.state.cards[2]}/>
-            </div>
-            </div>
-        </section>
-        <hr className="home_sep"></hr>
-        <SectionHeader data={this.state.headings[1]} />
-        <section className="iphone_image">
-          <img src={PhonePreview}></img>
-        </section>
-        
-        <section className="home_features">
-        <Card data={this.state.cards[2]}/>
-        <Card data={this.state.cards[2]}/>
-        <Card data={this.state.cards[2]}/>
-        </section>
+          </section>
+          <hr className="home_sep"></hr>
+          <SectionHeader data={this.state.headings[1]} />
+          <section className="iphone_image">
+            <img src={PhonePreview}></img>
+          </section>
+
+          <section className="home_features">
+            <Card data={this.state.cards[2]} />
+            <Card data={this.state.cards[2]} />
+            <Card data={this.state.cards[2]} />
+          </section>
         </div>
       </Fragment>
     );
