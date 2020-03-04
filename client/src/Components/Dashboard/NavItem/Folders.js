@@ -92,7 +92,7 @@ class Folders extends Component {
     return (
       <div className="widget">
         <div className="widget_header">
-          <h5>FOLDERS</h5>
+          <h5>Notebook</h5>
           <div className="plus" onClick={this.toggleAddFolder}></div>
         </div>
         <div className="widget_content">

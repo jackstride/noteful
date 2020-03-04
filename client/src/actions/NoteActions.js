@@ -8,8 +8,10 @@ import {
   SINGLE_NOTE
 } from "../actions/types";
 
+//Notes by folder id
 export const getNotes = id => dispatch => {
   axios.get(`/api/note/all/${id}`).then(res => {
+    console.log(res);
     dispatch({
       type: NOTE_LOADED,
       payload: res.data

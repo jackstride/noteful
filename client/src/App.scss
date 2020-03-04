@@ -63,10 +63,11 @@ h4 {
 }
 
 h5 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 600;
     font-size: .8em;
     color: rgba($color: $HeadingGrey, $alpha: .5);
+    color: $orange;
     letter-spacing: 0;
 }
 
@@ -111,7 +112,7 @@ nav a {
 .app_container {
     width: 100%;
     height: 100vh;
-    background-color: #FDFDFD;
+    background-color: #f8f8f8;
     display: grid;
     grid-template-columns: 20% 1fr;
     grid-template-rows: 1fr;
@@ -189,4 +190,25 @@ hr {
     width: 100%;
     height: 80vh;
     margin: auto 0;
+}
+
+
+.summary_container {
+    width: calc(95% - 300px);
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 10px;
+}
+
+.summary_notes,
+.summary_tasks,
+.summary_events {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
 }

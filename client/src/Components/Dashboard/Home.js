@@ -5,6 +5,7 @@ import SideNav from "../SideNav";
 import { loadUser } from "../../actions/authActions";
 import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
+import Summary from "./Summary";
 
 import Settings from "./Settings";
 
@@ -15,6 +16,7 @@ class Home extends Component {
         <BrowserRouter>
           <SideNav />
           <Switch>
+            <Route path="/dashboard" component={Summary} />
             <Route path="/dashboard/settings" component={Settings} />
             <Route exact path="/dashboard/:folder" component={Folders} />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />

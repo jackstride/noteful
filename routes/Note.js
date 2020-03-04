@@ -41,13 +41,21 @@ router.delete("/note/delete/:_id", async (req, res, next) => {
 // Working
 //Get all notes
 router.get("/note/all/:folder_id", async (req, res, next) => {
-  console.log("hit");
   try {
     let { folder_id } = req.params;
 
     let notes = await Notes.find({ folder_id })
       .sort({ _id: -1 })
       .exec();
+
+    //FOlder id may be find by user_id
+    if (!notes.length) {
+      notes = await Notes.find({ user_id: folder_id })
+        .sort({ _id: -1 })
+        .exec();
+    }
+    console.log(notes);
+
     notes
       ? res.status(201).json({ notes })
       : next(createError(500, "There was an error saving the folder "));

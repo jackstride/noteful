@@ -31,6 +31,7 @@ const TextEditor = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("fired");
     paramId ? setid(paramId) : console.log("waiting");
     getNoteById(paramId);
     setValue(JSON.parse(note.body_Data));
