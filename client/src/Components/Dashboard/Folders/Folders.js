@@ -41,10 +41,18 @@ let Folders = ({
     addNote(values);
   };
 
+  let getFolderName = () => {
+    let name = folder.filter(folder => paramId == folder._id);
+    name = name[0].folder_name;
+    return name;
+  };
+
+  getFolderName();
+
   return (
     <div className="folder_page">
       <div className="folders_heading">
-        <h3 style={{ textAlign: "left" }}>Folder Name</h3>
+        <h3 style={{ textAlign: "left" }}>{getFolderName()}</h3>
         <span
           className="add_folder"
           onClick={() => {
@@ -87,7 +95,6 @@ export default withRouter(
 );
 
 let FolderItem = React.memo(({ data, remove }) => {
-  console.log(remove);
   return (
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
@@ -98,7 +105,6 @@ let FolderItem = React.memo(({ data, remove }) => {
         </div>
       </Link>
       <span
-        style={{ zIndex: "2", cursor: "pointer" }}
         onClick={() => {
           remove(data._id);
         }}
