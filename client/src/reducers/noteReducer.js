@@ -3,13 +3,15 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   SUBMIT_NOTE,
-  NOTE_LOADED
+  NOTE_LOADED,
+  SINGLE_NOTE
 } from "../actions/types";
 const initalState = {
   user_id: null,
   folder_id: null,
   body_Data: null,
-  noteData: []
+  noteData: [],
+  singleNoteData: []
 };
 export default (state = initalState, action) => {
   switch (action.type) {
@@ -17,6 +19,11 @@ export default (state = initalState, action) => {
       return {
         ...state,
         noteData: action.payload.notes
+      };
+    case SINGLE_NOTE:
+      return {
+        ...state,
+        singleNoteData: action.payload
       };
 
     default:

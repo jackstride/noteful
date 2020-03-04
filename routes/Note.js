@@ -41,14 +41,13 @@ router.delete("/note/delete/:_id", async (req, res, next) => {
 // Working
 //Get all notes
 router.get("/note/all/:folder_id", async (req, res, next) => {
+  console.log("hit");
   try {
     let { folder_id } = req.params;
 
     let notes = await Notes.find({ folder_id })
       .sort({ _id: -1 })
       .exec();
-    console.log(notes);
-
     notes
       ? res.status(201).json({ notes })
       : next(createError(500, "There was an error saving the folder "));
@@ -66,13 +65,24 @@ router.patch("/note/edit/:_id", async (req, res, next) => {
 
   if (note) {
     let update = await Notes.findOneAndUpdate({ _id }, { body_Data });
-    console.log("done");
     update
       ? res.status(200).json({ message: "done" })
       : next(createError(500, "There was an error saving the note "));
   } else {
     next(createError(500, "There was an error saving the note "));
   }
+});
+
+// Get note by id
+
+router.get("/note/:_id", async (req, res, next) => {
+  let { _id } = req.params;
+
+  let note = await Notes.findById({ _id });
+
+  note
+    ? res.status(200).json({ note })
+    : next(createError(500, "There was an error saving the note "));
 });
 
 module.exports = router;

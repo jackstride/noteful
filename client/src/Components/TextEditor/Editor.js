@@ -6,10 +6,23 @@ import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { addNote, editNote } from "../../actions/NoteActions";
+import {
+  addNote,
+  editNote,
+  getNoteById,
+  getNotes
+} from "../../actions/NoteActions";
 import { USER_LOADING } from "../../actions/types";
 
-const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
+const TextEditor = ({
+  match,
+  note,
+  user_id,
+  folder_id,
+  editNote,
+  _id,
+  getNoteById
+}) => {
   const editor = useMemo(() => withReact(createEditor()), []);
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
@@ -19,12 +32,9 @@ const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
 
   useEffect(() => {
     paramId ? setid(paramId) : console.log("waiting");
-    let test = note.filter(note => note._id == id);
-    setNote(test[0]);
-    if (placeNote) {
-      setValue(JSON.parse(placeNote.body_Data));
-    }
-  }, [paramId, id, placeNote]);
+    getNoteById(paramId);
+    setValue(JSON.parse(note.body_Data));
+  }, [paramId]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -42,7 +52,7 @@ const TextEditor = ({ match, note, user_id, folder_id, editNote, _id }) => {
           folder_id,
           body_Data: content
         };
-        editNote(values);
+        // editNote(values);
       }}
     >
       <FormatToolbar>
@@ -225,15 +235,14 @@ const initialValue = [
 
 const mapStateToProps = state => {
   return {
-    note: state.note.noteData,
-    user_id: state.auth.user._id,
-    folder_id: state.note.noteData[0].folder_id,
-    _id: state.note.noteData[0]._id
+    note: state.note.singleNoteData,
+    user_id: state.auth.user._id
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  editNote: values => dispatch(editNote(values))
+  editNote: values => dispatch(editNote(values)),
+  getNoteById: values => dispatch(getNoteById(values))
 });
 
 export default withRouter(

@@ -30,3 +30,4 @@ export const DELETE_NOTE = "DELETE_NOTE";
 export const EDIT_NOTE = "EDIT_NOTE";
 export const SUBMIT_NOTE = "SUBMIT_NOTE";
 export const NOTE_LOADED = "NOTE_LOADED";
+export const SINGLE_NOTE = "SINGLE_NOTE";

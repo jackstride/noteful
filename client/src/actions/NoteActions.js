@@ -4,7 +4,8 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   SUBMIT_NOTE,
-  NOTE_LOADED
+  NOTE_LOADED,
+  SINGLE_NOTE
 } from "../actions/types";
 
 export const getNotes = id => dispatch => {
@@ -33,6 +34,16 @@ export const editNote = values => dispatch => {
   axios.patch(`/api/note/edit/${values._id}`, values).then(res => {
     dispatch({
       type: EDIT_NOTE
+    });
+  });
+};
+
+export const getNoteById = _id => dispatch => {
+  axios.get(`/api/note/${_id}`).then(res => {
+    console.log(res);
+    dispatch({
+      type: SINGLE_NOTE,
+      payload: res.data.note
     });
   });
 };
