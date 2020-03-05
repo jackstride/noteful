@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Profile from "./Dashboard/NavItem/profile";
 import Search from "./Dashboard/NavItem/search";
 import Folders from "./Dashboard/NavItem/Folders";
@@ -7,6 +6,7 @@ import Tasks from "./Dashboard/NavItem/Tasks";
 import { addFolder, getFolder, removeFolder } from "../actions/FolderActions";
 import { loadTasks } from "../actions/taskActions";
 import { connect } from "react-redux";
+import ProfileIcon from "./Dashboard/NavItem/profileIcon";
 
 class SideBar extends Component {
   constructor(props) {
@@ -31,12 +31,9 @@ class SideBar extends Component {
         <div
           className={this.state.isOpen ? { display: "hidden" } : "hover_open"}
         >
-          <div
-            onClick={this.toggleNav}
-            className={
-              this.state.isOpen ? { display: "hidden" } : "hover_image"
-            }
-          ></div>
+          <div className="app_profile">
+            {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
+          </div>
         </div>
         <div
           className={

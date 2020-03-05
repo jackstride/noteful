@@ -3,6 +3,7 @@ import { Link, useHistory, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
+import ProfileIcon from "./profileIcon";
 
 let Profile = props => {
   const [settings, openSettings] = useState(false);
@@ -10,9 +11,7 @@ let Profile = props => {
   return (
     //Get the Name and profile photo
     <div className="profile_container">
-      <div className="profile_image">
-        <div className="p_image"></div>
-      </div>
+      <ProfileIcon />
       <div className="profile_logout">
         <h4 style={{ color: "black" }}>{props.user}</h4>
       </div>
@@ -39,7 +38,7 @@ let Options = props => {
           <Link to="/dashboard/settings">Edit your settings</Link>
         </li>
         <li></li>
-        <Link to="logout">Logout</Link>
+        <Link to="/logout">Logout</Link>
       </ul>
     </nav>
   );
