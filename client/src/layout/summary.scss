@@ -14,8 +14,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, minmax(175px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
+    overflow-y: auto;
 
 }
 
@@ -63,14 +64,29 @@
     background-color: rgba(112, 174, 231, 0.233);
 }
 
-.summary_heading>h3:before {
+.summary_heading:nth-child(1) h4:before {
     content: "•";
     color: blue;
+}
 
+.summary_heading:nth-child(2) h4:before {
+    content: "•";
+    color: green;
+}
+
+.summary_heading:nth-child(3) h4:before {
+    content: "•";
+    color: red;
+}
+
+.summary_heading {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
 }
 
 .summary_holder.tasks:hover {
-    transform: scale(1.1, 1.1);
+    transform: scale(0.9, 0.9);
     transition: all .5s ease;
     cursor: pointer;
 }

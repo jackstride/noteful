@@ -25,13 +25,13 @@ let Summary = ({
   return (
     <div className="summary_container">
       <div className="summary_heading">
-        <h3> Notes</h3>
+        <h4> Notes</h4>
       </div>
       <div className="summary_heading">
-        <h3> Tasks</h3>
+        <h4> Tasks</h4>
       </div>
       <div className="summary_heading">
-        <h3> Events</h3>
+        <h4> Events</h4>
       </div>
       <div className="summary_notes">
         {notes.map(notes => (

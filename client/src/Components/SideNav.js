@@ -14,7 +14,7 @@ class SideBar extends Component {
     super(props);
 
     this.state = {
-      isOpen: false
+      isOpen: true
     };
   }
   componentDidMount() {
@@ -56,8 +56,7 @@ class SideBar extends Component {
               : "dashboard_navigation"
           }
         >
-          <Profile />
-          <h5 onClick={this.toggleNav}> Close </h5>
+          <Profile toggle={this.toggleNav} />
           <Search />
           <Folders />
           <Tasks userId={this.props.userId} data={this.props.taskData} />

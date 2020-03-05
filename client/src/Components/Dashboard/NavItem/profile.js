@@ -12,16 +12,21 @@ let Profile = props => {
     //Get the Name and profile photo
     <div className="profile_container">
       <ProfileIcon />
-      <div className="profile_logout">
-        <h4 style={{ color: "black" }}>{props.user}</h4>
+      <div className="profile_name">
+        <h5 style={{ color: "black" }}>{props.user}</h5>
       </div>
       <div className="profile_setting">
         <FontAwesomeIcon
           onClick={() => openSettings(!settings)}
-          className="font_icon"
-          style={{ color: "#323232" }}
+          color="#323232"
           icon="cog"
-          size="xs"
+        />
+        <FontAwesomeIcon
+          onClick={() => {
+            props.toggle();
+          }}
+          icon="times"
+          color="#e8e8e8"
         />
         {settings ? <Options /> : null}
       </div>

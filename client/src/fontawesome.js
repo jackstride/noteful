@@ -26,7 +26,8 @@ import {
   faAlignRight,
   faPlus,
   faCheck,
-  faTimes
+  faTimes,
+  faCaretSquareLeft
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -55,5 +56,6 @@ library.add(
   faAlignRight,
   faPlus,
   faCheck,
-  faTimes
+  faTimes,
+  faCaretSquareLeft
 );

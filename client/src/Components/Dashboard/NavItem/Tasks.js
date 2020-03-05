@@ -95,7 +95,7 @@ class Todo extends Component {
     return (
       <div className="widget">
         <div className="widget_header">
-          <h5>TASKS</h5>
+          <h5>Tasks</h5>
           <div className="plus" onClick={e => this.openAddTask(e)}></div>
         </div>
         <div className="widget_content">
