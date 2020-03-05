@@ -52,7 +52,7 @@ let Folders = ({
   return (
     <div className="folder_page">
       <div className="folders_heading">
-        <h3 style={{ textAlign: "left" }}>{getFolderName()}</h3>
+        <h2>{getFolderName()}</h2>
         <span
           className="add_folder"
           onClick={() => {
@@ -107,7 +107,7 @@ let FolderItem = React.memo(({ data, remove }) => {
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
-          <h5>{data.note_title}</h5>
+          <h3>{data.note_title}</h3>
           <h6>{moment(data.date).calendar()}</h6>
           <h6>{moment(data.date_modified).calendar()}</h6>
         </div>

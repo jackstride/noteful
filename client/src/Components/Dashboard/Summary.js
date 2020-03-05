@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { loadTasks, toggleTask } from "../../actions/taskActions";
 import { getNotes } from "../../actions/NoteActions";
 import { getFolder } from "../../actions/FolderActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../fontawesome";
-import { get } from "mongoose";
+import { Link } from "react-router-dom";
 const moment = require("moment");
 
 let Summary = ({
@@ -69,8 +69,9 @@ let NotesHolder = ({ notes, folder }) => {
       <div className="summary_text">
         <h6>{getFoldername()}</h6>
         <h5>{notes.note_title}</h5>
-        <h5>{moment(notes.date).calendar()}</h5>
+        <h6>{moment(notes.date).calendar()}</h6>
       </div>
+      <Link to={`/dashboard/notes/${notes._id}`}></Link>
     </div>
   );
 };
