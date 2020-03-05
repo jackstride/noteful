@@ -1,24 +1,30 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import Form from "./loginForm";
 import SocialAuth from "../Register/socialAuth";
 import { ReactComponent as Jumping } from "../../../images/jumping.svg";
-import { Redirect } from "react-router-dom";
+import { clearErrors } from "../../../actions/errorActions";
 
 class LogIn extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      auth: false
+      showErrors: []
     };
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.isAuth != prevProps.isAuth) {
-      this.props.history.push("/dashboard");
+    if (prevProps.errors != this.props.errors) {
+      this.setState({ showErrors: this.props.errors });
+      console.log(this.state);
     }
   }
+
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   render() {
     return (
       <section className="login">
@@ -26,11 +32,14 @@ class LogIn extends Component {
           <div className="login_container">
             <div className="form_container">
               <h2>Welcome Back!</h2>
+              {this.state.showErrors.length ? (
+                <h2> There appears to be an errors</h2>
+              ) : null}
               <p>
                 Don't have an account? <span>Sign up</span>
               </p>
               <Form history={this.props.history} />
-              <p style={{ margin: "20px 0px" }}>
+              <p style={{ margin: "20px 0px", textAlign: "center" }}>
                 - - - - - - - - Or - - - - - - - -{" "}
               </p>
               <SocialAuth />
@@ -46,7 +55,12 @@ class LogIn extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuth: state.auth.isAuthenticated
+  isAuth: state.auth.isAuthenticated,
+  errors: state.error.message
 });
 
-export default connect(mapStateToProps)(LogIn);
+const mapDispatchToProps = dispatch => ({
+  clearErrors: () => dispatch(clearErrors())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

@@ -10,9 +10,14 @@ import Summary from "./Summary";
 import Settings from "./Settings";
 
 class Home extends Component {
-  componentDidMount() {
-    this.props.loadUser();
-  }
+  // Maybe update this
+  // componentDidMount() {
+  //   if (this.props.auth) {
+  //     this.props.loadUser();
+  //   } else {
+  //     this.props.history.push("/");
+  //   }
+  // }
   render() {
     return (
       <div className="app_container">
@@ -30,8 +35,14 @@ class Home extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    auth: state.auth.isAuthenticated
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   loadUser: () => dispatch(loadUser())
 });
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

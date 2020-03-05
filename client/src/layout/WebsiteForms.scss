@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
- form.auth_form {
+form.auth_form {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -14,14 +14,23 @@
 
     input {
         width: 100%;
-        height: 60px;
+        height: 50px;
         margin: 10px 0px;
-        color: black;
+        color: $navGrey;
         background-color: transparent;
         border-radius: 5px;
-        border: 3px solid $navGrey;
+        border: 1.5px solid rgb(182, 182, 182);
         width: 100%;
+
     }
+
+    input[type=text],
+    input[type=password] {
+        font-size: 16px;
+        padding-left: 10px;
+    }
+
+
 
     input .error {
         border: 1px solid red;
@@ -33,12 +42,13 @@
         font-size: 16px;
         border: none;
         cursor: pointer;
+        width: 50%;
+        align-self: start;
     }
 
     input::placeholder {
         color: lightgray;
         font-size: 16px;
-        padding-left: 20px;
     }
 }
 
@@ -80,20 +90,28 @@
     align-items: center;
     height: 100%;
 
+    .form_container {
+        height: 700px;
+    }
+
+    h2 {
+        font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+        letter-spacing: 0;
+    }
+
     p {
-        text-align: center;
+        font-weight: 400;
+
     }
 
     span {
-        color: blue;
+        color: #2962FF;
+        font-weight: 600;
     }
-    
+
     .social_auth {
         flex-direction: column;
         align-items: center;
-    }
-    p {
-        margin: 0 auto;
     }
 }
 
@@ -101,10 +119,11 @@
 
 
 /* Social Auth Componentts */
-.google_auth, .twitter_auth {
+.google_auth,
+.twitter_auth {
     background-color: transparent;
     border-radius: 5px;
-    border: 3px solid rgba(25, 28, 31, .5);
+    border: 1.5px solid rgb(182, 182, 182);
     width: 100%;
     height: 60px;
     display: flex;
@@ -120,7 +139,7 @@
     position: relative;
 
     >* {
-     margin: 10px 0px;
+        margin: 10px 0px;
     }
 
     span {
@@ -130,11 +149,14 @@
         align-items: center;
         justify-content: center;
         padding-left: 2%;
+
         img {
             height: 30%;
         }
     }
-    p,a {
+
+    p,
+    a {
         color: $darkGrey;
         font-weight: 500;
         font-size: 14px;
@@ -153,17 +175,18 @@
 }
 
 .section_para {
-        height: fit-content;
+    height: fit-content;
 }
 
 
 .section_image {
     display: flex;
     justify-content: center;
-img {
-    height: 80%;
-    width: 80%;
-}
+
+    img {
+        height: 80%;
+        width: 80%;
+    }
 }
 
 /* Context Menu */
@@ -174,6 +197,7 @@ img {
     height: fit-content;
     padding: 15px;
     border-radius: 12px;
+
     li a {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 12px;
@@ -182,6 +206,7 @@ img {
         color: black;
 
     }
+
     li {
         padding-bottom: 5px;
         display: block;
@@ -189,7 +214,7 @@ img {
 
     li:hover {
         background-color: $orange;
-        
+
     }
 }
 
@@ -206,7 +231,6 @@ img {
         width: 100%;
         display: flex;
         align-items: center;
-        
+
     }
 }
-

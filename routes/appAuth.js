@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const createError = require("http-errors")
+const createError = require("http-errors");
 
 const User = require("../models/User");
 const auth = require("../middleware/auth");
@@ -13,12 +13,9 @@ require("dotenv").config();
 // @Desc Get logged in urser
 // @access Private
 router.get("/", auth, async (req, res, next) => {
+  const user = await User.findById(req.user._id).select("-password");
 
-    const user = await User.findById(req.user._id).select("-password")
-
-    user ? res.send(user)
-
-    : next(createError(401, "User was not found "))
+  user ? res.send(user) : next(createError(401, "User was not found "));
 });
 
 module.exports = router;

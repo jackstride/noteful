@@ -49,11 +49,9 @@ router.post(
 router.post("/login", async (req, res, next) => {
   let { email, password } = req.body;
 
-  console.log(req.body);
-
   let user = await User.find({ email }).exec();
   user.length < 1
-    ? next(createError(401, " Authorisation Failed"))
+    ? next(createError(401, "Please enter a valid email & Password"))
     : (match = await bcrypt.compare(password, user[0].password));
 
   if (match) {
@@ -78,7 +76,7 @@ router.post("/login", async (req, res, next) => {
       }
     );
   } else {
-    next(createError(401, " Password doesn't match"));
+    next(createError(401, " Please enter a valid email or Password."));
   }
 });
 

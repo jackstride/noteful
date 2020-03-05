@@ -1,9 +1,10 @@
 @import './helpers/config.scss';
-@import './layout/components.scss';
+@import './layout/WebsiteForms.scss';
 @import './layout/header.scss';
 @import './layout/footer.scss';
 @import './pages/home.scss';
 @import './pages/pages.scss';
+@import './pages/logout.scss';
 @import './layout/dashboard.scss';
 @import './layout/hamNav.scss';
 @import './layout/animations.scss';
@@ -43,7 +44,6 @@ h2 {
     color: $HeadingGrey;
     font-family: Eczar-Bold;
     letter-spacing: 0.95px;
-    text-align: center;
     line-height: 60px;
 }
 
@@ -197,18 +197,6 @@ hr {
     border-bottom: 2px solid $HeadingGrey;
     ;
 }
-
-
-/* Logout */
-
-.section_logout {
-    display: flex;
-    height: calc(100vh - 150px);
-    flex-direction: column;
-    align-items: center;
-}
-
-
 
 .register {
     width: 100%;

@@ -21,14 +21,8 @@ export const loadUser = () => (dispatch, getState) => {
     type: USER_LOADING
   });
 
-  const config = {
-    headers: {
-      "Content-type": "application/json"
-    }
-  };
-
   axios
-    .get("/dashboard", config)
+    .get("/dashboard")
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -72,15 +66,14 @@ export const login = formValues => dispatch => {
   axios
     .post("/user/login", formValues, { withCredentials: true })
     .then(res => {
+      console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
       });
     })
     .catch(err => {
-      dispatch(
-        returnErrors(err.response.data, err.response.state, "LOGIN_FAIL")
-      );
+      dispatch(returnErrors(err.response.data));
       dispatch({
         type: LOGIN_FAIL
       });
