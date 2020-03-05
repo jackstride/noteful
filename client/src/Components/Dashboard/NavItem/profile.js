@@ -11,7 +11,9 @@ let Profile = props => {
   return (
     //Get the Name and profile photo
     <div className="profile_container">
-      <ProfileIcon />
+      <Link to="/dashboard">
+        <ProfileIcon />
+      </Link>
       <div className="profile_name">
         <h5 style={{ color: "black" }}>{props.user}</h5>
       </div>
@@ -21,6 +23,7 @@ let Profile = props => {
           color="#323232"
           icon="cog"
         />
+
         <FontAwesomeIcon
           onClick={() => {
             props.toggle();
@@ -28,6 +31,7 @@ let Profile = props => {
           icon="times"
           color="#e8e8e8"
         />
+
         {settings ? <Options /> : null}
       </div>
     </div>

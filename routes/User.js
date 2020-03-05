@@ -8,7 +8,11 @@ const { userValidationRules, validate } = require("../middleware/validation");
 
 const User = require("../models/User");
 
-router.post("/register", userValidationRules(), validate, async (req, res, next) => {
+router.post(
+  "/register",
+  userValidationRules(),
+  validate,
+  async (req, res, next) => {
     let { firstName, lastName, email, password } = req.body;
 
     let saltRounds = 15;
@@ -21,57 +25,61 @@ router.post("/register", userValidationRules(), validate, async (req, res, next)
         : (salt = await bcrypt.genSaltSync(saltRounds));
 
       salt
-      ? hash = await bcrypt.hash(password, salt)
-      : next(createError(500, " Salt Server Error"))
+        ? (hash = await bcrypt.hash(password, salt))
+        : next(createError(500, " Salt Server Error"));
       hash
-      ? user = new User({
-              _id: new mongoose.Types.ObjectId(),
-              firstName: firstName,
-              lastName: lastName,
-              email: email,
-              password: hash
-            })
-      : next(createError(500, " Database register error"))
+        ? (user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: hash
+          }))
+        : next(createError(500, " Database register error"));
 
-      let result = await user.save()
+      let result = await user.save();
 
       result
-      ? res.status(201).json({ message: "Register Successful"})
-      : next(newcreateError(500, "Problem with server"))
+        ? res.status(201).json({ message: "Register Successful" })
+        : next(newcreateError(500, "Problem with server"));
     } catch (err) {}
-  });
+  }
+);
 
 router.post("/login", async (req, res, next) => {
-
   let { email, password } = req.body;
 
-  console.log(req.body)
+  console.log(req.body);
 
-  let user = await User.find({email}).exec();
-  user.length < 1 
-  ? next(createError(401, " Authorisation Failed"))
-  :  match = await bcrypt.compare(password,user[0].password)
+  let user = await User.find({ email }).exec();
+  user.length < 1
+    ? next(createError(401, " Authorisation Failed"))
+    : (match = await bcrypt.compare(password, user[0].password));
 
-  if(match) {
+  if (match) {
     const payload = {
       email: user[0].email,
-      _id: user[0].id
+      _id: user[0].id,
+      firstName: user[0].firstName
     };
 
-    jtw.sign(payload,process.env.JWT_KEY,
+    jtw.sign(
+      payload,
+      process.env.JWT_KEY,
       {
         expiresIn: "2 days"
-      }, (err, token) => {
+      },
+      (err, token) => {
         res.cookie("access_token", token, {
           maxAge: 9000000,
           httpOnly: true
         });
         res.status(200).json({ user: payload });
-      })
+      }
+    );
+  } else {
+    next(createError(401, " Password doesn't match"));
   }
-  else {
-     next(createError(401, " Password doesn't match")) 
-  } 
 });
 
 router.get("/logout", (req, res) => {

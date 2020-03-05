@@ -41,11 +41,7 @@ class SideBar extends Component {
         >
           <div className="app_profile">
             {/* // Ifffy */}
-            {!this.state.isOpen && (
-              <Link to="/dashboard">
-                <ProfileIcon handleClick={this.toggleNav} />{" "}
-              </Link>
-            )}
+            {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
           </div>
         </div>
 
