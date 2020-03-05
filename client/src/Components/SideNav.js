@@ -7,6 +7,7 @@ import { addFolder, getFolder, removeFolder } from "../actions/FolderActions";
 import { loadTasks } from "../actions/taskActions";
 import { connect } from "react-redux";
 import ProfileIcon from "./Dashboard/NavItem/profileIcon";
+import { Link } from "react-router-dom";
 
 class SideBar extends Component {
   constructor(props) {
@@ -21,6 +22,13 @@ class SideBar extends Component {
     this.props.getFolder(this.props.userId);
   }
 
+  componentWillReceiveProps(prevProps) {
+    if (prevProps.userId != this.props.userId) {
+      this.props.loadTasks(this.props.userId);
+      this.props.getFolder(this.props.userId);
+    }
+  }
+
   toggleNav = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
@@ -32,18 +40,24 @@ class SideBar extends Component {
           className={this.state.isOpen ? { display: "hidden" } : "hover_open"}
         >
           <div className="app_profile">
-            {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
+            {/* // Ifffy */}
+            {!this.state.isOpen && (
+              <Link to="/dashboard">
+                <ProfileIcon handleClick={this.toggleNav} />{" "}
+              </Link>
+            )}
           </div>
         </div>
+
         <div
           className={
             this.state.isOpen
               ? "dashboard_navigation grow"
               : "dashboard_navigation"
           }
-          onMouseLeave={this.toggleNav}
         >
           <Profile />
+          <h5 onClick={this.toggleNav}> Close </h5>
           <Search />
           <Folders />
           <Tasks userId={this.props.userId} data={this.props.taskData} />

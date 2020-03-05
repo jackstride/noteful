@@ -10,6 +10,9 @@ import Summary from "./Summary";
 import Settings from "./Settings";
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.loadUser();
+  }
   render() {
     return (
       <div className="app_container">
