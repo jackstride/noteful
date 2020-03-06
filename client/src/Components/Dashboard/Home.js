@@ -30,10 +30,10 @@ class Home extends Component {
           <SideNav />
           <Switch>
             <Route exact path="/dashboard" component={Summary} />
-            <Route path="/dashboard/settings" component={Settings} />
-            <Route exact path="/dashboard/:search" component={Search} />
+            <Route exact path="/dashboard/settings" component={Settings} />
             <Route exact path="/dashboard/:folder" component={Folders} />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
+            <Route exact path="/dashboard/search/search" component={Search} />
           </Switch>
         </BrowserRouter>
       </div>

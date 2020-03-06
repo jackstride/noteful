@@ -10,7 +10,8 @@ const Search = ({ notes }) => {
   useEffect(() => {
     let search = history.location.search;
     let length = search.length;
-    let query = search.slice(7, length);
+    let query = search.slice(2, length);
+    console.log(query);
     let getNotes = notes.filter(note => note.note_title.includes(query));
     setResults(getNotes);
   }, [history.location.search]);

@@ -5,13 +5,13 @@ const Search = props => {
   let history = useHistory();
 
   let handleClick = () => {
-    history.push("/dashboard/search");
+    history.push("/dashboard/search/search");
   };
 
   let handleOnChange = e => {
     let path = history.location.pathname;
     // console.log(e.target.value);
-    history.replace("/dashboard/search?query=" + e.target.value);
+    history.replace("/dashboard/search/search?=" + e.target.value);
   };
 
   return (
