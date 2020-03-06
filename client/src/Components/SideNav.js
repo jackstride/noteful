@@ -19,13 +19,16 @@ class SideBar extends Component {
   }
   componentDidMount() {
     this.props.loadTasks(this.props.userId);
-    this.props.getFolder(this.props.userId);
+    // this.props.getFolder(this.props.userId);
+    // console.log(this.props.folder);
   }
 
-  componentWillReceiveProps(prevProps) {
+  componentDidUpdate(prevProps) {
+    console.log(prevProps);
     if (prevProps.userId != this.props.userId) {
       this.props.loadTasks(this.props.userId);
       this.props.getFolder(this.props.userId);
+      console.log("YESSSSSSS");
     }
   }
 
@@ -65,7 +68,8 @@ class SideBar extends Component {
 const mapStateToProps = state => {
   return {
     userId: state.auth.user._id,
-    taskData: state.task.taskData
+    taskData: state.task.taskData,
+    folder: state.folder.data
   };
 };
 

@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Notes from "./Notes/Notes";
 
+// Needs to load ALLLL NOTESSSSSS
+
 const Search = ({ notes }) => {
   const [results, setResults] = useState([]);
   const history = useHistory();

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
 import SideNav from "../SideNav";
 import { loadUser } from "../../actions/authActions";
+import { getFolder } from "../../actions/FolderActions";
 import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
 import Summary from "./Summary";
@@ -15,14 +16,12 @@ class Home extends Component {
   componentDidMount() {
     setDarkMode();
   }
-  // Maybe update this
-  // componentDidMount() {
-  //   if (this.props.auth) {
-  //     this.props.loadUser();
-  //   } else {
-  //     this.props.history.push("/");
-  //   }
-  // }
+
+  componentDidMount() {
+    this.props.getFolder(this.props.id);
+    console.log(this.props.id);
+    console.log("running");
+  }
   render() {
     return (
       <div className="app_container">
@@ -43,12 +42,14 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth.isAuthenticated
+    auth: state.auth.isAuthenticated,
+    id: state.auth.user._id
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadUser: () => dispatch(loadUser())
+  loadUser: () => dispatch(loadUser()),
+  getFolder: id => dispatch(getFolder(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -47,12 +47,10 @@ let Folders = ({
     return name;
   };
 
-  getFolderName();
-
   return (
     <div className="folder_page">
       <div className="folders_heading">
-        <h2>{getFolderName()}</h2>
+        <h2>{getFolderName() || "E"}</h2>
         <span
           className="add_folder"
           onClick={() => {
