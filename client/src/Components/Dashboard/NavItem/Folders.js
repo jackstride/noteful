@@ -22,6 +22,10 @@ class Folders extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getFolder(this.props.userId);
+  }
+
   onRightClicked = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
