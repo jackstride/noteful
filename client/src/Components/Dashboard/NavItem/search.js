@@ -11,7 +11,6 @@ const Search = props => {
   let handleOnChange = e => {
     let path = history.location.pathname;
     // console.log(e.target.value);
-    console.log(history);
     history.replace("/dashboard/search?query=" + e.target.value);
   };
 

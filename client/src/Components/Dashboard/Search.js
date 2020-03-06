@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import Notes from "./Notes/Notes";
 
-const Search = () => {
+const Search = ({ notes }) => {
+  const [results, setResults] = useState([]);
+  const history = useHistory();
+
+  useEffect(() => {
+    let search = history.location.search;
+    let length = search.length;
+    let query = search.slice(7, length);
+    let getNotes = notes.filter(note => note.note_title.includes(query));
+    setResults(getNotes);
+  }, [history.location.search]);
+
   return (
     <div>
-      <h2> Hello</h2>
+      <Notes noteData={results} />
     </div>
   );
 };
 
-export default Search;
+const mapStateToProps = state => {
+  return {
+    notes: state.note.noteData
+  };
+};
+
+export default connect(mapStateToProps)(Search);

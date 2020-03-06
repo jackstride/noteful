@@ -34,18 +34,18 @@ let Summary = ({
         <h4> Events</h4>
       </div>
       <div className="summary_notes">
-        {notes.map(notes => (
-          <NotesHolder notes={notes} folder={folder} />
+        {notes.map((notes, index) => (
+          <NotesHolder key={index} notes={notes} folder={folder} />
         ))}
       </div>
       <div className="summary_tasks">
-        {tasks.map(tasks => (
-          <TasksHolder task={tasks} mark={toggleTask} />
+        {tasks.map((tasks, index) => (
+          <TasksHolder key={index} task={tasks} mark={toggleTask} />
         ))}
       </div>
       <div className="summary_tasks">
-        {tasks.map(tasks => (
-          <TasksHolder task={tasks} />
+        {tasks.map((tasks, index) => (
+          <TasksHolder key={index} task={tasks} />
         ))}
       </div>
     </div>
