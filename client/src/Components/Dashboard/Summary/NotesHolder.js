@@ -7,7 +7,7 @@ import { getFolder } from "../../../actions/FolderActions";
 const moment = require("moment");
 
 let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
-  let [folderName, setFolderName] = useState();
+  let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
     getFolder(id);
@@ -26,15 +26,15 @@ let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
     <div className="summary_holder notes">
       <div className="summary_icon">
         <div className="circle notes">
-          <span>{folderName}</span>
+          <span>{folderName[0]}</span>
         </div>
       </div>
       <div className="summary_text">
         <h6>{folderName}</h6>
-        <h5>{notes.note_title}</h5>
+        <h5>{data.note_title}</h5>
         <h6>{moment(notes.date).calendar()}</h6>
       </div>
-      <Link to={`/dashboard/notes/${notes._id}`}></Link>
+      <Link to={`/dashboard/notes/${data._id}`}></Link>
     </div>
   );
 };
