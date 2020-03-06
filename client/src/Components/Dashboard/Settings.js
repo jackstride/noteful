@@ -1,40 +1,54 @@
 import React, { useEffect } from "react";
-import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  NavLink,
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
 import Profile from "./NavItem/profileIcon";
-
-let Test = () => {
-  useEffect(() => {
-    console.log("hello");
-  });
-  return (
-    <div className="hello">
-      <h1>HELLLOOOO</h1>
-    </div>
-  );
-};
+import Account from "./settings/Account";
 
 const Settings = () => {
   return (
     <div className="settings_container">
       <div className="settings_main">
         <div className="settings_nav">
+          <h1> Settings </h1>
           <nav>
             <ul>
-              <Link to="/dashboard/settings/account">Account</Link>
-
               <li>
-                <Link to="/dashboard/settings/password">Password</Link>
+                <NavLink
+                  activeClassName="settings_active"
+                  to="/dashboard/settings/account"
+                >
+                  Account
+                </NavLink>
               </li>
               <li>
-                <Link to="/dashboard/settings/account">Help</Link>
+                <NavLink
+                  activeClassName="settings_active"
+                  to="/dashboard/settings/password"
+                >
+                  Password
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  activeClassName="settings_active"
+                  to="/dashboard/settings/help"
+                >
+                  Help
+                </NavLink>
               </li>
             </ul>
           </nav>
+          <hr className="settings_hr"></hr>
         </div>
         <div className="settings_content">
           <Switch>
-            <Route path="/dashboard/settings/account" component={Profile} />
-            <Route path="/dashboard/settings/password" component={Test} />
+            <Route path="/dashboard/settings/account" component={Account} />
+            <Route path="/dashboard/settings/password" component={Profile} />
+            <Route path="/dashboard/settings/help" component={Profile} />
           </Switch>
         </div>
       </div>
