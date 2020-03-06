@@ -20,39 +20,120 @@ $Black: #323232;
 
 
 // Dark app themes
-$DarkAppBackgroundColor: #121212;
-$DarkAppGreyTwo: #1E1E1E;
-$DarkAppGreyThree: rgb(45, 45, 45);
-$DarkAppHeading: #f8f8f8;
+$DABackground: #13131c;
+$DABackgroundLight: #161621;
 
 
+// Shortest time way to do it but tedious
+//Headings
+$DAHeadingOne: black;
+$DAHeading: #e4e4e4;
+$DAHeadingLighter: #888888;
+$DAHeadingHover: #1E1D27;
+$DAHeadingGrey: rgb(141, 141, 141);
 
-
-
-
-// Shortest time way to do it but tedious 
 .app_container.dark-mode {
-    background-color: $DarkAppBackgroundColor;
+    //Default
+    background-color: $DABackground;
 
     .dashboard_navigation {
-        background-color: $DarkAppGreyTwo;
+        background-color: $DABackgroundLight;
+    }
+
+    h4,
+    h5 {
+        color: $DAHeading;
+    }
+
+    h6 {
+        color: $DAHeadingLighter;
     }
 
     h1,
     h2,
     h3,
-    h4,
-    h5,
-    h6,
     span,
     a,
     li {
-        color: $DarkAppHeading;
-
+        color: #d6d6d6;
     }
 
+
+    // Navigaton Bar
+    .profile_container {
+        .fa-cog {
+            color: white;
+        }
+
+        .fa-times {
+            color: #191C1F;
+
+            :hover {
+                color: white;
+            }
+        }
+    }
+
+    .app_search {
+        input {
+            background-color: $DAHeadingHover;
+        }
+    }
+
+    //Folders widget
+
+    .w_contents {
+        li a {
+            color: $DAHeadingGrey;
+        }
+
+        li:hover {
+            background-color: $DAHeadingHover;
+        }
+    }
+
+    .fa-trash {
+        color: white;
+    }
+
+
+
+    // Tasks
+
+    .task_form {
+
+        .task_isCompleted {
+            text-decoration: line-through;
+            color: #00E676;
+        }
+
+        label {
+            color: $DAHeadingLighter
+        }
+
+        input:checked+label:after {
+
+            border: 2px solid #00E676;
+            background-color: #00E676;
+        }
+    }
+
+
+    // Summary Page
 
     .summary_holder {
-        background-color: $DarkAppGreyThree;
+        background-color: $DABackgroundLight;
     }
+
+    .circle.tasks {
+        background-color: #00E676;
+
+        .fa-check {
+            color: #00C853;
+        }
+    }
+
+
+
+
 }

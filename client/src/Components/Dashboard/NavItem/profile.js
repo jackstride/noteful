@@ -15,7 +15,7 @@ let Profile = props => {
         <ProfileIcon />
       </Link>
       <div className="profile_name">
-        <h5 style={{ color: "black" }}>{props.user}</h5>
+        <h5>{props.user}</h5>
       </div>
       <div className="profile_setting">
         <FontAwesomeIcon

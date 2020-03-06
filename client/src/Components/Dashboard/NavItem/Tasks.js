@@ -59,11 +59,7 @@ class Todo extends Component {
               onChange={() => this.handleToggle(key._id)}
             ></input>
             <label
-              style={
-                key.isCompleted
-                  ? { textDecoration: "line-through", color: "#75daad" }
-                  : null
-              }
+              className={key.isCompleted ? "task_isCompleted" : null}
               onMouseEnter={e => this.handleHover(e)}
               id={key._id}
               name={key.task_name}

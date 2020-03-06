@@ -92,11 +92,7 @@ let TasksHolder = ({ task, mark }) => {
     >
       <div className="summary_icon">
         <div
-          style={
-            complete
-              ? { backgroundColor: "rgba(133,255,0,0.50)" }
-              : { backgroundColor: "#ECECEC" }
-          }
+          style={complete ? null : { backgroundColor: "#ECECEC" }}
           className="circle tasks"
         >
           {complete ? (
