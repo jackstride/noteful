@@ -12,12 +12,9 @@
     top: 0;
     left: 0;
 
-
-
     .hover_image {
         width: 40px;
         height: 40px;
-        background-color: lightgrey;
         border-radius: 12px;
         position: absolute;
         top: 15px;
@@ -26,26 +23,19 @@
     }
 }
 
-
-
 /* Dashboard Navigation */
-
 .dashboard_navigation {
     transition: width .2s linear;
     width: 0px;
     height: 100%;
     overflow: hidden;
-    background-color: white;
+    background-color: $white;
 }
 
 .grow {
     width: 300px;
     transition: width .2s linear;
 }
-
-
-
-
 
 /* Profile */
 
@@ -73,11 +63,9 @@
     justify-content: center;
 
     span {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: 600px;
         color: #f8f8f8;
     }
-
 }
 
 .app_profile {
@@ -115,18 +103,17 @@
         }
 
         .fa-times:hover {
-            color: #323232;
+            color: $AppDarkGrey;
         }
     }
 }
-
 
 //Nav Options 
 nav.options {
     position: absolute;
     top: 50px;
     left: 100px;
-    background-color: white;
+    background-color: $white;
     height: inherit;
     width: 200px;
     border-radius: 8px;
@@ -135,7 +122,6 @@ nav.options {
 
     li {
         display: block;
-
     }
 
     a {
@@ -143,11 +129,7 @@ nav.options {
     }
 }
 
-
-
-
 //Search 
-
 .app_search {
     width: 90%;
     margin: 0 auto;
@@ -156,16 +138,14 @@ nav.options {
     input {
         width: 100%;
         height: 30px;
-        background-color: rgb(231, 231, 231);
+        background-color: $AppLightGrey;
         border: none;
         border-radius: 8px;
         padding: 10px;
     }
 }
 
-
 /* Folder Widget */
-
 .widget {
     height: calc(100vh / 5);
     width: 90%;
@@ -206,17 +186,13 @@ nav.options {
     li:hover {
         border-radius: 6px;
         width: 100%;
-        background-color: rgb(236, 236, 236);
+        background-color: $AppLightGrey;
     }
 
     li a {
         font-size: 14px;
-        color: $black;
+        color: $AppDarkGrey;
         font-weight: 500;
-    }
-
-    a:hover {
-        color: rgb(90, 90, 90);
     }
 
     a {
@@ -226,7 +202,6 @@ nav.options {
     }
 }
 
-
 .w_contents {
     overflow-x: auto;
     height: inherit;
@@ -235,7 +210,6 @@ nav.options {
     li {
         display: flex;
     }
-
 }
 
 .plus {
@@ -243,8 +217,8 @@ nav.options {
     width: 30px;
     height: 30px;
     background:
-        linear-gradient($black, $black),
-        linear-gradient($black, $black);
+        linear-gradient($DarkGrey, $DarkGrey),
+        linear-gradient($DarkGrey, $DarkGrey);
     background-position: center;
     background-size: 30% 2px, 2px 30%;
     /*thickness = 2px, length = 50% (25px)*/
@@ -264,7 +238,7 @@ nav.options {
             // user-select: none;
             border: none;
             font-size: 14px;
-            color: $black;
+            color: $DarkGrey;
             font-weight: 500;
             padding: 5px 0px;
             background-color: rgb(236, 236, 236);
@@ -272,8 +246,6 @@ nav.options {
         }
     }
 }
-
-
 
 /* Tasks Form */
 
@@ -289,13 +261,11 @@ form.task_form {
     }
 
     label {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 14px;
-        color: $black;
+        color: $DarkGrey;
         font-weight: 500;
         width: 100%;
     }
-
 
     input {
         height: 20px;
@@ -323,7 +293,6 @@ form.task_form {
         cursor: pointer;
         border-radius: 5px;
         margin-right: 5px;
-
     }
 
     input:checked+label:after {
@@ -362,7 +331,7 @@ form.task_form {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: $orange;
+            background-color: $Orange;
             border-radius: 50%;
             color: white;
             cursor: pointer;
@@ -399,13 +368,9 @@ form.task_form {
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     align-items: center;
 
-
     span {
         z-index: 1;
     }
-
-
-
 }
 
 
@@ -413,7 +378,7 @@ form.task_form {
 /* Context Menu */
 
 .contextMenu {
-    background-color: white;
+    background-color: $white;
     width: 10%;
     height: fit-content;
     padding: 15px;
@@ -421,12 +386,10 @@ form.task_form {
     z-index: 1;
 
     li a {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 12px;
         text-decoration: none;
         font-weight: 600;
-        color: black;
-
+        color: $AppDarkGrey;
     }
 
     li {
@@ -435,7 +398,7 @@ form.task_form {
     }
 
     li:hover {
-        background-color: $orange;
+        background-color: $Orange;
 
     }
 }

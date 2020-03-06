@@ -1,52 +1,58 @@
-$darkblue: #2962FF;
-$BG: #F1F3F6;
+// Website
+$DarkGrey:#191C1F; // h1
+$BackgroundColor: #FBF0E4; // Main Background color
 $whiteText: #FDFDFD;
-$black: #323232;
-$whiteBG: #ffffff;
-$widgetGrey: #F5F5F5;
-
-
-
-
-
-/* New */
-
-
-$Background: #F1F3F6;
 $HeadingGrey: #323232;
-$SubGrey: #6B6868;
-$BlueBackground: #202D5A;
-
-
-
-
-/* New */
-
-
-
-$blue: #5F6CAF;
-$orange: #FF8364;
-$orangeShade: rgba(255, 182, 119, .25);
-$heading: #323232;
-$white: #F1F3F6;
-$purple: #202D5A;
-
-
-
-
-
-
-
-/* New Feb */
-$backgroundColor: #FBF0E4;
 $headingFont: 'Eczar',
 serif;
-$navGrey : #191C1F;
-$darkGrey:#191C1F;
-$lightGrey: #6B6868;
 
 
 
-body.dark-mode {
-    background-color: $orange;
+// App
+$AppDarkGrey: #191C1F;
+$AppBackgroundColor:#F8F8F8;
+$AppLightGrey: rgb(230, 230, 230);
+$white: white;
+$headingMain: #323232;
+$Orange: #FF8364;
+$Black: #323232;
+
+
+
+// Dark app themes
+$DarkAppBackgroundColor: #121212;
+$DarkAppGreyTwo: #1E1E1E;
+$DarkAppGreyThree: rgb(45, 45, 45);
+$DarkAppHeading: #f8f8f8;
+
+
+
+
+
+
+// Shortest time way to do it but tedious 
+.app_container.dark-mode {
+    background-color: $DarkAppBackgroundColor;
+
+    .dashboard_navigation {
+        background-color: $DarkAppGreyTwo;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    a,
+    li {
+        color: $DarkAppHeading;
+
+    }
+
+
+    .summary_holder {
+        background-color: $DarkAppGreyThree;
+    }
 }

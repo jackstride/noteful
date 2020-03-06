@@ -5,8 +5,9 @@ const DarkMode = () => {
 
   useEffect(() => {
     if (theme) {
-      document.body.classList.add("dark-mode");
+      document.querySelector(".app_container").classList.add("dark-mode");
       localStorage.setItem("dark_mode", theme);
+    } else {
     }
   }, [theme]);
   return <span></span>;

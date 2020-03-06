@@ -1,7 +1,7 @@
 header {
     width: 100%;
     height: 80vh;
-    background-color: $backgroundColor;
+    background-color: $BackgroundColor;
 
     .inner_container {
         position: relative;
@@ -56,7 +56,7 @@ header {
             background-repeat: no-repeat;
             background-size: 0% 100%;
             transition: background-size .5s, color .5s;
-            color: $backgroundColor;
+            color: $BackgroundColor;
         }
 
         input:hover {
@@ -87,7 +87,7 @@ header {
     svg {
         height: 60%;
         animation: move 10s ease-in-out infinite;
-    transform: translate(50% 50%);
+        transform: translate(50% 50%);
     }
 }
 
@@ -101,10 +101,11 @@ header {
 /* tag info */
 
 .tag_info {
-    background-color: $backgroundColor;
+    background-color: $BackgroundColor;
     width: 100%;
     display: flex;
     flex-direction: row;
+
     h4 {
         padding-right: 100px;
     }
@@ -114,13 +115,14 @@ header {
 //Card
 .card_container {
     background-color: white;
-    box-shadow: 5px 13px 26px -15px rgba(0,0,0,0.42);
+    box-shadow: 5px 13px 26px -15px rgba(0, 0, 0, 0.42);
     border-radius: 13px;
     align-self: center;
     width: 100%;
 
     .card_center {
         padding: 40px;
+
         h3 {
             padding-bottom: 10px;
         }
@@ -136,7 +138,7 @@ header {
 
 
 // Fist Set of Cards
-.cards_grid{
+.cards_grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100%;
@@ -153,17 +155,17 @@ header {
 
 
 
-.cards_col{
+.cards_col {
     grid-column: 2;
     grid-row: 1;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr;
     width: 50%;
-    
+
 
     :first-child {
-        align-self:end;
+        align-self: end;
     }
 }
 
@@ -192,11 +194,9 @@ header {
 
 
 .home_features {
-        height: fit-content;
-        display: grid;
-        grid-template-columns: repeat(3,1fr);
-        grid-template-rows: 1fr;
-        gap: 2vw;
+    height: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    gap: 2vw;
 }
-
-

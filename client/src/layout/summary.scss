@@ -20,11 +20,9 @@
 
 }
 
-
-
 .summary_holder {
     border-radius: 12px;
-    background-color: white;
+    background-color: $white;
     display: grid;
     grid-template-columns: 20% 80%;
     position: relative;
@@ -40,7 +38,6 @@
 }
 
 .summary_holder.notes span {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 600;
     color: #405AFF;
 }
