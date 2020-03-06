@@ -1,50 +1,21 @@
-.settings_container {
+.settings_main {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
     display: grid;
+    grid-template-columns: 20% 100%;
     grid-template-rows: 1fr;
-    grid-template-columns: 20% 1fr;
+    border-radius: 12px;
+}
 
-    .settings_left {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-
-
-        .settings_header {
-            height: 200px;
-        }
-
-        .settings_nav_list {
-            width: 100%;
-
-            ul li {
-                display: block;
-            }
-
-            li {
-                font-size: 22px;
-                padding: 10px 0px;
-                cursor: pointer;
-            }
-        }
-    }
+.settings_nav {
+    height: 100%;
 
 }
 
 
-
-.settings_form {
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    input {
-        width: 50%;
-        margin: 20px 0px;
-        height: 45px;
-        border: 2px solid $AppLightGrey;
-        border-radius: 4px;
-    }
+.hello {
+    width: 100%;
+    height: 100%;
+    background-color: blue;
 }

@@ -1,86 +1,45 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
+import { Link, BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Profile from "./NavItem/profileIcon";
 
-export default class Settings extends Component {
-    constructor(props) {
-        super(props)
+let Test = () => {
+  useEffect(() => {
+    console.log("hello");
+  });
+  return (
+    <div className="hello">
+      <h1>HELLLOOOO</h1>
+    </div>
+  );
+};
 
-        this.state = {
-            accountShow: true,
-            deleteShow: false,
-            contactShow: false,
-        }
-    }
-
-
-    handleToggle = (edit,request,contact) => {
-        this.setState({accountShow: edit,deleteShow:request,contactShow:contact})
-    }
-
-
-  render() {
-      const {accountShow,deleteShow,contactShow} = this.state;
-    return (
-      <div className="settings_container">
-        <div className="settings_left">
-          <div className="settings_header">
-            <h1> Settings </h1>
-          </div>
-          <div className="settings_nav_list">
+const Settings = () => {
+  return (
+    <div className="settings_container">
+      <div className="settings_main">
+        <div className="settings_nav">
+          <nav>
             <ul>
-              <li onClick={(e) => this.handleToggle(true,false,false)}>Accounts Settings</li>
-              <li onClick={(e) => this.handleToggle(false,true,false)}>Request to delete account</li>
-              <li onClick={(e) => this.handleToggle(false,false,true)}>Contact</li>
+              <Link to="/dashboard/settings/account">Account</Link>
+
+              <li>
+                <Link to="/dashboard/settings/password">Password</Link>
+              </li>
+              <li>
+                <Link to="/dashboard/settings/account">Help</Link>
+              </li>
             </ul>
-          </div>
+          </nav>
         </div>
-        <div className="settings_right">
-        {accountShow ? <AccountSettings /> : deleteShow ? <DeleteRequest /> : contactShow ? <Contact /> : <AccountSettings />}
+        <div className="settings_content">
+          <Switch>
+            <Route path="/dashboard/settings/account" component={Profile} />
+            <Route path="/dashboard/settings/password" component={Test} />
+          </Switch>
         </div>
       </div>
-    );
-  }
-}
-
-let AccountSettings = () => {
-    return (
-        <div className="settings_form">
-            <form>
-                <input type="text" placeholder="First Name" />
-                <input type="text" placeholder="Last Name" />
-                <input type="text" placeholder="Email Address" />
-                <input type="submit" value="Update" />
-            </form>
-        </div>
-    )
-}
-
-
-
-let DeleteRequest = () => {
-    return(
-        <div className="delete_account">
-            <div className="settings_form">
-                <form>
-                    <input type="text" placeholder="Enter your first Name"></input>
-                    <input type="text" placeholder="Confirm your email address"></input>
-                    <input type="submit" value="Update" />
-                </form>
-            </div>
-            
-        </div>
-    )
-}
-
-let Contact = () => {
-    return(
-    <div className="setting_conta">
-        <div className="settings_form">
-                <form>
-                    <input type="text" placeholder="Enter your first Name"></input>
-                    <input type="text" placeholder="Enter your email address"></input>
-                    <input type="submit" value="Send" />
-                </form>
-            </div>
     </div>
-    )
-}
+  );
+};
+
+export default Settings;
