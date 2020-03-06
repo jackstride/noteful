@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
 
-let search = props => {
+const Search = props => {
+  let history = useHistory();
+
+  let handleClick = () => {
+    history.push("/dashboard/search");
+  };
+
+  let handleOnChange = e => {
+    let path = history.location.pathname;
+    // console.log(e.target.value);
+    console.log(history);
+    history.replace("/dashboard/search" + e.target.value);
+  };
+
   return (
     <div className="app_search">
-      <input type="search" placeholder="# Search"></input>
+      <input
+        onClick={() => {
+          handleClick();
+        }}
+        onChange={e => {
+          handleOnChange(e);
+        }}
+        type="search"
+        placeholder="# Search"
+      ></input>
     </div>
   );
 };
 
-export default search;
+export default Search;

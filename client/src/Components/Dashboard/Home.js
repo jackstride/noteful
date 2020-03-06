@@ -7,6 +7,7 @@ import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
 import Summary from "./Summary";
 import { setDarkMode } from "../../helpers/helperFunctions";
+import Search from "./Search";
 
 import Settings from "./Settings";
 
@@ -30,6 +31,7 @@ class Home extends Component {
           <Switch>
             <Route exact path="/dashboard" component={Summary} />
             <Route path="/dashboard/settings" component={Settings} />
+            <Route exact path="/dashboard/:search" component={Search} />
             <Route exact path="/dashboard/:folder" component={Folders} />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
           </Switch>
