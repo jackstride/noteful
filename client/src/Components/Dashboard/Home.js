@@ -6,7 +6,7 @@ import { loadUser } from "../../actions/authActions";
 import { getFolder } from "../../actions/FolderActions";
 import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
-import Summary from "./Summary";
+import Summary from ".//Summary/Summary";
 import { setDarkMode } from "../../helpers/helperFunctions";
 import Search from "./Search";
 
@@ -19,8 +19,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.getFolder(this.props.id);
-    console.log(this.props.id);
-    console.log("running");
   }
   render() {
     return (

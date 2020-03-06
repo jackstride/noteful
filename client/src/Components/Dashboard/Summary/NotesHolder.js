@@ -6,29 +6,31 @@ import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
 const moment = require("moment");
 
-let NotesHolder = ({ notes, folder, getFolder, id }) => {
+let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
   let [folderName, setFolderName] = useState();
 
   useEffect(() => {
     getFolder(id);
-  });
+    returnName();
+  }, [id]);
 
-  useEffect(() => {
-    let noteFolderId = notes.folder_id;
-    let name = folder.filter(folder => folder._id === noteFolderId);
-    console.log(folderName);
-    setFolderName(name[0].folder_name);
-  }, []);
+  let returnName = () => {
+    let noteFolderId = data.folder_id;
+    let name = folder.filter(data => data._id == noteFolderId);
+    name = name[0].folder_name;
+    setFolderName(name);
+  };
 
+  console.log(folderName);
   return (
     <div className="summary_holder notes">
       <div className="summary_icon">
         <div className="circle notes">
-          <span>{folderName[0]}</span>
+          <span>{folderName}</span>
         </div>
       </div>
       <div className="summary_text">
-        {/* <h6>{getFoldername() || "E"}</h6> */}
+        <h6>{folderName}</h6>
         <h5>{notes.note_title}</h5>
         <h6>{moment(notes.date).calendar()}</h6>
       </div>

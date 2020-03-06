@@ -24,7 +24,6 @@ class SideBar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
     if (prevProps.userId != this.props.userId) {
       this.props.loadTasks(this.props.userId);
       this.props.getFolder(this.props.userId);

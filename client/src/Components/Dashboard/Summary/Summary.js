@@ -1,11 +1,12 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
-import { loadTasks, toggleTask } from "../../actions/taskActions";
-import { getNotes } from "../../actions/NoteActions";
-import { getFolder } from "../../actions/FolderActions";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../../fontawesome";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../../fontawesome";
+import { loadTasks, toggleTask } from "../../../actions/taskActions";
+import { getNotes } from "../../../actions/NoteActions";
+import { getFolder } from "../../../actions/FolderActions";
+import NotesHolder from "../Summary/NotesHolder";
 const moment = require("moment");
 
 let Summary = ({
@@ -20,7 +21,6 @@ let Summary = ({
   useEffect(() => {
     loadTasks(id);
     getNotes(id);
-    getFolder(id);
   }, [id]);
   return (
     <div className="summary_container">
@@ -34,10 +34,9 @@ let Summary = ({
         <h4> Events</h4>
       </div>
       <div className="summary_notes">
-        {folder &&
-          notes.map((notes, index) => (
-            <NotesHolder key={index} notes={notes} folder={folder} />
-          ))}
+        {notes.map((note, index) => (
+          <NotesHolder data={note} key={index} />
+        ))}
       </div>
       <div className="summary_tasks">
         {tasks.map((tasks, index) => (
@@ -109,33 +108,6 @@ let TasksHolder = ({ task, mark }) => {
         <h6>{task.isCompleted ? "Completed" : "Not Completed"}</h6>
         <h5>{task.task_name}</h5>
       </div>
-    </div>
-  );
-};
-
-let NotesHolder = ({ notes, folder }) => {
-  let [folderName, setFolderName] = useState("E");
-
-  useEffect(() => {
-    // Getting old props// Hold on
-    let noteFolderId = notes.folder_id;
-    let name = folder.filter(folder => folder._id === noteFolderId);
-    setFolderName(name[0].folder_name);
-  }, [folder, notes]);
-
-  return (
-    <div className="summary_holder notes">
-      <div className="summary_icon">
-        <div className="circle notes">
-          <span>{folderName[0]}</span>
-        </div>
-      </div>
-      <div className="summary_text">
-        {/* <h6>{getFoldername() || "E"}</h6> */}
-        <h5>{notes.note_title}</h5>
-        <h6>{moment(notes.date).calendar()}</h6>
-      </div>
-      <Link to={`/dashboard/notes/${notes._id}`}></Link>
     </div>
   );
 };
