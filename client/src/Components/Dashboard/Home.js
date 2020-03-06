@@ -6,11 +6,14 @@ import { loadUser } from "../../actions/authActions";
 import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
 import Summary from "./Summary";
-import DarkMode from "./DarkMode";
+import { setDarkMode } from "../../helpers/helperFunctions";
 
 import Settings from "./Settings";
 
 class Home extends Component {
+  componentDidMount() {
+    setDarkMode();
+  }
   // Maybe update this
   // componentDidMount() {
   //   if (this.props.auth) {
@@ -31,7 +34,6 @@ class Home extends Component {
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
           </Switch>
         </BrowserRouter>
-        <DarkMode />
       </div>
     );
   }

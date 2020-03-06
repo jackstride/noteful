@@ -4,3 +4,12 @@ export const randomColor = () => {
   let newColour = colors[randomNumber];
   return newColour;
 };
+
+export const setDarkMode = () => {
+  let isSet = JSON.parse(localStorage.getItem("dark_mode"));
+  if (isSet) {
+    document.querySelector(".app_container").classList.add("dark-mode");
+  } else {
+    document.querySelector(".app_container").classList.remove("dark-mode");
+  }
+};

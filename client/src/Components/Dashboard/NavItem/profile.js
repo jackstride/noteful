@@ -32,22 +32,35 @@ let Profile = props => {
           color="#e8e8e8"
         />
 
-        {settings ? <Options /> : null}
+        {settings ? <Options toggle={openSettings} /> : null}
       </div>
     </div>
   );
 };
 
-let Options = props => {
-  let history = useHistory();
+let Options = ({ toggle }) => {
   return (
     <nav className="options">
       <ul>
         <li>
-          <Link to="/dashboard/settings">Edit your settings</Link>
+          <Link
+            onClick={() => {
+              toggle(false);
+            }}
+            to="/dashboard/settings"
+          >
+            Edit your settings
+          </Link>
         </li>
         <li></li>
-        <Link to="/logout">Logout</Link>
+        <Link
+          onClick={() => {
+            toggle(false);
+          }}
+          to="/logout"
+        >
+          Logout
+        </Link>
       </ul>
     </nav>
   );

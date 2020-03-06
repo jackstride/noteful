@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   NavLink,
   BrowserRouter as Router,
@@ -9,6 +9,21 @@ import Profile from "./NavItem/profileIcon";
 import Account from "./settings/Account";
 
 const Settings = () => {
+  let [check, isChecked] = useState();
+
+  useEffect(() => {
+    let dark = JSON.parse(localStorage.getItem("dark_mode"));
+    isChecked(dark);
+    dark
+      ? document.querySelector(".app_container").classList.add("dark-mode")
+      : document.querySelector(".app_container").classList.remove("dark-mode");
+  }, [check]);
+
+  let handleToggle = () => {
+    isChecked(!check);
+    localStorage.setItem("dark_mode", JSON.stringify(!check));
+  };
+
   return (
     <div className="settings_container">
       <div className="settings_main">
@@ -40,8 +55,21 @@ const Settings = () => {
                   Help
                 </NavLink>
               </li>
+              <div className="toggle_theme">
+                <label className="switch">
+                  <input
+                    onClick={() => {
+                      handleToggle();
+                    }}
+                    defaultChecked={check}
+                    type="checkbox"
+                  />
+                  <span className="slider round"></span>
+                </label>
+              </div>
             </ul>
           </nav>
+
           <hr className="settings_hr"></hr>
         </div>
         <div className="settings_content">
