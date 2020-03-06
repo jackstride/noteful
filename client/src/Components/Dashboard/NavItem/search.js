@@ -1,15 +1,11 @@
-import React from 'react'
+import React from "react";
 
-
-
-let search = (props) => {
-    return (
+let search = props => {
+  return (
     <div className="app_search">
-    <input type="search" placeholder="search"></input>
+      <input type="search" placeholder="# Search"></input>
     </div>
-    )
-}
+  );
+};
 
-
-
-export default search
+export default search;

@@ -91,6 +91,7 @@
     flex-direction: row;
     align-items: center;
     margin: 0 auto;
+    padding: 10px 0px;
 
     .profile_image {
         margin: 0;
@@ -148,47 +149,31 @@ nav.options {
 //Search 
 
 .app_search {
-
     width: 90%;
     margin: 0 auto;
     padding: 10px 0px;
 
-    :placeholder-shown {
-        padding-left: 10px;
-    }
-
-    :active {
-        padding-left: 10px;
-
-    }
-
     input {
         width: 100%;
         height: 30px;
-        background-color: rgb(228, 228, 228);
+        background-color: rgb(231, 231, 231);
         border: none;
         border-radius: 8px;
+        padding: 10px;
     }
 }
-
-
-
 
 
 /* Folder Widget */
 
 .widget {
     height: calc(100vh / 5);
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 20px 0px;
 }
 
 .widget_header {
-    width: 100%;
-    height: 20px;
-    margin: 0 auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -198,8 +183,6 @@ nav.options {
 .widget_content {
     width: 100%;
     margin: 0 auto;
-    border-radius: 8px;
-    height: 90%;
 
     .input_multiple {
         display: flex;
@@ -214,50 +197,45 @@ nav.options {
         right: 20px;
     }
 
-    ul {
-        width: 100%;
-        margin: 0 auto;
-        padding: 0px 0px 10px;
-    }
-
     li {
         width: 100%;
         margin: 3px 0px;
+        list-style-type: disc;
     }
 
     li:hover {
         border-radius: 6px;
         width: 100%;
-        background-color: rgba(255, 182, 119, 0.25);
+        background-color: rgb(236, 236, 236);
     }
 
     li a {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-size: 14px;
         color: $black;
         font-weight: 500;
     }
 
-
     a:hover {
-        color: $orange;
+        color: rgb(90, 90, 90);
     }
 
     a {
         display: block;
         width: 100%;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding: 5px 0px;
     }
 }
+
 
 .w_contents {
     overflow-x: auto;
     height: inherit;
+    margin-left: 10px;
 
     li {
         display: flex;
     }
+
 }
 
 .plus {
@@ -276,25 +254,23 @@ nav.options {
 
 
 .input_holder {
-
     .f_form {
         position: relative;
         width: inherit;
         background: transparent;
 
         input {
-            user-select: none;
-            border: none;
-            height: auto;
             width: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            // user-select: none;
+            border: none;
             font-size: 14px;
             color: $black;
-            font-weight: 700;
-            padding-top: 10px;
+            font-weight: 500;
+            padding: 5px 0px;
+            background-color: rgb(236, 236, 236);
+            border-radius: 8px;
         }
     }
-
 }
 
 
@@ -340,12 +316,12 @@ form.task_form {
         height: 15px;
         width: 15px;
         background-color: transparent;
-        border: 2px solid grey;
+        border: 1.5px solid rgba(128, 128, 128, 0.507);
         display: inline-block;
         position: relative;
         vertical-align: middle;
         cursor: pointer;
-        border-radius: 50%;
+        border-radius: 5px;
         margin-right: 5px;
 
     }
@@ -358,9 +334,9 @@ form.task_form {
         left: 0;
         width: 15px;
         height: 15px;
-        border-radius: 50%;
-        border: 2px solid rgba(133, 255, 0, 1);
-        background-color: rgba(133, 255, 0, 1);
+        border-radius: 5px;
+        border: 2px solid #75daad;
+        background-color: #75daad;
     }
 }
 

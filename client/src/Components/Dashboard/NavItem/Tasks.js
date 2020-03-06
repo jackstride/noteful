@@ -61,7 +61,7 @@ class Todo extends Component {
             <label
               style={
                 key.isCompleted
-                  ? { textDecoration: "line-through", color: "#FF8364" }
+                  ? { textDecoration: "line-through", color: "#75daad" }
                   : null
               }
               onMouseEnter={e => this.handleHover(e)}

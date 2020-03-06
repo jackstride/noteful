@@ -6,6 +6,7 @@ import { loadUser } from "../../actions/authActions";
 import Editor from "../TextEditor/Editor";
 import Folders from "./Folders/Folders";
 import Summary from "./Summary";
+import DarkMode from "./DarkMode";
 
 import Settings from "./Settings";
 
@@ -30,6 +31,7 @@ class Home extends Component {
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
           </Switch>
         </BrowserRouter>
+        <DarkMode />
       </div>
     );
   }

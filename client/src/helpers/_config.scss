@@ -1,4 +1,3 @@
-
 $darkblue: #2962FF;
 $BG: #F1F3F6;
 $whiteText: #FDFDFD;
@@ -25,9 +24,9 @@ $BlueBackground: #202D5A;
 
 
 
-$blue:  #5F6CAF;
+$blue: #5F6CAF;
 $orange: #FF8364;
-$orangeShade: rgba(255,182,119,.25);
+$orangeShade: rgba(255, 182, 119, .25);
 $heading: #323232;
 $white: #F1F3F6;
 $purple: #202D5A;
@@ -40,7 +39,14 @@ $purple: #202D5A;
 
 /* New Feb */
 $backgroundColor: #FBF0E4;
-$headingFont: 'Eczar', serif;
+$headingFont: 'Eczar',
+serif;
 $navGrey : #191C1F;
 $darkGrey:#191C1F;
 $lightGrey: #6B6868;
+
+
+
+body.dark-mode {
+    background-color: $orange;
+}
