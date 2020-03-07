@@ -36,6 +36,7 @@ const TextEditor = ({
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
 
+  console.log(editor);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
@@ -45,11 +46,9 @@ const TextEditor = ({
         editor={editor}
         value={value}
         onChange={value => {
-          // console.log(Node.child(editor));
           setValue(value);
           const content = JSON.stringify(value);
-          let note_title =
-            value[0].children[0].text || value[0].children[0].children[0].text;
+          let note_title = editor.children[0].children[0].text;
           const values = {
             _id,
             note_title,
