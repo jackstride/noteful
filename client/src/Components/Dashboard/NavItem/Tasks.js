@@ -14,6 +14,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 
 class Todo extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  handleToggle = id => {
+    this.props.toggleTask(id);
+  };
+
   onRemoveFolder = (e, id) => {
     e.preventDefault();
     this.props.removeTask(id);
@@ -81,10 +89,6 @@ class Todo extends Component {
     );
   };
 
-  handleToggle = id => {
-    this.props.toggleTask(id);
-  };
-
   removeTask = () => {};
 
   render() {
@@ -99,6 +103,7 @@ class Todo extends Component {
             <WidgetSubmit
               addFolder={this.props.addTask}
               userid={this.props.userId}
+              toggle={this.props.toggleOpenTask}
             />
           ) : null}
           <div className="w_contents">{this.showData()}</div>

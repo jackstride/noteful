@@ -105,6 +105,7 @@ class Folders extends Component {
               <WidgetSubmit
                 addFolder={this.props.addFolder}
                 userid={this.props.userId}
+                toggle={this.props.toggleFolderOpen}
               />
             ) : null}
             {this.showFolders()}
