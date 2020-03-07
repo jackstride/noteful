@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Profile from "./NavItem/profileIcon";
 import Account from "./settings/Account";
+import Password from "./settings/Password";
 
 const Settings = () => {
   let [check, isChecked] = useState();
@@ -75,7 +76,7 @@ const Settings = () => {
         <div className="settings_content">
           <Switch>
             <Route path="/dashboard/settings/account" component={Account} />
-            <Route path="/dashboard/settings/password" component={Profile} />
+            <Route path="/dashboard/settings/password" component={Password} />
             <Route path="/dashboard/settings/help" component={Profile} />
           </Switch>
         </div>

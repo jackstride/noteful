@@ -73,55 +73,6 @@
 }
 
 
-// Account
-
-.account_container {
-    height: 100%;
-    width: 50%;
-    padding-top: 20px;
-
-
-
-
-    form {
-        display: grid;
-        grid-template-columns: 50% 50%;
-        grid-template-rows: 50% 50%;
-        gap: 30px;
-
-        input {
-            height: 45px;
-            color: $DarkGrey;
-            background-color: transparent;
-            border-radius: 5px;
-            border: 1px solid rgb(182, 182, 182);
-            padding: 5px;
-            background-color: white;
-        }
-
-
-        input[type=submit] {
-            background-color: $DarkGrey;
-            color: $BackgroundColor;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            width: 50%;
-            align-self: start;
-        }
-
-        input::placeholder {
-            color: lightgray;
-            font-size: 16px;
-        }
-    }
-}
-
-
-
-
-
-
 // Toggle Switch 
 // Initally took from https://www.w3schools.com/howto/howto_css_switch.asp
 .switch {
@@ -184,4 +135,94 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+
+.account_container,
+.settings_password {
+    height: 100%;
+    width: 60%;
+    padding-top: 20px;
+
+    label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 18px;
+        font-weight: 500;
+        color: rgb(78, 78, 78);
+    }
+
+    input {
+        height: 45px;
+        color: $DarkGrey;
+        border-radius: 5px;
+        border: 1px solid rgb(182, 182, 182);
+        padding: 5px;
+        margin-left: 10px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: 500;
+        color: rgb(78, 78, 78);
+    }
+
+
+    input[type=submit] {
+        background-color: $Orange;
+        color: $BackgroundColor;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+        align-self: start;
+    }
+
+    input::placeholder {
+        color: lightgray;
+        font-size: 16px;
+    }
+}
+
+
+/////// Edit Account Information ///////////
+.account_container {
+    form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
+        gap: 40px;
+    }
+}
+
+/////// Password ///////////
+
+.settings_password {
+    display: flex;
+    flex-direction: column;
+
+    .circle {
+        background-color: rgb(19, 214, 19);
+        width: 20px;
+        height: 20px;
+        margin-left: 10px;
+    }
+
+    .password-match {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .length,
+        .symbols,
+        .mix {
+            display: flex;
+            flex-direction: row;
+        }
+    }
+
+    width: 50%;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 }
