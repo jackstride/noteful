@@ -35,13 +35,19 @@
 }
 
 .circle {
-    width: 100%;
-
+    text-align: center;
+    width: 90%;
     border-radius: 50%;
-    transition: all .25s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all .5s ease;
+}
+
+.circle:after {
+    content: '';
+    padding-top: 100%;
+    display: table;
 }
 
 .circle.notes {
