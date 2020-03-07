@@ -14,11 +14,8 @@ import Settings from "./Settings";
 
 class Home extends Component {
   componentDidMount() {
-    setDarkMode();
-  }
-
-  componentDidMount() {
     this.props.getFolder(this.props.id);
+    setDarkMode();
   }
   render() {
     return (

@@ -1,0 +1,134 @@
+// Dark app themes
+$DANavBG: #141414;
+$DABG: #161616;
+$DABackgroundThree: rgba(255, 255, 255, 0.02);
+
+
+// Shortest time way to do it but tedious
+//Headings
+$DAHeadingOne: black;
+$DAHeading: #e4e4e4;
+$DAHeadingLighter: #888888;
+$DAHeadingHover: #1E1D27;
+$DAHeadingGrey: rgb(141, 141, 141);
+
+
+.app_container.dark-mode {
+
+    background-color: $DABG;
+
+    .svg-inline--fa {
+        color: white;
+    }
+
+    h4,
+    h5 {
+        color: $DAHeading;
+    }
+
+    h6 {
+        color: $DAHeadingLighter;
+    }
+
+    h1,
+    h2,
+    h3,
+    span,
+    a,
+    li {
+        color: #d6d6d6;
+    }
+
+
+    // Navigaton Bar
+
+    .dashboard_navigation {
+        background-color: $DANavBG;
+    }
+
+    .widget {
+        background-color: none;
+    }
+
+
+
+
+    .profile_container {
+        .fa-cog {
+            color: white;
+        }
+
+        .fa-times {
+            color: #191C1F;
+
+            :hover {
+                color: white;
+            }
+        }
+    }
+
+    .app_search {
+        input {
+            background-color: $DABackgroundThree;
+        }
+    }
+
+    //Folders widget
+
+    .w_contents {
+        li a {
+            color: $DAHeadingGrey;
+        }
+
+        li:hover {
+            background-color: $DAHeadingHover;
+        }
+    }
+
+    .fa-trash {
+        color: white;
+    }
+
+
+
+    // Tasks
+
+    .task_form {
+
+        .task_isCompleted {
+            text-decoration: line-through;
+            color: #00E676;
+        }
+
+        label {
+            color: $DAHeadingLighter
+        }
+
+        input:checked+label:after {
+
+            border: 2px solid #00E676;
+            background-color: #00E676;
+        }
+    }
+
+
+    // Summary Page
+
+
+
+    .summary_holder {
+        background-color: $DABackgroundThree;
+    }
+
+    .circle.tasks {
+        background-color: #00E676;
+
+        .fa-check {
+            color: #00C853;
+        }
+    }
+
+
+
+
+}

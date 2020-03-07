@@ -1,23 +1,69 @@
 .summary_container {
-    width: calc(95% - 150px);
-    margin: auto 0;
+    height: 100vh;
+    width: calc(90%);
+    margin: 0 calc(auto - 300px);
+}
+
+.summary_header {
+    width: 100%;
+    height: 100px;
     display: grid;
-    grid-template-columns: repeat(3, minmax(200px, 1fr));
-    grid-template-rows: minmax(100px, 1fr);
+    grid-template-columns: repeat(3, minmax(50px, 1fr));
+}
+
+.summary_heading:nth-child(1) h4:before {
+    content: "•";
+    color: blue;
+}
+
+.summary_heading:nth-child(2) h4:before {
+    content: "•";
+    color: green;
+}
+
+.summary_heading:nth-child(3) h4:before {
+    content: "•";
+    color: red;
+}
+
+.summaries {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 15px;
+    overflow-y: scroll;
+}
+
+.circle {
+    width: 100%;
+
+    border-radius: 50%;
+    transition: all .25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circle.notes {
+    background-color: rgba(112, 174, 231, 0.233);
+}
+
+
+
+.summary_heading {
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
 }
 
 .summary_notes,
 .summary_tasks,
 .summary_events {
     height: 100%;
-    width: 100%;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, 200px);
+    grid-template-rows: repeat(auto-fit, 200px);
     gap: 15px;
     overflow-y: auto;
-
 }
 
 .summary_holder {
@@ -26,7 +72,6 @@
     display: grid;
     grid-template-columns: 20% 80%;
     position: relative;
-    height: 100%;
 
     a {
         position: absolute;
@@ -59,40 +104,6 @@
     flex-direction: column;
 }
 
-.circle {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    transition: all .25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.circle.notes {
-    background-color: rgba(112, 174, 231, 0.233);
-}
-
-.summary_heading:nth-child(1) h4:before {
-    content: "•";
-    color: blue;
-}
-
-.summary_heading:nth-child(2) h4:before {
-    content: "•";
-    color: green;
-}
-
-.summary_heading:nth-child(3) h4:before {
-    content: "•";
-    color: red;
-}
-
-.summary_heading {
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-}
 
 .summary_holder.tasks:hover {
     transform: scale(0.9, 0.9);

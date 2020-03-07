@@ -21,7 +21,6 @@ let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
     setFolderName(name);
   };
 
-  console.log(folderName);
   return (
     <div className="summary_holder notes">
       <div className="summary_icon">

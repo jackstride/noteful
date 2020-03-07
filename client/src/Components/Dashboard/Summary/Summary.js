@@ -22,31 +22,36 @@ let Summary = ({
     loadTasks(id);
     getNotes(id);
   }, [id]);
+
   return (
     <div className="summary_container">
-      <div className="summary_heading">
-        <h4> Notes</h4>
+      <div className="summary_header">
+        <div className="summary_heading">
+          <h4> Notes</h4>
+        </div>
+        <div className="summary_heading">
+          <h4> Tasks</h4>
+        </div>
+        <div className="summary_heading">
+          <h4> Events</h4>
+        </div>
       </div>
-      <div className="summary_heading">
-        <h4> Tasks</h4>
-      </div>
-      <div className="summary_heading">
-        <h4> Events</h4>
-      </div>
-      <div className="summary_notes">
-        {notes.map((note, index) => (
-          <NotesHolder data={note} key={index} />
-        ))}
-      </div>
-      <div className="summary_tasks">
-        {tasks.map((tasks, index) => (
-          <TasksHolder key={index} task={tasks} mark={toggleTask} />
-        ))}
-      </div>
-      <div className="summary_tasks">
-        {tasks.map((tasks, index) => (
-          <TasksHolder key={index} task={tasks} />
-        ))}
+      <div className="summaries">
+        <div className="summary_notes">
+          {notes.map((note, index) => (
+            <NotesHolder data={note} key={index} />
+          ))}
+        </div>
+        <div className="summary_tasks">
+          {tasks.map((tasks, index) => (
+            <TasksHolder key={index} task={tasks} mark={toggleTask} />
+          ))}
+        </div>
+        <div className="summary_tasks">
+          {tasks.map((tasks, index) => (
+            <TasksHolder key={index} task={tasks} />
+          ))}
+        </div>
       </div>
     </div>
   );

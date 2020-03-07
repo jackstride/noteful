@@ -26,13 +26,11 @@
 
 /* Dashboard Navigation */
 .dashboard_navigation {
-    transition: width .2s linear;
     width: 0px;
     height: 100%;
     overflow: hidden;
     background-color: $white;
-
-
+    transition: width .2s linear;
 }
 
 .grow {
@@ -150,10 +148,12 @@ nav.options {
 
 /* Folder Widget */
 .widget {
-    height: calc(100vh / 5);
+    max-height: 150px;
     width: 90%;
-    margin: 0 auto;
-    padding: 20px 0px;
+    margin: 20px auto;
+    border-radius: 5px;
+    padding: 10px 0px;
+    overflow-y: scroll;
 }
 
 .widget_header {
