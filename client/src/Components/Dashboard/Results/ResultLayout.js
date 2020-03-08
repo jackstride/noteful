@@ -1,8 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
+import {} from "../../../actions/NoteActions";
+import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
+
 const moment = require("moment");
-const ResultLayout = React.memo(({ data, remove }) => {
+
+const ResultLayout = React.memo(({ data, remove, showMenu }) => {
+  let handleContext = e => {
+    e.preventDefault();
+    const { pageX, pageY } = e;
+    showMenu(pageX, pageY, "NotesContextMenu", {
+      name: e.target.name,
+      id: e.target.id
+    });
+  };
+
   return (
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
@@ -11,6 +25,7 @@ const ResultLayout = React.memo(({ data, remove }) => {
           <h6>{moment(data.date).calendar()}</h6>
           <h6>{moment(data.date_modified).calendar()}</h6>
         </div>
+        <div onContextMenu={e => handleContext(e)} className="absolute"></div>
       </Link>
       <span
         style={{ cursor: "pointer" }}
@@ -24,4 +39,8 @@ const ResultLayout = React.memo(({ data, remove }) => {
   );
 });
 
-export default ResultLayout;
+const mapDispatchToProps = dispatch => ({
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+});
+
+export default connect(null, mapDispatchToProps)(ResultLayout);
