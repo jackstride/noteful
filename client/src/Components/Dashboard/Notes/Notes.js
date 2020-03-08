@@ -34,11 +34,9 @@ let Notes = ({
           </div>
           <h5> Delete </h5>
         </div>
-        {notes.length >= 1 ? (
-          results.map((notes, index) => <FolderItem key={index} data={notes} />)
-        ) : (
-          <h1> Hello </h1>
-        )}
+        {results.map((notes, index) => (
+          <FolderItem key={index} data={notes} />
+        ))}
       </div>
     </div>
   );
