@@ -4,8 +4,9 @@ import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
 import { withRouter, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
+import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 
-const moment = require("moment");
+import ResultLayout from "./ResultLayout";
 
 let Notes = ({
   getNotes,
@@ -35,7 +36,7 @@ let Notes = ({
           <h5> Delete </h5>
         </div>
         {results.map((notes, index) => (
-          <FolderItem key={index} data={notes} />
+          <ResultLayout key={index} data={notes} />
         ))}
       </div>
     </div>
@@ -53,24 +54,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   getNotes: id => dispatch(getNotes(id)),
   addNote: values => dispatch(addNote(values)),
-  removeNote: id => dispatch(removeNote(id))
+  removeNote: id => dispatch(removeNote(id)),
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Notes));
-
-let FolderItem = React.memo(({ data, remove }) => {
-  return (
-    <div className="folder_item">
-      <Link to={`/dashboard/notes/${data._id}`}>
-        <div className="folder_item_container">
-          <h3>{data.note_title}</h3>
-          <h6>{moment(data.date).calendar()}</h6>
-          <h6>{moment(data.date_modified).calendar()}</h6>
-        </div>
-      </Link>
-      <span style={{ cursor: "pointer" }}>
-        <FontAwesomeIcon icon="trash" color="grey" size="1x"></FontAwesomeIcon>
-      </span>
-    </div>
-  );
-});

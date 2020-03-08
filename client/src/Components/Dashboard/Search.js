@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Notes from "./Notes/Notes";
-
 import { getNotes } from "../../actions/NoteActions";
+import NoteResults from "./Results/NoteResults";
 
 const Search = ({ noteData, getNotes, id }) => {
   const [notes, setNotes] = useState([]);
@@ -32,7 +32,7 @@ const Search = ({ noteData, getNotes, id }) => {
 
   return (
     <div>
-      <Notes results={results} />
+      <NoteResults results={results} />
     </div>
   );
 };

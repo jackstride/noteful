@@ -5,7 +5,7 @@ import SideNav from "../SideNav";
 import { loadUser } from "../../actions/authActions";
 import { getFolder } from "../../actions/FolderActions";
 import Editor from "../TextEditor/Editor";
-import Folders from "./Folders/Folders";
+import FolderResult from "./Results/FolderResults";
 import Summary from ".//Summary/Summary";
 import { setDarkMode } from "../../helpers/helperFunctions";
 import Search from "./Search";
@@ -29,7 +29,7 @@ class Home extends Component {
           <Switch>
             <Route exact path="/dashboard" component={Summary} />
             <Route path="/dashboard/settings" component={Settings} />
-            <Route exact path="/dashboard/:folder" component={Folders} />
+            <Route exact path="/dashboard/:folder" component={FolderResult} />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
             <Route exact path="/dashboard/search/search" component={Search} />
           </Switch>
