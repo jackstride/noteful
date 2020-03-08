@@ -3,6 +3,7 @@ import { Portal } from "react-portal";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteAllNotes } from "../../actions/ResponseActions";
+import { useHistory } from "react-router-dom";
 
 const HandleMessage = ({
   show,
@@ -11,6 +12,12 @@ const HandleMessage = ({
   deleteAllNotes,
   folder_id
 }) => {
+  const history = useHistory();
+
+  let handleDelete = id => {
+    history.push("/dashboard");
+    deleteAllNotes(id);
+  };
   return (
     <Portal>
       <div className={show ? "handle_message_container" : null}>
@@ -20,7 +27,7 @@ const HandleMessage = ({
           ) : (
             <Warning
               message={message}
-              deleteAllNotes={deleteAllNotes}
+              deleteAllNotes={handleDelete}
               id={folder_id}
             />
           )
