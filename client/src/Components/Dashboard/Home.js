@@ -20,6 +20,7 @@ class Home extends Component {
     setDarkMode();
   }
   render() {
+    console.log(this.props);
     return (
       <div className="app_container">
         <BrowserRouter>

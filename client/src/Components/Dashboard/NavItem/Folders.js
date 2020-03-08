@@ -11,8 +11,8 @@ import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 import { deleteConfirmation } from "../../../actions/ResponseActions";
-
 import WidgetSubmit from "./widgetSubmit";
+import { withRouter } from "react-router-dom";
 
 class Folders extends Component {
   constructor(props) {
@@ -34,6 +34,13 @@ class Folders extends Component {
       name: e.target.name,
       id: e.target.id
     });
+  };
+
+  componentDidUpdate = (prevProps, nextProps) => {
+    if (this.props.folder.length != prevProps.folder.length) {
+      const id = this.props.folder[0]._id;
+      this.props.history.push("/dashboard/" + id);
+    }
   };
 
   toggleAddFolder = () => {
@@ -133,4 +140,6 @@ const mapDispatchToProps = dispatch => ({
   deleteConfirmation: id => dispatch(deleteConfirmation(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Folders);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Folders)
+);
