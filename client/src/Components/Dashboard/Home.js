@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter, Route, Switch, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import SideNav from "../SideNav";
 import { loadUser } from "../../actions/authActions";
 import { getFolder } from "../../actions/FolderActions";

@@ -393,11 +393,13 @@ form.task_form {
         text-decoration: none;
         font-weight: 600;
         color: $AppDarkGrey;
+
     }
 
     li {
         padding-bottom: 5px;
         display: block;
+        cursor: pointer;
     }
 
     li:hover {
@@ -406,4 +408,26 @@ form.task_form {
     }
 }
 
-/* Summary */
+
+/////////// Handle Message //////////////@extend
+.handle_message_container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+}
+
+.handle_message {
+    width: 0px;
+    height: 70px;
+    border-radius: 12px;
+    background-color: green;
+    transition: all .5s ease;
+}
+
+.show_success {
+    width: 300px;
+    transition: all .5s ease;
+}

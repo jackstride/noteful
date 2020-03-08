@@ -6,6 +6,7 @@ import folderReducer from "./folderReducer";
 import taskReducer from "./taskReducer";
 import contextMenuReducer from "./contextMenuReducer";
 import noteReducer from "./noteReducer";
+import handleResponse from "./handleResponse";
 
 export default combineReducers({
   auth: authReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   folder: folderReducer,
   task: taskReducer,
   contextMenu: contextMenuReducer,
-  note: noteReducer
+  note: noteReducer,
+  handleResponse: handleResponse
 });

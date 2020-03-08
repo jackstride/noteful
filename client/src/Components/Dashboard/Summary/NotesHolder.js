@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
+import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 const moment = require("moment");
 
-let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
+let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
@@ -21,6 +22,15 @@ let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
     setFolderName(name);
   };
 
+  let handleContext = e => {
+    e.preventDefault();
+    const { pageX, pageY } = e;
+    showMenu(pageX, pageY, "NotesContextMenu", {
+      name: e.target.name,
+      id: e.target.id
+    });
+  };
+
   return (
     <div className="summary_holder notes">
       <div className="summary_icon">
@@ -33,7 +43,10 @@ let NotesHolder = ({ data, notes, folder, getFolder, id }) => {
         <h5>{data.note_title}</h5>
         <h6>{moment(notes.date).calendar()}</h6>
       </div>
-      <Link to={`/dashboard/notes/${data._id}`}></Link>
+      <Link
+        onContextMenu={e => handleContext(e)}
+        to={`/dashboard/notes/${data._id}`}
+      ></Link>
     </div>
   );
 };
@@ -51,7 +64,8 @@ const mapDispatchToProps = dispatch => ({
   loadTasks: id => dispatch(loadTasks(id)),
   getNotes: id => dispatch(getNotes(id)),
   getFolder: id => dispatch(getFolder(id)),
-  toggleTask: id => dispatch(toggleTask(id))
+  toggleTask: id => dispatch(toggleTask(id)),
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesHolder);

@@ -31,3 +31,8 @@ export const EDIT_NOTE = "EDIT_NOTE";
 export const SUBMIT_NOTE = "SUBMIT_NOTE";
 export const NOTE_LOADED = "NOTE_LOADED";
 export const SINGLE_NOTE = "SINGLE_NOTE";
+
+// Responses
+export const HANDLE_SUCESS = "HANDLE_SUCESS";
+export const HANDLE_ERROR = "HANDLE_ERROR";
+export const CLOSE_HANDLE = "CLOSE_HANDLE";
