@@ -22,29 +22,27 @@ let Summary = ({
 
   return (
     <div className="summary_container">
-      <div className="summary_header">
-        <div className="summary_heading">
-          <h4> Notes</h4>
-        </div>
-        <div className="summary_heading">
-          <h4> Tasks</h4>
-        </div>
-        <div className="summary_heading">
-          <h4> Events</h4>
-        </div>
-      </div>
       <div className="summaries">
         <div className="summary_notes">
+          <div className="summary_heading">
+            <h4> Notes</h4>
+          </div>
           {notes.map((note, index) => (
             <NotesHolder data={note} key={index} />
           ))}
         </div>
         <div className="summary_tasks">
+          <div className="summary_heading">
+            <h4> Tasks</h4>
+          </div>
           {tasks.map((tasks, index) => (
             <TaskHolder key={index} task={tasks} mark={toggleTask} />
           ))}
         </div>
         <div className="summary_tasks">
+          <div className="summary_heading">
+            <h4> Events</h4>
+          </div>
           {tasks.map((tasks, index) => (
             <TaskHolder key={index} task={tasks} />
           ))}

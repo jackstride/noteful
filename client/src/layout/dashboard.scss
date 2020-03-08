@@ -1,5 +1,5 @@
 .app_navigation {
-    width: 30x;
+    width: 0px;
     height: 100vh;
     position: relative;
     z-index: 1;
@@ -313,14 +313,15 @@ form.task_form {
 }
 
 
-// Folders 
+///////////// Folders ////////////////////
 
 .folder_page {
-    height: calc(100vh - 150px);
+    height: 90%;
     width: 90%;
     position: relative;
-    top: 150px;
-    margin: 0 auto;
+    margin: auto;
+    border-radius: 12px;
+    padding: 20px;
 
     .folders_heading {
         display: flex;
@@ -334,7 +335,7 @@ form.task_form {
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: $Orange;
+            background-color: rgb(42, 131, 204);
             border-radius: 50%;
             color: white;
             cursor: pointer;
@@ -348,15 +349,38 @@ form.task_form {
     }
 }
 
+
+.folder_container {
+    height: fit-content;
+    width: 100%;
+    display: grid;
+    grid-auto-rows: 75px;
+    border-radius: 12px;
+
+    background-color: white;
+    border-radius: 12px;
+}
+
 .folder_item {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: minmax(80%, 1fr) minmax(20%, 1fr);
     align-items: center;
-    margin-top: 20px;
-    border-bottom: 1.3px solid rgb(204, 204, 204);
     position: relative;
+}
+
+.folder_item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 80%;
+    height: 2px;
+    background-color: rgb(230, 230, 230);
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+
 }
 
 .folder_item:hover {
@@ -374,7 +398,9 @@ form.task_form {
 
     span {
         z-index: 1;
+        color: rgb(150, 150, 150) !important;
     }
+
 }
 
 

@@ -10,7 +10,6 @@ class EditContextMenu extends Component {
     e.preventDefault();
 
     if (this.props.widgetName == "tasks") {
-      console.log("ran");
       let values = {
         id: this.props.id,
         name: e.target.new_folder.value
@@ -28,7 +27,6 @@ class EditContextMenu extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
         <input type="text" name="new_folder" autoFocus />
