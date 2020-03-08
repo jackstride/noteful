@@ -44,6 +44,7 @@ let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
         <h6>{moment(notes.date).calendar()}</h6>
       </div>
       <Link
+        id={data._id}
         onContextMenu={e => handleContext(e)}
         to={`/dashboard/notes/${data._id}`}
       ></Link>

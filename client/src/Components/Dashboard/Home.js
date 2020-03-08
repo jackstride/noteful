@@ -9,6 +9,8 @@ import Folders from "./Folders/Folders";
 import Summary from ".//Summary/Summary";
 import { setDarkMode } from "../../helpers/helperFunctions";
 import Search from "./Search";
+import ContextMenuManager from "../contextMenu/contextMenuManager";
+import HandleMessage from "../HandleMessages/handlemessage";
 
 import Settings from "./Settings";
 
@@ -21,6 +23,8 @@ class Home extends Component {
     return (
       <div className="app_container">
         <BrowserRouter>
+          <ContextMenuManager />
+          <HandleMessage />
           <SideNav />
           <Switch>
             <Route exact path="/dashboard" component={Summary} />

@@ -1,13 +1,10 @@
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../../../fontawesome";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
 import NotesHolder from "../Summary/NotesHolder";
-const moment = require("moment");
+import TaskHolder from "../Summary/TaskHolder";
 
 let Summary = ({
   id,
@@ -44,12 +41,12 @@ let Summary = ({
         </div>
         <div className="summary_tasks">
           {tasks.map((tasks, index) => (
-            <TasksHolder key={index} task={tasks} mark={toggleTask} />
+            <TaskHolder key={index} task={tasks} mark={toggleTask} />
           ))}
         </div>
         <div className="summary_tasks">
           {tasks.map((tasks, index) => (
-            <TasksHolder key={index} task={tasks} />
+            <TaskHolder key={index} task={tasks} />
           ))}
         </div>
       </div>
@@ -74,45 +71,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Summary);
-
-let TasksHolder = ({ task, mark }) => {
-  let [complete, setComplete] = useState(task.isCompleted);
-
-  useEffect(() => {
-    setComplete(task.isCompleted);
-  });
-
-  return (
-    <div
-      onClick={() => {
-        mark(task._id);
-      }}
-      className="summary_holder tasks"
-    >
-      <div className="summary_icon">
-        <div
-          style={complete ? null : { backgroundColor: "#ECECEC" }}
-          className="circle tasks"
-        >
-          {complete ? (
-            <FontAwesomeIcon
-              icon="check"
-              color="#85FF00"
-              size="2x"
-            ></FontAwesomeIcon>
-          ) : (
-            <FontAwesomeIcon
-              icon="times"
-              color="white"
-              size="2x"
-            ></FontAwesomeIcon>
-          )}
-        </div>
-      </div>
-      <div className="summary_text">
-        <h6>{task.isCompleted ? "Completed" : "Not Completed"}</h6>
-        <h5>{task.task_name}</h5>
-      </div>
-    </div>
-  );
-};

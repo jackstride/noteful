@@ -15,8 +15,6 @@ import Footer from "./Components/Website/Footer";
 import LogOut from "./Components/Website/logout.js";
 import Features from "./pages/features.js";
 import Support from "./pages/support";
-import ContextMenuManager from "./Components/contextMenu/contextMenuManager";
-import HandleMessage from "./Components/HandleMessages/handlemessage";
 
 class App extends Component {
   static propTypes = {
@@ -45,8 +43,6 @@ class App extends Component {
   DefaultContainer = () => {
     return (
       <Fragment>
-        <ContextMenuManager />
-        <HandleMessage />
         <Route path="/dashboard" component={Dashboard} />
       </Fragment>
     );
