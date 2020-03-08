@@ -4,7 +4,8 @@ import {
   DELETE_NOTE,
   SUBMIT_NOTE,
   NOTE_LOADED,
-  SINGLE_NOTE
+  SINGLE_NOTE,
+  DELETE_NOTE_BY_FOLDER
 } from "../actions/types";
 const initalState = {
   user_id: null,
@@ -34,6 +35,13 @@ export default (state = initalState, action) => {
       return {
         ...state,
         noteData: state.noteData.filter(note => note._id != action.payload)
+      };
+    case DELETE_NOTE_BY_FOLDER:
+      return {
+        ...state,
+        noteData: state.noteData.filter(
+          note => note.folder_id != action.payload
+        )
       };
 
     default:

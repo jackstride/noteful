@@ -16,7 +16,7 @@ const HandleMessage = ({
       <div className={show ? "handle_message_container" : null}>
         {show ? (
           isPositive ? (
-            <Success messgage={message} />
+            <Success message={message} />
           ) : (
             <Warning
               message={message}

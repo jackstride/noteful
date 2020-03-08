@@ -4,6 +4,8 @@ import {
   CLOSE_HANDLE,
   HANDLE_DELETE_FOLDER
 } from "./types";
+import { removeFolder } from "./FolderActions";
+import { removeAllByFolderId } from "./NoteActions";
 import axios from "axios";
 
 export const isSuccess = message => dispatch => {
@@ -37,7 +39,6 @@ export const handleClose = () => dispatch => {
 };
 
 export const deleteConfirmation = id => dispatch => {
-  console.log(id);
   dispatch({
     type: HANDLE_DELETE_FOLDER,
     payload: id
@@ -45,12 +46,8 @@ export const deleteConfirmation = id => dispatch => {
 };
 
 export const deleteAllNotes = folder_id => dispatch => {
-  console.log(folder_id);
-  axios.delete(`/api/note/delete/all/${folder_id}`).then(res => {
-    dispatch({
-      type: CLOSE_HANDLE
-    });
-  });
+  dispatch(removeAllByFolderId(folder_id));
+  dispatch(removeFolder(folder_id));
 };
 
 export const isFailure = () => dispatch => {};

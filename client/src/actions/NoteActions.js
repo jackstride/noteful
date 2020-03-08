@@ -5,7 +5,8 @@ import {
   DELETE_NOTE,
   SUBMIT_NOTE,
   NOTE_LOADED,
-  SINGLE_NOTE
+  SINGLE_NOTE,
+  DELETE_NOTE_BY_FOLDER
 } from "../actions/types";
 
 //Notes by folder id
@@ -51,6 +52,15 @@ export const removeNote = _id => dispatch => {
     dispatch({
       type: DELETE_NOTE,
       payload: _id
+    });
+  });
+};
+
+export const removeAllByFolderId = folder_id => dispatch => {
+  axios.delete(`/api/note/delete/all/${folder_id}`).then(res => {
+    dispatch({
+      type: DELETE_NOTE_BY_FOLDER,
+      payload: folder_id
     });
   });
 };
