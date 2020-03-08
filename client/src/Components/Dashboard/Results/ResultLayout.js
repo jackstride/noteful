@@ -11,6 +11,7 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
   let handleContext = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
+    console.log(e);
     showMenu(pageX, pageY, "NotesContextMenu", {
       name: e.target.name,
       id: e.target.id
@@ -25,7 +26,11 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
           <h6>{moment(data.date).calendar()}</h6>
           <h6>{moment(data.date_modified).calendar()}</h6>
         </div>
-        <div onContextMenu={e => handleContext(e)} className="absolute"></div>
+        <div
+          id={data._id}
+          onContextMenu={e => handleContext(e)}
+          className="absolute"
+        ></div>
       </Link>
       <span
         style={{ cursor: "pointer" }}
