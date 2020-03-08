@@ -27,7 +27,7 @@ export class ContextMenu extends Component {
       <MenuPosition
         left={location.x + 2}
         top={location.y}
-        className="contextMenu darkTheme"
+        className="contextMenu"
         nodeRef={node => (this.node = node)}
       >
         {this.props.children}
