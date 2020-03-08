@@ -15,31 +15,8 @@ let Notes = ({
   user_id,
   folder,
   removeNote,
-  noteData
+  results
 }) => {
-  //   const handleRemoveNote = _id => {
-  //     removeNote(_id);
-  //   };
-
-  //   const handleRemove = useCallback(_id => {
-  //     console.log(_id);
-  //     handleRemoveNote(_id);
-  //   }, []);
-
-  //   let handleAddNote = () => {
-  //     let values = {
-  //       user_id,
-  //       folder_id: paramId
-  //     };
-  //     addNote(values);
-  //   };
-
-  //   let getFolderName = () => {
-  //     let name = folder.filter(folder => paramId == folder._id);
-  //     name = name[0].folder_name;
-  //     return name;
-  //   };
-
   return (
     <div className="folder_page">
       <div className="folders_heading">
@@ -58,9 +35,7 @@ let Notes = ({
           <h5> Delete </h5>
         </div>
         {notes.length >= 1 ? (
-          noteData.map((notes, index) => (
-            <FolderItem key={index} data={notes} />
-          ))
+          results.map((notes, index) => <FolderItem key={index} data={notes} />)
         ) : (
           <h1> Hello </h1>
         )}

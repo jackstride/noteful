@@ -52,6 +52,7 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
         .sort({ _id: -1 })
         .exec();
     }
+    console.log(notes);
 
     notes
       ? res.status(201).json({ notes })

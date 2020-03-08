@@ -3,32 +3,49 @@ import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Notes from "./Notes/Notes";
 
-// Needs to load ALLLL NOTESSSSSS
+import { getNotes } from "../../actions/NoteActions";
 
-const Search = ({ notes }) => {
+const Search = ({ noteData, getNotes, id }) => {
+  const [notes, setNotes] = useState([]);
   const [results, setResults] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
+    getNotes(id);
+  }, []);
+
+  useEffect(() => {
+    setNotes(noteData);
+  }, [noteData]);
+
+  useEffect(() => {
+    handleReults();
+  }, [history.location.search]);
+
+  let handleReults = () => {
     let search = history.location.search;
     let length = search.length;
     let query = search.slice(2, length);
-    console.log(query);
-    let getNotes = notes.filter(note => note.note_title.includes(query));
-    setResults(getNotes);
-  }, [history.location.search]);
+    let allNotes = notes.filter(note => note.note_title.includes(query));
+    setResults(allNotes);
+  };
 
   return (
     <div>
-      <Notes noteData={results} />
+      <Notes results={results} />
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    notes: state.note.noteData
+    noteData: state.note.noteData,
+    id: state.auth.user._id
   };
 };
 
-export default connect(mapStateToProps)(Search);
+const mapDispatchToProps = dispatch => ({
+  getNotes: id => dispatch(getNotes(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
