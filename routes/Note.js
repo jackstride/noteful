@@ -52,7 +52,6 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
         .sort({ _id: -1 })
         .exec();
     }
-    console.log(notes);
 
     notes
       ? res.status(201).json({ notes })
@@ -63,18 +62,20 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
 });
 
 // Edit Existing Note
+//https://dev.to/rubiin/mongoose-dynamic-update-hack-21ad - filter out what is empty
 router.patch("/note/edit/:_id", async (req, res, next) => {
   let { _id } = req.params;
-  let { body_Data, note_title } = req.body;
-  console.log(note_title);
+  let entries = Object.keys(req.body);
+  let updates = {};
+
+  for (let i = 0; i < entries.length; i++) {
+    updates[entries[i]] = Object.values(req.body)[i];
+  }
 
   let note = await Notes.find({ _id });
 
   if (note) {
-    let update = await Notes.findOneAndUpdate(
-      { _id },
-      { body_Data, note_title, date_modified: new Date() }
-    );
+    let update = await Notes.findOneAndUpdate({ _id }, { $set: updates });
     update
       ? res.status(200).json({ message: "done" })
       : next(createError(500, "There was an error saving the note "));
