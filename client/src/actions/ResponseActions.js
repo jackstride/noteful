@@ -48,6 +48,9 @@ export const deleteConfirmation = id => dispatch => {
 export const deleteAllNotes = folder_id => dispatch => {
   dispatch(removeAllByFolderId(folder_id));
   dispatch(removeFolder(folder_id));
+  dispatch({
+    type: CLOSE_HANDLE
+  });
 };
 
 export const isFailure = () => dispatch => {};
