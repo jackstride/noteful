@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Portal } from "react-portal";
 import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { deleteAllNotes } from "../../actions/ResponseActions";
 
-const HandleMessage = ({ show, isPositive }) => {
+const HandleMessage = ({
+  show,
+  isPositive,
+  message,
+  deleteAllNotes,
+  folder_id
+}) => {
   return (
     <Portal>
-      <div className="handle_message_container">
-        <div
-          className={show ? "handle_message show_success" : "handle_message"}
-        ></div>
+      <div className={show ? "handle_message_container" : null}>
+        {show ? (
+          isPositive ? (
+            <Success messgage={message} />
+          ) : (
+            <Warning
+              message={message}
+              deleteAllNotes={deleteAllNotes}
+              id={folder_id}
+            />
+          )
+        ) : null}
       </div>
     </Portal>
   );
@@ -16,9 +32,54 @@ const HandleMessage = ({ show, isPositive }) => {
 
 const mapStateToProps = state => {
   return {
+    folder_id: state.handleResponse.folder_id,
     show: state.handleResponse.show,
-    isPositive: state.handleResponse.isPositive
+    isPositive: state.handleResponse.isPositive,
+    message: state.handleResponse.message
   };
 };
 
-export default connect(mapStateToProps)(HandleMessage);
+const mapDispatchToProps = dispatch => ({
+  deleteAllNotes: id => dispatch(deleteAllNotes(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HandleMessage);
+
+let Success = ({ message }) => {
+  return (
+    <div className="handle_message show_success">
+      <span>{message}</span>
+      <div className="circle">
+        <FontAwesomeIcon
+          icon="check"
+          color="rgb(0, 207, 107)"
+        ></FontAwesomeIcon>
+      </div>
+    </div>
+  );
+};
+
+let Warning = ({ message, deleteAllNotes, id }) => {
+  return (
+    <div className="handle_message warning">
+      <span>{message}</span>
+      <span style={{ cursor: "pointer" }} onClick={() => deleteAllNotes(id)}>
+        Delete
+      </span>
+    </div>
+  );
+};
+
+let Error = ({ message }) => {
+  return (
+    <div className="handle_message show_success">
+      <span>{message}</span>
+      <div className="circle">
+        <FontAwesomeIcon
+          icon="check"
+          color="rgb(0, 207, 107)"
+        ></FontAwesomeIcon>
+      </div>
+    </div>
+  );
+};

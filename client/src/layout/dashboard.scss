@@ -409,7 +409,6 @@ form.task_form {
     }
 }
 
-
 /////////// Handle Message //////////////@extend
 .handle_message_container {
     position: absolute;
@@ -417,18 +416,50 @@ form.task_form {
     right: 20px;
     height: fit-content;
     width: fit-content;
-    padding: 10px;
 }
 
 .handle_message {
     width: 0px;
-    height: 70px;
+    height: 30px;
     border-radius: 12px;
-    background-color: green;
+
     transition: all .5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .circle {
+        background-color: white;
+        width: 20px;
+        margin-left: 10px;
+    }
+
+    span {
+        color: white;
+        padding-left: 10px;
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
 }
 
 .show_success {
-    width: 300px;
+    background-color: rgb(0, 207, 107);
+    width: 150px;
     transition: all .5s ease;
+}
+
+.warning {
+    background-color: #ea728c;
+    width: fit-content;
+    transition: all .5s ease;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    span:nth-child(2) {
+        color: red;
+    }
 }

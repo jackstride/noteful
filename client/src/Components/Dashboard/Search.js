@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import Notes from "./Notes/Notes";
 import { getNotes } from "../../actions/NoteActions";
 import NoteResults from "./Results/NoteResults";
 

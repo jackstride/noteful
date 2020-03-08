@@ -8,11 +8,13 @@ import {
   UPDATE_FOLDER
 } from "./types";
 
+import { isSuccess, isError } from "./ResponseActions";
+
 export const addFolder = values => dispatch => {
   axios
     .post("/api/addFolder", values)
     .then(res => {
-      console.log(res);
+      dispatch(isSuccess("Folder Added"));
       dispatch({
         type: FOLDER_SUCCESS,
         payload: res.data.folder

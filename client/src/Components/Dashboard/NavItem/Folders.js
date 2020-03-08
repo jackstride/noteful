@@ -10,6 +10,7 @@ import {
 import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
+import { deleteConfirmation } from "../../../actions/ResponseActions";
 
 import WidgetSubmit from "./widgetSubmit";
 
@@ -40,8 +41,7 @@ class Folders extends Component {
   };
 
   onRemoveFolder = (e, id) => {
-    e.preventDefault();
-    this.props.removeFolder(id);
+    this.props.deleteConfirmation(id);
   };
 
   handleHover = e => {
@@ -129,7 +129,8 @@ const mapDispatchToProps = dispatch => ({
   getFolder: id => dispatch(getFolder(id)),
   showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
   hideMenu: () => dispatch(hideMenu()),
-  toggleFolderOpen: () => dispatch(toggleFolderOpen())
+  toggleFolderOpen: () => dispatch(toggleFolderOpen()),
+  deleteConfirmation: id => dispatch(deleteConfirmation(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Folders);
