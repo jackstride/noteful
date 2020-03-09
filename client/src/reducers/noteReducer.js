@@ -48,9 +48,13 @@ export default (state = initalState, action) => {
         )
       };
     case CHANGE_FOLDER:
-      console.log("hit");
       return {
-        ...state
+        ...state,
+        noteData: state.noteData.map(data =>
+          data._id === action.payload._id
+            ? { ...data, folder_id: action.payload.folder_id }
+            : data
+        )
       };
     case DELETE_NOTE_BY_FOLDER:
       return {
