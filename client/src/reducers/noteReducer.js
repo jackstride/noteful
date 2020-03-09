@@ -5,7 +5,8 @@ import {
   SUBMIT_NOTE,
   NOTE_LOADED,
   SINGLE_NOTE,
-  DELETE_NOTE_BY_FOLDER
+  DELETE_NOTE_BY_FOLDER,
+  CHANGE_FOLDER
 } from "../actions/types";
 const initalState = {
   user_id: null,
@@ -37,7 +38,7 @@ export default (state = initalState, action) => {
         noteData: state.noteData.filter(note => note._id != action.payload)
       };
     case EDIT_NOTE:
-      console.log(action.payload);
+      console.log("HTIE DIT");
       return {
         ...state,
         noteData: state.noteData.map(data =>
@@ -45,6 +46,11 @@ export default (state = initalState, action) => {
             ? { ...data, note_title: action.payload.note_title }
             : data
         )
+      };
+    case CHANGE_FOLDER:
+      console.log("hit");
+      return {
+        ...state
       };
     case DELETE_NOTE_BY_FOLDER:
       return {

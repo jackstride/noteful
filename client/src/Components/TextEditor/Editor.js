@@ -36,7 +36,6 @@ const TextEditor = ({
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
 
-  console.log(editor);
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 

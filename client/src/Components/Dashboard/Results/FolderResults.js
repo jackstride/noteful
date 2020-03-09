@@ -26,7 +26,6 @@ let Folders = ({
   };
 
   const handleRemove = useCallback(_id => {
-    console.log(_id);
     handleRemoveNote(_id);
   }, []);
 
@@ -37,6 +36,10 @@ let Folders = ({
     };
     addNote(values);
   };
+
+  useEffect(() => {
+    getFolderName();
+  }, [folder]);
 
   let getFolderName = () => {
     let name = folder.filter(folder => paramId == folder._id);

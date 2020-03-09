@@ -6,15 +6,7 @@ import { getFolder } from "../../../actions/FolderActions";
 import NotesHolder from "../Summary/NotesHolder";
 import TaskHolder from "../Summary/TaskHolder";
 
-let Summary = ({
-  id,
-  notes,
-  tasks,
-  loadTasks,
-  getNotes,
-  folder,
-  toggleTask
-}) => {
+let Summary = ({ id, notes, tasks, loadTasks, getNotes, toggleTask }) => {
   useEffect(() => {
     loadTasks(id);
     getNotes(id);

@@ -6,7 +6,8 @@ import {
   SUBMIT_NOTE,
   NOTE_LOADED,
   SINGLE_NOTE,
-  DELETE_NOTE_BY_FOLDER
+  DELETE_NOTE_BY_FOLDER,
+  CHANGE_FOLDER
 } from "../actions/types";
 
 //Notes by folder id
@@ -28,12 +29,10 @@ export const addNote = values => dispatch => {
   });
 };
 
-export const editNote = values => dispatch => {
-  console.log(values);
+export const editNote = (values, passType = EDIT_NOTE) => dispatch => {
   axios.patch(`/api/note/edit/${values._id}`, values).then(res => {
-    console.log(res);
     dispatch({
-      type: EDIT_NOTE,
+      type: passType,
       payload: values
     });
   });
@@ -50,7 +49,6 @@ export const getNoteById = _id => dispatch => {
 
 export const removeNote = _id => dispatch => {
   axios.delete(`/api/note/delete/${_id}`).then(res => {
-    console.log(res);
     dispatch({
       type: DELETE_NOTE,
       payload: _id

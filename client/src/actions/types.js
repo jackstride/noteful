@@ -36,6 +36,7 @@ export const SUBMIT_NOTE = "SUBMIT_NOTE";
 export const NOTE_LOADED = "NOTE_LOADED";
 export const SINGLE_NOTE = "SINGLE_NOTE";
 export const DELETE_NOTE_BY_FOLDER = "DELETE_NOTE_BY_FOLDER";
+export const CHANGE_FOLDER = "CHANGE_FOLDER";
 
 // Responses
 export const HANDLE_SUCESS = "HANDLE_SUCESS";

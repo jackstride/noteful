@@ -7,13 +7,16 @@ import { getFolder } from "../../../actions/FolderActions";
 import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 const moment = require("moment");
 
-let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
+let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
     getFolder(id);
-    returnName();
   }, [id]);
+
+  useEffect(() => {
+    returnName();
+  }, [folder]);
 
   let returnName = () => {
     let noteFolderId = data.folder_id;
@@ -41,7 +44,7 @@ let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
       <div className="summary_text">
         <h6>{folderName}</h6>
         <h5>{data.note_title}</h5>
-        <h6>{moment(notes.date).calendar()}</h6>
+        <h6>{moment(data.date).calendar()}</h6>
       </div>
       <Link
         id={data._id}
@@ -56,7 +59,6 @@ let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
 const mapStateToProps = state => {
   return {
     id: state.auth.user._id,
-    notes: state.note.noteData,
     tasks: state.task.taskData,
     folder: state.folder.data
   };

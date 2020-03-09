@@ -5,6 +5,7 @@ import { addNote, removeNote, editNote } from "../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { hideMenu, showMenu } from "../../actions/contextMenuActions";
+import { CHANGE_FOLDER } from "../../actions/types";
 const NotesContextMenu = ({
   isSuccess,
   handleClose,
@@ -25,7 +26,7 @@ const NotesContextMenu = ({
     isSuccess();
   };
 
-  const handleDeleteNote = () => {
+  const handleDeleteNote = id => {
     removeNote(id);
   };
 
@@ -39,7 +40,7 @@ const NotesContextMenu = ({
       _id: id,
       folder_id: folder_id
     };
-    editNote(values);
+    editNote(values, CHANGE_FOLDER);
   };
 
   let handleEdit = e => {
@@ -118,7 +119,7 @@ const mapDispatchToProps = dispatch => ({
   handleClose: () => dispatch(handleClose()),
   addNote: values => dispatch(addNote(values)),
   removeNote: id => dispatch(removeNote(id)),
-  editNote: values => dispatch(editNote(values)),
+  editNote: (values, type) => dispatch(editNote(values, type)),
   showMenu: (x, y, getType, args, name) =>
     dispatch(showMenu(x, y, getType, args, name))
 });

@@ -6,6 +6,8 @@ import {
   toggleFolderOpen
 } from "../../actions/FolderActions";
 import { hideMenu, showMenu } from "../../actions/contextMenuActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { deleteConfirmation } from "../../actions/ResponseActions";
 
 class FolderContextMenu extends Component {
   constructor(props) {
@@ -18,8 +20,7 @@ class FolderContextMenu extends Component {
 
   handleRemove = (e, id) => {
     e.preventDefault();
-    this.props.removeFolder(id);
-    this.props.hideMenu();
+    this.props.deleteConfirmation(id);
   };
 
   addNote = e => {
@@ -44,15 +45,24 @@ class FolderContextMenu extends Component {
   render() {
     return (
       <ul>
-        <li onClick={e => this.addNote(e)}>
-          <a>Add New Note</a>
-        </li>
-        <li onClick={e => this.handleRemove(e, this.props.id)}>
-          <a>Delete Note</a>
-        </li>
-        <li onClick={e => this.editNote(e)}>
-          <a>Rename Note</a>
-        </li>
+        <span>
+          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+          <li onClick={e => this.addNote(e)}>
+            <a>Add</a>
+          </li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+          <li onClick={e => this.handleRemove(e, this.props.id)}>
+            <a>Delete</a>
+          </li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+          <li onClick={e => this.editNote(e)}>
+            <a>Rename</a>
+          </li>
+        </span>
       </ul>
     );
   }
@@ -72,6 +82,7 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   hideMenu: () => dispatch(hideMenu()),
   toggleFolderOpen: () => dispatch(toggleFolderOpen()),
+  deleteConfirmation: id => dispatch(deleteConfirmation(id)),
   showMenu: (x, y, getType, args, name) =>
     dispatch(showMenu(x, y, getType, args, name))
 });

@@ -25,19 +25,19 @@ router.post("/note/add", async (req, res, next) => {
 
 // Working
 // Delete a note
-router.delete("/note/delete/:folder_id", async (req, res, next) => {
-  const { folder_id } = req.params;
-  console.log(folder_id);
+router.delete("/note/delete/:_id", async (req, res, next) => {
+  const { _id } = req.params;
 
-  // let success = await Notes.findByIdAndRemove(_id);
+  let success = await Notes.findByIdAndRemove(_id);
 
-  // success
-  //   ? res.sendStatus(200)
-  //   : next(createError(500, "There was an error deleting the task "));
+  success
+    ? res.sendStatus(200)
+    : next(createError(500, "There was an error deleting the task "));
 });
 
 router.delete("/note/delete/all/:folder_id", async (req, res, next) => {
   let { folder_id } = req.params;
+
   let success = await Notes.deleteMany({ folder_id });
 
   success
