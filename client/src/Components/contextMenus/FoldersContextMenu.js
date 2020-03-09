@@ -28,7 +28,7 @@ class FolderContextMenu extends Component {
     this.props.hideMenu();
   };
 
-  editNote = e => {
+  editFolderName = e => {
     const { pageX, pageY } = e;
     this.props.showMenu(
       this.props.x,
@@ -59,7 +59,7 @@ class FolderContextMenu extends Component {
         </span>
         <span>
           <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-          <li onClick={e => this.editNote(e)}>
+          <li onClick={e => this.editFolderName(e)}>
             <a>Rename</a>
           </li>
         </span>

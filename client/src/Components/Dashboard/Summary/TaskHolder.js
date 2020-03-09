@@ -9,11 +9,12 @@ let TasksHolder = ({ task, mark, showMenu }) => {
 
   useEffect(() => {
     setComplete(task.isCompleted);
-  });
+  }, [task]);
 
   let handleContextMenu = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
+    console.log("this");
     showMenu(pageX, pageY, "TasksContextMenu", {
       name: e.target.name,
       id: e.target.id
@@ -59,7 +60,8 @@ let TasksHolder = ({ task, mark, showMenu }) => {
 };
 
 let mapDispatchToProps = dispatch => ({
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+  showMenu: (x, y, getType, args, name) =>
+    dispatch(showMenu(x, y, getType, args, name))
 });
 
 export default connect(null, mapDispatchToProps)(TasksHolder);

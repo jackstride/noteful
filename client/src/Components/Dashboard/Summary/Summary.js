@@ -6,11 +6,23 @@ import { getFolder } from "../../../actions/FolderActions";
 import NotesHolder from "../Summary/NotesHolder";
 import TaskHolder from "../Summary/TaskHolder";
 
-let Summary = ({ id, notes, tasks, loadTasks, getNotes, toggleTask }) => {
+let Summary = ({
+  id,
+  notes,
+  tasks,
+  loadTasks,
+  getNotes,
+  toggleTask,
+  folder
+}) => {
   useEffect(() => {
     loadTasks(id);
     getNotes(id);
   }, [id]);
+
+  useEffect(() => {
+    getNotes(id);
+  }, [folder]);
 
   return (
     <div className="summary_container">

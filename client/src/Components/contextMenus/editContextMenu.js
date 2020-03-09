@@ -13,23 +13,25 @@ class EditContextMenu extends Component {
       id: this.props.id,
       name: e.target.new_folder.value
     };
-
+    console.log(this.props.widgetName);
     switch (this.props.widgetName) {
       case "tasks":
         this.props.editTask(values);
+        break;
       case "folders":
         this.props.updateFolder(values);
+        break;
       case "notes":
+        console.log("hill billy jim");
         values = {
           _id: this.props.id,
           note_title: e.target.new_folder.value
         };
         this.props.editNote(values);
+        break;
       default:
-        console.log("hello");
+        this.props.hideMenu();
     }
-
-    this.props.hideMenu();
   };
 
   render() {

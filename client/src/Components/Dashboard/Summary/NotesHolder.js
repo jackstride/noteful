@@ -15,7 +15,6 @@ let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
   }, [id]);
 
   useEffect(() => {
-    console.log(folderName);
     returnName();
   }, [data]);
 

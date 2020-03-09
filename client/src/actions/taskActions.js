@@ -76,7 +76,6 @@ export const toggleOpenTask = () => dispatch => {
 
 export const editTask = values => dispatch => {
   axios.put("/api/task/update", values).then(res => {
-    console.log(res);
     dispatch({
       type: UPDATE_TASK,
       payload: values

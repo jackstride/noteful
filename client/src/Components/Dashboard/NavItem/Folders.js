@@ -99,12 +99,16 @@ class Folders extends Component {
   };
 
   render() {
-    let { isShown } = this.state;
     return (
       <div className="widget">
         <div className="widget_header">
           <h4>Notebooks</h4>
-          <div className="plus" onClick={this.toggleAddFolder}></div>
+          <div
+            className="plus"
+            onClick={() => {
+              this.toggleAddFolder();
+            }}
+          ></div>
         </div>
         <div className="widget_content">
           <div className="w_contents">
@@ -134,7 +138,8 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   addFolder: id => dispatch(addFolder(id)),
   getFolder: id => dispatch(getFolder(id)),
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
+  showMenu: (x, y, getType, args, name) =>
+    dispatch(showMenu(x, y, getType, args, name)),
   hideMenu: () => dispatch(hideMenu()),
   toggleFolderOpen: () => dispatch(toggleFolderOpen()),
   deleteConfirmation: id => dispatch(deleteConfirmation(id))
