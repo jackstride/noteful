@@ -356,7 +356,6 @@ form.task_form {
     display: grid;
     grid-auto-rows: 75px;
     border-radius: 12px;
-
     background-color: white;
     border-radius: 12px;
 }
@@ -403,36 +402,59 @@ form.task_form {
 
 }
 
-
-
 /* Context Menu */
 
 .contextMenu {
-    background-color: $white;
-    width: 10%;
+    background-color: white;
+    width: 200px;
     height: fit-content;
-    padding: 15px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 4px;
     z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
-    li a {
-        font-size: 12px;
-        text-decoration: none;
-        font-weight: 600;
-        color: $AppDarkGrey;
-
+    span {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
 
     li {
-        padding-bottom: 5px;
+        padding: 5px;
         display: block;
         cursor: pointer;
+        position: relative;
+        width: 100%;
+
     }
 
-    li:hover {
+    ul {
+        width: 100%;
+    }
+
+    a {
+        color: $AppDarkGrey;
+        font-size: 14px;
+        font-weight: 300;
+        position: relative;
+    }
+
+
+    li::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -5px;
+        height: 100%;
+        width: 4px;
+    }
+
+    li:hover::after {
         background-color: $Orange;
-
     }
+
+
 }
 
 /////////// Handle Message //////////////@extend

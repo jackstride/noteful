@@ -40,10 +40,10 @@ class FolderContextMenu extends Component {
     return (
       <ul>
         <li onClick={e => this.addNote(e)}>
-          <a href="#">Add New Note</a>
+          <a>Add New Note</a>
         </li>
         <li onClick={e => this.handleRemove(e, this.props.id)}>
-          <a href="#">Delete Note</a>
+          <a>Delete Note</a>
         </li>
         <li onClick={e => this.editNote(e)}>
           <a>Rename Note</a>

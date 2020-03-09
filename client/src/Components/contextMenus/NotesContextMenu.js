@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { isSuccess, handleClose } from "../../actions/ResponseActions";
 import { addNote, removeNote, editNote } from "../../actions/NoteActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 const NotesContextMenu = ({
   isSuccess,
@@ -38,11 +39,27 @@ const NotesContextMenu = ({
 
   return (
     <ul>
-      <li onClick={() => handleSuccess()}>Add New Note</li>
-      <Link to={`/dashboard/notes/${id}`}>Edit Note</Link>
-      <li onClick={() => handleClose()}>Rename Note</li>
-      <li onClick={() => handleDeleteNote(id)}>Delete Note</li>
-      <li onClick={() => handleChangFolder(id)}>ChangeFolder</li>
+      <span>
+        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+        <li onClick={() => handleSuccess()}>
+          <a>Add</a>
+        </li>
+      </span>
+      <li>
+        <Link to={`/dashboard/notes/${id}`}>Edit</Link>
+      </li>
+      <li onClick={() => handleClose()}>
+        <a>Rename</a>
+      </li>
+      <span>
+        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+        <li onClick={() => handleDeleteNote(id)}>
+          <a>Delete</a>
+        </li>
+      </span>
+      <li onClick={() => handleChangFolder(id)}>
+        <a>Change folder</a>
+      </li>
       {toggleFolders && (
         <div className="show_change_folders">
           <ul>
