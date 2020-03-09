@@ -409,7 +409,7 @@ form.task_form {
     width: 200px;
     height: fit-content;
     padding: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     z-index: 1;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
@@ -418,10 +418,16 @@ form.task_form {
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        border-radius: 8px;
+    }
+
+    span:hover {
+        background-color: rgb(248, 248, 255);
     }
 
     li {
         padding: 5px;
+        padding-left: 10px;
         display: block;
         cursor: pointer;
         position: relative;
@@ -441,18 +447,18 @@ form.task_form {
     }
 
 
-    li::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -5px;
-        height: 100%;
-        width: 4px;
-    }
+    // li::after {
+    //     content: "";
+    //     position: absolute;
+    //     bottom: 0;
+    //     left: 0;
+    //     height: 2px;
+    //     width: 100px;
+    // }
 
-    li:hover::after {
-        background-color: $Orange;
-    }
+    // li:hover::after {
+    //     background-color: $Orange;
+    // }
 
 
 }

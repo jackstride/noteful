@@ -45,6 +45,7 @@ let NotesHolder = ({ data, notes, folder, getFolder, id, showMenu }) => {
       </div>
       <Link
         id={data._id}
+        name={data.note_title}
         onContextMenu={e => handleContext(e)}
         to={`/dashboard/notes/${data._id}`}
       ></Link>

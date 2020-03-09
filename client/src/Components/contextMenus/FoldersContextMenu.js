@@ -29,11 +29,16 @@ class FolderContextMenu extends Component {
 
   editNote = e => {
     const { pageX, pageY } = e;
-    this.props.showMenu(this.props.x, this.props.y, "EditContextMenu", {
-      name: this.props.name,
-      id: this.props.id
-    });
-    // this.props.hideMenu();
+    this.props.showMenu(
+      this.props.x,
+      this.props.y,
+      "EditContextMenu",
+      {
+        name: this.props.name,
+        id: this.props.id
+      },
+      "folders"
+    );
   };
 
   render() {
@@ -67,7 +72,8 @@ const mapDispatchToProps = dispatch => ({
   removeFolder: id => dispatch(removeFolder(id)),
   hideMenu: () => dispatch(hideMenu()),
   toggleFolderOpen: () => dispatch(toggleFolderOpen()),
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+  showMenu: (x, y, getType, args, name) =>
+    dispatch(showMenu(x, y, getType, args, name))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FolderContextMenu);

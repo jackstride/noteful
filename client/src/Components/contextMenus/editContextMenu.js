@@ -4,25 +4,31 @@ import { connect } from "react-redux";
 import { updateFolder } from "../../actions/FolderActions";
 import { editTask } from "../../actions/taskActions";
 import { hideMenu } from "../../actions/contextMenuActions";
+import { editNote } from "../../actions/NoteActions";
 
 class EditContextMenu extends Component {
   handleSubmit = e => {
     e.preventDefault();
+    let values = {
+      id: this.props.id,
+      name: e.target.new_folder.value
+    };
 
-    if (this.props.widgetName == "tasks") {
-      let values = {
-        id: this.props.id,
-        name: e.target.new_folder.value
-      };
-
-      this.props.editTask(values);
-    } else {
-      let values = {
-        id: this.props.id,
-        name: e.target.new_folder.value
-      };
-      this.props.updateFolder(values);
+    switch (this.props.widgetName) {
+      case "tasks":
+        this.props.editTask(values);
+      case "folders":
+        this.props.updateFolder(values);
+      case "notes":
+        values = {
+          _id: this.props.id,
+          note_title: e.target.new_folder.value
+        };
+        this.props.editNote(values);
+      default:
+        console.log("hello");
     }
+
     this.props.hideMenu();
   };
 
@@ -47,6 +53,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   updateFolder: values => dispatch(updateFolder(values)),
   editTask: values => dispatch(editTask(values)),
+  editNote: values => dispatch(editNote(values)),
   hideMenu: () => dispatch(hideMenu())
 });
 

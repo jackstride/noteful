@@ -31,8 +31,10 @@ export const addNote = values => dispatch => {
 export const editNote = values => dispatch => {
   console.log(values);
   axios.patch(`/api/note/edit/${values._id}`, values).then(res => {
+    console.log(res);
     dispatch({
-      type: EDIT_NOTE
+      type: EDIT_NOTE,
+      payload: values
     });
   });
 };

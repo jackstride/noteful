@@ -4,6 +4,7 @@ import { isSuccess, handleClose } from "../../actions/ResponseActions";
 import { addNote, removeNote, editNote } from "../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import { hideMenu, showMenu } from "../../actions/contextMenuActions";
 const NotesContextMenu = ({
   isSuccess,
   handleClose,
@@ -12,7 +13,11 @@ const NotesContextMenu = ({
   user_id,
   id,
   AllFolders,
-  editNote
+  editNote,
+  x,
+  y,
+  showMenu,
+  name
 }) => {
   const [toggleFolders, showFolders] = useState(false);
 
@@ -37,6 +42,19 @@ const NotesContextMenu = ({
     editNote(values);
   };
 
+  let handleEdit = e => {
+    showMenu(
+      x,
+      y,
+      "EditContextMenu",
+      {
+        name,
+        id
+      },
+      "notes"
+    );
+  };
+
   return (
     <ul>
       <span>
@@ -45,21 +63,30 @@ const NotesContextMenu = ({
           <a>Add</a>
         </li>
       </span>
-      <li>
-        <Link to={`/dashboard/notes/${id}`}>Edit</Link>
-      </li>
-      <li onClick={() => handleClose()}>
-        <a>Rename</a>
-      </li>
+      <span>
+        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+        <li>
+          <Link to={`/dashboard/notes/${id}`}>Edit</Link>
+        </li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="keyboard"></FontAwesomeIcon>
+        <li onClick={() => handleEdit()}>
+          <a>Rename</a>
+        </li>
+      </span>
       <span>
         <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
         <li onClick={() => handleDeleteNote(id)}>
           <a>Delete</a>
         </li>
       </span>
-      <li onClick={() => handleChangFolder(id)}>
-        <a>Change folder</a>
-      </li>
+      <span>
+        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+        <li onClick={() => handleChangFolder(id)}>
+          <a>Change folder</a>
+        </li>
+      </span>
       {toggleFolders && (
         <div className="show_change_folders">
           <ul>
@@ -78,8 +105,11 @@ const NotesContextMenu = ({
 const mapStateToProps = state => {
   return {
     user_id: state.auth.user._id,
+    name: state.contextMenu.menuArgs.name,
     id: state.contextMenu.menuArgs.id,
-    AllFolders: state.folder.data
+    AllFolders: state.folder.data,
+    x: state.contextMenu.location.x,
+    y: state.contextMenu.location.y
   };
 };
 
@@ -88,7 +118,9 @@ const mapDispatchToProps = dispatch => ({
   handleClose: () => dispatch(handleClose()),
   addNote: values => dispatch(addNote(values)),
   removeNote: id => dispatch(removeNote(id)),
-  editNote: values => dispatch(editNote(values))
+  editNote: values => dispatch(editNote(values)),
+  showMenu: (x, y, getType, args, name) =>
+    dispatch(showMenu(x, y, getType, args, name))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesContextMenu);

@@ -36,6 +36,16 @@ export default (state = initalState, action) => {
         ...state,
         noteData: state.noteData.filter(note => note._id != action.payload)
       };
+    case EDIT_NOTE:
+      console.log(action.payload);
+      return {
+        ...state,
+        noteData: state.noteData.map(data =>
+          data._id === action.payload._id
+            ? { ...data, note_title: action.payload.note_title }
+            : data
+        )
+      };
     case DELETE_NOTE_BY_FOLDER:
       return {
         ...state,
