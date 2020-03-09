@@ -91,8 +91,12 @@ const NotesContextMenu = ({
       {toggleFolders && (
         <div className="show_change_folders">
           <ul>
-            {AllFolders.map(folder => (
-              <li id={folder._id} onClick={e => handleSubmitFolderChange(e)}>
+            {AllFolders.map((folder, index) => (
+              <li
+                key={index}
+                id={folder._id}
+                onClick={e => handleSubmitFolderChange(e)}
+              >
                 {folder.folder_name}
               </li>
             ))}

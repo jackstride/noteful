@@ -7,19 +7,25 @@ import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 
 const moment = require("moment");
 
-const ResultLayout = React.memo(({ data, remove, showMenu }) => {
+const ResultLayout = React.memo(({ data, remove, showMenu, getData }) => {
   let handleContext = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
-    console.log(e);
     showMenu(pageX, pageY, "NotesContextMenu", {
       name: e.target.name,
       id: e.target.id
     });
   };
 
+  useEffect(() => {
+    console.log("hello");
+    if (getData) {
+      getData();
+    }
+  }, [data.folder_id]);
+
   return (
-    <div className="folder_item">
+    <div style={{}} className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
           <h5 style={{ marginLeft: "5px" }}>{data.note_title}</h5>

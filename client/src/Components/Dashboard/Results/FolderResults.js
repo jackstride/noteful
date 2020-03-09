@@ -72,7 +72,14 @@ let Folders = ({
         </div>
         {notes.length >= 1 ? (
           notes.map((notes, index) => (
-            <ResultLayout key={index} data={notes} remove={handleRemove} />
+            <ResultLayout
+              key={index}
+              data={notes}
+              remove={handleRemove}
+              getData={() => {
+                getNotes(paramId);
+              }}
+            />
           ))
         ) : (
           <h1> Hello </h1>
