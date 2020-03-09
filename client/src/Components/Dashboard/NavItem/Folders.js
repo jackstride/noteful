@@ -38,8 +38,10 @@ class Folders extends Component {
 
   componentDidUpdate = (prevProps, nextProps) => {
     if (this.props.folder.length != prevProps.folder.length) {
-      const id = this.props.folder[0]._id;
-      this.props.history.push("/dashboard/" + id);
+      if (typeof id != "undefined") {
+        const id = this.props.folder[0]._id;
+        this.props.history.push("/dashboard/" + id);
+      }
     }
   };
 
