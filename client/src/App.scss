@@ -248,18 +248,20 @@ hr {
 
 .register {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 125px);
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 125px;
 }
 
 .login {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 125px);
     display: flex;
     flex-direction: row;
+    margin-top: 125px;
 }
 
 
