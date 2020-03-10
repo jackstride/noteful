@@ -16,6 +16,7 @@ router.post(
     let { firstName, lastName, email, password } = req.body;
 
     let saltRounds = 15;
+    email = email.toLowerCase();
 
     try {
       let user = await User.find({ email }).exec();
@@ -49,6 +50,9 @@ router.post(
 router.post("/login", async (req, res, next) => {
   console.log("hit");
   let { email, password } = req.body;
+
+  email = email.toLowerCase();
+  console.log(email);
 
   let user = await User.find({ email }).exec();
   user.length < 1

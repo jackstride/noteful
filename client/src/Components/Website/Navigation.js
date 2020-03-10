@@ -10,7 +10,6 @@ const Navigation = ({ auth }) => {
 
   // Tooo lonmgggg
   useEffect(() => {
-    console.log(history.location);
     if (
       history.location.pathname.includes("reg") ||
       history.location.pathname.includes("log")
