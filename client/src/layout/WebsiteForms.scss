@@ -44,6 +44,12 @@ form.auth_form {
         cursor: pointer;
         width: 50%;
         align-self: start;
+
+        @include tablet {
+            align-self: center;
+        }
+
+
     }
 
     input::placeholder {
@@ -63,6 +69,10 @@ form.auth_form {
 
     @include smalldesktop {
         width: 60%;
+    }
+
+    @include mobilelarge {
+        width: 90%;
     }
 }
 
@@ -110,6 +120,11 @@ form.auth_form {
 
     @include tablet {
         width: 60%;
+    }
+
+
+    @include mobilelarge {
+        width: 90%;
     }
 
     .form_container {
