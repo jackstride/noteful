@@ -21,7 +21,7 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
-          <h5 style={{ marginLeft: "5px" }}>{data.note_title}</h5>
+          <h5>{data.note_title}</h5>
           <h5>{moment(data.date).calendar()}</h5>
           <h5>{moment(data.date_modified).calendar()}</h5>
         </div>
