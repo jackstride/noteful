@@ -64,20 +64,22 @@ export const register = formValues => dispatch => {
 
 export const login = formValues => dispatch => {
   axios
-    .post("/user/login", formValues, { withCredentials: true })
+    .post("/user/login", formValues, {
+      withCredentials: true
+    })
     .then(res => {
-      console.log(res);
+      console.log(res.data);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data
       });
-    })
-    .catch(err => {
-      dispatch(returnErrors(err.response.data));
-      dispatch({
-        type: LOGIN_FAIL
-      });
     });
+  // .catch(err => {
+  //   dispatch(returnErrors(err.response.data));
+  //   dispatch({
+  //     type: LOGIN_FAIL
+  //   });
+  // });
 };
 
 export const logout = () => dispatch => {

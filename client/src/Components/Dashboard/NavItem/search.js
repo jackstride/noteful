@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Search = props => {
   let history = useHistory();
@@ -16,16 +17,19 @@ const Search = props => {
 
   return (
     <div className="app_search">
-      <input
-        onClick={() => {
-          handleClick();
-        }}
-        onChange={e => {
-          handleOnChange(e);
-        }}
-        type="search"
-        placeholder="# Search"
-      ></input>
+      <div className="search_container">
+        <input
+          onClick={() => {
+            handleClick();
+          }}
+          onChange={e => {
+            handleOnChange(e);
+          }}
+          type="search"
+          placeholder="Search"
+        ></input>
+        <FontAwesomeIcon icon="search" color="black" size="xs" />
+      </div>
     </div>
   );
 };

@@ -47,6 +47,7 @@ router.post(
 );
 
 router.post("/login", async (req, res, next) => {
+  console.log("hit");
   let { email, password } = req.body;
 
   let user = await User.find({ email }).exec();
@@ -72,6 +73,7 @@ router.post("/login", async (req, res, next) => {
           maxAge: 9000000,
           httpOnly: true
         });
+        console.log("hit");
         res.status(200).json({ user: payload });
       }
     );

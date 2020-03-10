@@ -29,7 +29,8 @@ import {
   faTimes,
   faCaretSquareLeft,
   faKeyboard,
-  faExchangeAlt
+  faExchangeAlt,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -61,5 +62,6 @@ library.add(
   faTimes,
   faCaretSquareLeft,
   faKeyboard,
-  faExchangeAlt
+  faExchangeAlt,
+  faSearch
 );

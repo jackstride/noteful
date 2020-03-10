@@ -20,7 +20,7 @@ let widgetSubmit = props => {
       >
         <input
           name="title"
-          placeholder="Untitled Folder"
+          placeholder="Untitled"
           type="text"
           autoFocus
           contentEditable="false"
