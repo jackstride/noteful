@@ -95,7 +95,8 @@ header {
 .section_header_text {
     width: 50%;
     text-align: center;
-    margin: 0 auto;
+
+    margin: 50px auto;
 }
 
 /* tag info */
@@ -105,6 +106,7 @@ header {
     width: 100%;
     display: flex;
     flex-direction: row;
+    margin: 20px 0px;
 
     h4 {
         padding-right: 100px;
@@ -142,7 +144,7 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100%;
-    gap: 2vw 2vh;
+    gap: 50px;
     height: 500px;
 
     .left_card {
@@ -153,14 +155,13 @@ header {
     }
 }
 
-
-
 .cards_col {
     grid-column: 2;
     grid-row: 1;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 1fr 1fr;
+    gap: 50px;
     width: 50%;
 
 

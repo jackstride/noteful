@@ -4,7 +4,8 @@ import "../fontawesome";
 
 import SectionOne from "../Components/Website/sectionOne";
 import Card from "../Components/Website/Card";
-import Swing from '../images/women_swing.png';
+import Swing from "../images/women_swing.png";
+import Image_One from "../images/reading_book.png";
 
 let Feature = props => {
   console.log(props);
@@ -27,9 +28,9 @@ export default class features extends Component {
 
     this.state = {
       section: {
-        heading: "Simple and Smart.",
+        heading: "Smart,simple and ready to use.",
         text:
-          "Smart & simple. Those are the only two words needed to describe noteful. Get access anywhere on any device, offline and online, to manage your notes, mark your to do's and create events ready for the week ahead."
+          "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
       },
       features: [
         {
@@ -51,46 +52,52 @@ export default class features extends Component {
         },
         {
           heading: "Create Tasks",
-          body: "Tasks are like To-Do's but we call them tasks. Easily add, remove, and mark them off when complete!"
+          body:
+            "Tasks are like To-Do's but we call them tasks. Easily add, remove, and mark them off when complete!"
         },
         {
           heading: "Type Notes",
-          body: "Create rich filled notes ready to leave and pick up anywhere, anytime!"
+          body:
+            "Create rich filled notes ready to leave and pick up anywhere, anytime!"
         },
         {
           heading: "Have an event coming up?",
           body: "Simple interface to manage your future events. Can we come?"
-        },
+        }
       ]
     };
   }
 
   render() {
     return (
-        <div className="inner_container">
-        <SectionOne data={this.state.section} />
+      <div className="inner_container">
+        <SectionOne
+          title={this.state.section.heading}
+          image={Image_One}
+          heading="Jump straight In"
+          body={this.state.section.text}
+        />
         <section className="features">
-            <div className="feature_cards">
-              <Card data={this.state.features[0]} />
-              <Card data={this.state.features[1]} />
-              <Card data={this.state.features[2]} />
-            </div>
+          <div className="feature_cards">
+            <Card data={this.state.features[0]} />
+            <Card data={this.state.features[1]} />
+            <Card data={this.state.features[2]} />
+          </div>
         </section>
         <section className="features_2">
           <div className="features_text">
-          <h3>What are the features of noteful?</h3>
-          {this.state.features.slice(3,6).map((item,index) => {
-            return (
-            <div className="features_content">
-            <h4>{item.heading}</h4>
-            <p>{item.body}</p>
-            </div>
-            )
-          })}
+            <h3>What are the features of noteful?</h3>
+            {this.state.features.slice(3, 6).map((item, index) => {
+              return (
+                <div className="features_content">
+                  <h4>{item.heading}</h4>
+                  <p>{item.body}</p>
+                </div>
+              );
+            })}
           </div>
           <div className="features_image">
-          <img src={Swing} alt="Noteful on a swing">
-          </img>
+            <img src={Swing} alt="Noteful on a swing"></img>
           </div>
         </section>
       </div>

@@ -15,6 +15,7 @@ import Footer from "./Components/Website/Footer";
 import LogOut from "./Components/Website/logout.js";
 import Features from "./pages/features.js";
 import Support from "./pages/support";
+import About from "./pages/About";
 
 class App extends Component {
   static propTypes = {
@@ -35,6 +36,7 @@ class App extends Component {
         <Route path="/logout" component={LogOut} />
         <Route path="/features" component={Features} />
         <Route path="/support" component={Support} />
+        <Route path="/about" component={About} />
         <Footer />
       </div>
     );
