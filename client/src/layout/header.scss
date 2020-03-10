@@ -22,6 +22,10 @@
     span a {
         color: $BackgroundColor;
     }
+
+    @include tablet {
+        display: none;
+    }
 }
 
 .circle_border {
@@ -49,6 +53,9 @@
 
 // Created and altered with https://codepen.io/martinwolf/pen/eNNdme/
 .website_nav {
+    @include tablet {
+        display: none;
+    }
 
     a {
         padding: 10px 40px;

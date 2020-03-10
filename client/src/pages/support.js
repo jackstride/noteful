@@ -48,12 +48,14 @@ export default class support extends Component {
   render() {
     return (
       <div>
-        <SectionOne
-          title={this.state.section.heading}
-          image={Zen}
-          heading="!@#%*#$%"
-          body={this.state.section.text}
-        />
+        <div className="support inner_container">
+          <SectionOne
+            title={this.state.section.heading}
+            image={Zen}
+            heading="!@#%*#$%"
+            body={this.state.section.text}
+          />
+        </div>
         <div className="support_bg">
           <section class="inner_container contact_cards">
             {this.state.social.map((item, i) => (

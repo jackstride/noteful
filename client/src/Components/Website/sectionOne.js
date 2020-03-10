@@ -26,22 +26,20 @@ let SectionOne = ({ title, image, heading, body }) => {
   // };
 
   return (
-    <div className="inner_container">
-      <section className="section_container">
-        <div className="header_image">
-          <h1>{title}</h1>
-          <img src={image} alt="Women reading a book"></img>
-        </div>
-        <div className="section_card">
-          <Card
-            data={{
-              heading: heading,
-              body: body
-            }}
-          />
-        </div>
-      </section>
-    </div>
+    <section className="section_container">
+      <div className="header_image">
+        <h1>{title}</h1>
+        <img src={image} alt="Women reading a book"></img>
+      </div>
+      <div className="section_card">
+        <Card
+          data={{
+            heading: heading,
+            body: body
+          }}
+        />
+      </div>
+    </section>
   );
 };
 

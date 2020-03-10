@@ -16,3 +16,31 @@ $white: white;
 $headingMain: #323232;
 $Orange: #FF8364;
 $Black: #323232;
+
+
+
+$d1440-width: 1440px;
+$desktop-width: 1024px;
+$tablet-width: 768px;
+
+
+
+@mixin smalldesktop {
+    @media (max-width: #{$d1440-width}) {
+        @content;
+    }
+}
+
+
+
+@mixin desktop {
+    @media (max-width: #{$desktop-width}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (max-width: #{$tablet-width}) {
+        @content;
+    }
+}

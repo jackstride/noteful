@@ -79,15 +79,16 @@ header {
     top: 0;
     left: 0;
     height: calc(100vh - 150px);
-    width: 100%;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
 
     svg {
         height: 60%;
+        max-width: 90%;
         animation: move 10s ease-in-out infinite;
-        transform: translate(50% 50%);
+        transform: translate(50%, 50%);
     }
 }
 
@@ -95,8 +96,15 @@ header {
 .section_header_text {
     width: 50%;
     text-align: center;
-
     margin: 50px auto;
+
+    @include desktop {
+        width: 60%;
+    }
+
+    @include tablet {
+        width: 80%;
+    }
 }
 
 /* tag info */
@@ -109,7 +117,7 @@ header {
     margin: 20px 0px;
 
     h4 {
-        padding-right: 100px;
+        padding-right: 10%;
     }
 }
 
@@ -123,7 +131,9 @@ header {
     width: 100%;
 
     .card_center {
-        padding: 40px;
+        padding: 10%;
+
+        @include tablet {}
 
         h3 {
             padding-bottom: 10px;
@@ -145,17 +155,26 @@ header {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 100%;
     gap: 50px;
-    height: 500px;
+
+    @include desktop {
+        gap: 20px;
+    }
+
 
     .left_card {
         height: 100%;
         width: 50%;
         display: flex;
         justify-self: end;
+
+        @include tablet {
+            width: 100%;
+        }
     }
 }
 
 .cards_col {
+    height: 100%;
     grid-column: 2;
     grid-row: 1;
     display: grid;
@@ -164,14 +183,15 @@ header {
     gap: 50px;
     width: 50%;
 
+    @include tablet {
+        width: 100%;
+    }
+
 
     :first-child {
         align-self: end;
     }
 }
-
-
-
 
 
 
@@ -197,7 +217,7 @@ header {
 .home_features {
     height: fit-content;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-template-rows: 1fr;
     gap: 2vw;
 }

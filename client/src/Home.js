@@ -67,7 +67,7 @@ export default class home extends Component {
   };
   render() {
     return (
-      <Fragment>
+      <div className="website_container">
         <header>
           <div className="absolute_blob">
             <Blob className="blob" />
@@ -133,7 +133,7 @@ export default class home extends Component {
             <Card data={this.state.cards[2]} />
           </section>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

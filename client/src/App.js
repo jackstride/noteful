@@ -28,7 +28,7 @@ class App extends Component {
 
   HomeContainer = () => {
     return (
-      <div>
+      <div className="website_container">
         <Navigation />
         <Route exact path="/" component={Home} />
         <Route path="/login" render={props => <LogIn {...props} />} />
