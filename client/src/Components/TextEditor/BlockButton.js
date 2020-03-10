@@ -1,6 +1,6 @@
 import React from "react";
-import { Editor, Transforms, createEditor } from "slate";
-import { Editable, withReact, useSlate, Slate } from "slate-react";
+import { Editor, Transforms } from "slate";
+import { useSlate } from "slate-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../fontawesome";
 

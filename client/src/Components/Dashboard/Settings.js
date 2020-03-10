@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  NavLink,
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from "react-router-dom";
+import { NavLink, Route, Switch } from "react-router-dom";
 import Profile from "./NavItem/profileIcon";
 import Account from "./settings/Account";
 import Password from "./settings/Password";

@@ -3,11 +3,10 @@ import Profile from "./Dashboard/NavItem/profile";
 import Search from "./Dashboard/NavItem/search";
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from "./Dashboard/NavItem/Tasks";
-import { addFolder, getFolder, removeFolder } from "../actions/FolderActions";
+import { getFolder } from "../actions/FolderActions";
 import { loadTasks } from "../actions/taskActions";
 import { connect } from "react-redux";
 import ProfileIcon from "./Dashboard/NavItem/profileIcon";
-import { Link } from "react-router-dom";
 
 class SideBar extends Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class SideBar extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.userId != this.props.userId) {
+    if (prevProps.userId !== this.props.userId) {
       this.props.loadTasks(this.props.userId);
       this.props.getFolder(this.props.userId);
     }

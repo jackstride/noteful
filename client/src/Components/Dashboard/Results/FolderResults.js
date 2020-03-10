@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 import ResultLayout from "./ResultLayout";
@@ -42,7 +42,7 @@ let Folders = ({
   }, [folder]);
 
   let getFolderName = () => {
-    let name = folder.filter(folder => paramId == folder._id);
+    let name = folder.filter(folder => paramId === folder._id);
     name = name[0].folder_name;
     return name;
   };

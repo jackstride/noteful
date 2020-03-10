@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
-import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
+import { showMenu } from "../../../actions/contextMenuActions";
 const moment = require("moment");
 
 let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
@@ -20,7 +20,7 @@ let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
 
   let returnName = () => {
     let noteFolderId = data.folder_id;
-    let name = folder.filter(data => data._id == noteFolderId);
+    let name = folder.filter(data => data._id === noteFolderId);
     name = name[0].folder_name;
     setFolderName(name);
   };

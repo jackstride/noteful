@@ -1,17 +1,12 @@
 import React, { useEffect, useMemo, useState, useCallback } from "react";
 import { Editable, withReact, Slate } from "slate-react";
-import { createEditor, Node } from "slate";
+import { createEditor } from "slate";
 import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  addNote,
-  editNote,
-  getNoteById,
-  getNotes
-} from "../../actions/NoteActions";
+import { editNote, getNoteById } from "../../actions/NoteActions";
 
 const TextEditor = ({
   match,
@@ -25,10 +20,8 @@ const TextEditor = ({
   const editor = useMemo(() => withReact(createEditor()), []);
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
-  const [id, setid] = useState("");
 
   useEffect(() => {
-    paramId ? setid(paramId) : console.log("waiting");
     getNoteById(paramId);
   }, [paramId]);
 

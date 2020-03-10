@@ -38,12 +38,6 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const register = formValues => dispatch => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json"
-    }
-  };
-
   axios
     .post("/user/register", formValues)
     .then(res =>

@@ -4,7 +4,7 @@ import { logout } from "../../actions/authActions";
 
 class Logout extends Component {
   componentDidUpdate(prevProps) {
-    if (this.props.isAuthenticated != prevProps.isAuthenticated) {
+    if (this.props.isAuthenticated !== prevProps.isAuthenticated) {
       this.props.history.push("/");
     }
   }

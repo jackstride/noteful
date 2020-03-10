@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -14,10 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 
 class Todo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleToggle = id => {
     this.props.toggleTask(id);
   };

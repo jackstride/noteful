@@ -15,7 +15,7 @@ class LogIn extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.errors != this.props.errors) {
+    if (prevProps.errors !== this.props.errors) {
       this.setState({ showErrors: this.props.errors });
     }
   }

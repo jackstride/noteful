@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "./fontawesome";
 
-import Preview from "./images/browser_preview.jpg";
 import PhonePreview from "./images/iphone_preview.png";
 import { ReactComponent as Blob } from "./images/blob.svg";
 import Card from "./Components/Website/Card.js";
@@ -125,7 +124,7 @@ export default class home extends Component {
           <hr className="home_sep"></hr>
           <SectionHeader data={this.state.headings[1]} />
           <section className="iphone_image">
-            <img src={PhonePreview}></img>
+            <img src={PhonePreview} alt="Noteful on iPhone"></img>
           </section>
 
           <section className="home_features">

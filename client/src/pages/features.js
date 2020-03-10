@@ -1,26 +1,10 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
 
 import SectionOne from "../Components/Website/sectionOne";
 import Card from "../Components/Website/Card";
 import Swing from "../images/women_swing.png";
 import Image_One from "../images/reading_book.png";
-
-let Feature = props => {
-  console.log(props);
-  return (
-    <div className="feature_item">
-      <div className="feature_icon">
-        <FontAwesomeIcon icon={props.data.icon} size="2x" />
-      </div>
-      <div className="feature_content">
-        <h6 style={{ color: "black" }}>{props.data.heading}</h6>
-        <p>{props.data.text}</p>
-      </div>
-    </div>
-  );
-};
 
 export default class features extends Component {
   constructor(props) {

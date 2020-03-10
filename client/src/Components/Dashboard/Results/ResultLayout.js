@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
 import {} from "../../../actions/NoteActions";
-import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
+import { showMenu } from "../../../actions/contextMenuActions";
 
 const moment = require("moment");
 

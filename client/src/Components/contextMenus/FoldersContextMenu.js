@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {
-  removeFolder,
-  addFolder,
-  toggleFolderOpen
-} from "../../actions/FolderActions";
+import { removeFolder, toggleFolderOpen } from "../../actions/FolderActions";
 import { hideMenu, showMenu } from "../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteConfirmation } from "../../actions/ResponseActions";
@@ -29,7 +25,6 @@ class FolderContextMenu extends Component {
   };
 
   editFolderName = e => {
-    const { pageX, pageY } = e;
     this.props.showMenu(
       this.props.x,
       this.props.y,
@@ -48,19 +43,19 @@ class FolderContextMenu extends Component {
         <span>
           <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
           <li onClick={e => this.addNote(e)}>
-            <a>Add</a>
+            <a href="#">Add</a>
           </li>
         </span>
         <span>
           <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
           <li onClick={e => this.handleRemove(e, this.props.id)}>
-            <a>Delete</a>
+            <a href="#">Delete</a>
           </li>
         </span>
         <span>
           <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
           <li onClick={e => this.editFolderName(e)}>
-            <a>Rename</a>
+            <a href="#">Rename</a>
           </li>
         </span>
       </ul>

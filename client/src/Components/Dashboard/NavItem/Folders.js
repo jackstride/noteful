@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -37,8 +37,8 @@ class Folders extends Component {
   };
 
   componentDidUpdate = (prevProps, nextProps) => {
-    if (this.props.folder.length != prevProps.folder.length) {
-      if (typeof id != "undefined") {
+    if (this.props.folder.length !== prevProps.folder.length) {
+      if (typeof id !== "undefined") {
         const id = this.props.folder[0]._id;
         this.props.history.push("/dashboard/" + id);
       }

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
-import { faFortAwesome } from "@fortawesome/free-brands-svg-icons";
 
 const Password = () => {
   let [length, setLength] = useState(false);
@@ -25,6 +24,10 @@ const Password = () => {
     if (length && symbols && mix) {
       setvalid(true);
     }
+  };
+
+  let handleSubmit = () => {
+    console.log(valid);
   };
 
   return (

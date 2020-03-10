@@ -3,12 +3,10 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
-  SUBMIT_NOTE,
   NOTE_LOADED,
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
-  CHANGE_FOLDER,
-  GET_STATE
+  CHANGE_FOLDER
 } from "../actions/types";
 
 //Notes by folder id

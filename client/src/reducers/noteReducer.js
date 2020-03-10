@@ -2,7 +2,6 @@ import {
   ADD_NOTE,
   EDIT_NOTE,
   DELETE_NOTE,
-  SUBMIT_NOTE,
   NOTE_LOADED,
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
@@ -35,7 +34,7 @@ export default (state = initalState, action) => {
     case DELETE_NOTE:
       return {
         ...state,
-        noteData: state.noteData.filter(note => note._id != action.payload)
+        noteData: state.noteData.filter(note => note._id !== action.payload)
       };
     case EDIT_NOTE:
       return {
@@ -59,7 +58,7 @@ export default (state = initalState, action) => {
       return {
         ...state,
         noteData: state.noteData.filter(
-          note => note.folder_id != action.payload
+          note => note.folder_id !== action.payload
         )
       };
 

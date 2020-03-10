@@ -29,8 +29,8 @@ export function contextMenuManagerMapState(state) {
 class ContextMenuManager extends Component {
   render() {
     const { contextMenu } = this.props;
-
-    const { type, show, location, getType, menuArgs = {} } = contextMenu;
+    //type,
+    const { show, location, getType, menuArgs = {} } = contextMenu;
 
     let menu = null;
 

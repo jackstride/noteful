@@ -6,7 +6,6 @@ import {
 } from "./types";
 import { removeFolder } from "./FolderActions";
 import { removeAllByFolderId } from "./NoteActions";
-import axios from "axios";
 
 export const isSuccess = message => dispatch => {
   dispatch({

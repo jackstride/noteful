@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { isSuccess, handleClose } from "../../actions/ResponseActions";
 import { addNote, removeNote, editNote } from "../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { hideMenu, showMenu } from "../../actions/contextMenuActions";
+import { showMenu } from "../../actions/contextMenuActions";
 import { CHANGE_FOLDER } from "../../actions/types";
 const NotesContextMenu = ({
   isSuccess,
-  handleClose,
-  addNote,
   removeNote,
-  user_id,
   id,
   AllFolders,
   editNote,

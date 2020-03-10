@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -10,8 +10,6 @@ const Search = props => {
   };
 
   let handleOnChange = e => {
-    let path = history.location.pathname;
-    // console.log(e.target.value);
     history.replace("/dashboard/search/search?=" + e.target.value);
   };
 
