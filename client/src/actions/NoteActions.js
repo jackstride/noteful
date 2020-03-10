@@ -7,7 +7,8 @@ import {
   NOTE_LOADED,
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
-  CHANGE_FOLDER
+  CHANGE_FOLDER,
+  GET_STATE
 } from "../actions/types";
 
 //Notes by folder id

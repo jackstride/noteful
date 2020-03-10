@@ -22,7 +22,6 @@ class EditContextMenu extends Component {
         this.props.updateFolder(values);
         break;
       case "notes":
-        console.log("hill billy jim");
         values = {
           _id: this.props.id,
           note_title: e.target.new_folder.value

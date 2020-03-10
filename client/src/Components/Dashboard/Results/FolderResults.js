@@ -71,16 +71,13 @@ let Folders = ({
           <h5> Delete </h5>
         </div>
         {notes.length >= 1 ? (
-          notes.map((notes, index) => (
-            <ResultLayout
-              key={index}
-              data={notes}
-              remove={handleRemove}
-              getData={() => {
-                getNotes(paramId);
-              }}
-            />
-          ))
+          notes.map((notes, index) => {
+            if (notes.folder_id == paramId) {
+              return (
+                <ResultLayout key={index} data={notes} remove={handleRemove} />
+              );
+            }
+          })
         ) : (
           <h1> Hello </h1>
         )}

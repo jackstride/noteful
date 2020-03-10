@@ -38,7 +38,6 @@ export default (state = initalState, action) => {
         noteData: state.noteData.filter(note => note._id != action.payload)
       };
     case EDIT_NOTE:
-      console.log("HTIE DIT");
       return {
         ...state,
         noteData: state.noteData.map(data =>

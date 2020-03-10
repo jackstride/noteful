@@ -7,7 +7,7 @@ import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 
 const moment = require("moment");
 
-const ResultLayout = React.memo(({ data, remove, showMenu, getData }) => {
+const ResultLayout = React.memo(({ data, remove, showMenu }) => {
   let handleContext = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
@@ -17,15 +17,8 @@ const ResultLayout = React.memo(({ data, remove, showMenu, getData }) => {
     });
   };
 
-  useEffect(() => {
-    console.log("hello");
-    if (getData) {
-      getData();
-    }
-  }, [data.folder_id]);
-
   return (
-    <div style={{}} className="folder_item">
+    <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
           <h5 style={{ marginLeft: "5px" }}>{data.note_title}</h5>

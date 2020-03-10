@@ -10,6 +10,7 @@ export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const GETTING_URL = "GETTING_URL";
 export const GOT_URL = "GOT_URL";
+
 export const FOLDER_SUCCESS = "FOLDER_SUCCESS";
 export const FOLDER_LOADED = "FOLDER_LOADED";
 export const REMOVE_FOLDER = "REMOVE_FOLDER";
