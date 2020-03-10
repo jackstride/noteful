@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
@@ -39,6 +39,8 @@ let Profile = props => {
 };
 
 let Options = ({ toggle }) => {
+  const history = useHistory();
+
   return (
     <nav className="options">
       <ul>
@@ -55,9 +57,10 @@ let Options = ({ toggle }) => {
         <li></li>
         <Link
           onClick={() => {
+            history.push("/logout");
             toggle(false);
           }}
-          to="/logout"
+          // to="/logout"
         >
           Logout
         </Link>
