@@ -59,6 +59,11 @@ form.auth_form {
     justify-content: center;
     text-align: center;
     width: 20%;
+
+
+    @include smalldesktop {
+        width: 60%;
+    }
 }
 
 /* Login Container */
@@ -69,6 +74,10 @@ form.auth_form {
     align-items: center;
     justify-content: center;
     height: 100%;
+
+    @include smalldesktop {
+        width: 100%;
+    }
 }
 
 .log_right {
@@ -77,9 +86,17 @@ form.auth_form {
     align-items: center;
     justify-content: center;
 
+    @include desktop {
+        display: none;
+    }
+
+
+
     svg {
         height: 100%;
         width: 60%;
+
+
     }
 }
 
@@ -89,6 +106,11 @@ form.auth_form {
     display: flex;
     align-items: center;
     height: 100%;
+
+
+    @include tablet {
+        width: 60%;
+    }
 
     .form_container {
         height: 700px;

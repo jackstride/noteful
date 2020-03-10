@@ -22,10 +22,12 @@ $Black: #323232;
 $d1440-width: 1440px;
 $desktop-width: 1024px;
 $tablet-width: 768px;
+$small-tablet-width: 580px;
+$mobile-large: 425px;
 
 
 
-@mixin smalldesktop {
+@mixin desktop {
     @media (max-width: #{$d1440-width}) {
         @content;
     }
@@ -33,7 +35,7 @@ $tablet-width: 768px;
 
 
 
-@mixin desktop {
+@mixin smalldesktop {
     @media (max-width: #{$desktop-width}) {
         @content;
     }
@@ -41,6 +43,20 @@ $tablet-width: 768px;
 
 @mixin tablet {
     @media (max-width: #{$tablet-width}) {
+        @content;
+    }
+}
+
+
+@mixin smalltablet {
+    @media (max-width: #{$small-tablet-width}) {
+        @content;
+    }
+}
+
+
+@mixin mobilelarge {
+    @media (max-width: #{$mobile-large}) {
         @content;
     }
 }

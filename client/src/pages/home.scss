@@ -98,12 +98,17 @@ header {
     text-align: center;
     margin: 50px auto;
 
-    @include desktop {
+    @include smalldesktop {
         width: 60%;
     }
 
     @include tablet {
         width: 80%;
+    }
+
+
+    @include smalltablet {
+        width: 100%;
     }
 }
 
@@ -116,8 +121,19 @@ header {
     flex-direction: row;
     margin: 20px 0px;
 
+    @include mobilelarge {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+        justify-items: center;
+    }
+
     h4 {
         padding-right: 10%;
+
+        @include mobilelarge {
+            padding: 0;
+
+        }
     }
 }
 
@@ -132,8 +148,6 @@ header {
 
     .card_center {
         padding: 10%;
-
-        @include tablet {}
 
         h3 {
             padding-bottom: 10px;
@@ -160,6 +174,11 @@ header {
         gap: 20px;
     }
 
+    @include mobilelarge {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
 
     .left_card {
         height: 100%;
@@ -178,13 +197,21 @@ header {
     grid-column: 2;
     grid-row: 1;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 50px;
     width: 50%;
 
     @include tablet {
         width: 100%;
+    }
+
+    @include mobilelarge {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+        grid-column: 1;
+        grid-row: 1;
+        gap: 20px;
     }
 
 
@@ -220,4 +247,9 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-template-rows: 1fr;
     gap: 2vw;
+
+    @include mobilelarge {
+        grid-template-columns: 1fr;
+    }
+
 }

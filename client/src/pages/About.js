@@ -31,7 +31,7 @@ const About = () => {
       </div>
       <div className="register_today">
         <h2>Register today</h2>
-        <button class="register_button">Register</button>
+        <button className="register_button">Register</button>
       </div>
       <div className="f_row">
         <div className="f_row_single">

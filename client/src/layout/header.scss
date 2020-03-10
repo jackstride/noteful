@@ -9,13 +9,19 @@
     justify-content: center;
     z-index: 1;
 
+
     .center_center {
         justify-content: space-between;
     }
 
     img {
         width: 125px;
+
+        @include tablet {
+            padding-left: 20px;
+        }
     }
+
 }
 
 .website_nav_login {

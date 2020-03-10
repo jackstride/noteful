@@ -52,6 +52,10 @@ h1 {
     font-size: 4em;
     line-height: 68px;
     letter-spacing: .05em;
+
+    @include mobilelarge {
+        font-size: 3.5em;
+    }
 }
 
 
