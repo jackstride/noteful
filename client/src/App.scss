@@ -165,9 +165,8 @@ nav a {
 
     }
 
-
     @include tablet {
-        grid-template-columns: 1fr;
+        display: block;
     }
 
     h1,

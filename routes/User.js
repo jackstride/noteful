@@ -92,6 +92,7 @@ router.get("/logout", (req, res) => {
 
 router.patch("/update/:_id", async (req, res, next) => {
   let { _id } = req.params;
+  let saltRounds = 10;
 
   let entries = Object.keys(req.body);
   let updates = {};
@@ -100,7 +101,12 @@ router.patch("/update/:_id", async (req, res, next) => {
     updates[entries[i]] = Object.values(req.body)[i];
   }
 
-  console.log(updates);
+  if (updates.password) {
+    salt = await bcrypt.genSaltSync(saltRounds);
+
+    updates.password = await bcrypt.hash(updates.password, salt);
+  }
+
   let user = await User.find({ _id });
   console.log("user");
 

@@ -146,6 +146,11 @@ input:checked+.slider:before {
     width: 60%;
 
 
+    @include mobilelarge {
+        width: 100%;
+    }
+
+
     label {
         width: 100%;
         display: flex;
@@ -166,6 +171,10 @@ input:checked+.slider:before {
         font-size: 18px;
         font-weight: 500;
         color: rgb(78, 78, 78);
+
+        @include mobilelarge {
+            margin: 10px;
+        }
     }
 
 
@@ -192,7 +201,13 @@ input:checked+.slider:before {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(400px, 2fr));
         gap: 40px;
+
+        @include mobilelarge {
+            grid-template-columns: 1fr;
+        }
     }
+
+
 }
 
 /////// Password ///////////
@@ -200,6 +215,11 @@ input:checked+.slider:before {
 .settings_password {
     display: flex;
     flex-direction: column;
+    width: 60%;
+
+    @include mobilelarge {
+        width: 100%;
+    }
 
     .circle {
         background-color: rgb(19, 214, 19);
@@ -221,7 +241,7 @@ input:checked+.slider:before {
         }
     }
 
-    width: 50%;
+
 
     form {
         display: flex;
