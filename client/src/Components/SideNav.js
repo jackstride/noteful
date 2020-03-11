@@ -34,16 +34,12 @@ class SideBar extends Component {
   };
 
   render() {
-    return (
+    return this.state.isOpen ? (
       <div className="app_navigation">
         <div
           className={this.state.isOpen ? null : "hover_open"}
           style={this.state.isOpen ? { display: "hidden" } : null}
-        >
-          <div className="app_profile">
-            {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
-          </div>
-        </div>
+        ></div>
 
         <div
           className={
@@ -57,6 +53,10 @@ class SideBar extends Component {
           <Folders />
           <Tasks userId={this.props.userId} data={this.props.taskData} />
         </div>
+      </div>
+    ) : (
+      <div className="app_profile">
+        {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
       </div>
     );
   }

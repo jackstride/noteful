@@ -169,6 +169,9 @@ nav a {
         height: 100%;
     }
 
+    @include tablet {
+        grid-template-columns: 1fr;
+    }
 
     h1,
     h2,

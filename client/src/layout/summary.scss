@@ -2,6 +2,12 @@
     height: 100%;
     width: calc(90%);
     margin: auto;
+
+
+    @include tablet {
+        width: 85%;
+        margin-top: 50px;
+    }
 }
 
 .summary_heading {
@@ -36,7 +42,12 @@
     @include smalldesktop {
         height: fit-content;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-rows: repeat(3, 1fr);
+    }
+
+
+    @include tablet {
+        height: fit-content;
     }
 }
 
@@ -75,6 +86,12 @@
     border-radius: 8px;
     background-color: $white;
     margin: auto 0;
+
+
+
+    @include tablet {
+        grid-auto-rows: 100px;
+    }
 }
 
 .summary_holder {

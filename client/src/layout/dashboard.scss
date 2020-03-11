@@ -10,6 +10,12 @@
         top: 0;
         height: 100vh;
     }
+
+    @include tablet {
+        position: fixed;
+    }
+
+
 }
 
 .hover_open {
@@ -42,6 +48,10 @@
 .grow {
     width: 100%;
     transition: width .2s linear;
+
+    @include tablet {
+        width: 200px;
+    }
 }
 
 /* Profile */
@@ -76,8 +86,9 @@
 }
 
 .app_profile {
-    position: absolute;
+    height: 0px;
 }
+
 
 .profile_container {
     height: 50px;
