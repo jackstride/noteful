@@ -35,17 +35,14 @@
 
 
 
-@keyframes growRight {
-    0% {
-        width: 0px;
-    }
 
-    100% {
-        width: 100%;
-    }
-}
 
 /* Profile */
+
+.app_profile {
+    height: 0px;
+    width: 100%;
+}
 
 .profile_image {
     width: 40px;
@@ -76,9 +73,6 @@
     }
 }
 
-.app_profile {
-    height: 0px;
-}
 
 
 .profile_container {
@@ -340,11 +334,17 @@ form.task_form {
 
 .folder_page {
     height: 90%;
-    width: 1440px;
+    width: 95%;
     position: relative;
     margin: auto;
     border-radius: 12px;
-    padding: 20px;
+
+
+    @include tablet {
+        position: relative;
+        top: 50px;
+    }
+
 
     .folders_heading {
         display: flex;
@@ -352,6 +352,10 @@ form.task_form {
         align-items: center;
         height: 50px;
         margin-bottom: 20px;
+
+        @include tablet {
+            padding-top: 50px;
+        }
 
         span {
             height: 30px;
@@ -382,7 +386,7 @@ form.task_form {
     background-color: white;
     border-radius: 12px;
     padding: 10px;
-
+    margin: 0 auto;
 
 
     h5:first-child {
@@ -443,8 +447,19 @@ form.task_form {
     grid-template-columns: repeat(3, minmax(100px, 1fr));
     align-items: center;
 
+    @include mobilelarge {
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+
+
+    h5 {
+        @include mobilelarge {
+            display: none;
+        }
+    }
+
     span {
-        z-index: 1;
+
         color: rgb(150, 150, 150) !important;
     }
 }

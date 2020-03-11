@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
@@ -16,12 +16,20 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
       id: e.target.id
     });
   };
+  // const [size, setSize] = useState({
+  //   width: window.innerWidth,
+  //   height: window.innerHeight
+  // });
+
+  // useEffect(() => {
+  //   console.log(size);
+  // }, [size]);
 
   return (
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
-          <h5>{data.note_title}</h5>
+          <span>{data.note_title}</span>
           <h5>{moment(data.date).calendar()}</h5>
           <h5>{moment(data.date_modified).calendar()}</h5>
         </div>
