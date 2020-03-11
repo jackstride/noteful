@@ -35,7 +35,7 @@ class SideBar extends Component {
 
   render() {
     return this.state.isOpen ? (
-      <div id="test" className="dashboard_navigation">
+      <div className="dashboard_navigation">
         <Profile toggle={this.toggleNav} />
         <Search />
         <Folders />
