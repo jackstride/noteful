@@ -1,36 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
+import { userUpdate } from "../../../actions/authActions";
 
 const Account = ({ email, firstName, lastName }) => {
-  const [u_first, setFirst] = useState("");
-  const [u_last, setLast] = useState("");
-  const [u_email, setEmail] = useState("");
+  const [u_first, setFirst] = useState();
+  const [u_last, setLast] = useState();
+  const [u_email, setEmail] = useState();
+  const [c_email, setCEmail] = useState();
 
-  useEffect(() => {
-    setFirst(firstName);
-    setLast(lastName);
-    setEmail(email);
-  }, [email, firstName, lastName]);
+  let handleOnSubmit = event => {
+    event.preventDefault();
+    console.log(event.target.email.value);
+    console.log(u_email);
+    // setCEmail(e.target.c_email.value);
+    // setFirst(e.target.u_fist.value);
+    // setLast(e.target.lastName.value);
+  };
 
   return (
     <div className="account_container">
-      <form>
+      <form
+        onSubmit={event => {
+          handleOnSubmit(event);
+        }}
+      >
         <label for="email">
-          Email *<input placeholder={u_email} name="email" type="text"></input>
+          Email *<input placeholder={email} name="email" type="text"></input>
         </label>
-        <label for="c_email">
+        <label>
           Confirm Email *
           <input placeholder="Confirm Email" name="c_email" type="text"></input>
         </label>
 
-        <label for="firstName">
+        <label>
           First Name *
-          <input placeholder={u_first} name="firstName" type="text"></input>
+          <input placeholder={firstName} name="firstName" type="text"></input>
         </label>
 
-        <label for="lastName">
+        <label>
           Last Name *
-          <input placeholder={u_last} name="lastName" type="text"></input>
+          <input placeholder={lastName} name="lastName" type="text"></input>
         </label>
 
         <input type="submit" name="submit" value="Save"></input>
@@ -38,6 +47,10 @@ const Account = ({ email, firstName, lastName }) => {
     </div>
   );
 };
+
+const mapDispatchToProps = () => dispatch => ({
+  userUpdate: values => dispatch(userUpdate(values))
+});
 
 const mapStateToProps = state => {
   return {
@@ -47,4 +60,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps, mapDispatchToProps)(Account);

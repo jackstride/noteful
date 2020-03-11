@@ -11,7 +11,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   GETTING_URL,
-  GOT_URL
+  GOT_URL,
+  USER_UPDATE,
+  PASSWORD_UPDATE
 } from "./types";
 
 //Load user
@@ -87,26 +89,11 @@ export const logout = () => dispatch => {
     .catch(err => {});
 };
 
-export const googleLogin = () => dispatch => {
-  axios
-    .get("/auth/google", {
-      headers: {
-        "Access-Control-Allow-Origin": "*"
-      }
-    })
-    .then(res => {
-      dispatch({
-        type: GETTING_URL,
-        payload: res.data
-      });
-    });
-};
-
-export const gotGoogle = () => dispatch => {
-  axios.get("/auth/google/callback").then(res => {
-    dispatch({
-      type: GOT_URL,
-      payload: res.data
+export const userUpdate = values => distpach => {
+  axios.patch(`/user/update:_ud`).then(res => {
+    distpach({
+      type: USER_UPDATE,
+      payload: values
     });
   });
 };

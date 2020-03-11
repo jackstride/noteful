@@ -1,5 +1,9 @@
+// User
 export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
+export const USER_UPDATE = "USER_UPDATE";
+export const PASSWORD_UPDATE = "PASSWORD_UPDATE";
+
 export const AUTH_ERROR = "AUTH_ERROR";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const GET_ERRORS = "GET_ERRORS";

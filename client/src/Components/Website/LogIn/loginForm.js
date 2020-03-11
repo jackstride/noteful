@@ -43,7 +43,12 @@ class Form extends Component {
 
   render() {
     return (
-      <form className="auth_form" onSubmit={this.handleSubmit}>
+      <form
+        className="auth_form"
+        onSubmit={event => {
+          this.handleSubmit(event);
+        }}
+      >
         <input type="text" name="email" placeholder="Email Address"></input>
         <input type="password" name="password" placeholder="Password"></input>
         <p style={{ alignSelf: "start" }}> Forgot your password? Click Here</p>
