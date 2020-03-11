@@ -37,10 +37,10 @@ class SideBar extends Component {
     return (
       <div className="app_navigation">
         <div
-          className={this.state.isOpen ? { display: "hidden" } : "hover_open"}
+          className={this.state.isOpen ? null : "hover_open"}
+          style={this.state.isOpen ? { display: "hidden" } : null}
         >
           <div className="app_profile">
-            {/* // Ifffy */}
             {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
           </div>
         </div>
