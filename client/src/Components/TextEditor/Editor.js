@@ -40,7 +40,7 @@ const TextEditor = ({
         onChange={value => {
           setValue(value);
           const content = JSON.stringify(value);
-          let note_title = editor.children[0].children[0].text;
+          let note_title = editor.children[0].children[0].text.split(" ")[0];
           const values = {
             _id,
             note_title,
