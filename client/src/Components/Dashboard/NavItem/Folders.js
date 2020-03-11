@@ -36,11 +36,14 @@ class Folders extends Component {
     });
   };
 
-  componentDidUpdate = (prevProps, nextProps) => {
-    if (this.props.folder.length !== prevProps.folder.length) {
-      if (typeof id !== "undefined") {
-        const id = this.props.folder[0]._id;
-        this.props.history.push("/dashboard/" + id);
+  // Mostl likely a better way to do this
+  componentDidUpdate = prevProps => {
+    if (prevProps.folder && prevProps.folder.length) {
+      if (this.props.folder && this.props.folder.length) {
+        if (this.props.folder.length !== prevProps.folder.length) {
+          const id = this.props.folder[0]._id;
+          this.props.history.push("/dashboard/" + id);
+        }
       }
     }
   };

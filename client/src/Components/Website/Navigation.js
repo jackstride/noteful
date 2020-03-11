@@ -22,7 +22,7 @@ const Navigation = ({ auth }) => {
 
   return (
     <div
-      style={light ? { backgroundColor: "white" } : { backgroundColor: "blue" }}
+      style={light ? { backgroundColor: "white" } : null}
       className="website_navigation"
     >
       <div className="inner_container center_center">
