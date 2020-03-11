@@ -89,8 +89,9 @@ export const logout = () => dispatch => {
     .catch(err => {});
 };
 
-export const userUpdate = values => distpach => {
-  axios.patch(`/user/update:_ud`).then(res => {
+export const userUpdate = (_id, values) => distpach => {
+  console.log(_id, values);
+  axios.patch(`/user/update/${_id}`, values).then(res => {
     distpach({
       type: USER_UPDATE,
       payload: values

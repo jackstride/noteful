@@ -2,32 +2,37 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
+import { userUpdate } from "../../../actions/authActions";
 
-const Password = () => {
+const Password = ({ _id, userUpdate }) => {
   let [length, setLength] = useState(false);
   let [symbols, setSymbols] = useState(false);
   let [mix, setMix] = useState(false);
   let [valid, setvalid] = useState(false);
+  let [match, setMatch] = useState(false);
+  let [values, setValues] = useState();
 
   let handleValidation = e => {
     let string = e.target.value;
-    console.log(string);
     let checkCase = /(?=.*[a-z])(?=.*[A-Z])/;
     let checkSymbol = /[`!@#$%^&*()_+\-=\[\]{};':"|,.<>?~]/;
-
     string.length > 8 ? setLength(true) : setLength(false);
-
     checkSymbol.test(string) ? setSymbols(true) : setSymbols(false);
-
     checkCase.test(string) ? setMix(true) : setMix(false);
+  };
 
-    if (length && symbols && mix) {
-      setvalid(true);
+  let handlePasswordMatch = () => {
+    if (values.password === values.c_password) {
+      setMatch(true);
+    } else {
+      setMatch(false);
     }
   };
 
   let handleSubmit = () => {
-    console.log(valid);
+    if (length && symbols && mix && match) {
+      userUpdate(_id, { password: values.password });
+    }
   };
 
   return (
@@ -46,12 +51,22 @@ const Password = () => {
           <p> Upper and Lowercase </p>
           {mix && <Correct />}
         </div>
+        <div className="match">
+          <p> Passwords Match </p>
+          {match && <Correct />}
+        </div>
       </div>
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          handleSubmit();
+        }}
+      >
         <label>
           Password
           <input
             onChange={e => {
+              setValues({ ...values, password: e.target.value });
               handleValidation(e);
             }}
             name="password"
@@ -60,22 +75,37 @@ const Password = () => {
         </label>
         <label>
           Confirm Password
-          <input type="password"></input>
+          <input
+            onChange={e => {
+              setValues({ ...values, c_password: e.target.value });
+            }}
+            onKeyUp={() => {
+              handlePasswordMatch();
+            }}
+            name="c_password"
+            type="password"
+          ></input>
+          <input type="submit" name="submit" value="submit"></input>
         </label>
       </form>
     </div>
   );
 };
 
+const mapDisptachToProps = () => dispatch => ({
+  userUpdate: (_id, values) => dispatch(userUpdate(_id, values))
+});
+
 const mapStateToProps = state => {
   return {
+    _id: state.auth.user._id,
     email: state.auth.user.email,
     firstName: state.auth.user.firstName,
     lastName: state.auth.user.lastName
   };
 };
 
-export default connect(mapStateToProps)(Password);
+export default connect(mapStateToProps, mapDisptachToProps)(Password);
 
 let Correct = () => {
   return (

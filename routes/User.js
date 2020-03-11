@@ -90,4 +90,29 @@ router.get("/logout", (req, res) => {
   res.clearCookie("access_token").sendStatus(200);
 });
 
+router.patch("/update/:_id", async (req, res, next) => {
+  let { _id } = req.params;
+
+  let entries = Object.keys(req.body);
+  let updates = {};
+
+  for (let i = 0; i < entries.length; i++) {
+    updates[entries[i]] = Object.values(req.body)[i];
+  }
+
+  console.log(updates);
+  let user = await User.find({ _id });
+  console.log("user");
+
+  if (user) {
+    update = await User.findOneAndUpdate({ _id }, { $set: updates });
+
+    update
+      ? res.status(200).json({ message: "User Updated" })
+      : next(newcreateError(500, "Problem with server"));
+  } else {
+    next(newcreateError(500, "Problem with server"));
+  }
+});
+
 module.exports = router;
