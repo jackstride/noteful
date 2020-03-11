@@ -13,7 +13,7 @@ class SideBar extends Component {
     super(props);
 
     this.state = {
-      isOpen: true
+      isOpen: false
     };
   }
   componentDidMount() {
@@ -35,28 +35,15 @@ class SideBar extends Component {
 
   render() {
     return this.state.isOpen ? (
-      <div className="app_navigation">
-        <div
-          className={this.state.isOpen ? null : "hover_open"}
-          style={this.state.isOpen ? { display: "hidden" } : null}
-        ></div>
-
-        <div
-          className={
-            this.state.isOpen
-              ? "dashboard_navigation grow"
-              : "dashboard_navigation"
-          }
-        >
-          <Profile toggle={this.toggleNav} />
-          <Search />
-          <Folders />
-          <Tasks userId={this.props.userId} data={this.props.taskData} />
-        </div>
+      <div id="test" className="dashboard_navigation">
+        <Profile toggle={this.toggleNav} />
+        <Search />
+        <Folders />
+        <Tasks userId={this.props.userId} data={this.props.taskData} />
       </div>
     ) : (
       <div className="app_profile">
-        {!this.state.isOpen && <ProfileIcon handleClick={this.toggleNav} />}
+        <ProfileIcon handleClick={this.toggleNav} />
       </div>
     );
   }
