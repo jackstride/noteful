@@ -1,9 +1,8 @@
 .app_navigation {
-    width: 0px;
+    width: 100%;
     height: 100vh;
     position: relative;
     z-index: 1;
-
 }
 
 .hover_open {
@@ -34,7 +33,7 @@
 }
 
 .grow {
-    width: 250px;
+    width: 100%;
     transition: width .2s linear;
 }
 
