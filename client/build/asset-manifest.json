@@ -1,31 +1,32 @@
 {
   "files": {
-    "main.css": "/static/css/main.0a730e8f.chunk.css",
-    "main.js": "/static/js/main.c7454519.chunk.js",
-    "main.js.map": "/static/js/main.c7454519.chunk.js.map",
+    "main.css": "/static/css/main.068877ac.chunk.css",
+    "main.js": "/static/js/main.bfb67e7d.chunk.js",
+    "main.js.map": "/static/js/main.bfb67e7d.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
     "runtime-main.js.map": "/static/js/runtime-main.cea588d5.js.map",
-    "static/js/2.2c1f7d81.chunk.js": "/static/js/2.2c1f7d81.chunk.js",
-    "static/js/2.2c1f7d81.chunk.js.map": "/static/js/2.2c1f7d81.chunk.js.map",
+    "static/js/2.8ce9fffc.chunk.js": "/static/js/2.8ce9fffc.chunk.js",
+    "static/js/2.8ce9fffc.chunk.js.map": "/static/js/2.8ce9fffc.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.ddb222886e783908677dc55ec4a68fb7.js": "/precache-manifest.ddb222886e783908677dc55ec4a68fb7.js",
+    "precache-manifest.a1089f584e9b8ee2c5ecbe654718be42.js": "/precache-manifest.a1089f584e9b8ee2c5ecbe654718be42.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.0a730e8f.chunk.css.map": "/static/css/main.0a730e8f.chunk.css.map",
-    "static/js/2.2c1f7d81.chunk.js.LICENSE.txt": "/static/js/2.2c1f7d81.chunk.js.LICENSE.txt",
+    "static/css/main.068877ac.chunk.css.map": "/static/css/main.068877ac.chunk.css.map",
+    "static/js/2.8ce9fffc.chunk.js.LICENSE.txt": "/static/js/2.8ce9fffc.chunk.js.LICENSE.txt",
     "static/media/blob.f77f62f5.svg": "/static/media/blob.f77f62f5.svg",
-    "static/media/browser_preview.jpg": "/static/media/browser_preview.ed0b2c24.jpg",
     "static/media/google.svg": "/static/media/google.7e5484e9.svg",
     "static/media/iphone_preview.png": "/static/media/iphone_preview.8c2b54c0.png",
     "static/media/jumping.dc5065c2.svg": "/static/media/jumping.dc5065c2.svg",
     "static/media/noteful_bw.svg": "/static/media/noteful_bw.09017aa7.svg",
     "static/media/reading_book.png": "/static/media/reading_book.95096ccb.png",
     "static/media/twitter.svg": "/static/media/twitter.2cf50c22.svg",
-    "static/media/women_swing.png": "/static/media/women_swing.6c285224.png"
+    "static/media/women_hugging.png": "/static/media/women_hugging.cb31081f.png",
+    "static/media/women_swing.png": "/static/media/women_swing.6c285224.png",
+    "static/media/zen.png": "/static/media/zen.df0da659.png"
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/js/2.2c1f7d81.chunk.js",
-    "static/css/main.0a730e8f.chunk.css",
-    "static/js/main.c7454519.chunk.js"
+    "static/js/2.8ce9fffc.chunk.js",
+    "static/css/main.068877ac.chunk.css",
+    "static/js/main.bfb67e7d.chunk.js"
   ]
 }
