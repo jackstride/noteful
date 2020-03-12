@@ -42,11 +42,10 @@ router.post(
           password: hash
         });
       } else {
-        next(createError(500, " Database register error"));
+        return next(createError(500, " Database register error"));
       }
 
       let result = await user.save();
-
       if (result) {
         return res.status(201).json({ message: "Register Successful" });
       } else {
@@ -59,16 +58,17 @@ router.post(
 );
 
 router.post("/login", async (req, res, next) => {
-  console.log("hit");
   let { email, password } = req.body;
 
   email = email.toLowerCase();
-  console.log(email);
 
   let user = await User.find({ email }).exec();
-  user.length < 1
-    ? next(createError(401, "Please enter a valid email & Password"))
-    : (match = await bcrypt.compare(password, user[0].password));
+
+  if (user.length < 1) {
+    return next(createError(401, "Please enter a valid email & Password"));
+  } else {
+    match = await bcrypt.compare(password, user[0].password);
+  }
 
   if (match) {
     const payload = {
@@ -84,16 +84,19 @@ router.post("/login", async (req, res, next) => {
         expiresIn: "2 days"
       },
       (err, token) => {
-        res.cookie("access_token", token, {
-          maxAge: 9000000,
-          httpOnly: true
-        });
-        console.log("hit");
-        res.status(200).json({ user: payload });
+        if (token) {
+          res.cookie("access_token", token, {
+            maxAge: 9000000,
+            httpOnly: true
+          });
+          return res.status(200).json({ user: payload });
+        } else if (err) {
+          return console.log(err);
+        }
       }
     );
   } else {
-    next(createError(401, " Please enter a valid email or Password."));
+    return next(createError(401, " Please enter a valid email or Password."));
   }
 });
 
@@ -114,21 +117,21 @@ router.patch("/update/:_id", async (req, res, next) => {
 
   if (updates.password) {
     salt = await bcrypt.genSaltSync(saltRounds);
-
     updates.password = await bcrypt.hash(updates.password, salt);
   }
 
   let user = await User.find({ _id });
-  console.log("user");
 
   if (user) {
     update = await User.findOneAndUpdate({ _id }, { $set: updates });
 
-    update
-      ? res.status(200).json({ message: "User Updated" })
-      : next(newcreateError(500, "Problem with server"));
+    if (update) {
+      return res.status(200).json({ message: "User Updated" });
+    } else {
+      returnnext(newcreateError(500, "Problem with server"));
+    }
   } else {
-    next(newcreateError(500, "Problem with server"));
+    return next(newcreateError(500, "Problem with server"));
   }
 });
 
