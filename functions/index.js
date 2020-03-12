@@ -23,7 +23,7 @@ const app = express();
 
 // Enable Body Parster to accept request.
 // Cors confusing
-app.use("*", function(req, res, next) {
+app.use("*", (req, res, next) => {
   //replace localhost:8080 to the ip address:port of your server
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");

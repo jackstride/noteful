@@ -17,9 +17,11 @@ router.post("/addFolder", async (req, res, next) => {
 
   result = await folder.save();
 
-  folder
-    ? res.status(201).json({ message: "Folder Added", folder: result })
-    : next(createError(500, "There was an error saving the folder "));
+  if (folder) {
+    return res.status(201).json({ message: "Folder Added", folder: result });
+  } else {
+    return next(createError(500, "There was an error saving the folder "));
+  }
 });
 
 router.get("/folders/:user_id", async (req, res, next) => {
@@ -29,9 +31,11 @@ router.get("/folders/:user_id", async (req, res, next) => {
     .sort({ _id: -1 })
     .exec();
 
-  folder
-    ? res.status(201).json({ folder })
-    : next(createError(500, "There was an error saving the folder "));
+  if (folder) {
+    return res.status(201).json({ folder });
+  } else {
+    return next(createError(500, "There was an error saving the folder "));
+  }
 });
 
 router.delete("/folders/:folderid", async (req, res, next) => {
@@ -39,9 +43,11 @@ router.delete("/folders/:folderid", async (req, res, next) => {
 
   let result = await Folder.findByIdAndRemove(folderid);
 
-  result
-    ? res.sendStatus(200)
-    : next(createError(500, "There was an error deleting the folder"));
+  if (result) {
+    return res.sendStatus(200);
+  } else {
+    return next(createError(500, "There was an error deleting the folder"));
+  }
 });
 
 router.put("/folder/update", async (req, res, next) => {
@@ -52,9 +58,11 @@ router.put("/folder/update", async (req, res, next) => {
     { folder_name: name }
   );
 
-  result
-    ? res.status(200).json({ result })
-    : next(createError(500, "There was an error renaming the folder"));
+  if (result) {
+    res.status(200).json({ result });
+  } else {
+    return next(createError(500, "There was an error renaming the folder"));
+  }
 });
 
 module.exports = router;

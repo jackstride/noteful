@@ -49,7 +49,7 @@ router.post(
       if (result) {
         return res.status(201).json({ message: "Register Successful" });
       } else {
-        next(newcreateError(500, "Problem with server"));
+        return next(newcreateError(500, "Problem with server"));
       }
     } catch (err) {
       console.log(err);
