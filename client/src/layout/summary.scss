@@ -1,6 +1,6 @@
 .summary_container {
     height: 100%;
-    width: calc(90%);
+    width: calc(100% - 250px);
     margin: auto;
 
     @include tablet {
@@ -8,35 +8,13 @@
     }
 }
 
-.summary_heading {
-    height: 80%;
-    display: flex;
-    align-items: flex-end;
-}
-
-.summary_heading:nth-child(1) h4:before {
-    content: "•";
-    color: blue;
-}
-
-.summary_heading:nth-child(2) h4:before {
-    content: "•";
-    color: green;
-}
-
-.summary_heading:nth-child(3) h4:before {
-    content: "•";
-    color: red;
-}
 
 .summaries {
     width: 100%;
-    height: calc(100vh - 100px);
+    height: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 10px;
+    grid-template-columns: 70% 30%;
     overflow-y: scroll;
-    padding-top: 50px;
 
     @include smalldesktop {
         height: fit-content;
@@ -44,15 +22,15 @@
         grid-template-rows: repeat(3, 1fr);
     }
 
-
     @include tablet {
         height: fit-content;
     }
 }
 
+
 .circle {
     text-align: center;
-    width: 90%;
+    width: 100%;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -70,33 +48,72 @@
     background-color: rgba(112, 174, 231, 0.233);
 }
 
-
-
-
-
-.summary_notes,
-.summary_tasks,
-.summary_events {
-    height: 90%;
+.summary_grid_rows {
+    height: 100%;
     display: grid;
-    grid-auto-rows: 125px;
+    grid-auto-rows: 50px;
     overflow-y: auto;
     position: relative;
-    border-radius: 8px;
-    background-color: $white;
+    gap: 20px;
     margin: auto 0;
-
-
 
     @include tablet {
         grid-auto-rows: 100px;
     }
 }
 
+
+
+.summary_header {
+    height: 100px;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1.5px solid rgb(233, 233, 233);
+
+    h3 {
+        padding-bottom: 10px;
+    }
+}
+
+.summary_notes,
+.summary_tasks {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.summary_tasks {
+    height: 50%;
+}
+
+.summary_header {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+
+
+////////// Summary Contents /////////////////
+
+.tasks>.summary_icon {
+    width: 100%;
+}
+
+.summary_icon {
+    width: 30%;
+    display: flex;
+    align-items: center;
+}
+
 .summary_holder {
+    width: 90%;
+    height: 100%;
     display: grid;
-    grid-template-columns: 10% 80%;
+    grid-template-columns: 10% 90%;
     position: relative;
+    border-radius: 4px;
+    margin: 0 auto;
+
 
     a {
         position: absolute;
@@ -118,25 +135,19 @@
 .summary_holder.notes span {
     font-weight: 600;
     color: #405AFF;
+    font-size: 12px;
 }
 
-.summary_icon {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 
 .summary_text {
     width: 95%;
     height: 100%;
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    justify-content: center;
-}
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 
+    align-items: center;
+}
 
 .summary_holder.tasks:hover {
     width: 100%;
@@ -155,5 +166,17 @@
 
 .summary_text>* {
     padding: 2px 0px;
+}
 
+
+.summary_holder:nth-child(even) {}
+
+
+
+
+.task_stats {
+    height: 50%;
+    width: 100%;
+    border-radius: 12px;
+    background-color: rgb(218, 218, 255);
 }

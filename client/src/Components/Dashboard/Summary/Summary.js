@@ -24,36 +24,38 @@ let Summary = ({
     setData(folder);
   }, [id]);
 
+  const getTaskComplete = () => {
+    let all = tasks.length;
+    let numberOfComplete = tasks.filter(task => task.isCompleted === true);
+
+    let percent = (numberOfComplete.length * 100) / all;
+    return percent;
+  };
+
   return (
     <div className="summary_container">
       <div className="summaries">
         <div className="summary_notes">
-          <div className="summary_heading">
-            <h4> Notes</h4>
+          <div className="summary_header">
+            <h3>Recent Notes</h3>
           </div>
-          {notes.map((note, index) => {
-            if (data) {
-              return <NotesHolder data={data} notes={note} key={index} />;
-            } else {
-              return null;
-            }
-          })}
+          <div className="summary_grid_rows">
+            {notes.map((note, index) => {
+              return <NotesHolder data={folder} notes={note} key={index} />;
+            })}
+          </div>
         </div>
+
         <div className="summary_tasks">
-          <div className="summary_heading">
-            <h4> Tasks</h4>
+          <div className="summary_header">
+            <h3> Tasks</h3>
           </div>
-          {tasks.map((tasks, index) => (
-            <TaskHolder key={index} task={tasks} mark={toggleTask} />
-          ))}
-        </div>
-        <div className="summary_tasks">
-          <div className="summary_heading">
-            <h4> Events</h4>
+          <div className="summary_grid_rows">
+            {tasks.map((tasks, index) => (
+              <TaskHolder key={index} task={tasks} mark={toggleTask} />
+            ))}
           </div>
-          {tasks.map((tasks, index) => (
-            <TaskHolder key={index} task={tasks} />
-          ))}
+          <div className="task_stats">{tasks ? getTaskComplete() : null}</div>
         </div>
       </div>
     </div>

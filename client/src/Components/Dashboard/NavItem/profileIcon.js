@@ -12,11 +12,10 @@ const ProfileIcon = ({ handleClick, name }) => {
           return null;
         }
       }}
-      className="profile_image"
+      style={{ backgroundColor: randomColor() }}
+      className="p_image"
     >
-      <div style={{ backgroundColor: randomColor() }} className="p_image">
-        <span>{name[0]}</span>
-      </div>
+      <span>{name[0]}</span>
     </div>
   );
 };

@@ -5,7 +5,8 @@ import {
   NOTE_LOADED,
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
-  CHANGE_FOLDER
+  CHANGE_FOLDER,
+  CLEAR_NOTE
 } from "../actions/types";
 const initalState = {
   user_id: null,
@@ -61,7 +62,11 @@ export default (state = initalState, action) => {
           note => note.folder_id !== action.payload
         )
       };
-
+    case CLEAR_NOTE:
+      return {
+        ...state,
+        singleNoteData: []
+      };
     default:
       return state;
   }

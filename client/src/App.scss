@@ -9,6 +9,7 @@
 @import './layout/dashboard.scss';
 @import './layout/hamNav.scss';
 @import './layout/animations.scss';
+@import './layout/TopBar.scss';
 @import './layout/settings.scss';
 @import './layout/textEditor.scss';
 @import './layout/summary.scss';
@@ -167,8 +168,8 @@ nav a {
     min-height: 100vh;
     background-color: $AppBackgroundColor;
     display: grid;
-    grid-template-columns: 250px 1fr;
-    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 100%;
 
 
     @include desktop {
@@ -222,7 +223,7 @@ nav a {
 
     h6 {
         font-size: 14px;
-        color: rgb(160, 160, 160);
+        color: rgb(139, 139, 139);
     }
 }
 

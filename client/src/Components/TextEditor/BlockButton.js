@@ -4,7 +4,7 @@ import { useSlate } from "slate-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../fontawesome";
 
-let ToolBarButton = ({ format, icon }) => {
+let ToolBarButton = ({ format, icon, size }) => {
   const editor = useSlate();
 
   const active = {
@@ -46,13 +46,21 @@ let ToolBarButton = ({ format, icon }) => {
 
   return (
     <button
-      style={isBlockActive(editor, format) ? active : unactive}
+      className={
+        isBlockActive(editor, format) ? "e_button_active" : "e_button_unactive"
+      }
       onMouseDown={event => {
         event.preventDefault();
         toggleBlock(editor, format);
       }}
     >
-      <FontAwesomeIcon icon={icon} size="lg" />
+      <FontAwesomeIcon
+        className={
+          isBlockActive(editor, format) ? "b_icon_active" : "b_icon_unactive"
+        }
+        icon={icon}
+        size={size ? size : "1x"}
+      />
     </button>
   );
 };

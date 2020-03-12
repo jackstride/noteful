@@ -24,9 +24,9 @@ const Search = props => {
             handleOnChange(e);
           }}
           type="search"
-          placeholder="Search"
+          placeholder="Search your notes.."
         ></input>
-        <FontAwesomeIcon icon="search" color="black" size="xs" />
+        <FontAwesomeIcon icon="search" size="1x" />
       </div>
     </div>
   );

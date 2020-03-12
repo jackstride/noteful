@@ -29,7 +29,9 @@ import {
   faCaretSquareLeft,
   faKeyboard,
   faExchangeAlt,
-  faSearch
+  faSearch,
+  faHeading,
+  faChevronDown
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -62,5 +64,7 @@ library.add(
   faCaretSquareLeft,
   faKeyboard,
   faExchangeAlt,
-  faSearch
+  faSearch,
+  faHeading,
+  faChevronDown
 );

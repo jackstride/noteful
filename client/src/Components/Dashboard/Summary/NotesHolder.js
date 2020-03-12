@@ -38,8 +38,8 @@ let NotesHolder = ({ data, getFolder, id, showMenu, notes }) => {
         </div>
       </div>
       <div className="summary_text">
-        <h6>{folderName}</h6>
         <h5>{notes.note_title}</h5>
+        <h6>{folderName}</h6>
         <h6>{moment(data.date).calendar()}</h6>
       </div>
       <Link

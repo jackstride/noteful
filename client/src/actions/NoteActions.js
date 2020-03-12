@@ -6,7 +6,8 @@ import {
   NOTE_LOADED,
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
-  CHANGE_FOLDER
+  CHANGE_FOLDER,
+  CLEAR_NOTE
 } from "../actions/types";
 
 //Notes by folder id
@@ -61,5 +62,11 @@ export const removeAllByFolderId = folder_id => dispatch => {
       type: DELETE_NOTE_BY_FOLDER,
       payload: folder_id
     });
+  });
+};
+
+export const clearValues = () => dispatch => {
+  dispatch({
+    type: CLEAR_NOTE
   });
 };

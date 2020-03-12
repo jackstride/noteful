@@ -8,7 +8,7 @@ let ToolBarButton = ({ format, icon }) => {
   const editor = useSlate();
 
   const active = {
-    backgroundColor: "grey"
+    color: "blue"
   };
 
   const unactive = {
@@ -22,7 +22,6 @@ let ToolBarButton = ({ format, icon }) => {
 
   const toggleMark = (editor, format) => {
     const isActive = isButtonActive(editor, format);
-    console.log(isActive);
     if (isActive) {
       Editor.removeMark(editor, format);
     } else {
@@ -32,13 +31,21 @@ let ToolBarButton = ({ format, icon }) => {
 
   return (
     <button
-      style={isButtonActive(editor, format) ? active : unactive}
+      className={
+        isButtonActive(editor, format) ? "e_button_active" : "e_button_unactive"
+      }
       onMouseDown={event => {
         event.preventDefault();
         toggleMark(editor, format);
       }}
     >
-      <FontAwesomeIcon icon={icon} size="lg" />
+      <FontAwesomeIcon
+        classname={
+          isButtonActive(editor, format) ? "b_icon_active" : "b_icon_unactive"
+        }
+        icon={icon}
+        size="lg"
+      />
     </button>
   );
 };
