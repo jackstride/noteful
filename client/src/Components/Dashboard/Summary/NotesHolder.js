@@ -8,8 +8,6 @@ import { showMenu } from "../../../actions/contextMenuActions";
 const moment = require("moment");
 
 let NotesHolder = ({ data, getFolder, id, showMenu, notes }) => {
-  console.log(data);
-  console.log(notes);
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {

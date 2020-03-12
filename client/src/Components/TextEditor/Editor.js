@@ -23,7 +23,7 @@ const TextEditor = ({
 
   useEffect(() => {
     getNoteById(paramId);
-  }, [paramId]);
+  }, []);
 
   useEffect(() => {
     setValue(JSON.parse(note.body_Data) || initialValue);
