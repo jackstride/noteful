@@ -21,29 +21,40 @@ router.post(
     try {
       let user = await User.find({ email }).exec();
 
-      user.length
-        ? next(createError(409, "User Exists with this email"))
-        : (salt = await bcrypt.genSaltSync(saltRounds));
+      if (user.length >= 1) {
+        return next(createError(409, "User Exists with this email"));
+      } else {
+        salt = await bcrypt.genSaltSync(saltRounds);
+      }
 
-      salt
-        ? (hash = await bcrypt.hash(password, salt))
-        : next(createError(500, " Salt Server Error"));
-      hash
-        ? (user = new User({
-            _id: new mongoose.Types.ObjectId(),
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: hash
-          }))
-        : next(createError(500, " Database register error"));
+      if (salt) {
+        hash = await bcrypt.hash(password, salt);
+      } else {
+        return next(createError(500, " Salt Server Error"));
+      }
+
+      if (hash) {
+        user = new User({
+          _id: new mongoose.Types.ObjectId(),
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: hash
+        });
+      } else {
+        next(createError(500, " Database register error"));
+      }
 
       let result = await user.save();
 
-      result
-        ? res.status(201).json({ message: "Register Successful" })
-        : next(newcreateError(500, "Problem with server"));
-    } catch (err) {}
+      if (result) {
+        return res.status(201).json({ message: "Register Successful" });
+      } else {
+        next(newcreateError(500, "Problem with server"));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
