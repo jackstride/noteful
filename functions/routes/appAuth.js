@@ -15,7 +15,11 @@ require("dotenv").config();
 router.get("/", auth, async (req, res, next) => {
   const user = await User.findById(req.user._id).select("-password");
 
-  user ? res.send(user) : next(createError(401, "User was not found "));
+  try {
+    return res.send(user);
+  } catch (err) {
+    return next(createError(401, "User was not found "));
+  }
 });
 
 module.exports = router;

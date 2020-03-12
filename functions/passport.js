@@ -36,16 +36,16 @@ passport.use(
       User.find({ email: profile.emails[0].value })
         .then(user => {
           if (user.length) {
-            done(null, user[0]);
+            return done(null, user[0]);
           } else {
             const user = new User(userData);
             user.save().then(result => {
-              done(null, userData);
+              return done(null, userData);
             });
           }
         })
         .catch(err => {
-          console.log(err);
+          return console.log(err);
         });
     }
   )
@@ -62,7 +62,6 @@ passport.use(
       includeEmail: true
     },
     function(token, tokenSecret, profile, done) {
-
       //Might new auth token for future?
       console.log(profile);
       let userData = {
@@ -74,15 +73,14 @@ passport.use(
         twitter_id: profile._json.id
       };
 
-      User.find({ email: profile._json.email})
+      User.find({ email: profile._json.email })
         .then(user => {
           if (user.length) {
-            done(null,user[0])
+            return done(null, user[0]);
           } else {
-
             const user = new User(userData);
             user.save().then(result => {
-              done(null, userData);
+              return done(null, userData);
             });
           }
         })
