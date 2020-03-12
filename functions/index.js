@@ -1,20 +1,86 @@
-const functions = require("firebase-functions");
 const express = require("express");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const ConnectDB = require("./dbConnect");
+const passport = require("passport");
+const createError = require("http-errors");
+const functions = require("firebase-functions");
+
+require("./passport");
+require("dotenv").config();
+
+const userRoute = require("./routes/User");
+const authRoute = require("./routes/appAuth");
+const socialAuthRoute = require("./routes/socialAuth");
+const FolderRoute = require("./routes/folder");
+const tasksRoute = require("./routes/tasks");
+const NoteRoute = require("./routes/Note");
+
+//Connect To Database
+ConnectDB();
 const app = express();
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "hello" });
+// Enable Body Parster to accept request.
+// Cors confusing
+app.use("*", function(req, res, next) {
+  //replace localhost:8080 to the ip address:port of your server
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  // res.header("Access-Control-Allow-Credentials", true);
+  next();
 });
 
-app.get("/users", (req, res) => {
-  res.status(200).json({ message: "hello" });
+// When in build
+app.options("*", cors());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
 });
 
-app.get("/twat", (req, res) => {
-  res.status(200).json({ message: "twat" });
+passport.deserializeUser((user, done) => {
+  done(null, user);
 });
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(
+  require("express-session")({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true
+  })
+);
+// app.use(
+//   cors({
+//     origin: "http://localhost:5000",
+//     credentials: true,
+//     allowedHeaders: "Content-Type"
+//   })
+// );
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use("/user", userRoute);
+app.use("/dashboard", authRoute);
+app.use("/auth", cors(), socialAuthRoute);
+app.use("/api", cors(), FolderRoute);
+app.use("/api", cors(), tasksRoute);
+app.use("/api", cors(), NoteRoute);
+
+app.use((req, res, next) => {
+  next(createError(404, "Not Found"));
+});
+
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.send({
+    error: {
+      status: err.status || 500,
+      message: err.message
+    }
+  });
+});
+
 exports.app = functions.https.onRequest(app);
