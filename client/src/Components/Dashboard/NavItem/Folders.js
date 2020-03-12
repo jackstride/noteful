@@ -24,6 +24,7 @@ class Folders extends Component {
   }
 
   componentDidMount() {
+    console.log("yes");
     this.props.getFolder(this.props.userId);
   }
 

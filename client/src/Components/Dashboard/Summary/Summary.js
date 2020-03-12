@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
@@ -15,14 +15,14 @@ let Summary = ({
   toggleTask,
   folder
 }) => {
+  let [data, setData] = useState();
+
   useEffect(() => {
     loadTasks(id);
     getNotes(id);
+    getFolder(id);
+    setData(folder);
   }, [id]);
-
-  useEffect(() => {
-    getNotes(id);
-  }, [folder]);
 
   return (
     <div className="summary_container">
@@ -31,9 +31,13 @@ let Summary = ({
           <div className="summary_heading">
             <h4> Notes</h4>
           </div>
-          {notes.map((note, index) => (
-            <NotesHolder data={note} key={index} />
-          ))}
+          {notes.map((note, index) => {
+            if (data) {
+              return <NotesHolder data={data} notes={note} key={index} />;
+            } else {
+              return null;
+            }
+          })}
         </div>
         <div className="summary_tasks">
           <div className="summary_heading">

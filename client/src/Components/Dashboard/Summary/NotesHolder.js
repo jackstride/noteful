@@ -7,20 +7,18 @@ import { getFolder } from "../../../actions/FolderActions";
 import { showMenu } from "../../../actions/contextMenuActions";
 const moment = require("moment");
 
-let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
+let NotesHolder = ({ data, getFolder, id, showMenu, notes }) => {
+  console.log(data);
+  console.log(notes);
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
-    getFolder(id);
-  }, [id]);
-
-  useEffect(() => {
     returnName();
-  }, [data]);
+  }, [data, notes]);
 
   let returnName = () => {
-    let noteFolderId = data.folder_id;
-    let name = folder.filter(data => data._id === noteFolderId);
+    let getFolderId = notes.folder_id;
+    let name = data.filter(data => data._id === getFolderId);
     name = name[0].folder_name;
     setFolderName(name);
   };
@@ -38,19 +36,19 @@ let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
     <div className="summary_holder notes">
       <div className="summary_icon">
         <div className="circle notes">
-          <span>{folderName[0]}</span>
+          <span>{folderName[0] || "U"}</span>
         </div>
       </div>
       <div className="summary_text">
         <h6>{folderName}</h6>
-        <h5>{data.note_title}</h5>
+        <h5>{notes.note_title}</h5>
         <h6>{moment(data.date).calendar()}</h6>
       </div>
       <Link
-        id={data._id}
-        name={data.note_title}
+        id={notes._id}
+        name={notes.note_title}
         onContextMenu={e => handleContext(e)}
-        to={`/dashboard/notes/${data._id}`}
+        to={`/dashboard/notes/${notes._id}`}
       ></Link>
     </div>
   );
@@ -59,8 +57,7 @@ let NotesHolder = ({ data, folder, getFolder, id, showMenu }) => {
 const mapStateToProps = state => {
   return {
     id: state.auth.user._id,
-    tasks: state.task.taskData,
-    folder: state.folder.data
+    tasks: state.task.taskData
   };
 };
 
