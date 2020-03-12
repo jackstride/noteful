@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+const createError = require("http-errors");
 const { check, validationResult } = require("express-validator");
 
 const userValidationRules = () => {
@@ -13,24 +13,22 @@ const userValidationRules = () => {
       .not()
       .isEmpty(),
     check("email", "There is no email").isEmail()
-  ]
-}
+  ];
+};
 
 const validate = (req, res, next) => {
-
-    const errors = validationResult(req);
-    console.log(errors)
-        if (!errors.isEmpty()) {
-          console.log("there ios errorstack")
-             next( createError(422, "There appears to be an error registering."));
-        }      
-        else {
-            console.log("no errors")
-            next();
-        } 
-}
+  const errors = validationResult(req);
+  console.log(errors);
+  if (!errors.isEmpty()) {
+    console.log("there ios errorstack");
+    return next(createError(422, "There appears to be an error registering."));
+  } else {
+    console.log("no errors");
+    return next();
+  }
+};
 
 module.exports = {
   userValidationRules,
-  validate,
-}
+  validate
+};

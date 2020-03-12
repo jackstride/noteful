@@ -8,11 +8,11 @@ const User = require("./models/User");
 require("dotenv").config();
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  return done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
-  done(null, user);
+  return done(null, user);
 });
 
 passport.use(
@@ -36,16 +36,26 @@ passport.use(
       User.find({ email: profile.emails[0].value })
         .then(user => {
           if (user.length) {
-            done(null, user[0]);
+            return done(null, user[0]);
           } else {
             const user = new User(userData);
-            user.save().then(result => {
-              done(null, userData);
-            });
+            user
+              .save()
+              .then(result => {
+                if (result) {
+                  return done(null, userData);
+                } else {
+                  return console.log("error");
+                }
+              })
+              .catch(err => {
+                return console.log(err);
+              });
           }
+          throw user;
         })
         .catch(err => {
-          console.log(err);
+          return console.log(err);
         });
     }
   )
@@ -61,10 +71,9 @@ passport.use(
       callbackURL: "http://localhost:5000/auth/twitter/callback",
       includeEmail: true
     },
-    function(token, tokenSecret, profile, done) {
-
+    (token, tokenSecret, profile, done) => {
       //Might new auth token for future?
-      console.log(profile);
+
       let userData = {
         _id: new mongoose.Types.ObjectId(),
         firstName: profile._json.name,
@@ -74,20 +83,28 @@ passport.use(
         twitter_id: profile._json.id
       };
 
-      User.find({ email: profile._json.email})
+      User.find({ email: profile._json.email })
         .then(user => {
           if (user.length) {
-            done(null,user[0])
+            return done(null, user[0]);
           } else {
-
             const user = new User(userData);
-            user.save().then(result => {
-              done(null, userData);
-            });
+            user
+              .save()
+              .then(result => {
+                if (result) {
+                  return done(null, userData);
+                }
+                throw result;
+              })
+              .catch(err => {
+                return console.log(err);
+              });
           }
+          throw user;
         })
         .catch(err => {
-          console.log(err);
+          return console.log(err);
         });
     }
   )

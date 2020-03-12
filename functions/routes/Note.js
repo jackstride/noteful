@@ -33,7 +33,7 @@ router.delete("/note/delete/:_id", async (req, res, next) => {
   let success = await Notes.findByIdAndRemove(_id);
 
   if (success) {
-    res.sendStatus(200);
+    return res.sendStatus(200);
   } else {
     return next(createError(500, "There was an error deleting the task "));
   }

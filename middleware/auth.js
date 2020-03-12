@@ -7,8 +7,8 @@ module.exports = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_KEY);
     req.user = decoded;
-    next();
+    return next();
   } catch (err) {
-    next(createError(401, "Token is not valied"));
+    return next(createError(401, "Token is not valied"));
   }
 };

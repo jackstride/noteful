@@ -12,9 +12,11 @@ router.get("/getTasks/:user_id", async (req, res, next) => {
     .sort({ _id: -1 })
     .exec();
 
-  tasks
-    ? res.status(201).json({ tasks })
-    : next(createError(500, "There was an error saving the folder "));
+  if (tasks) {
+    return res.status(201).json({ tasks });
+  } else {
+    return next(createError(500, "There was an error saving the folder "));
+  }
 });
 
 // Add Task
@@ -30,9 +32,11 @@ router.post("/addTask", async (req, res, next) => {
 
   const result = await task.save();
 
-  result
-    ? res.status(201).json({ message: "added Folder", task: result })
-    : next(createError(500, "There was an error saving the task "));
+  if (result) {
+    return res.status(201).json({ message: "added Folder", task: result });
+  } else {
+    return next(createError(500, "There was an error saving the task "));
+  }
 });
 
 //Toggle task whether complete or not
@@ -49,11 +53,13 @@ router.patch("/editcomplete/:_id", async (req, res, next) => {
       { isCompleted: !complete }
     );
 
-    update
-      ? res.status(200).json({ isCompleted: !complete })
-      : next(createError(500, "There was an error saving the task "));
+    if (update) {
+      return res.status(200).json({ isCompleted: !complete });
+    } else {
+      return next(createError(500, "There was an error saving the task "));
+    }
   } else {
-    next(createError(500, "There was an error saving the task "));
+    return next(createError(500, "There was an error saving the task "));
   }
 });
 
@@ -65,9 +71,11 @@ router.delete("/deletetask/:_id", async (req, res, next) => {
 
   let success = await Tasks.findByIdAndRemove(_id);
 
-  success
-    ? res.sendStatus(200)
-    : next(createError(500, "There was an error deleting the task "));
+  if (success) {
+    return res.sendStatus(200);
+  } else {
+    return next(createError(500, "There was an error deleting the task "));
+  }
 });
 
 router.put("/task/update", async (req, res, next) => {
@@ -75,9 +83,11 @@ router.put("/task/update", async (req, res, next) => {
 
   let result = await Tasks.findByIdAndUpdate({ _id: id }, { task_name: name });
 
-  result
-    ? res.status(200).json({ result })
-    : next(createError(500, "There was an error renaming the folder"));
+  if (result) {
+    return res.status(200).json({ result });
+  } else {
+    return next(createError(500, "There was an error renaming the folder"));
+  }
 });
 
 module.exports = router;

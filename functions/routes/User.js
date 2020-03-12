@@ -10,8 +10,7 @@ const User = require("../models/User");
 
 router.post(
   "/register",
-  userValidationRules(),
-  validate,
+  [userValidationRules(), validate],
   async (req, res, next) => {
     let { firstName, lastName, email, password } = req.body;
 
@@ -93,6 +92,7 @@ router.post("/login", async (req, res, next) => {
         } else if (err) {
           return console.log(err);
         }
+        throw token;
       }
     );
   } else {

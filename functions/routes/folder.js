@@ -59,7 +59,7 @@ router.put("/folder/update", async (req, res, next) => {
   );
 
   if (result) {
-    res.status(200).json({ result });
+    return res.status(200).json({ result });
   } else {
     return next(createError(500, "There was an error renaming the folder"));
   }
