@@ -49,38 +49,44 @@ let Folders = ({
 
   return (
     <div className="folder_page">
-      <div className="folders_heading">
-        <h2>{getFolderName() || "E"}</h2>
-        <span
-          className="add_folder"
-          onClick={() => {
-            handleAddNote();
-          }}
-        >
-          <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
-        </span>
-      </div>
-
-      <div className="folder_container">
-        <div className="folder_item">
-          <div className="folder_item_container">
-            <span>Name</span>
-            <h5>Date Created:</h5>
-            <h5>Date Modified:</h5>
-          </div>
-          <h5> Delete </h5>
+      <div className="folder_page_container">
+        <div className="folders_heading">
+          <h2>{getFolderName() || "E"}</h2>
+          <span
+            className="add_folder"
+            onClick={() => {
+              handleAddNote();
+            }}
+          >
+            <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
+          </span>
         </div>
-        {notes.length >= 1 ? (
-          notes.map((notes, index) => {
-            if (notes.folder_id == paramId) {
-              return (
-                <ResultLayout key={index} data={notes} remove={handleRemove} />
-              );
-            }
-          })
-        ) : (
-          <h1> Hello </h1>
-        )}
+
+        <div className="folder_container">
+          <div className="folder_item">
+            <div className="folder_table_heading">
+              <span>Name</span>
+              <h6>Date Created:</h6>
+              <h6>Date Modified:</h6>
+            </div>
+            <h6> Delete </h6>
+          </div>
+          {notes.length >= 1 ? (
+            notes.map((notes, index) => {
+              if (notes.folder_id == paramId) {
+                return (
+                  <ResultLayout
+                    key={index}
+                    data={notes}
+                    remove={handleRemove}
+                  />
+                );
+              }
+            })
+          ) : (
+            <h1> Hello </h1>
+          )}
+        </div>
       </div>
     </div>
   );

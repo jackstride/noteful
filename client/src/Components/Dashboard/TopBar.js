@@ -10,6 +10,10 @@ const TopBar = ({ firstName }) => {
   const [settings, openSettings] = useState(false);
   const [sideNav, setSideNav] = useState(false);
 
+  let closeSettings = () => {
+    setSideNav(false);
+  };
+
   return (
     <div className="top_bar">
       <div
@@ -19,6 +23,15 @@ const TopBar = ({ firstName }) => {
         className="app_profile"
       >
         <ProfileIcon />
+      </div>
+      <div className="dashboard">
+        <Link to="/dashboard">
+          <FontAwesomeIcon
+            icon="home"
+            size="1x"
+            color="white"
+          ></FontAwesomeIcon>
+        </Link>
       </div>
       <div className="search_bar">
         <Search />
@@ -33,7 +46,13 @@ const TopBar = ({ firstName }) => {
           icon="chevron-down"
           size="xs"
         />
-        {settings ? <Options /> : null}
+        {settings ? (
+          <Options
+            toggle={() => {
+              closeSettings();
+            }}
+          />
+        ) : null}
       </div>
       {sideNav ? <SideNav /> : null}
     </div>

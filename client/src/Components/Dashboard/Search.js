@@ -29,11 +29,7 @@ const Search = ({ noteData, getNotes, id }) => {
     setResults(allNotes);
   };
 
-  return (
-    <div>
-      <NoteResults results={results} />
-    </div>
-  );
+  return <NoteResults results={results} />;
 };
 
 const mapStateToProps = state => {

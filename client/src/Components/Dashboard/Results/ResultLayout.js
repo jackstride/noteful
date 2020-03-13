@@ -29,15 +29,15 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
     <div className="folder_item">
       <Link to={`/dashboard/notes/${data._id}`}>
         <div className="folder_item_container">
-          <span>{data.note_title}</span>
+          <h5>{data.note_title}</h5>
           <h5>{moment(data.date).calendar()}</h5>
           <h5>{moment(data.date_modified).calendar()}</h5>
+          <div
+            id={data._id}
+            onContextMenu={e => handleContext(e)}
+            className="absolute"
+          ></div>
         </div>
-        <div
-          id={data._id}
-          onContextMenu={e => handleContext(e)}
-          className="absolute"
-        ></div>
       </Link>
       <span
         style={{ cursor: "pointer" }}

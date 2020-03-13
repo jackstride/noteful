@@ -20,24 +20,26 @@ let Notes = ({
 }) => {
   return (
     <div className="folder_page">
-      <div className="folders_heading">
-        <span className="add_folder">
-          <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
-        </span>
-      </div>
-
-      <div className="folder_container">
-        <div className="folder_item">
-          <div className="folder_item_container">
-            <span></span>
-            <h5>Date Created:</h5>
-            <h5>Date Modified:</h5>
-          </div>
-          <h5> Delete </h5>
+      <div className="folder_page_container">
+        <div className="folders_heading">
+          <span className="add_folder">
+            <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
+          </span>
         </div>
-        {results.map((notes, index) => (
-          <ResultLayout key={index} data={notes} />
-        ))}
+
+        <div className="folder_container">
+          <div className="folder_item">
+            <div className="folder_item_container">
+              <span></span>
+              <h5>Date Created:</h5>
+              <h5>Date Modified:</h5>
+            </div>
+            <h5> Delete </h5>
+          </div>
+          {results.map((notes, index) => (
+            <ResultLayout key={index} data={notes} />
+          ))}
+        </div>
       </div>
     </div>
   );
