@@ -23,10 +23,16 @@ const Search = ({ noteData, getNotes, id }) => {
 
   let handleReults = () => {
     let search = history.location.search;
-    let length = search.length;
-    let query = search.slice(2, length);
-    let allNotes = notes.filter(note => note.note_title.includes(query));
-    setResults(allNotes);
+    if (!search.length) {
+      setResults(noteData);
+    } else {
+      let length = search.length;
+      let query = search.slice(2, length);
+      let allNotes = notes.filter(note =>
+        note.note_title.toLowerCase().includes(query)
+      );
+      setResults(allNotes);
+    }
   };
 
   return <NoteResults results={results} />;

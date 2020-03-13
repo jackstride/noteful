@@ -8,16 +8,7 @@ import { showMenu } from "../../../actions/contextMenuActions";
 
 import ResultLayout from "./ResultLayout";
 
-let Notes = ({
-  getNotes,
-  match,
-  notes,
-  addNote,
-  user_id,
-  folder,
-  removeNote,
-  results
-}) => {
+let Notes = ({ results }) => {
   return (
     <div className="folder_page">
       <div className="folder_page_container">

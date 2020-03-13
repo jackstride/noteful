@@ -70,16 +70,16 @@ let Summary = ({
             </div>
             <div className="stats_content">
               <div className="stats">
-                <span>Tasks Completed</span>
-                {tasks ? Math.ceil(getTaskComplete()) + "%" : null}
+                <h4>Tasks Completed</h4>
+                <span>{tasks ? Math.ceil(getTaskComplete()) + "%" : null}</span>
               </div>
               <div className="stats">
-                <span>Task Count</span>
-                {tasks ? tasks.length : null}
+                <h4>Task Count</h4>
+                <span>{tasks ? tasks.length : null}</span>
               </div>
               <div className="stats">
-                <span>Number of Notes</span>
-                {notes ? notes.length : null}
+                <h4>Number of Notes</h4>
+                <span>{notes ? notes.length : null}</span>
               </div>
             </div>
           </div>
