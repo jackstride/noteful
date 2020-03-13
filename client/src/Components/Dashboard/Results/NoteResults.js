@@ -23,7 +23,6 @@ let Notes = ({ results }) => {
               <h6>Date Created:</h6>
               <h6>Date Modified:</h6>
             </div>
-            <h6> Delete </h6>
           </div>
           {results.map((notes, index) => (
             <ResultLayout key={index} data={notes} />

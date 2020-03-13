@@ -40,12 +40,17 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
         </div>
       </Link>
       <span
+        id={data._id}
         style={{ cursor: "pointer" }}
-        onClick={() => {
-          remove(data._id);
+        onClick={e => {
+          handleContext(e);
         }}
       >
-        <FontAwesomeIcon icon="trash" color="grey" size="1x"></FontAwesomeIcon>
+        <FontAwesomeIcon
+          icon="ellipsis-v"
+          color="grey"
+          size="1x"
+        ></FontAwesomeIcon>
       </span>
     </div>
   );

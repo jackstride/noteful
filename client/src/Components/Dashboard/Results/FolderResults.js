@@ -69,7 +69,6 @@ let Folders = ({
               <h6>Date Created:</h6>
               <h6>Date Modified:</h6>
             </div>
-            <h6> Delete </h6>
           </div>
           {notes.length >= 1 ? (
             notes.map((notes, index) => {
