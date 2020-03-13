@@ -31,16 +31,18 @@ class SideBar extends Component {
   render() {
     return (
       <div className="dashboard_navigation">
-        <div className="dashboard">
-          <div className="icon_circle">
-            <FontAwesomeIcon
-              icon="align-left"
-              size="1x"
-              color="grey"
-            ></FontAwesomeIcon>
+        <Link to="/dashboard">
+          <div className="dashboard">
+            <div className="icon_circle">
+              <FontAwesomeIcon
+                icon="align-left"
+                size="1x"
+                color="grey"
+              ></FontAwesomeIcon>
+            </div>
+            <span>Dashboard</span>
           </div>
-          <span>Dashboard</span>
-        </div>
+        </Link>
         <div className="dashboard">
           <div className="icon_circle">
             <FontAwesomeIcon

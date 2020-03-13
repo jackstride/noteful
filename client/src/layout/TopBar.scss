@@ -17,12 +17,7 @@
     cursor: pointer;
     margin: 0px 15px;
 
-    @include smalldesktop {
-        width: 100%;
-        // position: sticky;
-        top: 0;
-        height: 100vh;
-    }
+
 
 }
 

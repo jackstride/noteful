@@ -17,7 +17,9 @@ let NotesHolder = ({ data, getFolder, id, showMenu, notes }) => {
   let returnName = () => {
     let getFolderId = notes.folder_id;
     let name = data.filter(data => data._id === getFolderId);
-    name = name[0].folder_name;
+    if (name) {
+      name = name[0].folder_name;
+    }
     setFolderName(name);
   };
 

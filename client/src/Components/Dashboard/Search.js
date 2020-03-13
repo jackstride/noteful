@@ -15,6 +15,7 @@ const Search = ({ noteData, getNotes, id }) => {
 
   useEffect(() => {
     setNotes(noteData);
+    setResults(noteData);
   }, [noteData]);
 
   useEffect(() => {
