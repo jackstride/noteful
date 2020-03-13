@@ -22,19 +22,17 @@ let Notes = ({
     <div className="folder_page">
       <div className="folder_page_container">
         <div className="folders_heading">
-          <span className="add_folder">
-            <FontAwesomeIcon icon="plus" size="xs"></FontAwesomeIcon>
-          </span>
+          <h2> All Notes</h2>
         </div>
 
         <div className="folder_container">
           <div className="folder_item">
-            <div className="folder_item_container">
-              <span></span>
-              <h5>Date Created:</h5>
-              <h5>Date Modified:</h5>
+            <div className="folder_table_heading">
+              <h6>Name</h6>
+              <h6>Date Created:</h6>
+              <h6>Date Modified:</h6>
             </div>
-            <h5> Delete </h5>
+            <h6> Delete </h6>
           </div>
           {results.map((notes, index) => (
             <ResultLayout key={index} data={notes} />

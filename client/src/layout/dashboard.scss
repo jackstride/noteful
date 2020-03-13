@@ -238,6 +238,7 @@ form.task_form {
 ///////////// Folders ////////////////////
 
 .folder_page {
+
     min-height: calc(100vh - 100px);
     width: 100%;
     background-color: #f8f8f8;
@@ -251,10 +252,10 @@ form.task_form {
 
 .folder_page_container {
     height: fit-content;
-    margin-top: 100px;
+
     width: 60%;
     margin: 0 auto;
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 .folders_heading {

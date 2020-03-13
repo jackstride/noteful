@@ -65,7 +65,7 @@ let Folders = ({
         <div className="folder_container">
           <div className="folder_item">
             <div className="folder_table_heading">
-              <span>Name</span>
+              <h6>Name</h6>
               <h6>Date Created:</h6>
               <h6>Date Modified:</h6>
             </div>
