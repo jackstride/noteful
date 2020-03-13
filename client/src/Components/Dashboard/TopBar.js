@@ -24,15 +24,6 @@ const TopBar = ({ firstName }) => {
       >
         <ProfileIcon />
       </div>
-      <div className="dashboard">
-        <Link to="/dashboard">
-          <FontAwesomeIcon
-            icon="home"
-            size="1x"
-            color="white"
-          ></FontAwesomeIcon>
-        </Link>
-      </div>
       <div className="search_bar">
         <Search />
       </div>

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Profile from "./Dashboard/NavItem/profile";
-import Search from "./Dashboard/NavItem/search";
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from "./Dashboard/NavItem/Tasks";
 import { getFolder } from "../actions/FolderActions";
 import { loadTasks } from "../actions/taskActions";
 import { connect } from "react-redux";
-import ProfileIcon from "./Dashboard/NavItem/profileIcon";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SideBar extends Component {
   constructor(props) {
@@ -32,6 +31,27 @@ class SideBar extends Component {
   render() {
     return (
       <div className="dashboard_navigation">
+        <div className="dashboard">
+          <div className="icon_circle">
+            <FontAwesomeIcon
+              icon="align-left"
+              size="1x"
+              color="grey"
+            ></FontAwesomeIcon>
+          </div>
+          <span>Dashboard</span>
+        </div>
+        <div className="dashboard">
+          <div className="icon_circle">
+            <FontAwesomeIcon
+              icon="sign-out-alt"
+              size="1x"
+              color="grey"
+            ></FontAwesomeIcon>
+          </div>
+          <span>Sign out</span>
+        </div>
+
         <Folders />
         <Tasks userId={this.props.userId} data={this.props.taskData} />
       </div>

@@ -31,7 +31,9 @@ import {
   faExchangeAlt,
   faSearch,
   faHeading,
-  faChevronDown
+  faChevronDown,
+  faColumns,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -66,5 +68,7 @@ library.add(
   faExchangeAlt,
   faSearch,
   faHeading,
-  faChevronDown
+  faChevronDown,
+  faColumns,
+  faSignOutAlt
 );
