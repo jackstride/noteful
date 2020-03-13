@@ -32,16 +32,12 @@ let NotesHolder = ({ data, getFolder, id, showMenu, notes }) => {
 
   return (
     <div className="summary_holder notes">
-      <div className="summary_icon">
-        <div className="circle notes">
-          <span>{folderName[0] || "U"}</span>
-        </div>
+      <div className="circle notes">
+        <span>{folderName[0] || "U"}</span>
       </div>
-      <div className="summary_text">
-        <h5>{notes.note_title}</h5>
-        <h6>{folderName}</h6>
-        <h6>{moment(data.date).calendar()}</h6>
-      </div>
+      <h5>{notes.note_title}</h5>
+      <h5>{folderName}</h5>
+      <h5>{moment(data.date).calendar()}</h5>
       <Link
         id={notes._id}
         name={notes.note_title}

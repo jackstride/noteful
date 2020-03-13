@@ -23,30 +23,26 @@ let TasksHolder = ({ task, mark, showMenu }) => {
 
   return (
     <div className="summary_holder tasks">
-      <div className="summary_icon">
-        <div
-          style={complete ? null : { backgroundColor: "#ECECEC" }}
-          className="circle tasks"
-        >
-          {complete ? (
-            <FontAwesomeIcon
-              icon="check"
-              color="#85FF00"
-              size="2x"
-            ></FontAwesomeIcon>
-          ) : (
-            <FontAwesomeIcon
-              icon="times"
-              color="white"
-              size="2x"
-            ></FontAwesomeIcon>
-          )}
-        </div>
+      <div
+        style={complete ? null : { backgroundColor: "#ECECEC" }}
+        className="circle tasks"
+      >
+        {complete ? (
+          <FontAwesomeIcon
+            icon="check"
+            color="#85FF00"
+            size="2x"
+          ></FontAwesomeIcon>
+        ) : (
+          <FontAwesomeIcon
+            icon="times"
+            color="white"
+            size="2x"
+          ></FontAwesomeIcon>
+        )}
       </div>
-      <div className="summary_text">
-        <h6>{task.isCompleted ? "Completed" : "Not Completed"}</h6>
-        <h5>{task.task_name}</h5>
-      </div>
+      <h5>{task.task_name}</h5>
+      <h6>{task.isCompleted ? "Completed" : "Not Completed"}</h6>
       <div
         id={task._id}
         onClick={() => {
