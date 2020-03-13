@@ -48,7 +48,7 @@ const TextEditor = ({
       {value ? (
         <Slate
           editor={editor}
-          value={value}
+          value={JSON.parse(note.body_Data)}
           onChange={value => {
             setValue(value);
             const content = JSON.stringify(value);
@@ -60,7 +60,7 @@ const TextEditor = ({
               folder_id,
               body_Data: content
             };
-            // editNote(values);
+            editNote(values);
           }}
           onMouseUp={() => {
             console.log("hello");

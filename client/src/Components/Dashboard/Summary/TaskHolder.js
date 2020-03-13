@@ -25,7 +25,7 @@ let TasksHolder = ({ task, mark, showMenu }) => {
     <div className="summary_holder tasks">
       <div
         style={complete ? null : { backgroundColor: "#ECECEC" }}
-        className="circle tasks"
+        className={complete ? "circle tasks complete" : "circle tasks"}
       >
         {complete ? (
           <FontAwesomeIcon

@@ -165,6 +165,10 @@
 }
 
 
+.circle.tasks.complete {
+    background-color: rgb(116, 224, 0);
+}
+
 ////////// Stats ////////////
 
 
@@ -188,7 +192,7 @@
     width: 70%;
     margin-top: 20px;
     margin-left: 50px;
-    background-color: #235952;
+    background-color: #278a48;
     margin: 0 auto;
 
     .stats_header {
