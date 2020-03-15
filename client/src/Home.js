@@ -108,7 +108,7 @@ export default class home extends Component {
             </h4>
           </div>
           <div className="row heading">
-            <h2>
+            <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
               Organising things in one <br></br> place helps to eleminate
               stress.
             </h2>

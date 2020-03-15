@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import "../fontawesome";
-
-import SectionOne from "../Components/Website/sectionOne";
-import Card from "../Components/Website/Card";
 import Swing from "../images/women_swing.png";
-import Image_One from "../images/reading_book.png";
+import Pencil from "../images/pencil.png";
+import LargeHeader from "../Components/Website/LargeHeader";
 
 export default class features extends Component {
   constructor(props) {
@@ -54,23 +52,30 @@ export default class features extends Component {
 
   render() {
     return (
-      <div className="inner_container">
-        <SectionOne
-          title={this.state.section.heading}
-          image={Image_One}
-          heading="Jump straight In"
-          body={this.state.section.text}
-        />
-        <section className="features">
-          <div className="feature_cards">
-            <Card data={this.state.features[0]} />
-            <Card data={this.state.features[1]} />
-            <Card data={this.state.features[2]} />
-          </div>
-        </section>
+      <div className="inner_container features">
+        <div className="features_title">
+          <h2>
+            Smart,simple and <br></br> ready to use.
+          </h2>
+        </div>
+        <div className="feature_image">
+          <LargeHeader
+            title="Jump straight in"
+            paragraph={this.state.section.text}
+            color="blue"
+          />
+          <img src={Pencil} alt="Type with noteful"></img>
+        </div>
+
+        <div className="small_heading">
+          {this.state.features.slice(0, 3).map((item, index) => {
+            return <SmallHeading title={item.heading} main={item.body} />;
+          })}
+        </div>
+
         <section className="features_2">
           <div className="features_text">
-            <h3>What are the features of noteful?</h3>
+            <h2>What are the features of noteful?</h2>
             {this.state.features.slice(3, 6).map((item, index) => {
               return (
                 <div className="features_content">
@@ -88,3 +93,12 @@ export default class features extends Component {
     );
   }
 }
+
+let SmallHeading = ({ title, main }) => {
+  return (
+    <div className="content">
+      <h4> {title}</h4>
+      <p>{main}</p>
+    </div>
+  );
+};
