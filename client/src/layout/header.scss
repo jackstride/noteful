@@ -38,11 +38,12 @@
     a {
         padding: 10px 40px;
         color: $white;
-        background-color: $DarkGrey;
+        background-color: $Blue;
         background-image: linear-gradient($BackgroundColor, $BackgroundColor);
         background-repeat: no-repeat;
         background-size: 0% 50%;
         transition: background-size .5s, color .5s;
+        border-radius: 8px;
     }
 
     a:hover {
