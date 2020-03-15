@@ -31,14 +31,29 @@ class App extends Component {
       <div className="website_container">
         <Navigation />
         <Route exact path="/" component={Home} />
-        <Route path="/login" render={props => <LogIn {...props} />} />
-        <Route path="/register" component={Register} />
+
         <Route path="/logout" component={LogOut} />
         <Route path="/features" component={Features} />
         <Route path="/support" component={Support} />
         <Route path="/about" component={About} />
         <Footer />
       </div>
+    );
+  };
+
+  RegisterContainer = () => {
+    return (
+      <Fragment>
+        <Route path="/register" component={Register} />
+      </Fragment>
+    );
+  };
+
+  LoginContainer = () => {
+    return (
+      <Fragment>
+        <Route path="/login" render={props => <LogIn {...props} />} />
+      </Fragment>
     );
   };
 
@@ -60,6 +75,8 @@ class App extends Component {
               authed={this.props.auth}
               component={this.DefaultContainer}
             />
+            <Route path="/register" component={this.RegisterContainer} />
+            <Route path="/login" component={this.LoginContainer} />
             <Route path="/" component={this.HomeContainer} />
           </Switch>
         </BrowserRouter>

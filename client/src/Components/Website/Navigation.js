@@ -21,10 +21,7 @@ const Navigation = ({ auth }) => {
   }, [history.location.pathname]);
 
   return (
-    <div
-      style={light ? { backgroundColor: "white" } : null}
-      className="website_navigation"
-    >
+    <div className="website_navigation">
       <div className="inner_container center_center">
         <Link to="/">
           <img alt="NoteFul Logo" src={Logo}></img>

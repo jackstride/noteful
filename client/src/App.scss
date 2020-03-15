@@ -26,6 +26,10 @@ html {
     outline: none;
 }
 
+body {
+    background-color: #FDFDFD;
+}
+
 textarea,
 input.text,
 input[type="text"],
@@ -42,8 +46,8 @@ body {
 }
 
 h1,
-h2 {
-    font-family: $headingFont, Helvetica, Arial, sans-serif;
+h2,
+h3 {
     font-family: $headingFont, Helvetica, Arial, sans-serif;
 }
 
@@ -62,7 +66,7 @@ h1 {
     color: $DarkGrey;
     line-height: 82px;
     font-size: 4em;
-    line-height: 68px;
+    line-height: 1em;
     letter-spacing: .05em;
 
     @include mobilelarge {
@@ -73,10 +77,9 @@ h1 {
 
 h2 {
     font-weight: 700;
-    font-size: 2.4em;
+    font-size: 2.7em;
     color: $HeadingGrey;
-    font-family: Eczar-Bold;
-    letter-spacing: 0.95px;
+    letter-spacing: 0.50px;
     line-height: 60px;
 
     @include desktop {
@@ -86,8 +89,7 @@ h2 {
 }
 
 h3 {
-    font-family: 'Gelasio', Helvetica, Arial, sans-serif;
-    color: $HeadingGrey;
+    color: white;
     font-size: 2em;
     font-weight: normal;
 
@@ -130,8 +132,6 @@ h6 {
 
 
 p {
-
-    font-weight: 200;
     font-size: 1em;
     letter-spacing: 0;
     color: #656464;
@@ -221,6 +221,7 @@ nav a {
 
 .website_container {
     width: 100%;
+    background-color: $BackgroundColor;
 }
 
 .center_container {
@@ -256,23 +257,9 @@ hr {
     ;
 }
 
-.register {
-    width: 100%;
-    height: calc(100vh - 125px);
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 125px;
-}
 
-.login {
-    width: 100%;
-    height: calc(100vh - 125px);
-    display: flex;
-    flex-direction: row;
-    margin-top: 125px;
-}
+
+
 
 
 .settings_container {

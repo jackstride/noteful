@@ -1,57 +1,49 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Form from "./loginForm";
 import SocialAuth from "../Register/socialAuth";
 import { ReactComponent as Jumping } from "../../../images/jumping.svg";
 import { clearErrors } from "../../../actions/errorActions";
+import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
+import { Link } from "react-router-dom";
 
-class LogIn extends Component {
-  constructor(props) {
-    super(props);
+const LogIn = props => {
+  let [errors, setErrors] = useState("");
+  useEffect(() => {
+    setErrors(props.error);
 
-    this.state = {
-      showErrors: []
+    return () => {
+      props.clearErrors();
     };
-  }
+  }, [props.error]);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.errors !== this.props.errors) {
-      this.setState({ showErrors: this.props.errors });
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.clearErrors();
-  }
-
-  render() {
-    return (
-      <section className="login">
-        <div className="log_left">
-          <div className="login_container">
-            <div className="form_container">
-              <h2>Welcome Back!</h2>
-              {this.state.showErrors.length ? (
-                <h2> There appears to be an errors</h2>
-              ) : null}
-              <p>
-                Don't have an account? <span>Sign up</span>
-              </p>
-              <Form history={this.props.history} />
-              <p style={{ margin: "20px 0px", textAlign: "center" }}>
-                - - - - - - - - Or - - - - - - - -{" "}
-              </p>
-              <SocialAuth />
-            </div>
+  return (
+    <section className="login">
+      <div className="log_left">
+        <div className="login_container">
+          <div className="form_container">
+            <Link to="/">
+              <Logo />
+            </Link>
+            <h2>Welcome Back!</h2>
+            {errors ? <h2>{errors}</h2> : null}
+            <p>
+              Don't have an account? <span>Sign up</span>
+            </p>
+            <Form history={props.history} />
+            <p style={{ margin: "20px 0px", textAlign: "center" }}>
+              - - - - - - - - Or - - - - - - - -{" "}
+            </p>
+            <SocialAuth />
           </div>
         </div>
-        <div className="log_right">
-          <Jumping />
-        </div>
-      </section>
-    );
-  }
-}
+      </div>
+      <div className="log_right">
+        <Jumping />
+      </div>
+    </section>
+  );
+};
 
 const mapStateToProps = state => ({
   isAuth: state.auth.isAuthenticated,

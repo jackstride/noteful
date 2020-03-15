@@ -65,7 +65,6 @@ export default class support extends Component {
           <div style={{ textAlign: "center" }} className="inner_container">
             <h2> Contact us</h2>
             <p>
-              {" "}
               Please use the form below as an alternative method to contact us
               incase of issues that you may be facing.{" "}
             </p>

@@ -1,116 +1,110 @@
 header {
     width: 100%;
-    height: 875px;
+    height: 700px;
     background-color: $BackgroundColor;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 1fr;
 
-    .inner_container {
-        position: relative;
-        top: 20%;
+    .header_text {
         display: flex;
+        flex-direction: column;
         justify-content: center;
 
-        h1 {
-            text-align: center;
+        * {
+            padding: 10px 0px;
         }
 
-        .header_text {
+        .header_small {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
 
-            * {
-                padding: 10px 0px;
-            }
-
-            h6 {
-                padding-top: 20px;
-                text-align: center;
-            }
-
-            .header_small {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-
-
-                hr {
-                    margin-left: 50px;
-                    padding: 0 !important;
-                    border-bottom: 1px solid black !important;
-                }
+            hr {
+                margin-left: 50px;
+                padding: 0 !important;
+                border-bottom: 1px solid black !important;
             }
         }
-
 
         input {
             width: 200px;
             height: 50px;
             border: none;
-            background-color: #191C1F;
-            background-image: linear-gradient(90deg, #FFB677 0%, #FF8364 100%);
-            font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+            background-color: $Blue;
             font-weight: normal;
             font-size: 15px;
             margin-top: 15px;
             border-radius: 10px;
-            background-repeat: no-repeat;
-            background-size: 0% 100%;
-            transition: background-size .5s, color .5s;
-            color: $BackgroundColor;
+            transition: all .5s ease;
+            color: white;
         }
 
         input:hover {
             cursor: pointer;
-            background-size: 100% 100%;
+            transform: scale(1.1, 1.1);
         }
 
         .header_main {
             display: flex;
-            align-items: center;
             justify-content: center;
             flex-direction: column;
         }
     }
 }
 
-
-.absolute_blob {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 900px;
+.header_image {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    svg {
-        height: 60%;
-        max-width: 90%;
-        animation: move 10s ease-in-out infinite;
-        transform: translate(50%, 50%);
-    }
 }
 
 
-.section_header_text {
-    width: 50%;
-    text-align: center;
-    margin: 50px auto;
+.row.heading {
+    margin: 50px 0px;
+}
 
-    @include smalldesktop {
-        width: 60%;
-    }
+.pencil_image {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    gap: 20px;
 
-    @include tablet {
-        width: 80%;
-    }
-
-
-    @include smalltablet {
+    .image {
         width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+    }
+
+
+
+    .color_card {
+        background-color: $Blue;
+        height: 90%;
+        width: 60%;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 20px;
+
+        >* {
+            margin: 20px 0px;
+        }
+
+
+        p {
+            color: white;
+        }
     }
 }
+
 
 /* tag info */
 
@@ -128,23 +122,42 @@ header {
     }
 
     h4 {
-        padding-right: 10%;
+        padding-right: 5%;
 
         @include mobilelarge {
             padding: 0;
-
         }
     }
 }
 
 
+.section_header_text {
+    width: 55%;
+    margin: 50px 0px;
+
+    @include smalldesktop {
+        width: 60%;
+    }
+
+    @include tablet {
+        width: 80%;
+    }
+
+
+    @include smalltablet {
+        width: 100%;
+    }
+}
+
 //Card
 .card_container {
-    background-color: white;
-    box-shadow: 5px 13px 26px -15px rgba(0, 0, 0, 0.42);
-    border-radius: 13px;
-    align-self: center;
+    background-color: $Blue;
+    border-radius: 12px;
     width: 100%;
+
+    p {
+        color: white;
+    }
 
     .card_center {
         padding: 10%;
@@ -158,17 +171,22 @@ header {
 //Card section
 
 
-.info_cards {
-    height: fit-content;
-}
-
-
 // Fist Set of Cards
 .cards_grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 100%;
-    gap: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+
+    .card_container {
+        background-color: #30475e;
+
+        .card_center {
+            width: 50%;
+        }
+    }
+
+
 
     @include desktop {
         gap: 20px;
@@ -179,17 +197,6 @@ header {
         grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
     }
 
-
-    .left_card {
-        height: 100%;
-        width: 50%;
-        display: flex;
-        justify-self: end;
-
-        @include tablet {
-            width: 100%;
-        }
-    }
 }
 
 .cards_col {
@@ -220,22 +227,17 @@ header {
     }
 }
 
-
-
-// Home sep
-.home_sep {
-    width: 70%;
-    border: 1px solid #EEDFD0;
-    margin: 10px auto;
+.header_darkmode {
+    h4 {
+        width: 70%;
+        font-size: 1.3em;
+    }
 }
-
 
 
 //iPhone image 
 .iphone_image {
     display: flex;
-    align-items: center;
-    justify-content: center;
     padding: 20px;
 }
 

@@ -3,8 +3,9 @@ import React, { Component, Fragment } from "react";
 import "./fontawesome";
 
 import PhonePreview from "./images/iphone_preview.png";
-import { ReactComponent as Blob } from "./images/blob.svg";
 import Card from "./Components/Website/Card.js";
+import HeaderImage from "./images/header.png";
+import Pencil from "./images/pencil.png";
 
 export default class home extends Component {
   constructor(props) {
@@ -28,9 +29,8 @@ export default class home extends Component {
       ],
       headings: [
         {
-          header:
-            "Did you know that organising things in one place helps eliminate stress?",
-          main: "Using noteful will help keep things in one place."
+          header: "Organising things in one place helps eliminate stress",
+          main: ""
         },
         {
           header: "Dark Mode.",
@@ -67,12 +67,9 @@ export default class home extends Component {
   };
   render() {
     return (
-      <div className="website_container">
-        <header>
-          <div className="absolute_blob">
-            <Blob className="blob" />
-          </div>
-          <div className="inner_container">
+      <Fragment>
+        <div className="inner_container home">
+          <header>
             <div className="header_text">
               <div className="header_small">
                 <h4>We think it's time.</h4>
@@ -95,9 +92,11 @@ export default class home extends Component {
                 ></input>
               </div>
             </div>
-          </div>
-        </header>
-        <div className="inner_container">
+            <div className="header_image">
+              <img src={HeaderImage} alt="Noteful App"></img>
+            </div>
+          </header>
+
           <div className="tag_info">
             <h4>
               Browser<br></br>Based.
@@ -109,20 +108,31 @@ export default class home extends Component {
               All<br></br>Devices.
             </h4>
           </div>
-          <SectionHeader data={this.state.headings[0]} />
+          <div className="row heading">
+            <h2>
+              Organising things in one <br></br> place helps to eleminate
+              <br></br> stress.
+            </h2>
+          </div>
+
+          <div className="pencil_image">
+            <div className="color_card">
+              <h3>{this.state.cards[0].heading}</h3>
+              <p>{this.state.cards[0].body}</p>
+            </div>
+            <div className="image">
+              <img src={Pencil} alt="Plan with noteful"></img>
+            </div>
+          </div>
+
           <section className="info_cards">
             <div className="cards_grid">
-              <div className="left_card">
-                <Card data={this.state.cards[0]} />
-              </div>
-              <div className="cards_col">
-                <Card data={this.state.cards[1]} />
-                <Card data={this.state.cards[2]} />
-              </div>
+              <Card data={this.state.cards[2]} />
             </div>
           </section>
-          <hr className="home_sep"></hr>
-          <SectionHeader data={this.state.headings[1]} />
+          <div className="header_darkmode">
+            <SectionHeader data={this.state.headings[1]} />
+          </div>
           <section className="iphone_image">
             <img src={PhonePreview} alt="Noteful on iPhone"></img>
           </section>
@@ -133,7 +143,7 @@ export default class home extends Component {
             <Card data={this.state.cards[2]} />
           </section>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

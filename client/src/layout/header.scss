@@ -1,14 +1,9 @@
 /* Website Navigation */
 .website_navigation {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 125px;
     display: flex;
     justify-content: center;
-    z-index: 1;
-
 
     .center_center {
         justify-content: space-between;
