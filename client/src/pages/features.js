@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../fontawesome";
-import Swing from "../images/women_swing.png";
+import Swing from "../images/reading_book.png";
 import Pencil from "../images/pencil.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 
