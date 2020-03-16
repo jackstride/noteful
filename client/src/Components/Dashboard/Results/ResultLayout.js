@@ -47,6 +47,9 @@ const ResultLayout = React.memo(({ data, remove, showMenu }) => {
         }}
       >
         <FontAwesomeIcon
+          style={{ pointerEvents: "none" }}
+          id={data._id}
+          onClick={e => handleContext(e)}
           icon="ellipsis-v"
           color="grey"
           size="1x"
