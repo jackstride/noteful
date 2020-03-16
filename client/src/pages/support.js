@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
-import Zen from "../images/zen.png";
-import SectionOne from "../Components/Website/sectionOne";
+import LargeHeader from "../Components/Website/LargeHeader";
+import Stacking from "../images/stacking.png";
 
 let SocialCard = props => {
   return (
@@ -47,14 +47,17 @@ export default class support extends Component {
 
   render() {
     return (
-      <div>
-        <div className="support inner_container">
-          <SectionOne
-            title={this.state.section.heading}
-            image={Zen}
-            heading="!@#%*#$%"
-            body={this.state.section.text}
+      <div className="support inner_container">
+        <div className="about_title">
+          <h2>Need Support?</h2>
+        </div>
+        <div className="support_header">
+          <LargeHeader
+            title="!@#%*#$%"
+            paragraph="We understand how you feel. Deep breathe. Use the below information to contact us! We aim to reply within an hour."
+            color="blue"
           />
+          <img src={Stacking} alt="Noteful stacking"></img>
         </div>
         <div className="support_bg">
           <section class="inner_container contact_cards">
