@@ -60,7 +60,7 @@ export default class support extends Component {
           <img src={Stacking} alt="Noteful stacking"></img>
         </div>
         <div className="support_bg">
-          <section class="inner_container contact_cards">
+          <section class="contact_cards">
             {this.state.social.map((item, i) => (
               <SocialCard data={item} />
             ))}
@@ -72,7 +72,7 @@ export default class support extends Component {
               incase of issues that you may be facing.{" "}
             </p>
           </div>
-          <secton className="support_form inner_container">
+          <secton className="support_form">
             <form>
               <input placeholder="Full Name" type="text"></input>
               <input placeholder="Email Address" type="text"></input>

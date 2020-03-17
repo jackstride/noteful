@@ -27,7 +27,7 @@ html {
 }
 
 body {
-    background-color: #FDFDFD;
+    background-color: $BackgroundColor;
 }
 
 textarea,
@@ -67,7 +67,7 @@ h1 {
     line-height: 82px;
     font-size: 4em;
     line-height: 1em;
-    letter-spacing: .05em;
+    letter-spacing: .02em;
 
     @include mobilelarge {
         font-size: 3.5em;
@@ -219,11 +219,6 @@ nav a {
 }
 
 
-.website_container {
-    width: 100%;
-    background-color: $BackgroundColor;
-}
-
 .center_container {
     width: 100%;
     height: 100%;
@@ -236,9 +231,11 @@ nav a {
     width: 1440px;
     margin: 0 auto;
 
-    @include smalldesktop {
-        width: 90%;
+    @include desktop {
+        width: 95%;
+        margin: 0 auto;
     }
+
 }
 
 .container {

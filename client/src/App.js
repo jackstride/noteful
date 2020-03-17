@@ -22,22 +22,17 @@ class App extends Component {
     isAuthenticated: PropTypes.bool
   };
 
-  componentDidMount() {
-    store.dispatch(loadUser());
-  }
-
   HomeContainer = () => {
     return (
-      <div className="website_container">
+      <Fragment>
         <Navigation />
         <Route exact path="/" component={Home} />
-
         <Route path="/logout" component={LogOut} />
         <Route path="/features" component={Features} />
         <Route path="/support" component={Support} />
         <Route path="/about" component={About} />
         <Footer />
-      </div>
+      </Fragment>
     );
   };
 

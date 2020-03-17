@@ -14,12 +14,18 @@ let LargeHeader = ({ color, title, paragraph, reverse }) => {
           className="point"
           style={{ backgroundColor: color }}
           style={
-            reverse
-              ? { right: "-25px", backgroundColor: color }
-              : { left: "-25px", backgroundColor: color }
+            reverse ? { backgroundColor: color } : { backgroundColor: color }
           }
         ></span>
-        <h3 style={reverse ? { textAlign: "right" } : null}>{title}</h3>
+        <h3
+          style={
+            reverse
+              ? { marginRight: "20px", textAlign: "right" }
+              : { marginLeft: "20px" }
+          }
+        >
+          {title}
+        </h3>
         <p style={reverse ? { textAlign: "right" } : null}>{paragraph}</p>
       </div>
     </div>

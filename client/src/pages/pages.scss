@@ -33,9 +33,6 @@
         }
 
         h1 {
-            @include desktop {
-                font-size: 4em;
-            }
 
             @include smalldesktop {
                 font-size: 3em;
@@ -44,15 +41,15 @@
             @include tablet {
                 font-size: 2em;
             }
+
+            @include mobilelarge {
+                font-size: 1em;
+            }
         }
 
         img {
-            height: 100%;
-
-
-            @include tablet {
-                height: 100%;
-            }
+            max-width: 100%;
+            height: auto;
         }
     }
 
@@ -82,6 +79,19 @@
     margin: 50px;
     text-align: center;
     font-size: 1.5em;
+
+
+
+
+    @include mobilelarge {
+        margin: 25px;
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+    }
+
 }
 
 
@@ -92,12 +102,20 @@
     flex-direction: row;
     margin-bottom: 50px;
 
-    .content {
-        width: 80%;
+    @include tablet {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
     }
 
+
     img {
-        width: 40%;
+        max-width: 100%;
+        height: auto;
+
+        @include tablet {
+            max-width: 60%;
+        }
     }
 }
 
@@ -115,6 +133,10 @@
     grid-template-rows: 1fr;
     grid-gap: 0px 20px;
 
+    @include tablet {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 
     @include smalltablet {
         grid-template-columns: 1fr;
@@ -127,10 +149,15 @@
         display: flex;
         flex-direction: column;
 
+        @include tablet {
+            align-items: center;
+            justify-content: center;
+        }
+
 
 
         .features_content {
-            padding: 20px 0px;
+            padding: 40px 0px;
             width: 60%;
 
             h4 {
@@ -139,31 +166,50 @@
 
             p {
                 color: rgb(139, 139, 139);
+                font-weight: 300;
+            }
+
+            @include tablet {
+                h4 {
+                    font-size: 1.5em;
+                    text-align: center;
+                }
+
+                p {
+                    font-size: 1em;
+                    text-align: center;
+                    padding-top: 10px;
+                }
+            }
+
+            @include mobilelarge {
+                width: 90%;
             }
         }
     }
 
 
+
+
     .features_image {
         display: flex;
         align-items: center;
-        justify-items: center;
+        justify-content: center;
         width: 100%;
         height: 100%;
+        padding-bottom: 50px;
 
         img {
-            width: 80%;
+            max-width: 80%;
         }
+
     }
 }
 
-
-/* Support Page */
-
-
-
-
-
+img {
+    max-width: 100%;
+    height: auto;
+}
 
 
 ////////////////// About //////////////////////
@@ -178,7 +224,8 @@
 
 .about_title {
     text-align: center;
-    margin: 50px 0px;
+
+    padding-bottom: 50px;
 
     .register_button {
         margin: 30px 0px;
@@ -211,27 +258,29 @@
 
 
 
-//contact form 
+///////////////////////// Suport //////////////////////
 
 
 
 .contact_cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 50px;
     justify-items: center;
-    padding-bottom: 50px;
+    padding: 100px 0px;
 }
 
 .contact_card {
-    margin: 50px 0px;
-    width: 100%;
-    height: 100px;
+    width: 300px;
+    height: 75px;
     background-color: $Blue;
     border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
+
+
+
 
     li a {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -252,12 +301,22 @@
 }
 
 
-
-
-
 .support_header {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: fit-content;
+}
+
+@include tablet {
+    .support_header {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .contact_cards {
+        grid-template-columns: 1fr;
+    }
 }
 
 .support_form {
@@ -266,35 +325,36 @@
 
     form {
         display: flex;
-
         flex-direction: column;
         align-items: center;
         width: 600px;
 
         input {
+            height: 50px;
             width: 100%;
-            height: 52px;
-            margin: 20px 0px 20px 0px;
-            color: black;
-            font-size: 18px;
-            padding-left: 5px;
-            background-color: none;
-            border-radius: 12px;
-            border: 2px solid $DarkGrey;
+            color: $DarkGrey;
+            background-color: rgb(240, 240, 240);
+            border: none;
+            border-radius: 4px;
+            width: 100%;
+            margin: 20px 0px;
+            padding: 0px 10px;
+
         }
 
         textarea {
             width: 100%;
-            background-color: none;
+            background-color: rgb(240, 240, 240);
             resize: none;
-            border-radius: 12px;
-            border: 2px solid $DarkGrey;
-            padding: 10px;
+            border-radius: 4px;
+            border: none;
+            padding: 10px 10px;
+            margin: 20px;
         }
 
         input::placeholder,
         textarea::placeholder {
-            color: lightgray;
+            color: $DarkGrey;
             font-size: 16px;
             padding-left: 5px;
         }
@@ -309,16 +369,23 @@
             }
 
             input[type=submit] {
-                background-color: $DarkGrey;
+                background-color: $Blue;
                 color: $whiteText;
                 font-size: 14px;
                 border: none;
                 cursor: pointer;
+                margin: 0px 10px;
+            }
+
+            input[type=reset] {
+                background-color: rgb(240, 240, 240);
+                color: $DarkGrey;
+                font-size: 14px;
+                border: none;
+                cursor: pointer;
+                margin: 0px 10px;
             }
         }
-
-
-
 
     }
 }

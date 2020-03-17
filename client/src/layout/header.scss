@@ -44,6 +44,7 @@
         background-size: 0% 50%;
         transition: background-size .5s, color .5s;
         border-radius: 8px;
+
     }
 
     a:hover {
@@ -66,6 +67,11 @@
         background-size: 0% 100%;
         transition: background-size .5s, .5s;
         border-radius: 4px;
+
+        @include smalldesktop {
+            padding: 10px 20px;
+        }
+
     }
 
     a:hover {
