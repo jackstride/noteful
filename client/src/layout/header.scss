@@ -4,21 +4,67 @@
     height: 125px;
     display: flex;
     justify-content: center;
+    border-bottom: $BorderBlue;
 
     .center_center {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
         justify-content: space-between;
     }
 
     img {
-        width: 125px;
+        width: 100px;
 
         @include tablet {
             padding-left: 20px;
         }
     }
+}
+
+// Acutal Navigation
+.website_nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+
+    li {
+        padding: 10px 10px;
+        background-image: linear-gradient($Blue, $Blue);
+        background-repeat: no-repeat;
+        background-size: 0% 100%;
+        transition: background-size .5s, .5s;
+        border-radius: 4px;
+    }
+
+    li:hover {
+        background-size: 100% 100%;
+        color: $white;
+    }
+
+    a:hover {
+        color: white;
+    }
+
+
+    @include smalldesktop {
+        a {
+            padding: 10px 20px;
+        }
+    }
+
+    @include tablet {
+        display: none;
+    }
 
 }
 
+
+
+
+
+// Login Container
 .website_nav_login {
     span a {
         color: $BackgroundColor;
@@ -44,45 +90,10 @@
         background-size: 0% 50%;
         transition: background-size .5s, color .5s;
         border-radius: 8px;
-
     }
 
     a:hover {
         background-size: 100% 100%;
         color: $DarkGrey;
     }
-}
-
-
-// Created and altered with https://codepen.io/martinwolf/pen/eNNdme/
-.website_nav {
-    @include tablet {
-        display: none;
-    }
-
-    a {
-        padding: 10px 40px;
-        background-image: linear-gradient($DarkGrey, $DarkGrey);
-        background-repeat: no-repeat;
-        background-size: 0% 100%;
-        transition: background-size .5s, .5s;
-        border-radius: 4px;
-
-        @include smalldesktop {
-            padding: 10px 20px;
-        }
-
-    }
-
-    a:hover {
-        background-size: 100% 100%;
-        color: $BackgroundColor;
-    }
-
-}
-
-.center_center {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
 }

@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Logo from "../../images/noteful_bw.svg";
+import Logo from "../../images/noteful_blue.svg";
 
 const Navigation = ({ auth }) => {
   const [light, isLight] = useState(false);
@@ -23,10 +23,10 @@ const Navigation = ({ auth }) => {
   return (
     <div className="website_navigation">
       <div className="inner_container center_center">
-        <Link to="/">
-          <img alt="NoteFul Logo" src={Logo}></img>
-        </Link>
         <nav className="website_nav">
+          <Link to="/">
+            <img alt="NoteFul Logo" src={Logo}></img>
+          </Link>
           <ul>
             <li>
               <Link to="/features">Features</Link>

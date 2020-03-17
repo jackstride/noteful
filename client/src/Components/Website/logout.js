@@ -37,7 +37,7 @@ const Logout = ({ isAuthenticated, logout }) => {
   return (
     <div className="section_logout">
       <div className="gif_container">
-        <h2>Are you sure you want to logout?</h2>
+        <h2>To continue, click the button below</h2>
         <div className="gif_image">{gif ? <img src={gif}></img> : null}</div>
         <button
           onclick={() => {
