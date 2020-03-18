@@ -9,36 +9,30 @@ const ToolTipMenu = ({ children }) => {
   useEffect(() => {
     const el = ref.current;
     const { selection } = editor;
-    console.log(selection);
+
     if (!el) {
       return;
     }
 
-    if (!selection || !ReactEditor.isFocused(editor)) {
-      console.log("true");
+    if (
+      !selection ||
+      !ReactEditor.isFocused(editor) ||
+      Editor.string(editor, selection) === " "
+    ) {
       el.removeAttribute("style");
       return;
     }
-
-    // attach handler to the click event of the document
-    if (document.attachEvent) document.attachEvent("onclick", handler);
-    else document.addEventListener("click", handler);
+    let padding = {
+      x: 20,
+      y: 20
+    };
 
     const domSelection = window.getSelection();
-    console.log(domSelection);
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
-
-    function handler(e) {
-      e = e || window.event;
-
-      var pageX = e.pageX;
-      var pageY = e.pageY;
-
-      el.style.display = "block";
-      el.style.top = `${pageY}px`;
-      el.style.left = `${pageX}px`;
-    }
+    el.style.display = "block";
+    el.style.top = `${rect.top + padding.y}px`;
+    el.style.left = `${rect.left + padding.x}px`;
   });
 
   return (
