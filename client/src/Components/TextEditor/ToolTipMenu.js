@@ -31,7 +31,7 @@ const ToolTipMenu = ({ children }) => {
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
     el.style.display = "block";
-    el.style.top = `${rect.top + padding.y}px`;
+    el.style.top = `${rect.top}px`;
     el.style.left = `${rect.left + padding.x}px`;
   });
 
