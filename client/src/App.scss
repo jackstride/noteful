@@ -166,10 +166,11 @@ nav a {
 .app_container {
     width: 100%;
     min-height: 100vh;
+    height: 100%;
     background-color: $AppBackgroundColor;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 100%;
+    grid-template-rows: 100px 1fr;
 
 
     h1,
@@ -189,8 +190,8 @@ nav a {
     }
 
     h2 {
-        font-size: 28px;
-        font-weight: 600;
+        font-size: 26px;
+        font-weight: 500;
 
     }
 
@@ -208,7 +209,8 @@ nav a {
 
     h5 {
         font-size: 14px;
-        color: $DarkGrey;
+        font-weight: 500;
+        color: rgb(58, 58, 58);
     }
 
     h6 {
