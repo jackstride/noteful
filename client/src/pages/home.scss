@@ -260,3 +260,27 @@ header {
         height: 100%;
     }
 }
+
+
+
+
+.view_more {
+    width: 50%;
+    margin-bottom: 50px;
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    h4 {
+        color: $Blue;
+    }
+
+    hr {
+        border: none;
+        border-top: 2px solid $Blue;
+        margin-left: 10px;
+    }
+}

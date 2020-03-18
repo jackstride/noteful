@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
 import PhonePreview from "./images/iphone_preview.png";
-import Card from "./Components/Website/Card.js";
 import HeaderImage from "./images/header.png";
-import Pencil from "./images/pencil.png";
 import LargeHeader from "./Components/Website/LargeHeader";
 export default class home extends Component {
   constructor(props) {
@@ -118,12 +117,25 @@ export default class home extends Component {
             title={this.state.information[0].heading}
             paragraph={this.state.information[0].text}
           />
+
+          <div className="view_more">
+            <Link to="/features">
+              <h4>view more about notes</h4>
+              <hr></hr>
+            </Link>
+          </div>
           <LargeHeader
             color="#F1B505"
             title={this.state.information[1].heading}
             paragraph={this.state.information[1].text}
             reverse={true}
           />
+          <div style={{ float: "right" }} className="view_more">
+            <Link style={{ flexDirection: "row-reverse" }} to="/features">
+              <h4>view more about tasks</h4>
+              <hr style={{ marginLeft: "0px", marginRight: "10px" }}></hr>
+            </Link>
+          </div>
           <div className="small_heading">
             {this.state.four.map((item, index) => {
               return <SmallHeading title={item.title} main={item.main} />;

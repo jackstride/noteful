@@ -40,7 +40,7 @@ const Logout = ({ isAuthenticated, logout }) => {
         <h2>To continue, click the button below</h2>
         <div className="gif_image">{gif ? <img src={gif}></img> : null}</div>
         <button
-          onclick={() => {
+          onClick={() => {
             logout();
           }}
         >
