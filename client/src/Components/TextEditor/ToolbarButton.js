@@ -6,15 +6,6 @@ import "../../fontawesome";
 
 let ToolBarButton = ({ format, icon }) => {
   const editor = useSlate();
-
-  const active = {
-    color: "blue"
-  };
-
-  const unactive = {
-    backgroundColor: "transparent"
-  };
-
   const isButtonActive = (editor, format) => {
     const marks = Editor.marks(editor);
     return marks ? marks[format] === true : false;
@@ -40,7 +31,7 @@ let ToolBarButton = ({ format, icon }) => {
       }}
     >
       <FontAwesomeIcon
-        classname={
+        className={
           isButtonActive(editor, format) ? "b_icon_active" : "b_icon_unactive"
         }
         icon={icon}

@@ -74,7 +74,7 @@ let Options = ({ toggle }) => {
             onClick={() => {
               toggle(false);
             }}
-            to="/dashboard/settings"
+            to="/dashboard/settings/account"
           >
             Edit your settings
           </Link>

@@ -7,14 +7,6 @@ import "../../fontawesome";
 let ToolBarButton = ({ format, icon, size }) => {
   const editor = useSlate();
 
-  const active = {
-    backgroundColor: "grey"
-  };
-
-  const unactive = {
-    backgroundColor: "transparent"
-  };
-
   const LIST_TYPES = ["numbered-list", "bulleted-list"];
 
   const isBlockActive = (editor, format) => {

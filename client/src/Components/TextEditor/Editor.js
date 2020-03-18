@@ -8,6 +8,8 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { editNote, getNoteById } from "../../actions/NoteActions";
 
+import ToolTipMenu from "./ToolTipMenu";
+
 const TextEditor = ({
   match,
   note,
@@ -18,8 +20,12 @@ const TextEditor = ({
   getNoteById
 }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
+
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
+  let [menu, setMenu] = useState({
+    show: false
+  });
 
   useEffect(() => {
     getNoteById(paramId);
@@ -28,6 +34,14 @@ const TextEditor = ({
   useEffect(() => {
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
+
+  let handleOpenMenu = e => {
+    setMenu({
+      show: true,
+      x: e.clientX + 20,
+      y: e.clientY
+    });
+  };
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -48,10 +62,10 @@ const TextEditor = ({
             folder_id,
             body_Data: content
           };
-          editNote(values);
+          // editNote(values);
         }}
       >
-        <FormatToolbar>
+        {/* <FormatToolbar>
           <ToolbarButton format="bold" icon="bold" />
           <ToolbarButton format="italic" icon="italic" />
           <span className="editor_spacer"></span>
@@ -68,8 +82,35 @@ const TextEditor = ({
           <BlockButton format="align-left" icon="align-left" />
           <BlockButton format="align-center" icon="align-center" />
           <BlockButton format="align-right" icon="align-right" />
-        </FormatToolbar>
+        </FormatToolbar> */}
+
+        <ToolTipMenu menu={menu}>
+          <ToolbarButton format="bold" icon="bold" />
+          <ToolbarButton format="italic" icon="italic" />
+          <span className="editor_spacer"></span>
+          <ToolbarButton format="code" icon="code" />
+          <ToolbarButton format="underline" icon="underline" />
+          <BlockButton format="heading-one" icon="underline" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="heading-two" icon="underline" />
+          <BlockButton format="heading-three" icon="underline" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="list-item" icon="list" />
+          <BlockButton format="numbered-list" icon="list-ol" />
+          <span className="editor_spacer"></span>
+          <BlockButton format="align-left" icon="align-left" />
+          <BlockButton format="align-center" icon="align-center" />
+          <BlockButton format="align-right" icon="align-right" />
+        </ToolTipMenu>
+
         <Editable
+          onClick={e => {
+            e.target.focus();
+            handleOpenMenu(e);
+          }}
+          onKeyDown={() => {
+            setMenu({ menu: false });
+          }}
           className="main_editor"
           renderElement={renderElement}
           renderLeaf={renderLeaf}

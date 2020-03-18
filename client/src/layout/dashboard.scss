@@ -11,6 +11,7 @@
     border-radius: 8px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     animation: growRight .4s ease;
+    z-index: 1;
 }
 
 
@@ -51,12 +52,7 @@
 }
 
 
-
-
 /* Profile */
-
-
-
 
 
 .profile_container {
@@ -277,10 +273,13 @@ form.task_form {
 
 .folder_page_container {
     height: fit-content;
-
     width: 60%;
     margin: 0 auto;
-    padding-top: 100px;
+
+
+    @include tablet {
+        width: 90%;
+    }
 }
 
 .folders_heading {
@@ -290,9 +289,6 @@ form.task_form {
     height: 50px;
     margin-bottom: 20px;
 
-    @include tablet {
-        padding-top: 50px;
-    }
 
     span {
         height: 30px;
@@ -313,8 +309,6 @@ form.task_form {
     }
 }
 
-.folder_row {}
-
 
 .folder_container {
     height: fit-content;
@@ -325,6 +319,18 @@ form.task_form {
     border-radius: 12px;
     padding: 10px;
     margin: 0 auto;
+
+    @include mobilelarge {
+
+
+        h5:nth-child(2) {
+            display: none;
+        }
+
+        h5:nth-child(3) {
+            display: none;
+        }
+    }
 
 
     h5:first-child {
@@ -350,6 +356,20 @@ form.task_form {
     grid-template-columns: minmax(80%, 1fr) minmax(20%, 1fr);
     align-items: center;
     position: relative;
+
+    @include mobilelarge {
+
+        grid-template-columns: 50% 50%;
+        justify-items: center;
+
+        h6:nth-child(2) {
+            display: none;
+        }
+
+        h6:nth-child(3) {
+            display: none;
+        }
+    }
 }
 
 .folder_item:hover {
@@ -398,12 +418,6 @@ form.task_form {
         grid-template-columns: repeat(2, minmax(100px, 1fr));
     }
 
-
-    h5 {
-        @include mobilelarge {
-            display: none;
-        }
-    }
 
     span {
 
