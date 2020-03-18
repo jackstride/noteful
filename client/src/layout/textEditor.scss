@@ -61,13 +61,13 @@
 }
 
 .e_button_active {
-    background-color: $AppDarkGrey;
+    background-color: blue;
 }
 
 .e_button_unactive {
     height: 25px;
     width: 25px;
-    background-color: #f8f8f8;
+    background-color: rgb(50, 50, 50);
 }
 
 .b_icon_active {
@@ -75,7 +75,7 @@
 }
 
 .b_icon_unactive {
-    background-color: none;
+    color: #f8f8f8;
 }
 
 
@@ -87,7 +87,7 @@
     top: 100px;
     width: 50%;
     margin: auto;
-    padding-right: 250px;
+
 
 
 
@@ -142,9 +142,14 @@
 
 
 .text_editor_tooltip {
+    height: fit-content;
     position: absolute;
-    background-color: blue;
+    background-color: rgb(50, 50, 50);
+    border-radius: 12px;
+    padding: 5px 0px;
     display: none;
+    transform-origin: bottom left;
+
 
     button {
         margin: 5px;
@@ -159,5 +164,15 @@
     li {
         cursor: pointer;
     }
+}
 
+.text_editor_tooltip::after {
+    content: "";
+    position: absolute;
+    top: 75%;
+    left: 5%;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg) translate(50%, -50%);
+    background-color: rgb(50, 50, 50);
 }

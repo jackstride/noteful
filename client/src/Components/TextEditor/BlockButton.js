@@ -48,7 +48,7 @@ let ToolBarButton = ({ format, icon, size }) => {
     >
       <FontAwesomeIcon
         className={
-          isBlockActive(editor, format) ? "b_icon_active" : "b_icon_unactive"
+          isBlockActive(editor, format) ? "b_icon_unactive" : "b_icon_active"
         }
         icon={icon}
         size={size ? size : "1x"}

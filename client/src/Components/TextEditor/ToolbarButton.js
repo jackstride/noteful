@@ -35,7 +35,7 @@ let ToolBarButton = ({ format, icon }) => {
           isButtonActive(editor, format) ? "b_icon_active" : "b_icon_unactive"
         }
         icon={icon}
-        size="lg"
+        size="1x"
       />
     </button>
   );

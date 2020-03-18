@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useState, useCallback } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+  useRef
+} from "react";
 import { Editable, withReact, Slate } from "slate-react";
 import { createEditor } from "slate";
 import FormatToolbar from "./FormatToolbar";
@@ -7,6 +13,7 @@ import BlockButton from "./BlockButton";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { editNote, getNoteById } from "../../actions/NoteActions";
+import useTraceUpdate from "use-trace-update";
 
 import ToolTipMenu from "./ToolTipMenu";
 
@@ -17,7 +24,9 @@ const TextEditor = ({
   folder_id,
   editNote,
   _id,
-  getNoteById
+  getNoteById,
+  history,
+  location
 }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
 
@@ -32,6 +41,17 @@ const TextEditor = ({
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
 
+  useTraceUpdate(
+    _id,
+    editNote,
+    folder_id,
+    getNoteById,
+    history,
+    location,
+    match,
+    note
+  );
+
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
@@ -42,15 +62,15 @@ const TextEditor = ({
         value={value}
         onChange={value => {
           setValue(value);
-          const content = JSON.stringify(value);
-          let note_title = editor.children[0].children[0].text.split(" ")[0];
-          const values = {
-            _id,
-            note_title,
-            user_id,
-            folder_id,
-            body_Data: content
-          };
+          // const content = JSON.stringify(value);
+          // let note_title = editor.children[0].children[0].text.split(" ")[0];
+          // const values = {
+          //   _id,
+          //   note_title,
+          //   user_id,
+          //   folder_id,
+          //   body_Data: content
+          // };
           // editNote(values);
         }}
       >
