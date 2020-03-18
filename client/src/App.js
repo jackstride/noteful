@@ -24,15 +24,17 @@ class App extends Component {
 
   HomeContainer = () => {
     return (
-      <Fragment>
-        <Navigation />
-        <Route exact path="/" component={Home} />
-        <Route path="/logout" component={LogOut} />
-        <Route path="/features" component={Features} />
-        <Route path="/support" component={Support} />
-        <Route path="/about" component={About} />
-        <Footer />
-      </Fragment>
+      <div className="website_container">
+        <Fragment>
+          <Navigation />
+          <Route exact path="/" component={Home} />
+          <Route path="/logout" component={LogOut} />
+          <Route path="/features" component={Features} />
+          <Route path="/support" component={Support} />
+          <Route path="/about" component={About} />
+          <Footer />
+        </Fragment>
+      </div>
     );
   };
 

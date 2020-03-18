@@ -169,6 +169,10 @@ nav a {
     display: inline-block;
 }
 
+.website_container {
+    width: 100%;
+    background-color: $BackgroundColor;
+}
 
 .app_container {
     width: 100%;
@@ -257,6 +261,10 @@ ul {
 .inner_container {
     width: 1440px;
     margin: 0 auto;
+
+    @include desktop {
+        width: 95%;
+    }
 
 
 
