@@ -23,9 +23,6 @@ const TextEditor = ({
 
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
-  let [menu, setMenu] = useState({
-    show: false
-  });
 
   useEffect(() => {
     getNoteById(paramId);
@@ -34,14 +31,6 @@ const TextEditor = ({
   useEffect(() => {
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
-
-  let handleOpenMenu = e => {
-    setMenu({
-      show: true,
-      x: e.clientX + 20,
-      y: e.clientY
-    });
-  };
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
@@ -84,7 +73,7 @@ const TextEditor = ({
           <BlockButton format="align-right" icon="align-right" />
         </FormatToolbar> */}
 
-        <ToolTipMenu menu={menu}>
+        <ToolTipMenu>
           <ToolbarButton format="bold" icon="bold" />
           <ToolbarButton format="italic" icon="italic" />
           <span className="editor_spacer"></span>
@@ -104,13 +93,6 @@ const TextEditor = ({
         </ToolTipMenu>
 
         <Editable
-          onClick={e => {
-            e.target.focus();
-            handleOpenMenu(e);
-          }}
-          onKeyDown={() => {
-            setMenu({ menu: false });
-          }}
           className="main_editor"
           renderElement={renderElement}
           renderLeaf={renderLeaf}

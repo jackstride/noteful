@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Portal } from "react-portal";
-const ToolTipMenu = ({ children, menu }) => {
-  let [ttShow, setTTshow] = useState(false);
+import { Range, Editor } from "slate";
+import { useSlate, ReactEditor } from "slate-react";
+const ToolTipMenu = ({ children }) => {
+  const ref = useRef();
+  const editor = useSlate();
+
+  useEffect(() => {
+    const el = ref.current;
+    const { selection } = editor;
+    console.log(selection);
+    if (!el) {
+      return;
+    }
+
+    if (!selection || !ReactEditor.isFocused(editor)) {
+      console.log("true");
+      el.removeAttribute("style");
+      return;
+    }
+
+    // attach handler to the click event of the document
+    if (document.attachEvent) document.attachEvent("onclick", handler);
+    else document.addEventListener("click", handler);
+
+    const domSelection = window.getSelection();
+    console.log(domSelection);
+    const domRange = domSelection.getRangeAt(0);
+    const rect = domRange.getBoundingClientRect();
+
+    function handler(e) {
+      e = e || window.event;
+
+      var pageX = e.pageX;
+      var pageY = e.pageY;
+
+      el.style.display = "block";
+      el.style.top = `${pageY}px`;
+      el.style.left = `${pageX}px`;
+    }
+  });
+
   return (
     <Portal>
-      {menu.show ? (
-        <div
-          style={menu.x ? { left: menu.x, top: menu.y } : null}
-          className="text_editor_tooltip"
-        >
-          <li
-            onClick={() => {
-              setTTshow(!ttShow);
-            }}
-          >
-            Show
-          </li>
-          {ttShow ? children : null}
-          {}
-        </div>
-      ) : null}
+      <div ref={ref} className="text_editor_tooltip">
+        {children}
+      </div>
     </Portal>
   );
 };
