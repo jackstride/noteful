@@ -12,7 +12,7 @@ import { isSuccess, isError } from "./ResponseActions";
 
 export const addFolder = values => dispatch => {
   axios
-    .post("/api/addFolder", values)
+    .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values)
     .then(res => {
       dispatch(isSuccess("Folder Added"));
       dispatch({
@@ -27,7 +27,7 @@ export const addFolder = values => dispatch => {
 
 export const getFolder = id => dispatch => {
   axios
-    .get(`/api/folders/${id}`)
+    .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`)
     .then(res => {
       dispatch({
         type: FOLDER_LOADED,
@@ -40,12 +40,16 @@ export const getFolder = id => dispatch => {
 };
 
 export const removeFolder = id => dispatch => {
-  axios.delete(`/api/folders/${id}`, { data: { id: id } }).then(res => {
-    dispatch({
-      type: REMOVE_FOLDER,
-      payload: id
+  axios
+    .delete(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
+      data: { id: id }
+    })
+    .then(res => {
+      dispatch({
+        type: REMOVE_FOLDER,
+        payload: id
+      });
     });
-  });
 };
 
 export const toggleFolderOpen = () => dispatch => {
@@ -55,11 +59,13 @@ export const toggleFolderOpen = () => dispatch => {
 };
 
 export const updateFolder = values => dispatch => {
-  axios.put("/api/folder/update", values).then(res => {
-    console.log(res);
-    dispatch({
-      type: UPDATE_FOLDER,
-      payload: values
+  axios
+    .put(process.env.REACT_APP_ENDPOINT + "/folder/update", values)
+    .then(res => {
+      console.log(res);
+      dispatch({
+        type: UPDATE_FOLDER,
+        payload: values
+      });
     });
-  });
 };

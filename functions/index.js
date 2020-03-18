@@ -46,9 +46,9 @@ app.use(cookieParser());
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
 app.use("/auth", cors(), socialAuthRoute);
-app.use("/api", cors(), FolderRoute);
-app.use("/api", cors(), tasksRoute);
-app.use("/api", cors(), NoteRoute);
+app.use("/", cors(), FolderRoute);
+app.use("/", cors(), tasksRoute);
+app.use("/", cors(), NoteRoute);
 
 app.use((req, res, next) => {
   next(createError(404, "Not Found"));

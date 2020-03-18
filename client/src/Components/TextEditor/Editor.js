@@ -13,7 +13,6 @@ import BlockButton from "./BlockButton";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { editNote, getNoteById } from "../../actions/NoteActions";
-import useTraceUpdate from "use-trace-update";
 
 import ToolTipMenu from "./ToolTipMenu";
 
@@ -40,17 +39,6 @@ const TextEditor = ({
   useEffect(() => {
     setValue(JSON.parse(note.body_Data) || initialValue);
   }, [note]);
-
-  useTraceUpdate(
-    _id,
-    editNote,
-    folder_id,
-    getNoteById,
-    history,
-    location,
-    match,
-    note
-  );
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);

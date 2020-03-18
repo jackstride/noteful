@@ -12,7 +12,7 @@ import {
 
 //Notes by folder id
 export const getNotes = id => dispatch => {
-  axios.get(`/api/note/all/${id}`).then(res => {
+  axios.get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`).then(res => {
     dispatch({
       type: NOTE_LOADED,
       payload: res.data
@@ -21,7 +21,7 @@ export const getNotes = id => dispatch => {
 };
 
 export const addNote = values => dispatch => {
-  axios.post(`/api/note/add`, values).then(res => {
+  axios.post(process.env.REACT_APP_ENDPOINT + `/note/add`, values).then(res => {
     dispatch({
       type: ADD_NOTE,
       payload: res.data.note
@@ -30,16 +30,18 @@ export const addNote = values => dispatch => {
 };
 
 export const editNote = (values, passType = EDIT_NOTE) => dispatch => {
-  axios.patch(`/api/note/edit/${values._id}`, values).then(res => {
-    dispatch({
-      type: passType,
-      payload: values
+  axios
+    .patch(process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`, values)
+    .then(res => {
+      dispatch({
+        type: passType,
+        payload: values
+      });
     });
-  });
 };
 
 export const getNoteById = _id => dispatch => {
-  axios.get(`/api/note/${_id}`).then(res => {
+  axios.get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`).then(res => {
     dispatch({
       type: SINGLE_NOTE,
       payload: res.data.note
@@ -48,21 +50,25 @@ export const getNoteById = _id => dispatch => {
 };
 
 export const removeNote = _id => dispatch => {
-  axios.delete(`/api/note/delete/${_id}`).then(res => {
-    dispatch({
-      type: DELETE_NOTE,
-      payload: _id
+  axios
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_NOTE,
+        payload: _id
+      });
     });
-  });
 };
 
 export const removeAllByFolderId = folder_id => dispatch => {
-  axios.delete(`/api/note/delete/all/${folder_id}`).then(res => {
-    dispatch({
-      type: DELETE_NOTE_BY_FOLDER,
-      payload: folder_id
+  axios
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`)
+    .then(res => {
+      dispatch({
+        type: DELETE_NOTE_BY_FOLDER,
+        payload: folder_id
+      });
     });
-  });
 };
 
 export const clearValues = () => dispatch => {

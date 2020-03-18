@@ -8,6 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
     "@fortawesome/react-fontawesome": "^0.1.7",
     "auth0-js": "^9.11.3",
+    "dotenv": "^8.2.0",
     "draft-js": "^0.11.2",
     "firebase": "^7.10.0",
     "moment": "^2.24.0",
@@ -45,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

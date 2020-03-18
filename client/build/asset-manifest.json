@@ -1,32 +1,30 @@
 {
   "files": {
-    "main.css": "/static/css/main.068877ac.chunk.css",
-    "main.js": "/static/js/main.bfb67e7d.chunk.js",
-    "main.js.map": "/static/js/main.bfb67e7d.chunk.js.map",
+    "main.css": "/static/css/main.96b7d6fd.chunk.css",
+    "main.js": "/static/js/main.4dc5bb8c.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
-    "runtime-main.js.map": "/static/js/runtime-main.cea588d5.js.map",
-    "static/js/2.8ce9fffc.chunk.js": "/static/js/2.8ce9fffc.chunk.js",
-    "static/js/2.8ce9fffc.chunk.js.map": "/static/js/2.8ce9fffc.chunk.js.map",
+    "static/js/2.5daed58c.chunk.js": "/static/js/2.5daed58c.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.a1089f584e9b8ee2c5ecbe654718be42.js": "/precache-manifest.a1089f584e9b8ee2c5ecbe654718be42.js",
+    "precache-manifest.aedeae7b0e7d796359b35b21dc6301ab.js": "/precache-manifest.aedeae7b0e7d796359b35b21dc6301ab.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.068877ac.chunk.css.map": "/static/css/main.068877ac.chunk.css.map",
-    "static/js/2.8ce9fffc.chunk.js.LICENSE.txt": "/static/js/2.8ce9fffc.chunk.js.LICENSE.txt",
-    "static/media/blob.f77f62f5.svg": "/static/media/blob.f77f62f5.svg",
+    "static/js/2.5daed58c.chunk.js.LICENSE.txt": "/static/js/2.5daed58c.chunk.js.LICENSE.txt",
     "static/media/google.svg": "/static/media/google.7e5484e9.svg",
+    "static/media/header.png": "/static/media/header.4a7c1590.png",
     "static/media/iphone_preview.png": "/static/media/iphone_preview.8c2b54c0.png",
     "static/media/jumping.dc5065c2.svg": "/static/media/jumping.dc5065c2.svg",
+    "static/media/noteful_blue.svg": "/static/media/noteful_blue.4ff48a21.svg",
     "static/media/noteful_bw.svg": "/static/media/noteful_bw.09017aa7.svg",
-    "static/media/reading_book.png": "/static/media/reading_book.95096ccb.png",
-    "static/media/twitter.svg": "/static/media/twitter.2cf50c22.svg",
-    "static/media/women_hugging.png": "/static/media/women_hugging.cb31081f.png",
-    "static/media/women_swing.png": "/static/media/women_swing.6c285224.png",
-    "static/media/zen.png": "/static/media/zen.df0da659.png"
+    "static/media/pencil.png": "/static/media/pencil.d748d153.png",
+    "static/media/reading_book.png": "/static/media/reading_book.d8068246.png",
+    "static/media/register_image.png": "/static/media/register_image.33c6d7a5.png",
+    "static/media/searching.png": "/static/media/searching.71a81e37.png",
+    "static/media/stacking.png": "/static/media/stacking.3d59355a.png",
+    "static/media/twitter.svg": "/static/media/twitter.2cf50c22.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/js/2.8ce9fffc.chunk.js",
-    "static/css/main.068877ac.chunk.css",
-    "static/js/main.bfb67e7d.chunk.js"
+    "static/js/2.5daed58c.chunk.js",
+    "static/css/main.96b7d6fd.chunk.css",
+    "static/js/main.4dc5bb8c.chunk.js"
   ]
 }

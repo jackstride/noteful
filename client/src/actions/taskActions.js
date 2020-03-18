@@ -12,7 +12,7 @@ import {
 // Load all tasks from the user
 // Requires user ID
 export const loadTasks = id => dispatch => {
-  axios.get(`/api/getTasks/${id}`).then(res => {
+  axios.get(process.env.REACT_APP_ENDPOINT + `/getTasks/${id}`).then(res => {
     dispatch({
       type: GET_TASKS,
       payload: res.data.tasks
@@ -25,7 +25,7 @@ export const loadTasks = id => dispatch => {
 
 export const addTask = values => dispatch => {
   axios
-    .post("/api/addTask", values)
+    .post(process.env.REACT_APP_ENDPOINT + "/addTask", values)
     .then(res => {
       console.log(res);
       dispatch({
@@ -39,7 +39,7 @@ export const addTask = values => dispatch => {
 //Toggle taks completed or not
 export const toggleTask = id => dispatch => {
   axios
-    .patch(`/api/editcomplete/${id}`)
+    .patch(process.env.REACT_APP_ENDPOINT + `/editcomplete/${id}`)
     .then(res => {
       dispatch({
         type: TOGGLE_TASK,
@@ -56,7 +56,7 @@ export const toggleTask = id => dispatch => {
 
 export const removeTask = id => dispatch => {
   axios
-    .delete(`/api/deletetask/${id}`)
+    .delete(process.env.REACT_APP_ENDPOINT + `/deletetask/${id}`)
     .then(res => {
       dispatch({
         type: REMOVE_TASK,
@@ -75,10 +75,12 @@ export const toggleOpenTask = () => dispatch => {
 };
 
 export const editTask = values => dispatch => {
-  axios.put("/api/task/update", values).then(res => {
-    dispatch({
-      type: UPDATE_TASK,
-      payload: values
+  axios
+    .put(process.env.REACT_APP_ENDPOINT + "/task/update", values)
+    .then(res => {
+      dispatch({
+        type: UPDATE_TASK,
+        payload: values
+      });
     });
-  });
 };

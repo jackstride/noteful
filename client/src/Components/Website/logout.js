@@ -17,7 +17,7 @@ const Logout = ({ isAuthenticated, logout }) => {
   useEffect(() => {
     axios
       .get(
-        "http:////api.giphy.com/v1/gifs/search?q=goodbye&api_key=Y5snFyvuJWBxCqMFarJq7e3lBtBV046X&limit=10",
+        "https:////api.giphy.com/v1/gifs/search?q=goodbye&api_key=Y5snFyvuJWBxCqMFarJq7e3lBtBV046X&limit=10",
         config
       )
       .then(data => {

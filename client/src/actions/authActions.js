@@ -24,7 +24,7 @@ export const loadUser = () => (dispatch, getState) => {
   });
 
   axios
-    .get("/dashboard")
+    .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`)
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -46,7 +46,7 @@ export const loadUser = () => (dispatch, getState) => {
 
 export const register = formValues => dispatch => {
   axios
-    .post("/user/register", formValues)
+    .post(process.env.REACT_APP_ENDPOINT + "/user/register", formValues)
     .then(res =>
       dispatch({
         type: REGISTER_SUCCESS,
@@ -65,9 +65,7 @@ export const register = formValues => dispatch => {
 
 export const login = formValues => dispatch => {
   axios
-    .post("/user/login", formValues, {
-      withCredentials: true
-    })
+    .post(process.env.REACT_APP_ENDPOINT + "/user/login", formValues, {})
     .then(res => {
       console.log(res.data);
       dispatch({
@@ -84,8 +82,14 @@ export const login = formValues => dispatch => {
 };
 
 export const logout = () => dispatch => {
+  console.log(process.env.REACT_APP_ENDPOINT);
+
   axios
-    .get("/user/logout", {}, { withCredentials: true })
+    .get(
+      process.env.REACT_APP_ENDPOINT + "/user/logout",
+      {},
+      { withCredentials: true }
+    )
     .then(res => {
       dispatch({
         type: LOGOUT_SUCCESS
@@ -96,10 +100,12 @@ export const logout = () => dispatch => {
 
 export const userUpdate = (_id, values) => distpach => {
   console.log(_id, values);
-  axios.patch(`/user/update/${_id}`, values).then(res => {
-    distpach({
-      type: USER_UPDATE,
-      payload: values
+  axios
+    .patch(process.env.REACT_APP_ENDPOINT + `/user/update/${_id}`, values)
+    .then(res => {
+      distpach({
+        type: USER_UPDATE,
+        payload: values
+      });
     });
-  });
 };
