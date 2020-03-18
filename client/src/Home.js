@@ -83,11 +83,9 @@ export default class home extends Component {
                   <br></br>
                   Sign up today. Free of charge!
                 </h6>
-                <input
-                  type="button"
-                  onClick={this.handleSubmit}
-                  value="Register"
-                ></input>
+                <Link to="/register">
+                  <input type="button" value="Register"></input>
+                </Link>
               </div>
             </div>
             <div className="header_image">

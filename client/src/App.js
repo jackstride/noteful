@@ -8,7 +8,7 @@ import store from "./store";
 import Home from "./home";
 import Dashboard from "./Components/Dashboard/Home";
 import LogIn from "./Components/Website/LogIn/logIn";
-import Register from "./Components/Website/Register/Register";
+import Register from "./Components/Website/Register/Page";
 import AuthRoute from "./privateRoute";
 import Navigation from "./Components/Website/Navigation";
 import Footer from "./Components/Website/Footer";
