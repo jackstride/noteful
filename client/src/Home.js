@@ -136,7 +136,9 @@ export default class home extends Component {
           </div>
           <div className="small_heading">
             {this.state.four.map((item, index) => {
-              return <SmallHeading title={item.title} main={item.main} />;
+              return (
+                <SmallHeading key={index} title={item.title} main={item.main} />
+              );
             })}
           </div>
           <div className="app_photo"></div>

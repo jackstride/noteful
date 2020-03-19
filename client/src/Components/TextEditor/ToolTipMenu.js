@@ -11,7 +11,6 @@ const ToolTipMenu = ({ children }) => {
     const el = ref.current;
     const { selection } = editor;
     setSelection(selection);
-    console.log(selection);
     if (!el) {
       return;
     }

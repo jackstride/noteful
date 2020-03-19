@@ -12,7 +12,7 @@ import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { editNote, getNoteById } from "../../actions/NoteActions";
+import { editNote, getNoteById, clearValues } from "../../actions/NoteActions";
 
 import ToolTipMenu from "./ToolTipMenu";
 
@@ -24,8 +24,7 @@ const TextEditor = ({
   editNote,
   _id,
   getNoteById,
-  history,
-  location
+  clearValues
 }) => {
   const editor = useMemo(() => withReact(createEditor()), []);
 
@@ -34,35 +33,55 @@ const TextEditor = ({
 
   useEffect(() => {
     getNoteById(paramId);
-  }, []);
+    return () => {
+      clearValues();
+    };
+  }, [paramId, clearValues, paramId]);
 
   useEffect(() => {
-    setValue(JSON.parse(note.body_Data) || initialValue);
-  }, [note]);
+    console.log(note);
+    if (note !== undefined) {
+      if (note == null) {
+        console.log(true);
+        setValue(initialValue);
+      } else {
+        setValue(JSON.parse(note));
+      }
+    }
+  }, [note, setValue]);
+
+  // useEffect(() => {
+  //   try {
+  //     setValue(JSON.parse(note));
+  //   } catch {
+  //     setValue(initialValue);
+  //   }
+  // }, [note]);
 
   const renderElement = useCallback(props => <Element {...props} />, []);
   const renderLeaf = useCallback(props => <Leaf {...props} />, []);
 
   return (
     <div className="editor_container">
-      <Slate
-        editor={editor}
-        value={value}
-        onChange={value => {
-          setValue(value);
-          // const content = JSON.stringify(value);
-          // let note_title = editor.children[0].children[0].text.split(" ")[0];
-          // const values = {
-          //   _id,
-          //   note_title,
-          //   user_id,
-          //   folder_id,
-          //   body_Data: content
-          // };
-          // editNote(values);
-        }}
-      >
-        {/* <FormatToolbar>
+      {value ? (
+        <Slate
+          editor={editor}
+          value={value}
+          onChange={value => {
+            setValue(value);
+            const content = JSON.stringify(value);
+            let note_title = editor.children[0].children[0].text.split(" ")[0];
+            const values = {
+              _id,
+              note_title,
+              user_id,
+              folder_id,
+              body_Data: content
+            };
+            editNote(values);
+          }}
+        >
+          {/* <FormatToolbar>
           <ToolbarButton format="bold" icon="bold" />
           <ToolbarButton format="italic" icon="italic" />
           <span className="editor_spacer"></span>
@@ -81,52 +100,55 @@ const TextEditor = ({
           <BlockButton format="align-right" icon="align-right" />
         </FormatToolbar> */}
 
-        <ToolTipMenu>
-          <ToolbarButton format="bold" icon="bold" />
-          <ToolbarButton format="italic" icon="italic" />
-          <span className="editor_spacer"></span>
-          <ToolbarButton format="code" icon="code" />
-          <ToolbarButton format="underline" icon="underline" />
-          <BlockButton format="heading-one" icon="underline" />
-          <span className="editor_spacer"></span>
-          <BlockButton format="heading-two" icon="underline" />
-          <BlockButton format="heading-three" icon="underline" />
-          <span className="editor_spacer"></span>
-          <BlockButton format="list-item" icon="list" />
-          <BlockButton format="numbered-list" icon="list-ol" />
-          <span className="editor_spacer"></span>
-          <BlockButton format="align-left" icon="align-left" />
-          <BlockButton format="align-center" icon="align-center" />
-          <BlockButton format="align-right" icon="align-right" />
-        </ToolTipMenu>
+          <ToolTipMenu>
+            <ToolbarButton format="bold" icon="bold" />
+            <ToolbarButton format="italic" icon="italic" />
+            <span className="editor_spacer"></span>
+            <ToolbarButton format="code" icon="code" />
+            <ToolbarButton format="underline" icon="underline" />
+            <BlockButton format="heading-one" icon="underline" />
+            <span className="editor_spacer"></span>
+            <BlockButton format="heading-two" icon="underline" />
+            <BlockButton format="heading-three" icon="underline" />
+            <span className="editor_spacer"></span>
+            <BlockButton format="list-item" icon="list" />
+            <BlockButton format="numbered-list" icon="list-ol" />
+            <span className="editor_spacer"></span>
+            <BlockButton format="align-left" icon="align-left" />
+            <BlockButton format="align-center" icon="align-center" />
+            <BlockButton format="align-right" icon="align-right" />
+          </ToolTipMenu>
 
-        <Editable
-          className="main_editor"
-          renderElement={renderElement}
-          renderLeaf={renderLeaf}
-          spellCheck
-          //Defines shortvut Keys
-          // onKeyDown={event => {
-          //   if (!event.ctrlKey) {
-          //     return;
-          //   }
-          //   Replace the `onKeyDown` logic with our new commands.
-          //   switch (event.key) {
-          //     case "a": {
-          //       event.preventDefault();
-          //       CustomEditor.toggleCodeBlock(editor);
-          //       break;
-          //     }
+          <Editable
+            className="main_editor"
+            renderElement={renderElement}
+            renderLeaf={renderLeaf}
+            spellCheck
+            //Defines shortvut Keys
+            // onKeyDown={event => {
+            //   if (!event.ctrlKey) {
+            //     return;
+            //   }
+            //   Replace the `onKeyDown` logic with our new commands.
+            //   switch (event.key) {
+            //     case "a": {
+            //       event.preventDefault();
+            //       CustomEditor.toggleCodeBlock(editor);
+            //       break;
+            //     }
 
-          //     case "b": {
-          //       event.preventDefault();
-          //       CustomEditor.toggleBoldMark(editor);
-          //       break;
-          //     }
-          //   }
-          // }}
-        />
-      </Slate>
+            //     case "b": {
+            //       event.preventDefault();
+            //       CustomEditor.toggleBoldMark(editor);
+            //       break;
+            //     }
+            //   }
+            // }}
+          />
+        </Slate>
+      ) : (
+        <h2> Loading </h2>
+      )}
     </div>
   );
 };
@@ -267,7 +289,7 @@ const initialValue = [
 
 const mapStateToProps = state => {
   return {
-    note: state.note.singleNoteData,
+    note: state.note.singleNoteData.body_Data,
     user_id: state.auth.user._id,
     _id: state.note.singleNoteData._id,
     folder_id: state.note.singleNoteData.folder_id
@@ -276,7 +298,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   editNote: values => dispatch(editNote(values)),
-  getNoteById: values => dispatch(getNoteById(values))
+  getNoteById: values => dispatch(getNoteById(values)),
+  clearValues: () => dispatch(clearValues())
 });
 
 export default withRouter(
