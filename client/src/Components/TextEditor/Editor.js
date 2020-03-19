@@ -78,7 +78,7 @@ const TextEditor = ({
               folder_id,
               body_Data: content
             };
-            editNote(values);
+            // editNote(values);
           }}
         >
           {/* <FormatToolbar>
