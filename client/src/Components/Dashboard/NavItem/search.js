@@ -1,33 +1,44 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import SearchModal from "../Search/SearchModal";
 const Search = props => {
-  let history = useHistory();
+  let [search, setSearch] = useState(false);
+  let [query, setQuery] = useState();
 
-  let handleClick = () => {
-    history.push("/dashboard/search/search");
+  let handleClick = e => {
+    e.preventDefault();
+    setSearch(true);
   };
 
-  let handleOnChange = e => {
-    history.replace("/dashboard/search/search?=" + e.target.value);
+  let closeModal = () => {
+    setSearch(false);
   };
 
   return (
     <div className="app_search">
       <div className="search_container">
         <input
-          onClick={() => {
-            handleClick();
+          name="query"
+          onClick={e => {
+            handleClick(e);
           }}
           onChange={e => {
-            handleOnChange(e);
+            setQuery(e.target.value);
           }}
           type="search"
           placeholder="Search your notes.."
         ></input>
         <FontAwesomeIcon icon="search" size="1x" />
       </div>
+      {search ? (
+        <SearchModal
+          close={() => {
+            closeModal();
+          }}
+          query={query}
+        />
+      ) : null}
     </div>
   );
 };

@@ -8,7 +8,6 @@ import Editor from "../TextEditor/Editor";
 import FolderResult from "./Results/FolderResults";
 import Summary from ".//Summary/Summary";
 import { setDarkMode } from "../../helpers/helperFunctions";
-import Search from "./Search";
 import ContextMenuManager from "../contextMenu/contextMenuManager";
 import HandleMessage from "../HandleMessages/handlemessage";
 import TopBar from "./TopBar";
@@ -32,7 +31,6 @@ class Home extends Component {
             <Route path="/dashboard/settings" component={Settings} />
             <Route exact path="/dashboard/:folder" component={FolderResult} />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
-            <Route exact path="/dashboard/search/search" component={Search} />
           </Switch>
         </BrowserRouter>
       </div>

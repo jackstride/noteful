@@ -46,10 +46,9 @@ const ToolTipMenu = ({ children }) => {
     el.style.left = `${x + px}px`;
   });
 
-  document.addEventListener("keyup", () => {
-    console.log("close");
-    document.querySelector(".text_editor_tooltip").style.display = "none";
-  });
+  // document.addEventListener("keyup", () => {
+  //   document.querySelector(".text_editor_tooltip").style.display = "none";
+  // });
 
   return (
     <Portal>
