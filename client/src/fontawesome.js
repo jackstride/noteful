@@ -34,7 +34,8 @@ import {
   faChevronDown,
   faColumns,
   faSignOutAlt,
-  faEllipsisV
+  faEllipsisV,
+  faFolder
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -72,5 +73,6 @@ library.add(
   faChevronDown,
   faColumns,
   faSignOutAlt,
-  faEllipsisV
+  faEllipsisV,
+  faFolder
 );

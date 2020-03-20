@@ -42,7 +42,7 @@ class Folders extends Component {
       if (this.props.folder && this.props.folder.length) {
         if (this.props.folder.length !== prevProps.folder.length) {
           const id = this.props.folder[0]._id;
-          this.props.history.push("/dashboard/" + id);
+          this.props.history.push("/dashboard/folder/" + id);
         }
       }
     }
@@ -84,7 +84,7 @@ class Folders extends Component {
                 <Link
                   id={key._id}
                   name={key.folder_name}
-                  to={`/dashboard/${key._id}`}
+                  to={`/dashboard/folder/${key._id}`}
                 >
                   {key.folder_name}
                 </Link>

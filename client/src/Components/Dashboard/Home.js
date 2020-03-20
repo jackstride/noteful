@@ -27,10 +27,14 @@ class Home extends Component {
           <HandleMessage />
           <TopBar />
           <Switch>
-            <Route exact path="/dashboard" component={Summary} />
             <Route path="/dashboard/settings" component={Settings} />
-            <Route exact path="/dashboard/:folder" component={FolderResult} />
+            <Route
+              exact
+              path="/dashboard/folder/:folder"
+              component={FolderResult}
+            />
             <Route exact path="/dashboard/notes/:notes" component={Editor} />
+            <Route path="/dashboard" component={Summary} />
           </Switch>
         </BrowserRouter>
       </div>

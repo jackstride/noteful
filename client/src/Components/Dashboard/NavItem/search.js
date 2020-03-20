@@ -27,6 +27,7 @@ const Search = props => {
             setQuery(e.target.value);
           }}
           type="search"
+          autoComplete="off"
           placeholder="Search your notes.."
         ></input>
         <FontAwesomeIcon icon="search" size="1x" />

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import SummaryFolder from "./SummaryFolder";
+import SummaryNotes from "./SummaryNotes";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
-import NotesHolder from "../Summary/NotesHolder";
+
 import TaskHolder from "../Summary/TaskHolder";
 
 let Summary = ({
@@ -35,54 +39,40 @@ let Summary = ({
   return (
     <div className="inner_app_container">
       <div className="summaries">
-        <div className="summary_left">
-          <div className="summary_notes">
-            <div className="summary_header">
-              <h2>Recent Notes</h2>
-              <div className="summary_text notes">
-                <h6>Note</h6>
-                <h6>Folder</h6>
-                <h6>Last editied</h6>
-              </div>
-            </div>
-            <div className="summary_grid_rows">
-              {notes.slice(0, 5).map((note, index) => {
-                return <NotesHolder data={folder} notes={note} key={index} />;
-              })}
-            </div>
-          </div>
-
-          <div className="summary_tasks">
-            <div className="summary_header">
-              <h2> Tasks</h2>
-            </div>
-            <div className="summary_grid_rows">
-              {tasks.map((tasks, index) => (
-                <TaskHolder key={index} task={tasks} mark={toggleTask} />
-              ))}
-            </div>
-          </div>
+        <div className="summaries_nav">
+          <h1> Summary</h1>
+          <ul>
+            <li>
+              <NavLink activeClassName="summary_active" to="/dashboard/folders">
+                Folders
+              </NavLink>
+            </li>
+            <li>
+              <NavLink activeClassName="summary_active" to="/dashboard/notes">
+                Notes
+              </NavLink>
+            </li>
+            <li>
+              <NavLink activeClassName="summary_active" to="/dashboard/stats">
+                Stats
+              </NavLink>
+            </li>
+          </ul>
         </div>
-        <div className="summary_right">
-          <div className="task_stats">
-            <div className="stats_header">
-              <h2>Stats</h2>
-            </div>
-            <div className="stats_content">
-              <div className="stats">
-                <h4>Tasks Completed</h4>
-                <span>{tasks ? Math.ceil(getTaskComplete()) + "%" : null}</span>
-              </div>
-              <div className="stats">
-                <h4>Task Count</h4>
-                <span>{tasks ? tasks.length : null}</span>
-              </div>
-              <div className="stats">
-                <h4>Number of Notes</h4>
-                <span>{notes ? notes.length : null}</span>
-              </div>
-            </div>
-          </div>
+        <div className="summary_content">
+          <Switch>
+            <Route
+              path="/dashboard/folders"
+              render={props => <SummaryFolder data={folder} {...props} />}
+            />
+            <Route
+              path="/dashboard/notes"
+              render={props => (
+                <SummaryNotes folder={folder} notes={notes} {...props} />
+              )}
+            />
+            <Route path="/dashboard/stats" component={SummaryFolder} />
+          </Switch>
         </div>
       </div>
     </div>

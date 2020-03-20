@@ -14,7 +14,6 @@ let TasksHolder = ({ task, mark, showMenu }) => {
   let handleContextMenu = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
-    console.log("this");
     showMenu(pageX, pageY, "TasksContextMenu", {
       name: e.target.name,
       id: e.target.id

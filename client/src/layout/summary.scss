@@ -1,24 +1,10 @@
-.summary_container {
-    width: calc(100% - 250px);
-    margin-left: 250px;
-    height: fit-content;
-
-    @include smalldesktop {
-        margin-left: 0;
-        margin: 0 auto;
-        padding-top: 10px;
-    }
-
-    @include tablet {
-        width: 95%;
-    }
-}
-
+///////// Summary page ////////
 .summaries {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-rows: 150px 1fr;
+    grid-template-columns: 1fr;
 
     @include smalldesktop {
         grid-template-columns: 1fr;
@@ -27,16 +13,91 @@
     }
 }
 
-
-.summary_left {
+.summary_content {
     height: 100%;
     width: 100%;
-    margin: 0 auto;
+}
 
-    @include tablet {
+
+.summaries_nav {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+
+    ul {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+
+    }
+
+    li a {
+        color: rgb(150, 150, 150);
+        font-size: 1.2em;
+    }
+
+    .summary_active {
+        color: $DarkGrey;
+        position: relative;
+        font-weight: 500;
+    }
+
+    .summary_active::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 0%;
+        width: 100%;
+        height: 2px;
+        background-color: $Blue;
+    }
+}
+
+
+
+
+////// Summary Folder Holder //////////
+
+.s_f_holder {
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+    display: grid;
+    grid-auto-rows: 100px;
+    gap: 10px;
+    position: relative;
+
+    a {
+        height: 100%;
         width: 100%;
     }
 }
+
+.s_f_item {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    >* {
+        padding-right: 10px;
+    }
+
+}
+
+.s_f_item:hover {
+    background-color: blue;
+    cursor: pointer;
+}
+
+
+//// Summary Notes Holder
+
+
+
 
 
 //////////// Notes /////////
@@ -176,66 +237,4 @@
 
 .circle.tasks.complete {
     background-color: rgb(116, 224, 0);
-}
-
-////////// Stats ////////////
-
-
-.summary_right {
-    height: 90%;
-    width: 100%;
-    margin: auto 0;
-    border-left: $BorderBlue;
-
-    @include smalldesktop {
-        display: none;
-    }
-
-    >* {
-        border-radius: 12px;
-    }
-
-    h2 {
-        color: white;
-    }
-}
-
-.task_stats {
-    height: 500px;
-    width: 70%;
-    margin-top: 20px;
-    margin-left: 50px;
-    background-color: #278a48;
-    margin: 0 auto;
-
-    .stats_header {
-        padding: 20px;
-    }
-
-
-    .stats_content {
-        height: 50%;
-        padding: 10px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        gap: 20px;
-    }
-
-
-    .stats {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        border-radius: 12px;
-        background-color: white;
-        padding: 5px;
-
-
-        span {
-            font-weight: 400;
-            font-size: 14px;
-        }
-    }
-
 }
