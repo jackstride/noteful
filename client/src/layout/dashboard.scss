@@ -315,7 +315,7 @@ form.task_form {
     width: 100%;
     display: grid;
     grid-auto-rows: 75px;
-    background-color: white;
+    // background colour here
     border-radius: 12px;
     padding: 10px;
     margin: 0 auto;
@@ -333,20 +333,20 @@ form.task_form {
     }
 
 
-    h5:first-child {
-        position: relative;
-        margin-left: 25px;
-    }
+    // h5:first-child {
+    //     position: relative;
+    //     margin-left: 25px;
+    // }
 
-    h5:first-child::after {
-        content: "•";
-        position: absolute;
-        top: 25%;
-        left: -10px;
-        color: #347CFF;
-        font-size: 30px;
-        transform: translate(-50%, -50%);
-    }
+    // h5:first-child::after {
+    //     content: "•";
+    //     position: absolute;
+    //     top: 25%;
+    //     left: -10px;
+    //     color: #347CFF;
+    //     font-size: 30px;
+    //     transform: translate(-50%, -50%);
+    // }
 }
 
 .folder_item {
@@ -555,3 +555,7 @@ form.task_form {
         color: red;
     }
 }
+
+
+////// Results //////////
+.results_count {}

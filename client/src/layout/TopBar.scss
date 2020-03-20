@@ -4,8 +4,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: $BorderBlue;
-    background-color: #f8f8f8;
+
     position: relative;
 }
 
@@ -44,7 +43,7 @@
 //////////////// SEARCH //////////////////
 .search_bar {
     margin-left: 50px;
-    width: 500px;
+    width: 400px;
     height: 75px;
     display: flex;
     align-items: center;
@@ -75,15 +74,16 @@
             padding-left: 40px;
             font-weight: 300;
             font-size: 14px;
-            background-color: rgb(255, 255, 255);
+            background-color: transparent;
             border-radius: 12px;
-            color: rgb(106, 109, 161);
-
-
+            color: rgb(100, 100, 100);
+            border: 1px solid rgb(200, 200, 200);
+            font-weight: 500;
+            font-size: 14px;
         }
 
         input::placeholder {
-            color: rgb(106, 109, 161);
+            color: rgb(100, 100, 100);
         }
 
         .fa-search {
@@ -91,8 +91,7 @@
             top: 50%;
             left: 10px;
             transform: translate(0%, -50%);
-            color: $AppDarkGrey;
-
+            color: rgb(100, 100, 100);
         }
     }
 }

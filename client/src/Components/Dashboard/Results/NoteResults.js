@@ -9,13 +9,17 @@ import { showMenu } from "../../../actions/contextMenuActions";
 import ResultLayout from "./ResultLayout";
 
 let Notes = ({ results }) => {
+  console.log(results);
   return (
     <div className="folder_page">
       <div className="folder_page_container">
         <div className="folders_heading">
-          <h2> All Notes</h2>
+          <h2>Results</h2>
         </div>
-
+        <div className="results_count">
+          <h4>Results Found</h4>
+          <h3>{results.length}</h3>
+        </div>
         <div className="folder_container">
           <div className="folder_item">
             <div className="folder_table_heading">
