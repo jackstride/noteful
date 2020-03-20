@@ -43,17 +43,30 @@ class SideBar extends Component {
             <span>Dashboard</span>
           </div>
         </Link>
-        <div className="dashboard">
-          <div className="icon_circle">
-            <FontAwesomeIcon
-              icon="sign-out-alt"
-              size="1x"
-              color="grey"
-            ></FontAwesomeIcon>
+        <Link to="/dashboard/settings/account">
+          <div className="dashboard">
+            <div className="icon_circle">
+              <FontAwesomeIcon
+                icon="cog"
+                size="1x"
+                color="grey"
+              ></FontAwesomeIcon>
+            </div>
+            <span>Settings</span>
           </div>
-          <span>Sign out</span>
-        </div>
-
+        </Link>
+        <Link to="/logout">
+          <div className="dashboard">
+            <div className="icon_circle">
+              <FontAwesomeIcon
+                icon="sign-out-alt"
+                size="1x"
+                color="grey"
+              ></FontAwesomeIcon>
+            </div>
+            <span>Sign out</span>
+          </div>
+        </Link>
         <Folders />
         <Tasks userId={this.props.userId} data={this.props.taskData} />
       </div>

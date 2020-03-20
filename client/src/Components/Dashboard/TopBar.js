@@ -27,24 +27,6 @@ const TopBar = ({ firstName }) => {
       <div className="search_bar">
         <Search />
       </div>
-      <div className="profile">
-        <span>{firstName}</span>
-        <FontAwesomeIcon
-          className={settings ? "s_active" : ""}
-          style={{ cursor: "pointer" }}
-          onClick={() => openSettings(!settings)}
-          color="white"
-          icon="chevron-down"
-          size="xs"
-        />
-        {settings ? (
-          <Options
-            toggle={() => {
-              closeSettings();
-            }}
-          />
-        ) : null}
-      </div>
       {sideNav ? <SideNav /> : null}
     </div>
   );

@@ -44,14 +44,13 @@ const ToolTipMenu = ({ children }) => {
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
 
-    console.log(domSelection);
     let y = domSelection.anchorNode.parentNode.offsetTop;
     let x = domSelection.anchorNode.parentNode.offsetLeft;
     let py = domSelection.anchorNode.parentNode.offsetParent.offsetTop;
     let px = domSelection.anchorNode.parentNode.offsetParent.offsetLeft;
 
     el.style.display = "block";
-    el.style.top = `${y + py}px`;
+    el.style.top = `${y + py + padding.y}px`;
     el.style.left = `${x + px}px`;
   });
 
