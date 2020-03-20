@@ -13,6 +13,7 @@ import BlockButton from "./BlockButton";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { editNote, getNoteById, clearValues } from "../../actions/NoteActions";
+import CustomBlockButton from "./CustomBlockButton";
 
 import ToolTipMenu from "./ToolTipMenu";
 
@@ -42,7 +43,6 @@ const TextEditor = ({
     console.log(note);
     if (note !== undefined) {
       if (note == null) {
-        console.log(true);
         setValue(initialValue);
       } else {
         setValue(JSON.parse(note));
@@ -106,10 +106,10 @@ const TextEditor = ({
             <span className="editor_spacer"></span>
             <ToolbarButton format="code" icon="code" />
             <ToolbarButton format="underline" icon="underline" />
-            <BlockButton format="heading-one" icon="underline" />
             <span className="editor_spacer"></span>
-            <BlockButton format="heading-two" icon="underline" />
-            <BlockButton format="heading-three" icon="underline" />
+            <CustomBlockButton
+              format={["heading-one", "heading-two", "heading-three"]}
+            />
             <span className="editor_spacer"></span>
             <BlockButton format="list-item" icon="list" />
             <BlockButton format="numbered-list" icon="list-ol" />
