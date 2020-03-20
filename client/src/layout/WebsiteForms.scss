@@ -68,6 +68,15 @@ span.or {
     height: 100vh;
     display: grid;
     grid-template-columns: 40% 60%;
+
+
+    @include smalldesktop {
+        grid-template-columns: 60% 40%;
+    }
+
+    @include tablet {
+        grid-template-columns: 1fr;
+    }
 }
 
 .reg_container {
@@ -87,6 +96,9 @@ span.or {
         font-size: 2em;
     }
 
+    @include desktop {
+        width: 70%;
+    }
 
     @include smalldesktop {
         width: 60%;
@@ -104,9 +116,18 @@ span.or {
     display: flex;
     flex-direction: column;
 
+
+    @include tablet {
+        display: none;
+    }
+
     .heading {
         padding-left: 20px;
         padding-top: 100px;
+
+        h3 {
+            color: white;
+        }
     }
 }
 
@@ -126,6 +147,18 @@ span.or {
         font-size: 1em;
         color: white;
         padding-top: 20px;
+
+
+        @include smalldesktop {
+            line-height: 32px;
+        }
+    }
+
+    img {
+        @include smalldesktop {
+            display: none;
+        }
+
     }
 }
 

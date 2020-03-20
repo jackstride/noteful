@@ -13,7 +13,8 @@ import {
   GETTING_URL,
   GOT_URL,
   USER_UPDATE,
-  PASSWORD_UPDATE
+  PASSWORD_UPDATE,
+  SUPPORT_SUCCESS
 } from "./types";
 
 //Load user
@@ -106,6 +107,17 @@ export const userUpdate = (_id, values) => distpach => {
       distpach({
         type: USER_UPDATE,
         payload: values
+      });
+    });
+};
+
+export const supportRequest = formValues => dispatch => {
+  console.log(formValues);
+  axios
+    .post(process.env.REACT_APP_ENDPOINT + "/support", formValues)
+    .then(res => {
+      dispatch({
+        type: SUPPORT_SUCCESS
       });
     });
 };

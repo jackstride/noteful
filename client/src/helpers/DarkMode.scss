@@ -14,8 +14,28 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 
 .app_container.dark-mode {
+    background-color: $DANavBG;
 
-    background-color: $DABG;
+    // Backgrounds
+    .summary_container,
+    .dashboard_navigation,
+    .folder_page,
+    input {
+        background-color: $DANavBG;
+    }
+
+    input {
+        color: white;
+    }
+
+    input::placeholder {
+        color: white;
+    }
+
+    input,
+    .folder_container {
+        background-color: $DABG;
+    }
 
     .svg-inline--fa {
         color: white;
@@ -39,19 +59,29 @@ $DAHeadingGrey: rgb(141, 141, 141);
         color: #d6d6d6;
     }
 
-
     // Navigaton Bar
-
-    .dashboard_navigation {
-        background-color: $DANavBG;
+    .top_bar {
+        background-color: $DABG;
+        border: none;
     }
+
+
+    .search_container {
+        input::placeholder {
+            color: white;
+        }
+
+
+        .fa-search {
+            color: white;
+        }
+    }
+
+
 
     .widget {
         background-color: none;
     }
-
-
-
 
     .profile_container {
         .fa-cog {
@@ -71,6 +101,14 @@ $DAHeadingGrey: rgb(141, 141, 141);
         input {
             background-color: $DABackgroundThree;
         }
+    }
+
+
+
+    ///// Side nav 
+
+    .dashboard:hover {
+        background-color: $DAHeadingHover;
     }
 
     //Folders widget
@@ -127,6 +165,13 @@ $DAHeadingGrey: rgb(141, 141, 141);
             color: #00C853;
         }
     }
+
+
+
+    // Folders holder //
+
+
+
 
 
 

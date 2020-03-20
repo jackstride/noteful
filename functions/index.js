@@ -19,6 +19,7 @@ const socialAuthRoute = require("./routes/socialAuth");
 const FolderRoute = require("./routes/folder");
 const tasksRoute = require("./routes/tasks");
 const NoteRoute = require("./routes/Note");
+const SupportRoute = require("./routes/support");
 
 app.use("*", function(req, res, next) {
   //replace localhost:8080 to the ip address:port of your server

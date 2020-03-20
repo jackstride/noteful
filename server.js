@@ -16,6 +16,7 @@ const socialAuthRoute = require("./routes/socialAuth");
 const FolderRoute = require("./routes/folder");
 const tasksRoute = require("./routes/tasks");
 const NoteRoute = require("./routes/Note");
+const SupportRoute = require("./routes/support");
 
 //Connect To Database
 ConnectDB();
@@ -69,6 +70,7 @@ app.use("/auth", cors(), socialAuthRoute);
 app.use("", cors(), FolderRoute);
 app.use("", cors(), tasksRoute);
 app.use("", cors(), NoteRoute);
+app.use("", cors(), SupportRoute);
 
 app.use((req, res, next) => {
   next(createError(404, "Not Found"));

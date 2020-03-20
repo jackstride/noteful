@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
 import LargeHeader from "../Components/Website/LargeHeader";
 import Stacking from "../images/stacking.png";
+import { connect } from "react-redux";
+import { supportRequest } from "../actions/authActions";
 
 let SocialCard = props => {
   return (
@@ -15,7 +17,7 @@ let SocialCard = props => {
   );
 };
 
-export default class support extends Component {
+class Support extends Component {
   constructor(props) {
     super(props);
 
@@ -41,9 +43,27 @@ export default class support extends Component {
           link: "https://instagram.com/notefulapp",
           icon: ["fab", "instagram"]
         }
-      ]
+      ],
+      name: "",
+      email: "",
+      message: ""
     };
   }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    let formValues = {
+      name: this.state.name,
+      email: this.state.email,
+      message: this.state.message
+    };
+
+    let { name, email, message } = formValues;
+
+    if (name.length > 0 && email.length > 0 && message.length > 0) {
+      this.props.supportRequest(formValues);
+    }
+  };
 
   render() {
     return (
@@ -60,9 +80,9 @@ export default class support extends Component {
           <img src={Stacking} alt="Noteful stacking"></img>
         </div>
         <div className="support_bg">
-          <section class="contact_cards">
+          <section className="contact_cards">
             {this.state.social.map((item, i) => (
-              <SocialCard data={item} />
+              <SocialCard key={i} data={item} />
             ))}
           </section>
           <div style={{ textAlign: "center" }} className="inner_container">
@@ -72,11 +92,40 @@ export default class support extends Component {
               incase of issues that you may be facing.{" "}
             </p>
           </div>
-          <secton className="support_form">
-            <form>
-              <input placeholder="Full Name" type="text"></input>
-              <input placeholder="Email Address" type="text"></input>
+          <section className="support_form">
+            <form
+              method="post"
+              onSubmit={e => {
+                this.handleSubmit(e);
+              }}
+            >
+              <input
+                onChange={e => {
+                  this.setState({
+                    name: e.target.value
+                  });
+                }}
+                placeholder="Full Name"
+                name="name"
+                type="text"
+              ></input>
+              <input
+                onChange={e => {
+                  this.setState({
+                    email: e.target.value
+                  });
+                }}
+                placeholder="Email Address"
+                name="email"
+                type="text"
+              ></input>
               <textarea
+                onChange={e => {
+                  this.setState({
+                    message: e.target.value
+                  });
+                }}
+                name="message"
                 rows="20"
                 placeholder="Describe your problem..."
               ></textarea>
@@ -85,9 +134,15 @@ export default class support extends Component {
                 <input type="reset" value="Clear"></input>
               </div>
             </form>
-          </secton>
+          </section>
         </div>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = state => dispatch => ({
+  supportRequest: formValues => dispatch(supportRequest(formValues))
+});
+
+export default connect(null, mapDispatchToProps)(Support);

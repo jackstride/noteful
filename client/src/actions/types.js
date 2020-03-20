@@ -49,3 +49,6 @@ export const HANDLE_SUCESS = "HANDLE_SUCESS";
 export const HANDLE_ERROR = "HANDLE_ERROR";
 export const CLOSE_HANDLE = "CLOSE_HANDLE";
 export const HANDLE_DELETE_FOLDER = "HANDLE_DELETE_FOLDER";
+
+// Support request
+export const SUPPORT_SUCCESS = "SUPPORT_SUCCESS";
