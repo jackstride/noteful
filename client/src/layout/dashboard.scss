@@ -258,24 +258,9 @@ form.task_form {
 
 ///////////// Folders ////////////////////
 
-.folder_page {
-
-    min-height: calc(100vh - 100px);
-    width: 100%;
-    background-color: #f8f8f8;
-
-
-    @include tablet {
-        position: relative;
-        top: 50px;
-    }
-}
-
 .folder_page_container {
     height: fit-content;
-    width: 60%;
-    margin: 0 auto;
-
+    width: 100%;
 
     @include tablet {
         width: 90%;

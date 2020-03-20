@@ -265,9 +265,13 @@ ul {
     @include desktop {
         width: 95%;
     }
+}
 
 
-
+.inner_app_container {
+    width: calc(80% - 250px);
+    margin: 0 auto;
+    height: fit-content;
 }
 
 .container {

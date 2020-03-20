@@ -11,7 +11,7 @@ import ResultLayout from "./ResultLayout";
 let Notes = ({ results }) => {
   console.log(results);
   return (
-    <div className="folder_page">
+    <div className="inner_app_container">
       <div className="folder_page_container">
         <div className="folders_heading">
           <h2>Results</h2>

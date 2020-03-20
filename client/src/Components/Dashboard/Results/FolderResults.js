@@ -48,7 +48,7 @@ let Folders = ({
   };
 
   return (
-    <div className="folder_page">
+    <div className="inner_app_container">
       <div className="folder_page_container">
         <div className="folders_heading">
           <h2>{getFolderName() || "E"}</h2>

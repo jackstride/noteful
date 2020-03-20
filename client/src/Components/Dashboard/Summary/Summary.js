@@ -33,7 +33,7 @@ let Summary = ({
   };
 
   return (
-    <div className="summary_container">
+    <div className="inner_app_container">
       <div className="summaries">
         <div className="summary_left">
           <div className="summary_notes">

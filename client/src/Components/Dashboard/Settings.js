@@ -21,7 +21,7 @@ const Settings = () => {
   };
 
   return (
-    <div className="settings_container">
+    <div className="inner_app_container">
       <div className="settings_main">
         <div className="settings_nav">
           <h1> Settings </h1>
