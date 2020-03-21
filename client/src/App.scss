@@ -275,6 +275,10 @@ ul {
     width: calc(80% - 250px);
     margin: 0 auto;
     height: fit-content;
+
+    @include desktop {
+        width: 90%;
+    }
 }
 
 .container {

@@ -8,7 +8,7 @@ import { showMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const moment = require("moment");
 
-const SummaryFolder = ({ data, id, tasks, showMenu }) => {
+const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
   let handleContextMenu = e => {
     console.log(e.target);
     e.preventDefault();
@@ -21,14 +21,16 @@ const SummaryFolder = ({ data, id, tasks, showMenu }) => {
   return (
     <div className="s_f_holder">
       {data.map((data, i) => {
+        let noteData = notes.filter(notes => notes.folder_id == data._id);
         return (
           <Link
+            key={i}
             name={data.folder_name}
             id={data._id}
             onContextMenu={e => handleContextMenu(e)}
             to={`/dashboard/folder/${data._id}`}
           >
-            <Item key={i} data={data} />
+            <Item key={i} data={data} noteData={noteData} />
           </Link>
         );
       })}
@@ -53,15 +55,27 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummaryFolder);
 
-const Item = ({ data }) => {
+const Item = ({ data, noteData }) => {
   return (
     <div name={data.folder_name} id={data._id} className="s_f_item">
-      <FontAwesomeIcon
-        icon="folder"
-        color="#4c6ef5"
-        size="3x"
-      ></FontAwesomeIcon>
-      <h3>{data.folder_name}</h3>
+      <div>
+        <FontAwesomeIcon
+          icon="folder"
+          color="#4c6ef5"
+          size="3x"
+        ></FontAwesomeIcon>
+        <h3>{data.folder_name}</h3>
+      </div>
+      <div className="circle_count">
+        {noteData.slice(0, 3).map((data, i) => (
+          <Circle key={i} />
+        ))}
+        <h4>+ {noteData.length}</h4>
+      </div>
     </div>
   );
+};
+
+const Circle = () => {
+  return <div className="s_f_circle"></div>;
 };

@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    border-bottom: 1.5px solid rgb(209, 209, 209);
 
 
     ul {
@@ -56,13 +57,40 @@
 }
 
 
+.circle_count {
+    height: 50%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.s_f_circle {
+    width: 40px;
+    height: auto;
+    padding-top: 40px;
+    border-radius: 50%;
+    background-color: #969696;
+    border: 1px solid white;
+}
+
+.s_f_circle:nth-child(2) {
+    position: relative;
+    right: 10px;
+    background-color: #8b8b8b;
+}
+
+.s_f_circle:nth-child(3) {
+    position: relative;
+    right: 20px;
+}
+
 
 
 ////// Summary Folder Holder //////////
 
 .s_f_holder {
     width: 100%;
-    height: 80%;
+    height: 90%;
     overflow-y: scroll;
     display: grid;
     grid-auto-rows: 100px;
@@ -81,6 +109,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        h3 {
+            margin-left: 10px;
+        }
+    }
 
     >* {
         padding-right: 10px;
@@ -89,8 +129,11 @@
 }
 
 .s_f_item:hover {
-    background-color: blue;
+    transition: background .5s ease;
     cursor: pointer;
+    background-color: rgb(209, 229, 255);
+    border-top: 1px solid rgb(197, 221, 252);
+    border-bottom: 1px solid rgb(197, 221, 252);
 }
 
 
@@ -138,7 +181,6 @@
 }
 
 
-////////// Summary Contents /////////////////
 
 
 

@@ -71,7 +71,9 @@ let Summary = ({
             <Route
               exact
               path="/dashboard"
-              render={props => <SummaryFolder data={folder} {...props} />}
+              render={props => (
+                <SummaryFolder data={folder} notes={notes} {...props} />
+              )}
             />
           </Switch>
         </div>

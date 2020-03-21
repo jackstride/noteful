@@ -35,6 +35,7 @@ const ToolTipMenu = ({ children }) => {
     const domSelection = window.getSelection();
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
+    console.log(domSelection);
 
     let y = domSelection.anchorNode.parentNode.offsetTop;
     let x = domSelection.anchorNode.parentNode.offsetLeft;
@@ -43,7 +44,7 @@ const ToolTipMenu = ({ children }) => {
 
     setShow(true);
     el.style.top = `${y + py + padding.y}px`;
-    el.style.left = `${x + px}px`;
+    el.style.left = `${px}px`;
   });
 
   // document.addEventListener("keyup", () => {
