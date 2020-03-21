@@ -26,28 +26,32 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
   let num = 0;
   return (
     <div className="s_f_holder">
-      {data.map((data, i) => {
-        let noteData = notes.filter(notes => notes.folder_id == data._id);
-        if (num > 3) {
-          num = 0;
-        }
-        return (
-          <Link
-            key={i}
-            name={data.folder_name}
-            id={data._id}
-            onContextMenu={e => handleContextMenu(e)}
-            to={`/dashboard/folder/${data._id}`}
-          >
-            <Item
-              color={colors[num++]}
+      {data ? (
+        data.map((data, i) => {
+          let noteData = notes.filter(notes => notes.folder_id == data._id);
+          if (num > 3) {
+            num = 0;
+          }
+          return (
+            <Link
               key={i}
-              data={data}
-              noteData={noteData}
-            />
-          </Link>
-        );
-      })}
+              name={data.folder_name}
+              id={data._id}
+              onContextMenu={e => handleContextMenu(e)}
+              to={`/dashboard/folder/${data._id}`}
+            >
+              <Item
+                color={colors[num++]}
+                key={i}
+                data={data}
+                noteData={noteData}
+              />
+            </Link>
+          );
+        })
+      ) : (
+        <h1> Loading </h1>
+      )}
     </div>
   );
 };
