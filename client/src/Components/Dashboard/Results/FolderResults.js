@@ -50,10 +50,9 @@ let Folders = ({
   };
 
   let handleContext = e => {
-    console.log(e);
     e.preventDefault();
     const { pageX, pageY } = e;
-    console.log(e.target);
+
     showMenu(
       pageX,
       pageY,

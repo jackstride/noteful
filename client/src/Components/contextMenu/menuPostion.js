@@ -1,24 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
-const MenuPosition = (props) => {
+const MenuPosition = props => {
+  let [width, setWidth] = useState();
 
-    const {children,nodeRef} = props;
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
 
-    const style = {
-        position: 'absolute',
-        top: props.top,
-        bottom : props.bottom,
-        left: props.left,
-        right : props.right,
-    };
+  const { children, nodeRef } = props;
 
-    return (
-        <div style={style} className={props.className} ref={nodeRef}>
-            {children}
-        </div>
-    )
-}
+  const style = {
+    position: "absolute",
+    top: props.top,
+    bottom: props.bottom,
+    left: props.left,
+    right: props.right
+  };
 
+  const style2 = {
+    position: "absolute",
+    top: props.top + 25,
+    left: "40%",
+    transform: "origin(bottom right)"
+  };
 
+  return (
+    <div
+      style={width <= 768 ? style2 : style}
+      className={props.className}
+      ref={nodeRef}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default MenuPosition;

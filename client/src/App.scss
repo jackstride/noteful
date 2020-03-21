@@ -203,12 +203,12 @@ nav a {
     }
 
     h1 {
-        font-size: 38px;
+        font-size: 2em;
         font-weight: 700;
     }
 
     h2 {
-        font-size: 26px;
+        font-size: 1.5em;
         font-weight: 500;
     }
 
@@ -218,23 +218,30 @@ nav a {
     }
 
     h4 {
-        font-size: 14px;
+        font-size: 1em;
         color: rgb(200, 200, 200);
         font-weight: 600;
 
     }
 
     h5 {
-        font-size: 14px;
+        font-size: 1em;
         font-weight: 500;
         color: rgb(58, 58, 58);
+
+        @include mobilelarge {
+            font-size: .8em;
+        }
     }
 
     h6 {
-        font-size: 14px;
+        font-size: 1em;
         color: rgb(126, 126, 126);
         font-weight: 500;
-        overflow-x: none;
+
+        @include mobilelarge {
+            font-size: .8em;
+        }
     }
 
 }
