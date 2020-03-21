@@ -5,12 +5,14 @@ import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
 import { showMenu } from "../../../actions/contextMenuActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const moment = require("moment");
 
 let NotesHolder = ({ folder, showMenu, notes }) => {
   let handleContext = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
+    console.log(e.target);
     showMenu(
       pageX,
       pageY,
@@ -25,13 +27,21 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
 
   return (
     <div className="s_f_holder">
+      <div className="s_f_header">
+        <div></div>
+        <h6>Title</h6>
+        <h6> Last Edited</h6>
+        <h6>Folder Name</h6>
+      </div>
       {notes.map((data, i) => {
         return (
           <Link
+            key={i}
+            id={data._id}
             onContextMenu={e => handleContext(e)}
             to={`/dashboard/notes/${data._id}`}
           >
-            <Item data={data} folder={folder} />
+            <Item context={e => handleContext(e)} data={data} folder={folder} />
           </Link>
         );
       })}
@@ -56,7 +66,7 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesHolder);
 
-const Item = ({ data, folder }) => {
+const Item = ({ data, folder, context }) => {
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
@@ -73,15 +83,18 @@ const Item = ({ data, folder }) => {
   };
 
   return (
-    <div name={data.note_title} id={data._id} className="s_f_item">
+    <div name={data.note_title} id={data._id} className="s_n_item">
+      <div className="note_icon">
+        <h6>{data.note_title[0]}</h6>
+      </div>
       <div className="title">
         <h3>{data.note_title}</h3>
-        <span>
-          <h6>Last Edited:</h6>
-          <h5>{moment(data.date).calendar()}</h5>
-        </span>
       </div>
+      <h5>{moment(data.date).calendar()}</h5>
       <h5>{folderName}</h5>
+      <div id={data._id} onClick={context} className="edit">
+        <FontAwesomeIcon icon="ellipsis-v" color="white" />
+      </div>
     </div>
   );
 };

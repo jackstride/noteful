@@ -1,10 +1,11 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter, Link } from "react-router-dom";
 import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
-import { withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { showMenu } from "../../../actions/contextMenuActions";
 import "../../../fontawesome";
-import ResultLayout from "./ResultLayout";
+const moment = require("moment");
 
 let Folders = ({
   getNotes,
@@ -13,7 +14,8 @@ let Folders = ({
   addNote,
   user_id,
   folder,
-  removeNote
+  removeNote,
+  showMenu
 }) => {
   const paramId = match.params.folder;
 
@@ -47,6 +49,23 @@ let Folders = ({
     return name;
   };
 
+  let handleContext = e => {
+    console.log(e);
+    e.preventDefault();
+    const { pageX, pageY } = e;
+    console.log(e.target);
+    showMenu(
+      pageX,
+      pageY,
+      "NotesContextMenu",
+      {
+        name: e.target.name,
+        id: e.target.id
+      },
+      "notes"
+    );
+  };
+
   return (
     <div className="inner_app_container">
       <div className="folder_page_container">
@@ -62,29 +81,29 @@ let Folders = ({
           </span>
         </div>
 
-        <div className="folder_container">
-          <div className="folder_item">
-            <div className="folder_table_heading">
-              <h6>Name</h6>
-              <h6>Date Created:</h6>
-              <h6>Date Modified:</h6>
-            </div>
+        <div className="s_f_holder">
+          <div className="s_f_header">
+            <div></div>
+            <h6>Title</h6>
+            <h6> Last Edited</h6>
+            <h6>Folder Name</h6>
           </div>
-          {notes.length >= 1 ? (
-            notes.map((notes, index) => {
-              if (notes.folder_id == paramId) {
-                return (
-                  <ResultLayout
-                    key={index}
-                    data={notes}
-                    remove={handleRemove}
-                  />
-                );
-              }
-            })
-          ) : (
-            <h1> Hello </h1>
-          )}
+          {notes.map((data, i) => {
+            return (
+              <Link
+                key={i}
+                id={data._id}
+                onContextMenu={e => handleContext(e)}
+                to={`/dashboard/notes/${data._id}`}
+              >
+                <Item
+                  context={e => handleContext(e)}
+                  data={data}
+                  folder={folder}
+                />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -102,9 +121,43 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   getNotes: id => dispatch(getNotes(id)),
   addNote: values => dispatch(addNote(values)),
-  removeNote: id => dispatch(removeNote(id))
+  removeNote: id => dispatch(removeNote(id)),
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
 });
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Folders)
 );
+
+const Item = ({ data, folder, context }) => {
+  let [folderName, setFolderName] = useState("");
+
+  useEffect(() => {
+    returnName();
+  }, [folder, data]);
+
+  let returnName = () => {
+    let getFolderId = data.folder_id;
+    let name = folder.filter(data => data._id === getFolderId);
+    if (name) {
+      name = name[0].folder_name;
+    }
+    setFolderName(name);
+  };
+
+  return (
+    <div name={data.note_title} id={data._id} className="s_n_item">
+      <div className="note_icon">
+        <h6>{data.note_title[0]}</h6>
+      </div>
+      <div className="title">
+        <h3>{data.note_title}</h3>
+      </div>
+      <h5>{moment(data.date).calendar()}</h5>
+      <h5>{folderName}</h5>
+      <div id={data._id} onClick={context} className="edit">
+        <FontAwesomeIcon icon="ellipsis-v" color="white" />
+      </div>
+    </div>
+  );
+};
