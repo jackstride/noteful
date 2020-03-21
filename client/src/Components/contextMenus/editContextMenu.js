@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { updateFolder, addFolder } from "../../actions/FolderActions";
-import { editTask } from "../../actions/taskActions";
+import { editTask, addTask } from "../../actions/taskActions";
 import { hideMenu } from "../../actions/contextMenuActions";
 import { editNote, addNote } from "../../actions/NoteActions";
 
@@ -43,6 +43,12 @@ class EditContextMenu extends Component {
         };
         this.props.addNote(values);
         break;
+      case "addtask":
+        values = {
+          title: e.target.new_folder.value,
+          id: this.props.user_id
+        };
+        this.props.addTask(values);
       default:
         this.props.hideMenu();
     }
@@ -73,7 +79,8 @@ const mapDispatchToProps = dispatch => ({
   editNote: values => dispatch(editNote(values)),
   hideMenu: () => dispatch(hideMenu()),
   addFolder: values => dispatch(addFolder(values)),
-  addNote: values => dispatch(addNote(values))
+  addNote: values => dispatch(addNote(values)),
+  addTask: values => dispatch(addTask(values))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditContextMenu);

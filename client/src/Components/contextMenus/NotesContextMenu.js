@@ -18,7 +18,7 @@ const NotesContextMenu = ({
   name
 }) => {
   const [toggleFolders, showFolders] = useState(false);
-  const [toggleAdd, showAdd] = useState(true);
+  const [toggleAdd, showAdd] = useState(false);
 
   let handleAdd = e => {
     showMenu(
@@ -64,10 +64,18 @@ const NotesContextMenu = ({
   };
 
   return (
-    <ul>
+    <ul
+      onMouseLeave={() => {
+        showAdd(false);
+      }}
+    >
       <span>
         <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li onClick={() => handleAdd()}>
+        <li
+          onMouseOver={() => {
+            showAdd(true);
+          }}
+        >
           <a>Add</a>
         </li>
       </span>

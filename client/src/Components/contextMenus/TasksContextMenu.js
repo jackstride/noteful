@@ -32,8 +32,13 @@ class TasksContextMenu extends Component {
   };
 
   handleToggleAdd = () => {
-    this.props.toggleOpenTask();
-    this.props.hideMenu();
+    this.props.showMenu(
+      this.props.x,
+      this.props.y,
+      "EditContextMenu",
+      { name: this.props.name, id: this.props.id },
+      "addtask"
+    );
   };
 
   render() {
