@@ -70,7 +70,7 @@ let Folders = ({
     <div className="inner_app_container">
       <div className="folder_page_container">
         <div className="folders_heading">
-          <h2>{getFolderName() || "E"}</h2>
+          <h1>{getFolderName() || "E"}</h1>
           <span
             className="add_folder"
             onClick={() => {
