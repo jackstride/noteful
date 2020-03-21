@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { showMenu } from "../../../actions/contextMenuActions";
 
-const ShowResult = ({ data, folder }) => {
+const ShowResult = ({ data, folder, showMenu }) => {
   let [folderName, setName] = useState([]);
 
   useEffect(() => {
@@ -18,6 +20,15 @@ const ShowResult = ({ data, folder }) => {
     setName(name);
   };
 
+  let handleContext = e => {
+    e.preventDefault();
+    const { pageX, pageY } = e;
+    showMenu(pageX, pageY, "NotesContextMenu", {
+      name: e.target.name,
+      id: e.target.id
+    });
+  };
+
   return (
     <div className="result_holder">
       <Link to={`/dashboard/notes/${data._id}`}>
@@ -25,8 +36,23 @@ const ShowResult = ({ data, folder }) => {
         <h5>{data.note_title}</h5>
         <h6>{folderName}</h6>
       </Link>
+      <div
+        id={data._id}
+        onClick={e => handleContext(e)}
+        className="search_context"
+      >
+        <FontAwesomeIcon icon="ellipsis-v" />
+      </div>
     </div>
   );
 };
 
-export default ShowResult;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => ({
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+});
+
+export default connect(null, mapDispatchToProps)(ShowResult);
