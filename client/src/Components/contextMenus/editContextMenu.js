@@ -52,12 +52,13 @@ class EditContextMenu extends Component {
       default:
         this.props.hideMenu();
     }
+    this.props.hideMenu();
   };
 
   render() {
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
-        <input type="text" name="new_folder" autoFocus />
+        <input type="text" placeholder="Untitled" name="new_folder" autoFocus />
         <input type="hidden" />
       </form>
     );

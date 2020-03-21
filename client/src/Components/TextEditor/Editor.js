@@ -40,7 +40,6 @@ const TextEditor = ({
   }, [paramId, clearValues, paramId]);
 
   useEffect(() => {
-    console.log(note);
     if (note !== undefined) {
       if (note == null) {
         setValue(initialValue);

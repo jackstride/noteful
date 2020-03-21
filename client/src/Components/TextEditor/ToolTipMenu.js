@@ -39,7 +39,13 @@ const ToolTipMenu = ({ children }) => {
     document.addEventListener("keyup", () => {
       setShow(false);
     });
+    document.addEventListener("touchstart", () => {
+      setShow(true);
+    });
 
+    console.log(domSelection);
+
+    let width = document.querySelector(".main_editor").offsetLeft;
     let y = domSelection.anchorNode.parentNode.offsetTop;
     let x = domSelection.anchorNode.parentNode.offsetLeft;
     let py = domSelection.anchorNode.parentNode.offsetParent.offsetTop;
@@ -47,7 +53,7 @@ const ToolTipMenu = ({ children }) => {
 
     setShow(true);
     el.style.top = `${y + py + padding.y}px`;
-    el.style.left = `${px}px`;
+    el.style.left = `${width}px`;
   });
 
   // document.addEventListener("keyup", () => {

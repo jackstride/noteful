@@ -73,7 +73,7 @@
             padding-left: 40px;
             font-weight: 300;
             font-size: 14px;
-            background-color: rgb(216, 216, 216);
+            background-color: rgb(240, 240, 240);
             border-radius: 6px;
             color: rgb(100, 100, 100);
             // border: 1px solid rgb(200, 200, 200);
@@ -170,20 +170,20 @@ nav.options {
             gap: 10px;
         }
 
-        a::after {
-            content: "";
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            height: 25%;
-            transform: translate(50%, -50%);
-            background-color: rgb(150, 150, 150);
-            width: 2px;
+        // a::after {
+        //     content: "";
+        //     position: absolute;
+        //     left: 5px;
+        //     top: 50%;
+        //     height: 25%;
+        //     transform: translate(50%, -50%);
+        //     background-color: rgb(150, 150, 150);
+        //     width: 2px;
 
-        }
+        // }
 
-        a:hover {
-            background-color: rgb(200, 200, 200);
-        }
+        // a:hover {
+        //     background-color: rgb(200, 200, 200);
+        // }
     }
 }

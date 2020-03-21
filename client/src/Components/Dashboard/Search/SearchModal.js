@@ -23,7 +23,7 @@ const SearchModal = ({
     setResults(noteData);
     setNotes(noteData);
     getFolder(id);
-  }, [id]);
+  }, [id, setNotes, setResults, results, notes]);
 
   useEffect(() => {
     if (!query || !query.length) {

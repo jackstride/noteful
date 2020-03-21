@@ -58,6 +58,7 @@ let ToolBarButton = ({ format, icon, size }) => {
       {show ? (
         <div className="tooltip_headings_container">
           <button
+            onClick={() => setShow(false)}
             className={
               isBlockActive(editor, format[0])
                 ? "e_button_active"
@@ -71,6 +72,7 @@ let ToolBarButton = ({ format, icon, size }) => {
             <Icon color="white" width="1.5em" icon={headingH1} />
           </button>
           <button
+            onClick={() => setShow(false)}
             className={
               isBlockActive(editor, format[1])
                 ? "e_button_active"
@@ -84,6 +86,7 @@ let ToolBarButton = ({ format, icon, size }) => {
             <Icon color="white" width="1.5em" icon={headingH2} />
           </button>
           <button
+            onClick={() => setShow(false)}
             className={
               isBlockActive(editor, format[2])
                 ? "e_button_active"
