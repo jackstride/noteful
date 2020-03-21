@@ -26,7 +26,7 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
   };
 
   return (
-    <div className="s_f_holder">
+    <div className="s_f_head">
       <div className="s_f_header">
         <div></div>
         <h6>Title</h6>
@@ -35,14 +35,20 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
       </div>
       {notes.map((data, i) => {
         return (
-          <Link
-            key={i}
-            id={data._id}
-            onContextMenu={e => handleContext(e)}
-            to={`/dashboard/notes/${data._id}`}
-          >
-            <Item context={e => handleContext(e)} data={data} folder={folder} />
-          </Link>
+          <div className="s_f_holder">
+            <Link
+              key={i}
+              id={data._id}
+              onContextMenu={e => handleContext(e)}
+              to={`/dashboard/notes/${data._id}`}
+            >
+              <Item
+                context={e => handleContext(e)}
+                data={data}
+                folder={folder}
+              />
+            </Link>
+          </div>
         );
       })}
     </div>
