@@ -32,8 +32,14 @@
 
     }
 
-    li a {
+    li {
+        padding: 5px 5px;
+        // background-color: rgb(230, 230, 230);
+    }
+
+    a {
         color: rgb(150, 150, 150);
+        font-weight: 00;
         font-size: 1.2em;
     }
 
