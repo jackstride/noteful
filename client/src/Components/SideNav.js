@@ -43,7 +43,7 @@ class SideBar extends Component {
             <span>Dashboard</span>
           </div>
         </Link>
-        <Link to="/dashboard/settings/account">
+        <Link to="/dashboard/settings">
           <div className="dashboard">
             <div className="icon_circle">
               <FontAwesomeIcon

@@ -30,7 +30,8 @@ const Settings = () => {
               <li>
                 <NavLink
                   activeClassName="settings_active"
-                  to="/dashboard/settings/account"
+                  exact
+                  to="/dashboard/settings"
                 >
                   Account
                 </NavLink>
@@ -70,9 +71,9 @@ const Settings = () => {
         </div>
         <div className="settings_content">
           <Switch>
-            <Route path="/dashboard/settings/account" component={Account} />
             <Route path="/dashboard/settings/password" component={Password} />
             <Route path="/dashboard/settings/help" component={Profile} />
+            <Route exact path="/dashboard/settings" component={Account} />
           </Switch>
         </div>
       </div>

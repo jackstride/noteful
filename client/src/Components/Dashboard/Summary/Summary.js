@@ -7,7 +7,6 @@ import SummaryNotes from "./SummaryNotes";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
-
 import TaskHolder from "../Summary/TaskHolder";
 
 let Summary = ({
@@ -43,7 +42,7 @@ let Summary = ({
           <h1> Summary</h1>
           <ul>
             <li>
-              <NavLink activeClassName="summary_active" to="/dashboard/folders">
+              <NavLink activeClassName="summary_active" exact to="/dashboard">
                 Folders
               </NavLink>
             </li>
@@ -62,16 +61,18 @@ let Summary = ({
         <div className="summary_content">
           <Switch>
             <Route
-              path="/dashboard/folders"
-              render={props => <SummaryFolder data={folder} {...props} />}
-            />
-            <Route
               path="/dashboard/notes"
               render={props => (
                 <SummaryNotes folder={folder} notes={notes} {...props} />
               )}
             />
             <Route path="/dashboard/stats" component={SummaryFolder} />
+
+            <Route
+              exact
+              path="/dashboard"
+              render={props => <SummaryFolder data={folder} {...props} />}
+            />
           </Switch>
         </div>
       </div>
