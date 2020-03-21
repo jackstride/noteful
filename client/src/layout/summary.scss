@@ -6,11 +6,6 @@
     grid-template-rows: 150px 1fr;
     grid-template-columns: 1fr;
 
-    @include smalldesktop {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(1, 1fr);
-        margin: 0 auto;
-    }
 }
 
 .summary_content {
@@ -26,6 +21,8 @@
     flex-direction: column;
     justify-content: space-evenly;
     border-bottom: 1.5px solid rgb(209, 209, 209);
+
+
 
 
     ul {
@@ -73,8 +70,6 @@
     a {
         height: 100%;
         width: 100%;
-        z-index: 1;
-
     }
 }
 

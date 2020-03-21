@@ -16,7 +16,6 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
     "#ffaa6f"
   ]);
   let handleContextMenu = e => {
-    console.log(e.target);
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(pageX, pageY, "FoldersContextMenu", {
@@ -32,8 +31,6 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
         if (num > 3) {
           num = 0;
         }
-        console.log(num);
-
         return (
           <Link
             key={i}
