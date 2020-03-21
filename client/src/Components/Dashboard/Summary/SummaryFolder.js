@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
@@ -9,6 +9,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const moment = require("moment");
 
 const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
+  const [colors, setColors] = useState([
+    "#fecaa2",
+    "#b2f1b3",
+    "#99d4fa",
+    "#ffaa6f"
+  ]);
   let handleContextMenu = e => {
     console.log(e.target);
     e.preventDefault();
@@ -18,10 +24,16 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
       id: e.target.id
     });
   };
+  let num = 0;
   return (
     <div className="s_f_holder">
       {data.map((data, i) => {
         let noteData = notes.filter(notes => notes.folder_id == data._id);
+        if (num > 3) {
+          num = 0;
+        }
+        console.log(num);
+
         return (
           <Link
             key={i}
@@ -30,7 +42,12 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
             onContextMenu={e => handleContextMenu(e)}
             to={`/dashboard/folder/${data._id}`}
           >
-            <Item key={i} data={data} noteData={noteData} />
+            <Item
+              color={colors[num++]}
+              key={i}
+              data={data}
+              noteData={noteData}
+            />
           </Link>
         );
       })}
@@ -55,27 +72,41 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummaryFolder);
 
-const Item = ({ data, noteData }) => {
+const Item = ({ data, noteData, color }) => {
   return (
     <div name={data.folder_name} id={data._id} className="s_f_item">
       <div>
         <FontAwesomeIcon
           icon="folder"
-          color="#4c6ef5"
+          color={color}
           size="3x"
         ></FontAwesomeIcon>
         <h3>{data.folder_name}</h3>
       </div>
       <div className="circle_count">
-        {noteData.slice(0, 3).map((data, i) => (
-          <Circle key={i} />
-        ))}
+        {noteData.slice(0, 3).map((items, i) => {
+          let length = noteData.length;
+          return <Circle position={length} key={i} />;
+        })}
         <h4>+ {noteData.length}</h4>
       </div>
     </div>
   );
 };
 
-const Circle = () => {
-  return <div className="s_f_circle"></div>;
+const Circle = ({ position }) => {
+  return (
+    <div
+      style={
+        position === 1
+          ? {
+              left: "0px"
+            }
+          : position === 2
+          ? {}
+          : null
+      }
+      className="s_f_circle"
+    ></div>
+  );
 };

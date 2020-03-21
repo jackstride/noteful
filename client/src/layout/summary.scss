@@ -57,38 +57,10 @@
 }
 
 
-.circle_count {
-    height: 50%;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-}
-
-.s_f_circle {
-    width: 40px;
-    height: auto;
-    padding-top: 40px;
-    border-radius: 50%;
-    background-color: #969696;
-    border: 1px solid white;
-}
-
-.s_f_circle:nth-child(2) {
-    position: relative;
-    right: 10px;
-    background-color: #8b8b8b;
-}
-
-.s_f_circle:nth-child(3) {
-    position: relative;
-    right: 20px;
-}
-
-
-
 ////// Summary Folder Holder //////////
 
 .s_f_holder {
+    margin-top: 20px;
     width: 100%;
     height: 90%;
     overflow-y: scroll;
@@ -111,7 +83,9 @@
     align-items: center;
     justify-content: space-between;
 
-    div {
+
+
+    div:nth-child(1) {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -136,6 +110,47 @@
     border-bottom: 1px solid rgb(197, 221, 252);
 }
 
+.circle_count {
+    height: 50%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.s_f_circle {
+    width: 40px;
+    height: auto;
+    padding-top: 40px;
+    border-radius: 50%;
+    background-color: #e2a73a;
+    border: 1px solid white;
+    position: relative;
+    display: flex;
+}
+
+.s_f_circle::before {
+    transform: translate(50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    content: "N";
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.s_f_circle:nth-child(1) {
+    position: relative;
+    left: 20px;
+    background-color: #ec7070;
+}
+
+.s_f_circle:nth-child(2) {
+    position: relative;
+    left: 10px;
+    background-color: #70b0ec;
+}
 
 //// Summary Notes Holder
 
