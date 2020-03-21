@@ -74,9 +74,13 @@ const Item = ({ data, folder }) => {
 
   return (
     <div name={data.note_title} id={data._id} className="s_f_item">
-      <h3>{data.note_title}</h3>
-      <h5>{moment(data.date).calendar()}</h5>
-      <h5>{data.folder_id}</h5>
+      <div className="title">
+        <h3>{data.note_title}</h3>
+        <span>
+          <h6>Last Edited:</h6>
+          <h5>{moment(data.date).calendar()}</h5>
+        </span>
+      </div>
       <h5>{folderName}</h5>
     </div>
   );
