@@ -28,6 +28,7 @@ class Folders extends Component {
   }
 
   onRightClicked = e => {
+    console.log(e.target);
     e.preventDefault();
     const { pageX, pageY } = e;
     this.props.showMenu(pageX, pageY, "FoldersContextMenu", {
@@ -56,46 +57,33 @@ class Folders extends Component {
     this.props.deleteConfirmation(id);
   };
 
-  handleHover = e => {
-    let item = e.target.nextSibling;
-    item.style.display = "block";
-  };
-
-  handleLeave = e => {
-    let item = document.querySelectorAll(".input_multiple button");
-    item.forEach(item => (item.style.display = "none"));
-  };
-
   showFolders = () => {
     if (this.props.folder) {
       return (
         <ul>
           {this.props.folder.map((key, index) => (
-            <div
-              className="input_multiple"
-              onMouseLeave={e => this.handleLeave(e)}
-              key={index}
-            >
-              <li
-                onMouseEnter={e => this.handleHover(e)}
-                key={index}
+            <div className="input_multiple" key={index}>
+              <Link
                 onContextMenu={e => this.onRightClicked(e)}
+                id={key._id}
+                name={key.folder_name}
+                to={`/dashboard/folder/${key._id}`}
               >
-                <Link
-                  id={key._id}
-                  name={key.folder_name}
-                  to={`/dashboard/folder/${key._id}`}
-                >
-                  {key.folder_name}
-                </Link>
-                <button
-                  style={{ display: "none" }}
-                  onClick={e => this.onRemoveFolder(e, key._id)}
-                  value={key.folder_name}
-                >
-                  <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
-                </button>
-              </li>
+                <li key={index}>{key.folder_name}</li>
+              </Link>
+              <button
+                id={key._id}
+                onClick={e => this.onRightClicked(e)}
+                value={key.folder_name}
+              >
+                <FontAwesomeIcon icon="ellipsis-v" size="1x"></FontAwesomeIcon>
+              </button>
+              <button
+                onClick={e => this.onRemoveFolder(e, key._id)}
+                value={key.folder_name}
+              >
+                <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
+              </button>
             </div>
           ))}
         </ul>

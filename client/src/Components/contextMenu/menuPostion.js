@@ -13,7 +13,7 @@ const MenuPosition = props => {
     position: "absolute",
     top: props.top,
     bottom: props.bottom,
-    left: props.left,
+    left: props.left - 20,
     right: props.right
   };
 

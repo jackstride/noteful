@@ -95,6 +95,7 @@
 /* Folder Widget */
 .widget {
     max-height: 50%;
+    height: 150px;
     width: 90%;
     margin: 10px auto;
     border-radius: 5px;
@@ -112,50 +113,65 @@
     width: 100%;
     margin: 0 auto;
 
+    ul {
+        height: 100%;
+        display: grid;
+        grid-auto-rows: 30px;
+        align-items: center;
+    }
+
+
     .input_multiple {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 70% 15% 15%;
+        height: 100%;
+
+        li {
+            color: #0d0c22;
+            font-size: 14px;
+            display: block;
+            width: 100%;
+            padding: 5px 0px;
+            pointer-events: none;
+            height: 100%;
+        }
+    }
+
+    .input_multiple:hover {
+        background-color: rgb(240, 240, 240);
+
+        button {
+            display: block;
+            font-size: 12px;
+
+            svg {
+                pointer-events: none;
+            }
+        }
+
+        button:hover {
+            color: $Blue;
+        }
     }
 
     button {
+        display: none;
         background: none;
         border: none;
         cursor: pointer;
-        position: relative;
-        right: 20px;
-    }
 
-    li {
-        width: 100%;
-        list-style-type: disc;
-    }
+        @include tablet {
+            display: block;
 
-    li:hover {
-        border-radius: 6px;
-        width: 100%;
-    }
-
-    li a {
-        font-size: 14px;
-        color: rgb(70, 70, 70);
-        font-weight: 500;
-    }
-
-    a {
-        display: block;
-        width: 100%;
-        padding: 5px 0px;
+        }
     }
 }
 
 .w_contents {
-    overflow-x: auto;
-    height: inherit;
-    margin-left: 10px;
 
-    li {
-        display: flex;
-    }
+    height: 100%;
+
+
 }
 
 .plus {
@@ -207,9 +223,11 @@ form.task_form {
     }
 
     label {
+        font-weight: 400;
+        width: 100%;
+        color: #0d0c22;
         font-size: 14px;
-        color: rgb(70, 70, 70);
-        font-weight: 500;
+        display: block;
         width: 100%;
     }
 
@@ -250,8 +268,8 @@ form.task_form {
         width: 15px;
         height: 15px;
         border-radius: 5px;
-        border: 2px solid #75daad;
-        background-color: #75daad;
+        border: 2px solid #3ae095;
+        background-color: #3ae095;
     }
 }
 
