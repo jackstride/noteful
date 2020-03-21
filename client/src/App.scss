@@ -281,10 +281,11 @@ ul {
 .inner_app_container {
     width: calc(80% - 250px);
     margin: 0 auto;
-    height: fit-content;
+    height: 100vh;
 
     @include desktop {
         width: 90%;
+
     }
 }
 

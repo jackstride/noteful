@@ -30,8 +30,8 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
       <div className="s_f_header">
         <div></div>
         <h6>Title</h6>
-        <h6> Last Edited</h6>
         <h6>Folder Name</h6>
+        <h6> Last Edited</h6>
       </div>
       {notes.map((data, i) => {
         return (
@@ -90,8 +90,8 @@ const Item = ({ data, folder, context }) => {
       <div className="title">
         <h3>{data.note_title}</h3>
       </div>
-      <h5>{moment(data.date).calendar()}</h5>
       <h5>{folderName}</h5>
+      <h5>{moment(data.date).calendar()}</h5>
       <div id={data._id} onClick={context} className="edit">
         <FontAwesomeIcon icon="ellipsis-v" color="white" />
       </div>

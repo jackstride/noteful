@@ -96,6 +96,7 @@ let Folders = ({
                 to={`/dashboard/notes/${data._id}`}
               >
                 <Item
+                  paramId={paramId}
                   context={e => handleContext(e)}
                   data={data}
                   folder={folder}
@@ -128,7 +129,7 @@ export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(Folders)
 );
 
-const Item = ({ data, folder, context }) => {
+const Item = ({ data, folder, context, paramId }) => {
   let [folderName, setFolderName] = useState("");
 
   useEffect(() => {
@@ -136,15 +137,14 @@ const Item = ({ data, folder, context }) => {
   }, [folder, data]);
 
   let returnName = () => {
-    let getFolderId = data.folder_id;
-    let name = folder.filter(data => data._id === getFolderId);
+    let name = folder.filter(data => data._id === paramId);
     if (name) {
       name = name[0].folder_name;
     }
     setFolderName(name);
   };
 
-  return (
+  return data.folder_id == paramId ? (
     <div name={data.note_title} id={data._id} className="s_n_item">
       <div className="note_icon">
         <h6>{data.note_title[0]}</h6>
@@ -158,5 +158,7 @@ const Item = ({ data, folder, context }) => {
         <FontAwesomeIcon icon="ellipsis-v" color="white" />
       </div>
     </div>
+  ) : (
+    <h2> You have no notes </h2>
   );
 };
