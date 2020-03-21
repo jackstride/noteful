@@ -158,7 +158,5 @@ const Item = ({ data, folder, context, paramId }) => {
         <FontAwesomeIcon icon="ellipsis-v" color="white" />
       </div>
     </div>
-  ) : (
-    <h2> You have no notes </h2>
-  );
+  ) : null;
 };

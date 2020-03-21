@@ -15,7 +15,10 @@ const HandleMessage = ({
   const history = useHistory();
 
   let handleDelete = id => {
-    history.push("/dashboard");
+    if (history.location.pathname.includes(id)) {
+      history.push("/dashboard");
+    }
+
     deleteAllNotes(id);
   };
   return (
@@ -59,7 +62,7 @@ let Success = ({ message }) => {
       <div className="circle">
         <FontAwesomeIcon
           icon="check"
-          color="rgb(0, 207, 107)"
+          color="rgb(150, 150, 150)"
         ></FontAwesomeIcon>
       </div>
     </div>
