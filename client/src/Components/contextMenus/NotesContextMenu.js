@@ -18,9 +18,19 @@ const NotesContextMenu = ({
   name
 }) => {
   const [toggleFolders, showFolders] = useState(false);
+  const [toggleAdd, showAdd] = useState(true);
 
-  let handleSuccess = () => {
-    isSuccess();
+  let handleAdd = e => {
+    showMenu(
+      x,
+      y,
+      "EditContextMenu",
+      {
+        name,
+        id: e.target.id
+      },
+      "addnote"
+    );
   };
 
   const handleDeleteNote = id => {
@@ -57,7 +67,7 @@ const NotesContextMenu = ({
     <ul>
       <span>
         <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li onClick={() => handleSuccess()}>
+        <li onClick={() => handleAdd()}>
           <a>Add</a>
         </li>
       </span>
@@ -100,6 +110,15 @@ const NotesContextMenu = ({
           </ul>
         </div>
       )}
+      {toggleAdd ? (
+        <div className="toggle_add_folder">
+          {AllFolders.map((folder, index) => (
+            <li key={index} id={folder._id} onClick={e => handleAdd(e)}>
+              {folder.folder_name}
+            </li>
+          ))}
+        </div>
+      ) : null}
     </ul>
   );
 };

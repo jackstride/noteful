@@ -20,8 +20,16 @@ class FolderContextMenu extends Component {
   };
 
   addNote = e => {
-    this.props.toggleFolderOpen();
-    this.props.hideMenu();
+    this.props.showMenu(
+      this.props.x,
+      this.props.y,
+      "EditContextMenu",
+      {
+        name: this.props.name,
+        id: this.props.id
+      },
+      "addfolder"
+    );
   };
 
   editFolderName = e => {

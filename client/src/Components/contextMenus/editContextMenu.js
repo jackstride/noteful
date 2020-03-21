@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { updateFolder } from "../../actions/FolderActions";
+import { updateFolder, addFolder } from "../../actions/FolderActions";
 import { editTask } from "../../actions/taskActions";
 import { hideMenu } from "../../actions/contextMenuActions";
-import { editNote } from "../../actions/NoteActions";
+import { editNote, addNote } from "../../actions/NoteActions";
 
 class EditContextMenu extends Component {
   handleSubmit = e => {
     e.preventDefault();
-    let values = {
+    let values;
+    values = {
       id: this.props.id,
       name: e.target.new_folder.value
     };
-    console.log(this.props.widgetName);
     switch (this.props.widgetName) {
       case "tasks":
         this.props.editTask(values);
@@ -21,12 +21,27 @@ class EditContextMenu extends Component {
       case "folders":
         this.props.updateFolder(values);
         break;
+      case "addfolder":
+        values = {
+          id: this.props.user_id,
+          title: e.target.new_folder.value
+        };
+        this.props.addFolder(values);
+        break;
       case "notes":
         values = {
           _id: this.props.id,
           note_title: e.target.new_folder.value
         };
         this.props.editNote(values);
+        break;
+      case "addnote":
+        values = {
+          user_id: this.props.user_id,
+          folder_id: this.props.id,
+          note_title: e.target.new_folder.value
+        };
+        this.props.addNote(values);
         break;
       default:
         this.props.hideMenu();
@@ -45,6 +60,7 @@ class EditContextMenu extends Component {
 
 const mapStateToProps = state => {
   return {
+    user_id: state.auth.user._id,
     name: state.contextMenu.menuArgs.name,
     id: state.contextMenu.menuArgs.id,
     widgetName: state.contextMenu.name
@@ -55,7 +71,9 @@ const mapDispatchToProps = dispatch => ({
   updateFolder: values => dispatch(updateFolder(values)),
   editTask: values => dispatch(editTask(values)),
   editNote: values => dispatch(editNote(values)),
-  hideMenu: () => dispatch(hideMenu())
+  hideMenu: () => dispatch(hideMenu()),
+  addFolder: values => dispatch(addFolder(values)),
+  addNote: values => dispatch(addNote(values))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditContextMenu);

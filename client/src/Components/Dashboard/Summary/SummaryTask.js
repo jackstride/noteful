@@ -21,7 +21,15 @@ let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
   return (
     <div className="tasks_holder">
       {task.map((data, i) => {
-        return <TaskItem context={e => handleContextMenu(e)} data={data} />;
+        return (
+          <TaskItem
+            context={e => handleContextMenu(e)}
+            handleToggle={id => {
+              toggleTask(id);
+            }}
+            data={data}
+          />
+        );
       })}
     </div>
   );
@@ -43,36 +51,47 @@ let mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksHolder);
 
-const TaskItem = ({ data, context }) => {
+const TaskItem = ({ data, context, handleToggle }) => {
   let [complete, setComplete] = useState(data.isCompleted);
 
   useEffect(() => {
     setComplete(data.isCompleted);
   }, [data]);
   return (
-    <div className="task_item">
+    <div className={complete ? "task_item complete" : "task_item"}>
       <div
         id={data.id}
-        style={complete ? null : { backgroundColor: "#ECECEC" }}
-        className={complete ? "circle tasks complete" : "circle tasks"}
+        className={complete ? "task_icon complete" : "task_icon"}
       >
         {complete ? (
           <FontAwesomeIcon
             icon="check"
-            color="#85FF00"
+            color="#50d890"
             size="2x"
           ></FontAwesomeIcon>
         ) : (
           <FontAwesomeIcon
             icon="times"
-            color="white"
+            color="grey"
             size="2x"
           ></FontAwesomeIcon>
         )}
       </div>
-      <h5>{data.task_name}</h5>
-      <h6>{data.isCompleted ? "Completed" : "Not Completed"}</h6>
-      <div id={data._id} onContextMenu={context} className="absolute"></div>
+      <h5 className={complete ? "task_text_complete" : null}>
+        {data.task_name}
+      </h5>
+      <h6 className={complete ? "task_text_complete" : null}>
+        {data.isCompleted ? "Completed" : "Not Completed"}
+      </h6>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={e => {
+          handleToggle(data._id);
+        }}
+        id={data._id}
+        onContextMenu={context}
+        className="absolute"
+      ></div>
     </div>
   );
 };

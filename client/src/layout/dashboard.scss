@@ -344,6 +344,7 @@ form.task_form {
         align-items: center;
         justify-content: center;
         border-radius: 8px;
+        position: relative;
     }
 
     span:hover {
@@ -371,6 +372,21 @@ form.task_form {
         position: relative;
     }
 
+}
+
+
+
+.toggle_add_folder {
+    background-color: white;
+    width: 200px;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    position: absolute;
+    left: 100%;
+    top: 0;
 }
 
 /////////// Handle Message //////////////@extend

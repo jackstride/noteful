@@ -21,6 +21,7 @@ export const getNotes = id => dispatch => {
 };
 
 export const addNote = values => dispatch => {
+  console.log(values);
   axios.post(process.env.REACT_APP_ENDPOINT + `/note/add`, values).then(res => {
     dispatch({
       type: ADD_NOTE,
