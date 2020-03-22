@@ -1,0 +1,50 @@
+.shortcut {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+.shortcut_container {
+    height: 50px;
+    width: 50px;
+    // background-color: rgb(210, 210, 210);
+    background-color: $Blue;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 5px 0px;
+}
+
+
+.shortcut_items {
+    position: absolute;
+    bottom: 50px;
+    margin-bottom: 5px;
+}
+
+
+.shortcut_folder {
+    position: absolute;
+    bottom: 100%;
+    right: 50px;
+    width: 100px;
+    background-color: white;
+    height: fit-content;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        width: 100%;
+    }
+}

@@ -2,7 +2,6 @@ import React from "react";
 import { Editor } from "slate";
 import { useSlate } from "slate-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "../../fontawesome";
 
 let ToolBarButton = ({ format, icon }) => {
   const editor = useSlate();

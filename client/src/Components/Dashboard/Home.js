@@ -11,6 +11,7 @@ import { setDarkMode } from "../../helpers/helperFunctions";
 import ContextMenuManager from "../contextMenu/contextMenuManager";
 import HandleMessage from "../HandleMessages/handlemessage";
 import TopBar from "./TopBar";
+import ShortcutAdd from "./ShortcutAdd";
 
 import Settings from "./Settings";
 
@@ -25,6 +26,7 @@ class Home extends Component {
         <BrowserRouter>
           <ContextMenuManager />
           <HandleMessage />
+          <ShortcutAdd />
           <TopBar />
           <Switch>
             <Route path="/dashboard/settings" component={Settings} />
