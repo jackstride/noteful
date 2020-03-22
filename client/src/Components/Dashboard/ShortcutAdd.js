@@ -49,6 +49,7 @@ const ShortcutAdd = ({ showMenu, folder }) => {
   };
 
   let handleAddNote = () => {
+    console.log(showFolders);
     setShowFolders(!showFolders);
   };
 
@@ -60,29 +61,29 @@ const ShortcutAdd = ({ showMenu, folder }) => {
         </div>
         {show ? (
           <div className="shortcut_items">
-            <ShortcutItem icon="sticky-note" action={e => handleAddNote(e)} />
+            <ShortcutItem icon="sticky-note" action={e => handleAddNote(e)}>
+              {showFolders ? (
+                <ShowFolderMenu
+                  noteaction={e => {
+                    const { pageX, pageY } = e;
+                    showMenu(
+                      pageX,
+                      pageY,
+                      "EditContextMenu",
+                      {
+                        name: e.target.name,
+                        id: e.target.id
+                      },
+                      "addnote"
+                    );
+                  }}
+                  data={folder}
+                />
+              ) : null}
+            </ShortcutItem>
             <ShortcutItem icon="folder" action={e => handleAddFolder(e)} />
             <ShortcutItem icon="tasks" action={e => handleAddTask(e)} />
           </div>
-        ) : null}
-        {showFolders ? (
-          <ShowFolderMenu
-            noteaction={e => {
-              console.log(e.target);
-              const { pageX, pageY } = e;
-              showMenu(
-                pageX,
-                pageY,
-                "EditContextMenu",
-                {
-                  name: e.target.name,
-                  id: e.target.id
-                },
-                "addnote"
-              );
-            }}
-            data={folder}
-          />
         ) : null}
       </div>
     </Portal>
@@ -102,9 +103,10 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShortcutAdd);
 
-let ShortcutItem = ({ icon, action }) => {
+let ShortcutItem = ({ icon, action, children }) => {
   return (
     <div onClick={action} className="shortcut_container">
+      {children}
       <FontAwesomeIcon icon={icon} color="white" />
     </div>
   );
