@@ -85,7 +85,7 @@ const Password = ({ _id, userUpdate }) => {
             name="c_password"
             type="password"
           ></input>
-          <input type="submit" name="submit" value="submit"></input>
+          <input type="submit" name="submit" value="Submit"></input>
         </label>
       </form>
     </div>

@@ -35,7 +35,7 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
       </div>
       {notes.map((data, i) => {
         return (
-          <div className="s_f_holder">
+          <div key={i} className="s_f_holder">
             <Link
               key={i}
               id={data._id}
