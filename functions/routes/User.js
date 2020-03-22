@@ -86,10 +86,14 @@ router.post("/login", cookieParser(), async (req, res, next) => {
       (err, token) => {
         if (token) {
           return res
-            .cookie("Set-Cookie", token)
+            .cookie("Set-Cookie", token, {
+              expires: new Date(Date.now() + 900000),
+              httpOnly: true
+              // secure: true
+              // domain: "noteful.app"
+            })
             .status(200)
             .json({ user: payload });
-
           // .redirect("https://noteful.app")
         } else if (err) {
           return console.log(err);
