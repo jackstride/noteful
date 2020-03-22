@@ -86,7 +86,7 @@ router.post("/login", cookieParser(), async (req, res, next) => {
       (err, token) => {
         if (token) {
           return res
-            .cookie("Set-Cookie", token, {
+            .cookie("access_token", token, {
               expires: new Date(Date.now() + 900000),
               httpOnly: true
               // secure: true
