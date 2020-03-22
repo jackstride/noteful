@@ -154,7 +154,7 @@
 
     @include tablet {
         grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
-        justify-items: center;
+
 
 
         div:nth-child(1) {
@@ -180,12 +180,23 @@
 
     @include tablet {
         grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
-        justify-items: center;
+
 
         h5:nth-child(3) {
             display: none
         }
     }
+
+    @include mobilelarge {
+
+        h5:nth-child(4) {
+            font-size: .8em;
+            color: rgb(200, 200, 200);
+        }
+    }
+
+
+
 
     h3,
     h5,
@@ -224,6 +235,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: auto;
 
         @include mobilelarge {
             height: 40px;

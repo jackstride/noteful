@@ -19,9 +19,7 @@ const MenuPosition = props => {
 
   const style2 = {
     position: "absolute",
-    top: props.top + 25,
-    left: "5%",
-    transform: "origin(bottom right)"
+    top: props.top + 25
   };
 
   return (

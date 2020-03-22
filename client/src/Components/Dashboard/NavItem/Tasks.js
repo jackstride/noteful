@@ -69,6 +69,7 @@ class Todo extends Component {
               name={key.task_name}
               onContextMenu={e => this.onRightClicked(e)}
               htmlFor={`check${index}`}
+              onTouchStart={() => this.handleToggle(key._id)}
             >
               {key.task_name}
             </label>
