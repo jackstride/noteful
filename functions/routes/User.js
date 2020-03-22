@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const jtw = require("jsonwebtoken");
 const createError = require("http-errors");
 const { userValidationRules, validate } = require("../middleware/validation");
-
 const User = require("../models/User");
 
 router.post(
@@ -58,6 +57,7 @@ router.post(
 
 router.post("/login", async (req, res, next) => {
   let { email, password } = req.body;
+  console.log(email, password);
 
   email = email.toLowerCase();
 
@@ -84,11 +84,16 @@ router.post("/login", async (req, res, next) => {
       },
       (err, token) => {
         if (token) {
-          res.cookie("access_token", token, {
-            maxAge: 9000000,
-            httpOnly: true
-          });
-          return res.status(200).json({ user: payload });
+          return res
+            .cookie("access_token", token, {
+              maxAge: 9000000,
+              httpOnly: true
+              // secure: true
+              // domain: "noteful.app"
+            })
+            .status(200);
+          // .json({ user: payload })
+          // .redirect("https://noteful.app")
         } else if (err) {
           return console.log(err);
         }

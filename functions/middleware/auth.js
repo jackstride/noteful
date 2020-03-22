@@ -3,9 +3,11 @@ const createError = require("http-errors");
 
 module.exports = async (req, res, next) => {
   const token = await req.cookies.access_token;
+  console.log("token");
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_KEY);
+    console.log(decoded);
     req.user = decoded;
     return next();
   } catch (err) {

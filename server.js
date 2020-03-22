@@ -26,7 +26,7 @@ const app = express();
 // Cors confusing
 app.use("*", function(req, res, next) {
   //replace localhost:8080 to the ip address:port of your server
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   // res.header("Access-Control-Allow-Credentials", true);
@@ -34,7 +34,7 @@ app.use("*", function(req, res, next) {
 });
 
 // When in build
-app.options("*", cors());
+// app.options("*", cors());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -66,11 +66,11 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
-app.use("/auth", cors(), socialAuthRoute);
-app.use("", cors(), FolderRoute);
-app.use("", cors(), tasksRoute);
-app.use("", cors(), NoteRoute);
-app.use("", cors(), SupportRoute);
+app.use("/auth", socialAuthRoute);
+app.use("", FolderRoute);
+app.use("", tasksRoute);
+app.use("", NoteRoute);
+app.use("", SupportRoute);
 
 app.use((req, res, next) => {
   next(createError(404, "Not Found"));

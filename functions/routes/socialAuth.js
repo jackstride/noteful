@@ -7,15 +7,16 @@ const passport = require("passport");
 //Google auth
 router.get(
   "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", { scope: ["profile", "email"] }),
+  (req, res) => {
+    console.log("hit");
+  }
 );
 
 router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
-    console.log(req.user);
-
     const payload = {
       _id: req.user._id,
       email: req.user.email,
@@ -33,9 +34,9 @@ router.get(
           res
             .cookie("access_token", token, {
               maxAge: 9000000,
-              httpOnly: true
+              sameSite: true
             })
-            .redirect("http://localhost:3000/dashboard");
+            .redirect("https://noteful.app");
         } else if (err) {
           console.log(err);
         }
@@ -66,14 +67,17 @@ router.get(
       },
       (err, token) => {
         if (token) {
-          res.cookie("access_token", token, {
-            maxAge: 9000000,
-            httpOnly: true
-          });
+          res
+            .cookie("access_token", token, {
+              maxAge: 9000000,
+              httpOnly: true,
+              sameSite: true
+            })
+            .redirect("https://noteful.app");
         } else if (err) {
           console.log(err);
         }
-        res.redirect("http://localhost:3000/dashboard");
+        res.redirect(proces.env.REDIRECT_URL);
       }
     );
   }

@@ -22,6 +22,10 @@ class App extends Component {
     isAuthenticated: PropTypes.bool
   };
 
+  // componentDidMount() {
+  //   store.dispatch(loadUser());
+  // }
+
   HomeContainer = () => {
     return (
       <div className="website_container">

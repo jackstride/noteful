@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.4377fc41.chunk.css",
-    "main.js": "/static/js/main.cf475754.chunk.js",
+    "main.css": "/static/css/main.2b82158b.chunk.css",
+    "main.js": "/static/js/main.98a82699.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
-    "static/js/2.74ac7f07.chunk.js": "/static/js/2.74ac7f07.chunk.js",
+    "static/js/2.6b88add8.chunk.js": "/static/js/2.6b88add8.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.c58b1415fad039008996f2f403510222.js": "/precache-manifest.c58b1415fad039008996f2f403510222.js",
+    "precache-manifest.34f8832b289cef33621e04234bd9c330.js": "/precache-manifest.34f8832b289cef33621e04234bd9c330.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.74ac7f07.chunk.js.LICENSE.txt": "/static/js/2.74ac7f07.chunk.js.LICENSE.txt",
+    "static/js/2.6b88add8.chunk.js.LICENSE.txt": "/static/js/2.6b88add8.chunk.js.LICENSE.txt",
     "static/media/google.svg": "/static/media/google.7e5484e9.svg",
     "static/media/header.png": "/static/media/header.4a7c1590.png",
     "static/media/iphone_preview.png": "/static/media/iphone_preview.8c2b54c0.png",
@@ -23,8 +23,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/js/2.74ac7f07.chunk.js",
-    "static/css/main.4377fc41.chunk.css",
-    "static/js/main.cf475754.chunk.js"
+    "static/js/2.6b88add8.chunk.js",
+    "static/css/main.2b82158b.chunk.css",
+    "static/js/main.98a82699.chunk.js"
   ]
 }

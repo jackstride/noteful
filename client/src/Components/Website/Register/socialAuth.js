@@ -22,13 +22,17 @@ class SocialLogin extends Component {
           <span>
             <img alt="Sign up with google" src={Google}></img>
           </span>
-          <p><a href="http://localhost:5000/auth/google">Sign up with Google</a></p>
+          <p>
+            <a href={process.env.REACT_APP_GOOGLE}>Sign up with Google</a>
+          </p>
         </div>
         <div className="twitter_auth">
           <span>
             <img alt="Sign up with Twitter" src={Twitter}></img>
           </span>
-          <p><a href="http://localhost:5000/auth/twitter">Sign up with Twitter</a></p>
+          <p>
+            <a href={process.env.REACT_APP_TWITTER}>Sign up with Twitter</a>
+          </p>
         </div>
       </div>
     );
@@ -40,5 +44,4 @@ class SocialLogin extends Component {
 //   isAuth: state.auth.isAuthenticated,
 // });
 
-
-export default (SocialLogin);
+export default SocialLogin;

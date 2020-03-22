@@ -21,14 +21,14 @@ const tasksRoute = require("./routes/tasks");
 const NoteRoute = require("./routes/Note");
 const SupportRoute = require("./routes/support");
 
-app.use("*", function(req, res, next) {
-  //replace localhost:8080 to the ip address:port of your server
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
-  // res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
+app.use(
+  cors({
+    credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "http://localhost:3000",
+    allowedHeaders: "Content-Type, Authorization, X-Requested-With"
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,15 +41,31 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
+// app.use(
+//   require("express-session")({
+//     secret: "keyboard cat",
+//     resave: true,
+//     saveUninitialized: true
+//   })
+// );
+// app.use(
+//   cors({
+//     origin: "http://localhost:5000",
+//     credentials: true,
+//     allowedHeaders: "Content-Type"
+//   })
+// );
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
-app.use("/auth", cors(), socialAuthRoute);
-app.use("/", cors(), FolderRoute);
-app.use("/", cors(), tasksRoute);
-app.use("/", cors(), NoteRoute);
+app.use("/auth", socialAuthRoute);
+app.use("", FolderRoute);
+app.use("", tasksRoute);
+app.use("", NoteRoute);
+app.use("", SupportRoute);
 
 app.use((req, res, next) => {
   next(createError(404, "Not Found"));

@@ -65,15 +65,22 @@ export const register = formValues => dispatch => {
 };
 
 export const login = formValues => dispatch => {
-  axios
-    .post(process.env.REACT_APP_ENDPOINT + "/user/login", formValues, {})
-    .then(res => {
-      console.log(res.data);
-      dispatch({
-        type: LOGIN_SUCCESS,
-        payload: res.data
-      });
+  axios({
+    method: "post",
+    url: process.env.REACT_APP_ENDPOINT + "/user/login",
+    data: formValues,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    withCredentials: true
+  }).then(res => {
+    console.log(res.data);
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: res.data
     });
+  });
   // .catch(err => {
   //   dispatch(returnErrors(err.response.data));
   //   dispatch({
@@ -86,11 +93,7 @@ export const logout = () => dispatch => {
   console.log(process.env.REACT_APP_ENDPOINT);
 
   axios
-    .get(
-      process.env.REACT_APP_ENDPOINT + "/user/logout",
-      {},
-      { withCredentials: true }
-    )
+    .get(process.env.REACT_APP_ENDPOINT + "/user/logout")
     .then(res => {
       dispatch({
         type: LOGOUT_SUCCESS
