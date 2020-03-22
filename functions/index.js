@@ -25,7 +25,11 @@ app.use(
   cors({
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    origin: "http://localhost:3000",
+    origin: [
+      "http://localhost:3000",
+      "https://noteful.app",
+      "http://localhost:5000"
+    ],
     allowedHeaders: "Content-Type, Authorization, X-Requested-With"
   })
 );

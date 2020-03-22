@@ -69,13 +69,9 @@ export const login = formValues => dispatch => {
     method: "post",
     url: process.env.REACT_APP_ENDPOINT + "/user/login",
     data: formValues,
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json"
-    },
     withCredentials: true
   }).then(res => {
-    console.log(res.data);
+    console.log(res);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
