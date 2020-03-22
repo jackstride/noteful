@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Portal } from "react-portal";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,12 @@ import { showMenu } from "../../actions/contextMenuActions";
 const ShortcutAdd = ({ showMenu, folder }) => {
   let [show, setShow] = useState(false);
   let [showFolders, setShowFolders] = useState(false);
+
+  useEffect(() => {
+    if (!show) {
+      setShowFolders(false);
+    }
+  }, [show]);
 
   let handleShow = e => {
     setShow(!show);
