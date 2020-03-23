@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
@@ -6,6 +6,7 @@ import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
 import { showMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LazyLoading from "../LazyLoading";
 const moment = require("moment");
 
 const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
@@ -50,7 +51,7 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
           );
         })
       ) : (
-        <h1> Loading </h1>
+        <LazyLoading />
       )}
     </div>
   );

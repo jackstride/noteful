@@ -9,12 +9,9 @@ router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] }),
   (req, res) => {
-    console.log("hit");
+    res.json({ hit: "hit" });
   }
 );
-
-// Redirect url for production https://noteful.app/dashboard
-// Redirect for developement http://localhost:3000/dashboard
 
 router.get(
   "/google/callback",
@@ -39,7 +36,8 @@ router.get(
               maxAge: 9000000,
               sameSite: true
             })
-            .redirect("http://localhost:3000/dashboard");
+            .redirect("https://noteful.app/dashboard");
+          // .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }
@@ -76,6 +74,7 @@ router.get(
               httpOnly: true,
               sameSite: true
             })
+            // .redirect("https://noteful.app/dashboard");
             .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);

@@ -6,7 +6,7 @@ const auth = require("../middleware/auth");
 
 const Folder = require("../models/Folder");
 
-router.post("/addFolder", async (req, res, next) => {
+router.post("/addFolder/", async (req, res, next) => {
   const { title, id } = req.body;
 
   const folder = new Folder({
@@ -24,7 +24,7 @@ router.post("/addFolder", async (req, res, next) => {
   }
 });
 
-router.get("/folders/:user_id", async (req, res, next) => {
+router.get("/folders/:user_id/", async (req, res, next) => {
   const { user_id } = req.params;
 
   let folder = await Folder.find({ user_id })
@@ -38,7 +38,7 @@ router.get("/folders/:user_id", async (req, res, next) => {
   }
 });
 
-router.delete("/folders/:folderid", async (req, res, next) => {
+router.delete("/folders/:folderid/", async (req, res, next) => {
   let { folderid } = req.params;
 
   let result = await Folder.findByIdAndRemove(folderid);
@@ -50,7 +50,7 @@ router.delete("/folders/:folderid", async (req, res, next) => {
   }
 });
 
-router.put("/folder/update", async (req, res, next) => {
+router.put("/folder/update/", async (req, res, next) => {
   let { id, name } = req.body;
 
   let result = await Folder.findByIdAndUpdate(

@@ -86,15 +86,14 @@ router.post("/login", cookieParser(), async (req, res, next) => {
       (err, token) => {
         if (token) {
           return res
-            .cookie("access_token", token, {
+            .cookie("__session", token, {
               expires: new Date(Date.now() + 900000),
-              httpOnly: true
-              // secure: true
-              // domain: "noteful.app"
+              httpOnly: false,
+              secure: false,
+              domain: ".noteful.app"
             })
             .status(200)
             .json({ user: payload });
-          // .redirect("https://noteful.app")
         } else if (err) {
           return console.log(err);
         }
@@ -107,7 +106,7 @@ router.post("/login", cookieParser(), async (req, res, next) => {
 });
 
 router.get("/logout", (req, res) => {
-  res.clearCookie("access_token").sendStatus(200);
+  res.clearCookie("__session").sendStatus(200);
 });
 
 router.patch("/update/:_id", async (req, res, next) => {

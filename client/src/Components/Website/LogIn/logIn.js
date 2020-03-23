@@ -13,7 +13,6 @@ const LogIn = props => {
   useEffect(() => {
     props.loadUser();
     setErrors(props.error);
-
     return () => {
       props.clearErrors();
     };

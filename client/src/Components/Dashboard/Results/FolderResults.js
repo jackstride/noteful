@@ -1,9 +1,15 @@
 import React, { useEffect, useCallback, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
+import {
+  getNotes,
+  addNote,
+  removeNote,
+  clearValues
+} from "../../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { showMenu } from "../../../actions/contextMenuActions";
+import LazyLoading from "../LazyLoading";
 import "../../../fontawesome";
 const moment = require("moment");
 
@@ -15,13 +21,18 @@ let Folders = ({
   user_id,
   folder,
   removeNote,
-  showMenu
+  showMenu,
+  clearValues
 }) => {
   const paramId = match.params.folder;
 
   useEffect(() => {
     getNotes(paramId);
-  }, [paramId]);
+
+    return () => {
+      clearValues();
+    };
+  }, [paramId, clearValues]);
 
   const handleRemoveNote = _id => {
     removeNote(_id);
@@ -87,23 +98,27 @@ let Folders = ({
             <h6> Last Edited</h6>
             <h6>Folder Name</h6>
           </div>
-          {notes.map((data, i) => {
-            return (
-              <Link
-                key={i}
-                id={data._id}
-                onContextMenu={e => handleContext(e)}
-                to={`/dashboard/notes/${data._id}`}
-              >
-                <Item
-                  paramId={paramId}
-                  context={e => handleContext(e)}
-                  data={data}
-                  folder={folder}
-                />
-              </Link>
-            );
-          })}
+          {notes ? (
+            notes.map((data, i) => {
+              return (
+                <Link
+                  key={i}
+                  id={data._id}
+                  onContextMenu={e => handleContext(e)}
+                  to={`/dashboard/notes/${data._id}`}
+                >
+                  <Item
+                    paramId={paramId}
+                    context={e => handleContext(e)}
+                    data={data}
+                    folder={folder}
+                  />
+                </Link>
+              );
+            })
+          ) : (
+            <LazyLoading />
+          )}
         </div>
       </div>
     </div>
@@ -122,7 +137,8 @@ const mapDispatchToProps = dispatch => ({
   getNotes: id => dispatch(getNotes(id)),
   addNote: values => dispatch(addNote(values)),
   removeNote: id => dispatch(removeNote(id)),
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
+  clearValues: id => dispatch(clearValues(id))
 });
 
 export default withRouter(

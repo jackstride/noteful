@@ -20,8 +20,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/google/callback"
-      // callbackURL: "https://api.noteful.app/auth/google/callback"
+      // callbackURL: "http://localhost:5000/auth/google/callback"
+      callbackURL: "https://api.noteful.app/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       console.log("hit");
@@ -70,8 +70,8 @@ passport.use(
     {
       consumerKey: process.env.TWITTER_CLIENT_ID,
       consumerSecret: process.env.TWITTER_CLIENT_SECRET,
-      callbackURL: "http://localhost:5000/auth/twitter/callback",
-      // callbackURL: "https://api.noteful.app/auth/twitter/callback",
+      // callbackURL: "http://localhost:5000/auth/twitter/callback",
+      callbackURL: "https://api.noteful.app/auth/twitter/callback",
       includeEmail: true
     },
     (token, tokenSecret, profile, done) => {

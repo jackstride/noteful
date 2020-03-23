@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { showMenu } from "../../../actions/contextMenuActions";
+import LazyLoading from "../LazyLoading";
 
 let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
   useEffect(() => {
@@ -57,7 +58,7 @@ const TaskItem = ({ data, context, handleToggle }) => {
   useEffect(() => {
     setComplete(data.isCompleted);
   }, [data]);
-  return (
+  return data ? (
     <div className={complete ? "task_item complete" : "task_item"}>
       <div
         id={data.id}
@@ -93,5 +94,7 @@ const TaskItem = ({ data, context, handleToggle }) => {
         className="absolute"
       ></div>
     </div>
+  ) : (
+    <LazyLoading />
   );
 };

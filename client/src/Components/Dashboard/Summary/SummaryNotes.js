@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
@@ -6,6 +6,7 @@ import { getNotes } from "../../../actions/NoteActions";
 import { getFolder } from "../../../actions/FolderActions";
 import { showMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LazyLoading from "../LazyLoading";
 const moment = require("moment");
 
 let NotesHolder = ({ folder, showMenu, notes }) => {
@@ -33,24 +34,28 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
         <h6>Folder Name</h6>
         <h6> Last Edited</h6>
       </div>
-      {notes.map((data, i) => {
-        return (
-          <div key={i} className="s_f_holder">
-            <Link
-              key={i}
-              id={data._id}
-              onContextMenu={e => handleContext(e)}
-              to={`/dashboard/notes/${data._id}`}
-            >
-              <Item
-                context={e => handleContext(e)}
-                data={data}
-                folder={folder}
-              />
-            </Link>
-          </div>
-        );
-      })}
+      {notes ? (
+        notes.map((data, i) => {
+          return (
+            <div key={i} className="s_f_holder">
+              <Link
+                key={i}
+                id={data._id}
+                onContextMenu={e => handleContext(e)}
+                to={`/dashboard/notes/${data._id}`}
+              >
+                <Item
+                  context={e => handleContext(e)}
+                  data={data}
+                  folder={folder}
+                />
+              </Link>
+            </div>
+          );
+        })
+      ) : (
+        <LazyLoading />
+      )}
     </div>
   );
 };
