@@ -9,10 +9,14 @@ import {
   UPDATE_TASK
 } from "./types";
 
+const instance = axios.create({
+  withCredentials: true
+});
+
 // Load all tasks from the user
 // Requires user ID
 export const loadTasks = id => dispatch => {
-  axios.get(process.env.REACT_APP_ENDPOINT + `/getTasks/${id}`).then(res => {
+  instance.get(process.env.REACT_APP_ENDPOINT + `/getTasks/${id}`).then(res => {
     dispatch({
       type: GET_TASKS,
       payload: res.data.tasks
@@ -24,7 +28,7 @@ export const loadTasks = id => dispatch => {
 // Require task name and user id
 
 export const addTask = values => dispatch => {
-  axios
+  instance
     .post(process.env.REACT_APP_ENDPOINT + "/addTask", values)
     .then(res => {
       console.log(res);
@@ -38,7 +42,7 @@ export const addTask = values => dispatch => {
 
 //Toggle taks completed or not
 export const toggleTask = id => dispatch => {
-  axios
+  instance
     .patch(process.env.REACT_APP_ENDPOINT + `/editcomplete/${id}`)
     .then(res => {
       dispatch({
@@ -55,7 +59,7 @@ export const toggleTask = id => dispatch => {
 // Requires task id
 
 export const removeTask = id => dispatch => {
-  axios
+  instance
     .delete(process.env.REACT_APP_ENDPOINT + `/deletetask/${id}`)
     .then(res => {
       dispatch({
@@ -75,7 +79,7 @@ export const toggleOpenTask = () => dispatch => {
 };
 
 export const editTask = values => dispatch => {
-  axios
+  instance
     .put(process.env.REACT_APP_ENDPOINT + "/task/update", values)
     .then(res => {
       dispatch({

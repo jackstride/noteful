@@ -20,16 +20,13 @@ const FolderRoute = require("./routes/folder");
 const tasksRoute = require("./routes/tasks");
 const NoteRoute = require("./routes/Note");
 const SupportRoute = require("./routes/support");
+const auth = require("./middleware/auth");
 
 app.use(
   cors({
     credentials: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-    origin: [
-      "http://localhost:3000",
-      "https://noteful.app",
-      "http://localhost:5000"
-    ],
+    origin: ["http://localhost:3000", "https://noteful.app"],
     allowedHeaders: "Content-Type, Authorization, X-Requested-With"
   })
 );
@@ -66,9 +63,9 @@ app.use(cookieParser());
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
 app.use("/auth", socialAuthRoute);
-app.use("", FolderRoute);
-app.use("", tasksRoute);
-app.use("", NoteRoute);
+app.use("", auth, FolderRoute);
+app.use("", auth, tasksRoute);
+app.use("", auth, NoteRoute);
 app.use("", SupportRoute);
 
 app.use((req, res, next) => {

@@ -13,6 +13,9 @@ router.get(
   }
 );
 
+// Redirect url for production https://noteful.app/dashboard
+// Redirect for developement http://localhost:3000/dashboard
+
 router.get(
   "/google/callback",
   passport.authenticate("google", { session: false }),
@@ -36,7 +39,7 @@ router.get(
               maxAge: 9000000,
               sameSite: true
             })
-            .redirect("https://noteful.app");
+            .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }
@@ -73,7 +76,7 @@ router.get(
               httpOnly: true,
               sameSite: true
             })
-            .redirect("https://noteful.app");
+            .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }

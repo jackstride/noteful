@@ -25,7 +25,9 @@ export const loadUser = () => (dispatch, getState) => {
   });
 
   axios
-    .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`)
+    .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
+      withCredentials: true
+    })
     .then(res => {
       dispatch({
         type: USER_LOADED,
@@ -71,7 +73,6 @@ export const login = formValues => dispatch => {
     data: formValues,
     withCredentials: true
   }).then(res => {
-    console.log(res);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data
@@ -86,10 +87,10 @@ export const login = formValues => dispatch => {
 };
 
 export const logout = () => dispatch => {
-  console.log(process.env.REACT_APP_ENDPOINT);
-
   axios
-    .get(process.env.REACT_APP_ENDPOINT + "/user/logout")
+    .get(process.env.REACT_APP_ENDPOINT + "/user/logout", {
+      withCredentials: true
+    })
     .then(res => {
       dispatch({
         type: LOGOUT_SUCCESS

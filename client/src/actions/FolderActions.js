@@ -10,8 +10,12 @@ import {
 
 import { isSuccess, isError } from "./ResponseActions";
 
+const instance = axios.create({
+  withCredentials: true
+});
+
 export const addFolder = values => dispatch => {
-  axios
+  instance
     .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values)
     .then(res => {
       dispatch(isSuccess("Folder Added"));
@@ -26,7 +30,7 @@ export const addFolder = values => dispatch => {
 };
 
 export const getFolder = id => dispatch => {
-  axios
+  instance
     .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`)
     .then(res => {
       dispatch({
@@ -40,7 +44,7 @@ export const getFolder = id => dispatch => {
 };
 
 export const removeFolder = id => dispatch => {
-  axios
+  instance
     .delete(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
       data: { id: id }
     })
@@ -59,7 +63,7 @@ export const toggleFolderOpen = () => dispatch => {
 };
 
 export const updateFolder = values => dispatch => {
-  axios
+  instance
     .put(process.env.REACT_APP_ENDPOINT + "/folder/update", values)
     .then(res => {
       console.log(res);

@@ -6,10 +6,12 @@ import { ReactComponent as Jumping } from "../../../images/jumping.svg";
 import { clearErrors } from "../../../actions/errorActions";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import { Link } from "react-router-dom";
+import { loadUser } from "../../../actions/authActions";
 
 const LogIn = props => {
   let [errors, setErrors] = useState("");
   useEffect(() => {
+    props.loadUser();
     setErrors(props.error);
 
     return () => {
@@ -51,7 +53,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  clearErrors: () => dispatch(clearErrors())
+  clearErrors: () => dispatch(clearErrors()),
+  loadUser: () => dispatch(loadUser())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
