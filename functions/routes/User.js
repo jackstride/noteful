@@ -116,7 +116,6 @@ router.get("/logout", (req, res) => {
 // Update user route
 
 router.patch("/update/:_id", async (req, res, next) => {
-
   let { _id } = req.params;
   let saltRounds = 10;
   let entries = Object.keys(req.body);
@@ -132,7 +131,7 @@ router.patch("/update/:_id", async (req, res, next) => {
   }
 
   let user = await User.find({ _id });
-  
+
   if (user) {
     update = await User.findOneAndUpdate({ _id }, { $set: updates });
     if (update) {

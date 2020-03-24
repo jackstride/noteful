@@ -20,7 +20,7 @@ class SocialLogin extends Component {
             <img alt="Sign up with Twitter" src={Twitter}></img>
           </span>
           <p>
-            <a href={process.env.REACT_APP_TWITTER}>Sign up with Twitter</a>
+            <a href={process.env.REACT_APP_GITHUB}>Sign up with Twitter</a>
           </p>
         </div>
       </div>

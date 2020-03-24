@@ -3,6 +3,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const mongoose = require("mongoose");
 const TwitterStrategy = require("passport-twitter").Strategy;
 const User = require("./models/User");
+const GitHubStrategy = require("passport-github").Strategy;
 require("dotenv").config();
 
 passport.serializeUser((user, done) => {
@@ -63,21 +64,19 @@ passport.use(
   )
 );
 
-// Twitter authentication
+// Github authentication
 // Client ID and secret
 // Callback URL point towards web app
 
 passport.use(
-  new TwitterStrategy(
+  new GitHubStrategy(
     {
-      consumerKey: process.env.TWITTER_CLIENT_ID,
-      consumerSecret: process.env.TWITTER_CLIENT_SECRET,
-      callbackURL: "https://api.noteful.app/auth/twitter/callback",
-      includeEmail: true
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: "https://api.noteful.app/auth/github/callback",
+      scope: "user:email"
     },
     (token, tokenSecret, profile, done) => {
-      //Might new auth token for future?
-
       let userData = {
         _id: new mongoose.Types.ObjectId(),
         firstName: profile._json.name,
@@ -86,13 +85,13 @@ passport.use(
         password: null,
         twitter_id: profile._json.id
       };
-
       User.find({ email: profile._json.email })
         .then(user => {
           if (user.length) {
             return done(null, user[0]);
           } else {
             const user = new User(userData);
+            console.log(user);
             user
               .save()
               .then(result => {
@@ -102,6 +101,7 @@ passport.use(
                 throw result;
               })
               .catch(err => {
+                console.log("error");
                 return console.log(err);
               });
           }

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const createError = require("http-errors");
-
 const User = require("../models/User");
 const auth = require("../middleware/auth");
 
@@ -15,7 +14,10 @@ router.get("/", auth, async (req, res, next) => {
   try {
     return res.send(user);
   } catch (err) {
-    return next(createError(401, "User was not found "));
+    return res
+      .send(401)
+      .json({ message: "there was an error" })
+      .redirect("https://noteful.app/dashboard");
   }
 });
 
