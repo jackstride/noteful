@@ -110,7 +110,7 @@ router.post("/login", cookieParser(), async (req, res, next) => {
 
 //Logout and destroy cookie
 router.get("/logout", (req, res) => {
-  res.clearCookie("__session").sendStatus(200);
+  res.clearCookie("__session", { domain: ".noteful.app" }).sendStatus(200);
 });
 
 // Update user route
