@@ -32,12 +32,12 @@ router.get(
       (err, token) => {
         if (token) {
           res
-            .cookie("access_token", token, {
+            .cookie("__session", token, {
               maxAge: 9000000,
               sameSite: true
             })
-            .redirect("https://noteful.app/dashboard");
-          // .redirect("http://localhost:3000/dashboard");
+            // .redirect("https://noteful.app/dashboard");
+            .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }
@@ -69,7 +69,7 @@ router.get(
       (err, token) => {
         if (token) {
           res
-            .cookie("access_token", token, {
+            .cookie("__session", token, {
               maxAge: 9000000,
               httpOnly: true,
               sameSite: true

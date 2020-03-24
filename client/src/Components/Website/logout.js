@@ -21,10 +21,8 @@ const Logout = ({ isAuthenticated, logout }) => {
         config
       )
       .then(data => {
-        console.log(data);
         let n = Math.floor(Math.random() * 10);
         let image = data.data.data[n].images.original.url;
-        console.log(image);
         setGif(image);
       });
   }, [setGif]);

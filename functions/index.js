@@ -1,11 +1,18 @@
 const functions = require("firebase-functions");
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
 const ConnectDB = require("./dbConnect");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const createError = require("http-errors");
+const FirebaseStore = require("connect-session-firebase")(session);
+const firebase = require("firebase-admin");
+const ref = firebase.initializeApp({
+  credential: firebase.credential.cert(process.env.CERT_ROUTE),
+  databaseURL: process.env.CERT_URL
+});
 
 require("./passport");
 require("dotenv").config();
@@ -39,6 +46,17 @@ app.use(
       "http://localhost:3000"
     ],
     allowedHeaders: "Content-Type, Authorization, X-Requested-With"
+  })
+);
+
+app.use(
+  session({
+    store: new FirebaseStore({
+      database: ref.database()
+    }),
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true
   })
 );
 

@@ -96,7 +96,9 @@ export const logout = () => dispatch => {
         type: LOGOUT_SUCCESS
       });
     })
-    .catch(err => {});
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 export const userUpdate = (_id, values) => distpach => {

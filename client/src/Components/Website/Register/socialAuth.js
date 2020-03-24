@@ -4,17 +4,6 @@ import Twitter from "../../../images/twitter.svg";
 import Google from "../../../images/google.svg";
 
 class SocialLogin extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      url: null
-    };
-  }
-
-  handleSubmit = () => {
-    // this.props.google();
-  };
-
   render() {
     return (
       <div className="social_auth">
@@ -38,10 +27,5 @@ class SocialLogin extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   link: state.auth.url,
-//   isAuth: state.auth.isAuthenticated,
-// });
 
 export default SocialLogin;

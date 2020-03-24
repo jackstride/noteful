@@ -14,7 +14,6 @@ require("dotenv").config();
 // @access Private
 router.get("/", auth, async (req, res, next) => {
   const user = await User.findById(req.user._id).select("-password");
-
   try {
     return res.send(user);
   } catch (err) {
