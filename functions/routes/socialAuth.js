@@ -7,14 +7,14 @@ const passport = require("passport");
 //Google auth
 router.get(
   "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] }),
-  (req, res) => {
-    res.json({ hit: "hit" });
-  }
+  passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
+
+// Roputer for google callback
+// Redirect url to app
 router.get(
-  "/google/callback",
+  "/google/callback/",
   passport.authenticate("google", { session: false }),
   (req, res) => {
     const payload = {
@@ -36,8 +36,8 @@ router.get(
               maxAge: 9000000,
               sameSite: true
             })
-            // .redirect("https://noteful.app/dashboard");
-            .redirect("http://localhost:3000/dashboard");
+            .redirect("https://noteful.app/dashboard");
+            // .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }
@@ -46,12 +46,14 @@ router.get(
   }
 );
 
-module.exports = router;
 
+
+// Roputer for twitter callback
+// Redirect url to app
 router.get("/twitter", passport.authenticate("twitter"));
 
 router.get(
-  "/twitter/callback",
+  "/twitter/callback/",
   passport.authenticate("twitter"),
   (req, res) => {
     const payload = {
@@ -74,8 +76,8 @@ router.get(
               httpOnly: true,
               sameSite: true
             })
-            // .redirect("https://noteful.app/dashboard");
-            .redirect("http://localhost:3000/dashboard");
+            .redirect("https://noteful.app/dashboard");
+            // .redirect("http://localhost:3000/dashboard");
         } else if (err) {
           console.log(err);
         }
@@ -84,3 +86,10 @@ router.get(
     );
   }
 );
+
+
+
+
+
+
+module.exports = router;

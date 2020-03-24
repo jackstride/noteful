@@ -8,6 +8,8 @@ const { userValidationRules, validate } = require("../middleware/validation");
 const User = require("../models/User");
 const cookieParser = require("cookie-parser");
 
+// Register User
+// Error handling with express
 router.post(
   "/register",
   [userValidationRules(), validate],
@@ -56,6 +58,7 @@ router.post(
   }
 );
 
+//User login
 router.post("/login", cookieParser(), async (req, res, next) => {
   let { email, password } = req.body;
   console.log(email, password);
@@ -88,9 +91,9 @@ router.post("/login", cookieParser(), async (req, res, next) => {
           return res
             .cookie("__session", token, {
               expires: new Date(Date.now() + 900000),
-              httpOnly: false,
-              secure: false
-              // domain: ".noteful.app"
+              httpOnly: true,
+              secure: true,
+              domain: ".noteful.app"
             })
             .status(200)
             .json({ user: payload });
@@ -105,14 +108,17 @@ router.post("/login", cookieParser(), async (req, res, next) => {
   }
 });
 
+//Logout and destroy cookie
 router.get("/logout", (req, res) => {
   res.clearCookie("__session").sendStatus(200);
 });
 
+// Update user route
+
 router.patch("/update/:_id", async (req, res, next) => {
+
   let { _id } = req.params;
   let saltRounds = 10;
-
   let entries = Object.keys(req.body);
   let updates = {};
 
@@ -126,10 +132,9 @@ router.patch("/update/:_id", async (req, res, next) => {
   }
 
   let user = await User.find({ _id });
-
+  
   if (user) {
     update = await User.findOneAndUpdate({ _id }, { $set: updates });
-
     if (update) {
       return res.status(200).json({ message: "User Updated" });
     } else {

@@ -7,8 +7,6 @@ const auth = require("../middleware/auth");
 
 require("dotenv").config();
 
-//This was disabled as it redirects to login
-
 // @route GET api/auth
 // @Desc Get logged in urser
 // @access Private

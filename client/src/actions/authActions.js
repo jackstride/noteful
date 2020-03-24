@@ -114,9 +114,10 @@ export const userUpdate = (_id, values) => distpach => {
 };
 
 export const supportRequest = formValues => dispatch => {
-  console.log(formValues);
   axios
-    .post(process.env.REACT_APP_ENDPOINT + "/support", formValues)
+    .post(process.env.REACT_APP_ENDPOINT + "/support", formValues, {
+      withCredentials: true,
+    })
     .then(res => {
       dispatch({
         type: SUPPORT_SUCCESS

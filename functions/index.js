@@ -9,14 +9,18 @@ const passport = require("passport");
 const createError = require("http-errors");
 const FirebaseStore = require("connect-session-firebase")(session);
 const firebase = require("firebase-admin");
+
+//Connection to firebase database
 const ref = firebase.initializeApp({
   credential: firebase.credential.cert(process.env.CERT_ROUTE),
   databaseURL: process.env.CERT_URL
 });
 
+//.env config
 require("./passport");
 require("dotenv").config();
 
+// Define routes
 const userRoute = require("./routes/User");
 const authRoute = require("./routes/appAuth");
 const socialAuthRoute = require("./routes/socialAuth");
@@ -26,14 +30,18 @@ const NoteRoute = require("./routes/Note");
 const SupportRoute = require("./routes/support");
 const auth = require("./middleware/auth");
 
+//Connect to database
 ConnectDB();
 
+//Initialize app variable
 const app = express();
 
+//Use cookie parser and body parser
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Cors options, origin requests,methods, headers
 app.use(
   cors({
     credentials: true,
@@ -49,17 +57,19 @@ app.use(
   })
 );
 
+// Firebase session to use twitter auth
 app.use(
   session({
     store: new FirebaseStore({
       database: ref.database()
     }),
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     resave: true,
     saveUninitialized: true
   })
 );
 
+// Initialize Passport authentication (Twitter and google)
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -71,21 +81,7 @@ passport.deserializeUser((user, done) => {
   done(null, user);
 });
 
-// app.use(
-//   require("express-session")({
-//     secret: "keyboard cat",
-//     resave: true,
-//     saveUninitialized: true
-//   })
-// );
-// app.use(
-//   cors({
-//     origin: "http://localhost:5000",
-//     credentials: true,
-//     allowedHeaders: "Content-Type"
-//   })
-// );
-
+//Define routes
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
 app.use("/auth", socialAuthRoute);
@@ -94,6 +90,7 @@ app.use("/", auth, tasksRoute);
 app.use("/", auth, NoteRoute);
 app.use("/", SupportRoute);
 
+// Error handlers
 app.use((req, res, next) => {
   next(createError(404, "Not Found"));
 });
@@ -108,4 +105,5 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Export app to firebase functions
 exports.app = functions.https.onRequest(app);

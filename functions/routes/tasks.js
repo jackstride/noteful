@@ -78,6 +78,8 @@ router.delete("/deletetask/:_id", async (req, res, next) => {
   }
 });
 
+
+// Update task
 router.put("/task/update", async (req, res, next) => {
   let { id, name } = req.body;
 
