@@ -67,6 +67,7 @@ export const register = formValues => dispatch => {
 };
 
 export const login = formValues => dispatch => {
+  console.log(formValues);
   axios({
     method: "post",
     url: process.env.REACT_APP_ENDPOINT + "/user/login",
@@ -116,7 +117,7 @@ export const userUpdate = (_id, values) => distpach => {
 export const supportRequest = formValues => dispatch => {
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/support", formValues, {
-      withCredentials: true,
+      withCredentials: true
     })
     .then(res => {
       dispatch({

@@ -90,10 +90,10 @@ router.post("/login", cookieParser(), async (req, res, next) => {
         if (token) {
           return res
             .cookie("__session", token, {
-              expires: new Date(Date.now() + 900000),
-              httpOnly: true,
-              secure: true,
-              domain: ".noteful.app"
+              expires: new Date(Date.now() + 900000)
+              // httpOnly: true,
+              // secure: true,
+              // domain: ".noteful.app"
             })
             .status(200)
             .json({ user: payload });
