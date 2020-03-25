@@ -67,30 +67,48 @@ class Support extends Component {
 
   render() {
     return (
-      <div className="support inner_container">
-        <div className="about_title">
-          <h2>Need Support?</h2>
-        </div>
-        <div className="support_header">
+      <div className="support">
+        <div className="inner_container">
+          <div className="support_header">
+            <img src={Stacking} alt="Noteful stacking"></img>
+            <div className="support_heading">
+              <h5>Need some help</h5>
+              <h1> Let us support you</h1>
+              <p>
+                Everyone make mistakes and incase we've made a few, please use
+                the options below to message us. Even say hi 👋
+              </p>
+              <button
+                onClick={() =>
+                  document.querySelector(".support_form").scrollIntoView()
+                }
+              >
+                Message us
+              </button>
+            </div>
+          </div>
+
           <LargeHeader
             title="!@#%*#$%"
             paragraph="We understand how you feel. Deep breathe. Use the below information to contact us! We aim to reply within an hour."
             color="blue"
           />
-          <img src={Stacking} alt="Noteful stacking"></img>
+          <div className="support_bg">
+            <section className="contact_cards">
+              {this.state.social.map((item, i) => (
+                <SocialCard key={i} data={item} />
+              ))}
+            </section>
+          </div>
         </div>
-        <div className="support_bg">
-          <section className="contact_cards">
-            {this.state.social.map((item, i) => (
-              <SocialCard key={i} data={item} />
-            ))}
-          </section>
-          <div style={{ textAlign: "center" }} className="inner_container">
-            <h2> Contact us</h2>
-            <p>
-              Please use the form below as an alternative method to contact us
-              incase of issues that you may be facing.{" "}
-            </p>
+
+        <div className="bg_gradient">
+          <div
+            style={{ textAlign: "center" }}
+            className="inner_container support_contact"
+          >
+            <h2> Message us</h2>
+            <p>Please contact using the form below if you have any problems.</p>
           </div>
           <section className="support_form">
             <form

@@ -380,9 +380,13 @@ header {
         h4::before {
             background-color: white;
         }
-
-
-
     }
 
+    .support_contact {
+
+        h2,
+        p {
+            margin: 20px 0px;
+        }
+    }
 }

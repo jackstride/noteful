@@ -19,6 +19,7 @@
 
 html {
     font-size: 16px;
+    scroll-behavior: smooth;
 }
 
 * {
@@ -100,11 +101,9 @@ h4 {
 }
 
 h5 {
-    font-weight: 600;
-    font-size: .8em;
-    color: rgba($color: $HeadingGrey, $alpha: .5);
-    color: $Orange;
-    letter-spacing: 0;
+    font-weight: 500;
+    font-size: 1em;
+    color: rgba($color: $HeadingGrey, $alpha: .7);
 }
 
 h6 {

@@ -266,6 +266,28 @@ img {
 ///////////////////////// Suport //////////////////////
 
 
+.support_heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    >* {
+        padding: 10px 0px;
+    }
+
+
+    button {
+        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+        border: none;
+        color: white;
+        width: 225px;
+        height: 60px;
+        border-radius: 8px;
+        font-size: 1em;
+        scroll-behavior: smooth;
+        cursor: pointer;
+    }
+}
 
 .contact_cards {
     display: grid;
@@ -283,9 +305,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-
-
-
 
     li a {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -310,6 +329,13 @@ img {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: fit-content;
+    margin-top: 50px;
+
+    .large_header {
+        .content {
+            width: 100%;
+        }
+    }
 }
 
 @include tablet {
@@ -338,30 +364,30 @@ img {
             height: 50px;
             width: 100%;
             color: $DarkGrey;
-            background-color: rgb(240, 240, 240);
+            background-color: white;
             border: none;
             border-radius: 4px;
-            width: 100%;
             margin: 20px 0px;
             padding: 0px 10px;
-
         }
 
         textarea {
             width: 100%;
-            background-color: rgb(240, 240, 240);
+            background-color: white;
             resize: none;
             border-radius: 4px;
             border: none;
             padding: 10px 10px;
             margin: 20px;
+            font-size: 1em;
+            font-size: 16px;
+            color: $DarkGrey;
         }
 
         input::placeholder,
         textarea::placeholder {
             color: $DarkGrey;
             font-size: 16px;
-            padding-left: 5px;
         }
 
         .support_buttons {
@@ -383,7 +409,7 @@ img {
             }
 
             input[type=reset] {
-                background-color: rgb(240, 240, 240);
+                background-color: white;
                 color: $DarkGrey;
                 font-size: 14px;
                 border: none;
