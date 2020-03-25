@@ -8,30 +8,39 @@ import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import { Link } from "react-router-dom";
 import { loadUser } from "../../../actions/authActions";
 
-const LogIn = props => {
-  let [errors, setErrors] = useState("");
+const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
+  let [loginErrors, setErrors] = useState("");
+
   useEffect(() => {
-    props.loadUser();
-    setErrors(props.error);
+    loadUser();
+  }, []);
+
+  useEffect(() => {
+    setErrors(errors);
     return () => {
-      props.clearErrors();
+      clearErrors();
     };
-  }, [props.error]);
+  }, [errors]);
 
   return (
     <section className="login">
       <div className="log_left">
         <div className="login_container">
           <div className="form_container">
-            <Link to="/">
-              <Logo />
-            </Link>
-            <h2>Welcome Back!</h2>
-            {errors ? <h2>{errors}</h2> : null}
-            <p>
-              Don't have an account? <span>Sign up</span>
+            <div className="login_header">
+              <Link to="/">
+                <Logo />
+              </Link>
+              <h2>Welcome back</h2>
+              {errors ? <h2>{errors}</h2> : null}
+              <p>
+                Sign up for an account? <Link to="/register">Sign up</Link>
+              </p>
+            </div>
+            <Form history={history} />
+            <p style={{ margin: "10px 0px" }}>
+              Forgot your password? Click here{" "}
             </p>
-            <Form history={props.history} />
             <p style={{ margin: "20px 0px", textAlign: "center" }}>
               - - - - - - - - Or - - - - - - - -{" "}
             </p>
@@ -39,9 +48,7 @@ const LogIn = props => {
           </div>
         </div>
       </div>
-      <div className="log_right">
-        <Jumping />
-      </div>
+      <div className="log_right"></div>
     </section>
   );
 };

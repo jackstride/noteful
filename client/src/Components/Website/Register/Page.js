@@ -30,7 +30,7 @@ const Register = props => {
             <Link to="/">
               <Logo />
             </Link>
-            <h2>Sign up to begin.</h2>
+            <h2>Sign up</h2>
             <p>
               Already have an account? <Link to="/login">Sign in</Link>
             </p>

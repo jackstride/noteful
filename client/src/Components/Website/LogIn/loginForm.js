@@ -6,9 +6,11 @@ import { login } from "../../../actions/authActions";
 
 const Form = ({ isAuthenticated, error, history, login }) => {
   let [values, setValues] = useState({
-    email: "",
-    password: ""
+    email: " ",
+    password: " "
   });
+  let [emptyEmail, setEmptyEmail] = useState(true);
+  let [emptyPassword, setEmptyPassword] = useState(true);
   let [sent, setSent] = useState(false);
 
   let propTypes = {
@@ -21,6 +23,11 @@ const Form = ({ isAuthenticated, error, history, login }) => {
       history.push("/dashboard");
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    !values.password ? setEmptyPassword(false) : setEmptyPassword(true);
+    !values.email ? setEmptyEmail(false) : setEmptyEmail(true);
+  }, [values.password, values.email]);
 
   let handleSubmit = event => {
     event.preventDefault();
@@ -35,20 +42,26 @@ const Form = ({ isAuthenticated, error, history, login }) => {
         handleSubmit(event);
       }}
     >
+      <label for="email">Email Address</label>
       <input
+        className={!emptyEmail ? "error" : null}
         onChange={e => setValues({ ...values, email: e.target.value })}
         type="text"
         name="email"
-        placeholder="Email Address"
+        placeholder="example@noteful.app"
       ></input>
+
+      <label for="password">Password</label>
       <input
+        className={!emptyPassword ? "error" : null}
         onChange={e => setValues({ ...values, password: e.target.value })}
         type="password"
         name="password"
-        placeholder="Password"
+        placeholder="Enter your password"
       ></input>
-      <p style={{ alignSelf: "start" }}> Forgot your password? Click Here</p>
+      <span></span>
       <input
+        className="login_submit"
         style={sent ? { backgroundColor: "green" } : null}
         type="submit"
         value="Login"

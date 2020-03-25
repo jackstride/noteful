@@ -47,26 +47,28 @@ class R_Form extends Component {
           </div>
         ) : null}
         <form className="auth_form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            name="firstName"
-            placeholder="First Name:"
-          ></input>
-
+          <label for="name">First Name</label>
+          <input type="text" name="firstName" placeholder="eg: John"></input>
+          <label for="lastName">Last Name</label>
           <input
             className={{}}
             type="text"
             name="lastName"
-            placeholder="Last Name:"
+            placeholder="eg: Smith"
           ></input>
-
+          <label for="email">Last Name</label>
           <input
             type="text"
             name="email"
-            placeholder="Email Adress:"
+            placeholder="example@noteful.app"
           ></input>
-
-          <input type="password" name="password" placeholder="Password:"></input>
+          <label for="password">Last Name</label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+          ></input>
+          <span></span>
           <input type="submit" name="submit" value="Sign up"></input>
         </form>
       </div>
