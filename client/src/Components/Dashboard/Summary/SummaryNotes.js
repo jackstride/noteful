@@ -34,28 +34,26 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
         <h6>Folder Name</h6>
         <h6> Last Edited</h6>
       </div>
-      {notes ? (
-        notes.map((data, i) => {
-          return (
-            <div key={i} className="s_f_holder">
-              <Link
-                key={i}
-                id={data._id}
-                onContextMenu={e => handleContext(e)}
-                to={`/dashboard/notes/${data._id}`}
-              >
-                <Item
-                  context={e => handleContext(e)}
-                  data={data}
-                  folder={folder}
-                />
-              </Link>
-            </div>
+      <div className="s_f_holder">
+        {notes.map((data, i) => {
+          return data ? (
+            <Link
+              key={i}
+              id={data._id}
+              onContextMenu={e => handleContext(e)}
+              to={`/dashboard/notes/${data._id}`}
+            >
+              <Item
+                context={e => handleContext(e)}
+                data={data}
+                folder={folder}
+              />
+            </Link>
+          ) : (
+            <LazyLoading />
           );
-        })
-      ) : (
-        <LazyLoading />
-      )}
+        })}
+      </div>
     </div>
   );
 };
