@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "../fontawesome";
 import Swing from "../images/reading_book.png";
 import Pencil from "../images/pencil.png";
@@ -52,44 +52,51 @@ export default class features extends Component {
 
   render() {
     return (
-      <div className="inner_container features">
-        <div className="features_title">
-          <h2>
-            Smart,simple and <br></br> ready to use.
-          </h2>
-        </div>
-        <div className="feature_image">
-          <LargeHeader
-            title="Jump straight in"
-            paragraph={this.state.section.text}
-            color="blue"
-          />
-          <img src={Pencil} alt="Type with noteful"></img>
-        </div>
+      <Fragment>
+        <div className="bg_gradient">
+          <div className="inner_container">
+            <div className="features">
+              <div className="features_title">
+                <h2>
+                  Smart,simple and <br></br> ready to use.
+                </h2>
+              </div>
+              <div className="feature_image">
+                <LargeHeader
+                  title="Jump straight in"
+                  paragraph={this.state.section.text}
+                  color="blue"
+                />
+                <img src={Pencil} alt="Type with noteful"></img>
+              </div>
+            </div>
 
-        <div className="small_heading">
-          {this.state.features.slice(0, 3).map((item, index) => {
-            return <SmallHeading title={item.heading} main={item.body} />;
-          })}
+            <div className="small_heading">
+              {this.state.features.slice(0, 3).map((item, index) => {
+                return <SmallHeading title={item.heading} main={item.body} />;
+              })}
+            </div>
+          </div>
         </div>
-
-        <section className="features_2">
-          <div className="features_text">
-            <h2>What are the features of noteful?</h2>
-            {this.state.features.slice(3, 6).map((item, index) => {
-              return (
-                <div className="features_content">
-                  <h4>{item.heading}</h4>
-                  <p>{item.body}</p>
-                </div>
-              );
-            })}
-          </div>
-          <div className="features_image">
-            <img src={Swing} alt="Noteful on a swing"></img>
-          </div>
-        </section>
-      </div>
+        <div className="inner_container">
+          <section className="features_2">
+            <div className="features_text">
+              <h2>What are the features of noteful?</h2>
+              {this.state.features.slice(3, 6).map((item, index) => {
+                return (
+                  <div className="features_content">
+                    <h4>{item.heading}</h4>
+                    <p>{item.body}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="features_image">
+              <img src={Swing} alt="Noteful on a swing"></img>
+            </div>
+          </section>
+        </div>
+      </Fragment>
     );
   }
 }

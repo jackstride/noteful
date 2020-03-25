@@ -10,13 +10,6 @@ let LargeHeader = ({ color, title, paragraph, reverse }) => {
         className="content"
         style={reverse ? { alignItems: "flex-end" } : null}
       >
-        <span
-          className="point"
-          style={{ backgroundColor: color }}
-          style={
-            reverse ? { backgroundColor: color } : { backgroundColor: color }
-          }
-        ></span>
         <h3
           style={
             reverse
@@ -24,6 +17,14 @@ let LargeHeader = ({ color, title, paragraph, reverse }) => {
               : { marginLeft: "20px" }
           }
         >
+          <span
+            style={{ backgroundColor: color }}
+            style={
+              reverse
+                ? { backgroundColor: color, right: "-15px" }
+                : { backgroundColor: color, left: "-15px" }
+            }
+          ></span>
           {title}
         </h3>
         <p style={reverse ? { textAlign: "right" } : null}>{paragraph}</p>

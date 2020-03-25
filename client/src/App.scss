@@ -47,17 +47,10 @@ body {
 }
 
 li,
-a {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-
+a,
 h1,
 h2,
-h3 {
-    font-family: $headingFont, Helvetica, Arial, sans-serif;
-}
-
+h3,
 h4,
 h5,
 a,
@@ -73,7 +66,7 @@ h1 {
     color: $DarkGrey;
     line-height: 82px;
     font-size: 4em;
-    line-height: 1em;
+    line-height: 1.2em;
     letter-spacing: .02em;
 
     @include mobilelarge {
@@ -84,25 +77,18 @@ h1 {
 
 h2 {
     font-weight: 700;
-    font-size: 2.7em;
+    font-size: 3em;
     color: $HeadingGrey;
     letter-spacing: 0.50px;
     line-height: 60px;
-
-    @include desktop {
-        font-size: 2em;
-        line-height: 1.25em;
-    }
 }
 
 h3 {
     color: $DarkGrey;
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: normal;
+    font-weight: 600;
 
-    @include desktop {
-        font-size: 1.6em;
-    }
 }
 
 h4 {
@@ -111,10 +97,6 @@ h4 {
     letter-spacing: 0.04px;
     line-height: 29px;
     font-weight: normal;
-
-    @include desktop {
-        font-size: 1em;
-    }
 }
 
 h5 {
@@ -123,10 +105,6 @@ h5 {
     color: rgba($color: $HeadingGrey, $alpha: .5);
     color: $Orange;
     letter-spacing: 0;
-
-
-
-
 }
 
 h6 {
@@ -136,21 +114,21 @@ h6 {
     letter-spacing: 0;
     line-height: 22px;
     font-weight: normal;
-
 }
 
 
 p {
-    font-size: 1em;
+    font-size: 1.4em;
     letter-spacing: 0;
     color: $DarkGrey;
     letter-spacing: .4px;
+    line-height: 42px;
 
-
-    @include desktop {
-        font-size: 0.8em;
-        line-height: 1.28em;
+    @include tablet {
+        font-size: 1em;
+        line-height: 32px;
     }
+
 }
 
 li {

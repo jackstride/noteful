@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import Searching from "../images/searching.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 import { Link } from "react-router-dom";
@@ -18,44 +18,49 @@ const About = () => {
   ]);
 
   return (
-    <div className="inner_container">
-      <div className="about_title">
-        <h2>
-          Smart,simple and <br></br> ready to use.
-        </h2>
+    <Fragment>
+      <div className="inner_container">
+        <div className="about_title">
+          <h2>
+            Smart,simple and <br></br> ready to use.
+          </h2>
+        </div>
+        <div className="about_image">
+          <img src={Searching} alt="Man Searching"></img>
+        </div>
+        <LargeHeader
+          title={content[0].title}
+          paragraph={content[0].paragraph}
+          color="blue"
+        />
+        <LargeHeader
+          title={content[1].title}
+          paragraph={content[1].paragraph}
+          reverse={true}
+          color="#F1B505"
+        />
       </div>
-      <div className="about_image">
-        <img src={Searching} alt="Man Searching"></img>
-      </div>
-      <LargeHeader
-        title={content[0].title}
-        paragraph={content[0].paragraph}
-        color="blue"
-      />
-      <LargeHeader
-        title={content[1].title}
-        paragraph={content[1].paragraph}
-        reverse={true}
-        color="#F1B505"
-      />
+      <div className="bg_gradient">
+        <div className="inner_container">
+          <div className="small_heading">
+            <SmallHeading title="Notes." main="Type enriched Notes." />
+            <SmallHeading title="Tasks." main="Manage your whole week." />
+            <SmallHeading title="Offile." main="Access anywhere." />
+          </div>
 
-      <div className="small_heading">
-        <SmallHeading title="Notes." main="Type enriched Notes." />
-        <SmallHeading title="Tasks." main="Manage your whole week." />
-        <SmallHeading title="Offile." main="Access anywhere." />
-      </div>
-
-      <div className="about_title">
-        <h2>
-          Get started in seconds <br></br> Register Today
-        </h2>
-        <div className="register_button">
-          <Link to="/register">
-            <span>Register</span>
-          </Link>
+          <div className="about_title">
+            <h2>
+              Get started in seconds <br></br> Register Today
+            </h2>
+            <div className="register_button">
+              <Link to="/register">
+                <span>Register</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

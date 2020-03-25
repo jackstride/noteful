@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PhonePreview from "./images/iphone_preview.png";
 import HeaderImage from "./images/header.png";
 import LargeHeader from "./Components/Website/LargeHeader";
+import DashboardOne from "./images/dashboard_nav.jpg";
 export default class home extends Component {
   constructor(props) {
     super(props);
@@ -65,8 +66,8 @@ export default class home extends Component {
   };
   render() {
     return (
-      <Fragment>
-        <div className="inner_container home">
+      <div className="home">
+        <div className="inner_container">
           <header>
             <div className="header_text">
               <div className="header_small">
@@ -110,29 +111,38 @@ export default class home extends Component {
               stress.
             </h2>
           </div>
-          <LargeHeader
-            color="blue"
-            title={this.state.information[0].heading}
-            paragraph={this.state.information[0].text}
-          />
+        </div>
+        <div className="bg_gradient">
+          <div className="inner_container">
+            <LargeHeader
+              color="blue"
+              title={this.state.information[0].heading}
+              paragraph={this.state.information[0].text}
+            />
+            <div className="view_more">
+              <Link to="/features">
+                <h4>Learn more about notes</h4>
+                <hr></hr>
+              </Link>
+            </div>
+            <LargeHeader
+              color="#F1B505"
+              title={this.state.information[1].heading}
+              paragraph={this.state.information[1].text}
+              reverse={true}
+            />
 
-          <div className="view_more">
-            <Link to="/features">
-              <h4>view more about notes</h4>
-              <hr></hr>
-            </Link>
+            <div style={{ float: "right" }} className="view_more">
+              <Link style={{ flexDirection: "row-reverse" }} to="/features">
+                <h4>Learn more about tasks</h4>
+                <hr style={{ marginLeft: "0px", marginRight: "10px" }}></hr>
+              </Link>
+            </div>
           </div>
-          <LargeHeader
-            color="#F1B505"
-            title={this.state.information[1].heading}
-            paragraph={this.state.information[1].text}
-            reverse={true}
-          />
-          <div style={{ float: "right" }} className="view_more">
-            <Link style={{ flexDirection: "row-reverse" }} to="/features">
-              <h4>view more about tasks</h4>
-              <hr style={{ marginLeft: "0px", marginRight: "10px" }}></hr>
-            </Link>
+        </div>
+        <div className="inner_container">
+          <div className="app_photo">
+            <img src={DashboardOne} alt="Dashboard"></img>
           </div>
           <div className="small_heading">
             {this.state.four.map((item, index) => {
@@ -141,7 +151,7 @@ export default class home extends Component {
               );
             })}
           </div>
-          <div className="app_photo"></div>
+
           <LargeHeader
             color="blue"
             title={"Dark Mode"}
@@ -153,7 +163,7 @@ export default class home extends Component {
             <img alt="noteful on iphone" src={PhonePreview}></img>
           </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }
