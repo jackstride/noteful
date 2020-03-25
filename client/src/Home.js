@@ -53,14 +53,26 @@ const Home = ({ history }) => {
     }
   ]);
 
-  const [ref, entry] = useIntersect({
-    threshold: 0.9
+  const [one, entry] = useIntersect({
+    threshold: 0.8
   });
-
+  const [two, entry2] = useIntersect({
+    threshold: 0.5
+  });
+  const [three, entry3] = useIntersect({
+    threshold: 1
+  });
   if (entry.isIntersecting) {
-    console.log("true");
-    let things = document.querySelectorAll(".test");
-    things.forEach(thing => (thing.style.display = "none"));
+    let things = document.querySelectorAll(".f1");
+    things.forEach(thing => thing.classList.add("animated", "fadeIn"));
+  }
+  if (entry2.isIntersecting) {
+    let tt = document.querySelectorAll(".f2");
+    tt.forEach(thing => thing.classList.add("animated", "fadeIn"));
+  }
+  if (entry3.isIntersecting) {
+    let pp = document.querySelectorAll(".f3");
+    pp.forEach(thing => thing.classList.add("animated", "fadeInUp"));
   }
 
   let handleSubmit = e => {
@@ -73,26 +85,26 @@ const Home = ({ history }) => {
       <div className="inner_container">
         <header>
           <div className="header_text">
-            <div className="header_small">
+            <div className="header_small animated fadeIn">
               <h4>We think it's time.</h4>
               <hr></hr>
             </div>
             <div className="header_main">
-              <h1>
+              <h1 className="animated fadeInUp">
                 Goodbye paper..<br></br>
                 Hello noteful!
               </h1>
-              <h6>
+              <h6 className="animated fadeInUp">
                 Switch away from paper and begin typing with Noteful.
                 <br></br>
                 Sign up today. Free of charge!
               </h6>
-              <Link to="/register">
+              <Link className="animated fadeInUp" to="/register">
                 <input type="button" value="Register"></input>
               </Link>
             </div>
           </div>
-          <div className="header_image">
+          <div className="header_image animated fadeIn">
             <img src={HeaderImage} alt="Noteful App"></img>
           </div>
         </header>
@@ -110,34 +122,39 @@ const Home = ({ history }) => {
         </div>
         <div className="row heading">
           <h2
-            className="test"
+            ref={one}
+            className="f1"
             style={{ textAlign: "center", paddingTop: "50px" }}
           >
             Organising things in one <br></br> place helps to eleminate stress.
           </h2>
         </div>
       </div>
-      <div className="bg_gradient">
-        <div ref={ref} className="inner_container">
+      <div ref={two} className="bg_gradient">
+        <div className="inner_container">
           <LargeHeader
+            cn={"f2"}
+            className="one"
             color="blue"
             title={information[0].heading}
             paragraph={information[0].text}
           />
-          <div className="view_more">
+          <div className="view_more f2">
             <Link to="/features">
               <h4>Learn more about notes</h4>
               <hr></hr>
             </Link>
           </div>
           <LargeHeader
+            cn={"f2"}
+            classList="one"
             color="#F1B505"
             title={information[1].heading}
             paragraph={information[1].text}
             reverse={true}
           />
 
-          <div style={{ float: "right" }} className="view_more">
+          <div style={{ float: "right" }} className="view_more f2">
             <Link style={{ flexDirection: "row-reverse" }} to="/features">
               <h4>Learn more about tasks</h4>
               <hr style={{ marginLeft: "0px", marginRight: "10px" }}></hr>
@@ -145,18 +162,22 @@ const Home = ({ history }) => {
           </div>
         </div>
       </div>
-      <div className="inner_container test">
+      <div className="inner_container">
         <div className="app_photo">
           <img src={DashboardOne} alt="Dashboard"></img>
         </div>
-        <div className="small_heading">
+        <div ref={three} className="small_heading">
           {four.map((item, index) => {
             return (
-              <SmallHeading key={index} title={item.title} main={item.main} />
+              <SmallHeading
+                cn={"f3"}
+                key={index}
+                title={item.title}
+                main={item.main}
+              />
             );
           })}
         </div>
-
         <LargeHeader
           color="blue"
           title={"Dark Mode"}
@@ -173,9 +194,9 @@ const Home = ({ history }) => {
 };
 
 export default Home;
-let SmallHeading = ({ title, main }) => {
+let SmallHeading = ({ cn, title, main }) => {
   return (
-    <div className="content">
+    <div className={cn ? `content ${cn}` : "conent"}>
       <h4> {title}</h4>
       <p>{main}</p>
     </div>

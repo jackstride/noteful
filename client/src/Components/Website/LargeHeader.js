@@ -1,10 +1,10 @@
 import React from "react";
 
-let LargeHeader = ({ color, title, paragraph, reverse }) => {
+let LargeHeader = ({ color, title, paragraph, reverse, cn }) => {
   return (
     <div
       style={reverse ? { justifyContent: "flex-end" } : null}
-      className="large_header"
+      className={cn ? `large_header ${cn}` : "large_header"}
     >
       <div
         className="content"

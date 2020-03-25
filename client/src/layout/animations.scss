@@ -60,3 +60,19 @@
     width: 250px;
   }
 }
+
+
+.f1,
+.f2,
+.f3 {
+  opacity: 0;
+  transition: 2s all ease;
+}
+
+.fadeIn {
+  animation-duration: 2s;
+}
+
+.fadeInUp {
+  animation-duration: 1s;
+}
