@@ -33,7 +33,12 @@ const ShowResult = ({ data, folder, showMenu }) => {
     <div className="result_holder">
       <Link to={`/dashboard/notes/${data._id}`}>
         <FontAwesomeIcon icon="sticky-note" />
-        <h5>{data.note_title}</h5>
+        <h5>
+          {data.note_title
+            .split(" ")
+            .slice(0, 2)
+            .join(" ")}
+        </h5>
       </Link>
       <div
         id={data._id}

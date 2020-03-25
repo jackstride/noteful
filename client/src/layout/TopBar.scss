@@ -171,14 +171,18 @@ nav.options {
         a {
             margin-left: 10px;
             display: grid;
-            grid-template-columns: 20px 50px;
+            grid-template-columns: 20px auto;
             grid-template-rows: 1fr;
             height: 100%;
-            width: 50%;
+            width: 100%;
             color: $DarkGrey;
             position: relative;
             align-items: center;
             gap: 10px;
+
+            h5 {
+                width: 100%;
+            }
         }
 
         .search_context {
