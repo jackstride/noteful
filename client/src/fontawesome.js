@@ -35,7 +35,8 @@ import {
   faColumns,
   faSignOutAlt,
   faEllipsisV,
-  faFolder
+  faFolder,
+  faSignInAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -74,5 +75,7 @@ library.add(
   faColumns,
   faSignOutAlt,
   faEllipsisV,
-  faFolder
+  faFolder,
+  faUserPlus,
+  faSignInAlt
 );

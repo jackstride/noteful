@@ -97,3 +97,13 @@
         color: $DarkGrey;
     }
 }
+
+
+
+.tablet_logo {
+    display: none;
+
+    @include tablet {
+        display: block;
+    }
+}
