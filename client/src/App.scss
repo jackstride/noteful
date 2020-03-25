@@ -143,9 +143,9 @@ h6 {
 p {
     font-size: 1em;
     letter-spacing: 0;
-    color: #656464;
+    color: $DarkGrey;
     letter-spacing: .4px;
-    line-height: 27px;
+
 
     @include desktop {
         font-size: 0.8em;

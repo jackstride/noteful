@@ -198,15 +198,25 @@ header {
         display: flex;
         flex-direction: column;
 
+        @include mobilelarge {
+            justify-content: center;
+            align-items: center;
+        }
+
 
         h4 {
+            font-size: 1.5em;
             position: relative;
             z-index: 1;
+            color: white;
+            margin-bottom: 10px;
+            width: fit-content;
         }
 
         p {
             width: 60%;
-            font-weight: 600;
+            font-size: 1.1em;
+            line-height: 1.6em;
 
             @include tablet {
                 width: 100%;
@@ -218,10 +228,10 @@ header {
             position: absolute;
             top: 0;
             left: 0;
-            width: 50%;
+            width: 100%;
             height: 100%;
-            background-color: #F1B505;
-            opacity: .6;
+            background-color: $Blue;
+
             z-index: -1;
 
             @include tablet {
