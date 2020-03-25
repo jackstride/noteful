@@ -10,8 +10,6 @@ header {
         height: fit-content;
     }
 
-
-
     @include smalldesktop {
         grid-template-columns: 1fr;
         grid-template-rows: 50% 50%;
@@ -121,9 +119,6 @@ header {
             width: 70%;
         }
 
-        @include mobilelarge {
-            width: 100%;
-        }
     }
 
     span.point {
@@ -141,11 +136,6 @@ header {
         font-weight: 600;
         width: 60%;
         position: relative;
-
-        @include mobilelarge {
-            width: auto;
-        }
-
     }
 
     p {
@@ -154,6 +144,38 @@ header {
         letter-spacing: 0;
         line-height: 42px;
     }
+
+
+    @include mobilelarge {
+        h3 {
+            width: auto;
+        }
+
+        .content {
+            width: 100%;
+            align-items: start !important;
+        }
+
+        h3 {
+            margin-left: 10px !important;
+        }
+
+        p {
+
+            text-align: left !important;
+        }
+
+        span.point {
+            display: none;
+        }
+
+
+
+
+    }
+
+
+
 }
 
 .small_heading {
@@ -268,6 +290,7 @@ header {
     width: 50%;
     margin-bottom: 50px;
 
+
     a {
         display: flex;
         flex-direction: row;
@@ -282,5 +305,20 @@ header {
         border: none;
         border-top: 2px solid $Blue;
         margin-left: 10px;
+    }
+
+    @include mobilelarge {
+        width: 100%;
+
+        a {
+            font-size: 1.4em;
+            flex-direction: column !important;
+
+        }
+
+        h4 {
+            margin-bottom: 10px;
+        }
+
     }
 }
