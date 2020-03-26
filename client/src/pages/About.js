@@ -2,6 +2,7 @@ import React, { useState, Fragment } from "react";
 import Searching from "../images/searching.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 import { Link } from "react-router-dom";
+import AboutInsersect from "../Components/Intersects/AboutInsersect";
 
 const About = () => {
   let [content, setContent] = useState([
@@ -17,38 +18,42 @@ const About = () => {
     }
   ]);
 
+  let [one, two, three, four, five] = AboutInsersect();
+
   return (
     <Fragment>
       <div className="inner_container">
         <div className="about_title">
-          <h2>
+          <h2 ref={one}>
             Smart,simple and <br></br> ready to use.
           </h2>
         </div>
-        <div className="about_image">
+        <div ref={two} className="about_image">
           <img src={Searching} alt="Man Searching"></img>
         </div>
         <LargeHeader
+          ref={three}
           title={content[0].title}
           paragraph={content[0].paragraph}
           color="blue"
         />
         <LargeHeader
+          ref={four}
           title={content[1].title}
           paragraph={content[1].paragraph}
           reverse={true}
           color="#F1B505"
         />
       </div>
-      <div className="bg_gradient">
+      <div ref={five} className="bg_gradient">
         <div className="inner_container">
-          <div className="small_heading">
+          <div style={{ opacity: "0" }} className="small_heading">
             <SmallHeading title="Notes." main="Type enriched Notes." />
             <SmallHeading title="Tasks." main="Manage your whole week." />
             <SmallHeading title="Offile." main="Access anywhere." />
           </div>
 
-          <div className="about_title">
+          <div style={{ opacity: "0" }} className="about_title">
             <h2>
               Get started in seconds <br></br> Register Today
             </h2>

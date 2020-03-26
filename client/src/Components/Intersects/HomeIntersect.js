@@ -14,16 +14,27 @@ export default () => {
   });
 
   if (entry.isIntersecting) {
-    let things = document.querySelectorAll(".f1");
-    things.forEach(thing => thing.classList.add("animated", "fadeIn"));
+    entry.target.classList.add("animated", "fadeInUp");
+    let el = document.querySelectorAll(".large_header");
+    el.forEach(el => {
+      el.classList.add("animated", "fadeInUp");
+      if (el.nextSibling) {
+        if (el.nextSibling.className === "view_more") {
+          el.nextSibling.classList.add("animated", "fadeInUp");
+        }
+      } else {
+        return;
+      }
+    });
   }
+
   if (entry2.isIntersecting) {
-    let tt = document.querySelectorAll(".f2");
-    tt.forEach(thing => thing.classList.add("animated", "fadeInUp"));
+    entry2.target.classList.add("animated", "fadeInUp");
   }
+
   if (entry3.isIntersecting) {
-    let pp = document.querySelectorAll(".f3");
-    pp.forEach(thing => thing.classList.add("animated", "fadeInUp"));
+    entry3.target.classList.add("animated", "fadeInUp");
   }
+
   return [one, two, three];
 };

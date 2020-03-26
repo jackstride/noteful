@@ -102,41 +102,35 @@ const Home = ({ history }) => {
           </h4>
         </div>
       </div>
-      <div ref={two} className="bg_gradient">
+      <div className="bg_gradient">
         <div className="inner_container">
           <div className="row heading">
             <h2
               ref={one}
-              className="f1"
-              style={{ textAlign: "center", paddingTop: "50px" }}
+              style={{ textAlign: "center", paddingTop: "50px", opacity: "0" }}
             >
               Organising things in one <br></br> place helps to eleminate
               stress.
             </h2>
           </div>
           <LargeHeader
-            cn={"f2"}
-            className="one"
             color="blue"
             title={information[0].heading}
             paragraph={information[0].text}
           />
-          <div className="view_more f2">
+          <div className="view_more">
             <Link to="/features">
               <h4>Learn more about notes</h4>
               <hr></hr>
             </Link>
           </div>
           <LargeHeader
-            cn={"f2"}
-            classList="one"
             color="#F1B505"
             title={information[1].heading}
             paragraph={information[1].text}
             reverse={true}
           />
-
-          <div style={{ float: "right" }} className="view_more f2">
+          <div style={{ float: "right" }} className="view_more">
             <Link style={{ flexDirection: "row-reverse" }} to="/features">
               <h4>Learn more about tasks</h4>
               <hr style={{ marginLeft: "0px", marginRight: "10px" }}></hr>
@@ -146,7 +140,10 @@ const Home = ({ history }) => {
       </div>
       <div className="inner_container">
         <div className="row heading">
-          <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
+          <h2
+            ref={two}
+            style={{ textAlign: "center", paddingTop: "50px", opacity: "0" }}
+          >
             Taking notes can help you focus <br></br>and better understand
             concepts
           </h2>
@@ -154,15 +151,10 @@ const Home = ({ history }) => {
         <div className="app_photo">
           <img src={DashboardOne} alt="Dashboard"></img>
         </div>
-        <div ref={three} className="small_heading">
+        <div ref={three} style={{ opacity: "0" }} className="small_heading">
           {four.map((item, index) => {
             return (
-              <SmallHeading
-                cn={"f3"}
-                key={index}
-                title={item.title}
-                main={item.main}
-              />
+              <SmallHeading key={index} title={item.title} main={item.main} />
             );
           })}
         </div>
@@ -192,9 +184,9 @@ const Home = ({ history }) => {
 };
 
 export default Home;
-let SmallHeading = ({ cn, title, main }) => {
+let SmallHeading = ({ title, main }) => {
   return (
-    <div className={cn ? `content ${cn}` : "conent"}>
+    <div className="content">
       <h4> {title}</h4>
       <p>{main}</p>
     </div>
