@@ -25,31 +25,36 @@ const Register = props => {
   return (
     <Fragment>
       <section className="register">
-        <div className="reg_container">
-          <div className="form_container">
-            <div className="auth_header">
-              <Link to="/">
-                <Logo className="mobile_change" />
-              </Link>
-              <h2>Sign up</h2>
-              <p>
-                Already have an account? <Link to="/login">Sign in</Link>
-              </p>
-              {error ? (
-                <span className="error">Error: {error.toString()}</span>
-              ) : null}
-            </div>
-            <RegisterForm />
+        <div className="reg">
+          <div className="reg_container">
+            <div className="form_container">
+              <div className="auth_header">
+                <Link to="/">
+                  <Logo className="mobile_change" />
+                </Link>
+                <h2>Sign up</h2>
+                <p>
+                  Already have an account? <Link to="/login">Sign in</Link>
+                </p>
+                {error ? (
+                  <span className="error">Error: {error.toString()}</span>
+                ) : null}
+              </div>
+              <RegisterForm />
 
-            <SocialAuth history={props.history} />
+              <SocialAuth history={props.history} />
+            </div>
           </div>
         </div>
         <div className="register_image">
           <div className="register_content">
             <div className="heading">
-              <h3>Take your notes with you everywhere.</h3>
+              <h2>
+                Take your notes with <br></br>you everywhere.
+              </h2>
               <p>
-                Our progressive webb app can be installed onto your phone and
+                Our progressive web app can be installed onto your phone and
+                <br></br>
                 inside your browser! Like any other normal app.
               </p>
             </div>

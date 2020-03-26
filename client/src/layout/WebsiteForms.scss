@@ -2,7 +2,7 @@
 .register {
     width: 100%;
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 50% 50%;
     min-height: 100vh;
 
     @include smalldesktop {
@@ -11,7 +11,7 @@
 
     @include tablet {
         grid-template-columns: 1fr;
-        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+
     }
 }
 
@@ -32,45 +32,25 @@
     .auth_header {
         padding-bottom: 20px;
 
+        .mobile_change {
+            g {
+                fill: white;
+            }
+        }
+
         a,
         h2,
         p {
             margin-left: 10px;
             padding: 5px 0px;
+            color: white;
 
             a {
-                color: $Blue;
-                font-weight: 500;
-            }
-        }
-    }
-
-    @include tablet {
-
-        p {
-            color: white;
-        }
-
-        .auth_header {
-            .mobile_change {
-                g {
-                    fill: white;
-                }
-            }
-
-            a,
-            h2,
-            p {
                 color: white;
-
+                font-weight: 500;
+                text-decoration: underline;
             }
 
-            p {
-                a {
-                    color: white;
-                    text-decoration: underline;
-                }
-            }
         }
     }
 
@@ -94,6 +74,10 @@
     }
 }
 
+
+
+
+
 form.auth_form {
     width: 100%;
     display: grid;
@@ -112,12 +96,13 @@ form.auth_form {
     input {
         height: 100%;
         width: 100%;
-        color: $DarkGrey;
-        background-color: transparent;
+        color: white;
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
         border: none;
         border-bottom: 1.3px solid rgb(210, 210, 210);
         width: 100%;
-        border-radius: 0;
+        border-bottom: none;
     }
 
     input[type=text],
@@ -131,8 +116,8 @@ form.auth_form {
     }
 
     input[type=submit] {
-        background-color: $Blue;
-        color: $BackgroundColor;
+        background-color: white;
+        color: $Blue;
         font-size: 16px;
         border: none;
         cursor: pointer;
@@ -144,25 +129,8 @@ form.auth_form {
     }
 
     input::placeholder {
-        color: rgb(150, 150, 150);
+        color: white;
         font-size: 16px;
-    }
-
-    @include tablet {
-
-        input {
-            color: white;
-        }
-
-        input::placeholder,
-        label {
-            color: white;
-        }
-
-        input[type=submit] {
-            background-color: white;
-            color: $Blue;
-        }
     }
 }
 
@@ -172,11 +140,11 @@ span.error {
     font-weight: 600;
 }
 
-span.or {
-    margin: 10px auto !important
-}
-
 ////////////////* Register Page*///////////////
+.reg {
+    width: 100%;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+}
 
 .reg_container {
     display: flex;
@@ -201,7 +169,7 @@ span.or {
 .register_image {
     width: 100%;
     height: 100%;
-    background-color: #1C30B0;
+    background-color: white;
     display: flex;
     flex-direction: column;
 
@@ -214,10 +182,16 @@ span.or {
         padding-left: 20px;
         padding-top: 100px;
 
-        h3 {
-            color: white;
+        h2 {
+            color: $Blue;
+        }
+
+        p {
+            color: rgb(78, 78, 78);
         }
     }
+
+
 }
 
 .register_content {
@@ -257,7 +231,7 @@ span.or {
 //////////////////////// Login /////////////////////////
 .log_left {
     width: 50%;
-    background-color: white;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -265,7 +239,7 @@ span.or {
 
     @include tablet {
         width: 100%;
-        background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+
     }
 }
 
@@ -291,9 +265,9 @@ span.or {
         width: 90%;
     }
 
-
-
-
+    p {
+        color: white;
+    }
 
     .social_auth {
         flex-direction: column;
@@ -306,7 +280,7 @@ span.or {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #1C30B0;
+    background-color: white;
 
     @include tablet {
         display: none;
@@ -369,20 +343,12 @@ span.or {
 
     p,
     a {
-        color: $DarkGrey;
+        color: white;
         font-weight: 500;
         font-size: 14px;
         margin: 0 auto;
         text-decoration: none;
         padding-left: 5px;
-    }
-
-    @include tablet {
-
-        p,
-        a {
-            color: white;
-        }
     }
 }
 

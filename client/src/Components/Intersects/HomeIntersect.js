@@ -2,7 +2,7 @@ import useIntersect from "./useIntersect";
 
 export default () => {
   const [one, entry] = useIntersect({
-    threshold: 0.8
+    threshold: 1
   });
 
   const [two, entry2] = useIntersect({
