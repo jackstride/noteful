@@ -1,29 +1,16 @@
 header {
     width: 100%;
-    height: 700px;
     background-color: $BackgroundColor;
     display: grid;
     grid-template-columns: 50% 50%;
-    grid-template-rows: 1fr;
-    margin-top: 100px;
-
-    @include tablet {
-        height: fit-content;
-    }
-
-    @include smalldesktop {
-        grid-template-columns: 1fr;
-        grid-template-rows: 50% 50%;
-    }
+    grid-template-rows: 100%;
+    min-height: 60vh;
+    margin-top: 150px;
 
     .header_text {
         display: flex;
         flex-direction: column;
         justify-content: center;
-
-        @include smalldesktop {
-            align-items: center;
-        }
 
         * {
             padding: 10px 0px;
@@ -64,40 +51,48 @@ header {
             display: flex;
             justify-content: center;
             flex-direction: column;
-
-            @include smalldesktop {
-                align-items: center;
-            }
-
-            @include mobilelarge {
-                height: 500px;
-            }
-
-
-            h1,
-            h6 {
-                @include smalldesktop {
-                    text-align: center;
-                }
-            }
         }
     }
-}
 
-.header_image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+    @include smalldesktop {
+        height: 800px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 50% 50%;
 
-    img {
-        max-height: 100%;
-        width: auto;
+        .header_main {
+            align-items: center;
+        }
+
+        .header_text {
+            align-items: center;
+        }
+
+        h1,
+        h6 {
+            text-align: center;
+        }
     }
+
+    .header_image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        img {
+            max-height: 100%;
+            width: auto;
+        }
+    }
+
 }
 
 .row.heading {
     margin: 100px 0px;
+
+    @include mobilelarge {
+        margin: 50px 0px;
+    }
 }
 
 ///////////////////// New /////////////////////
@@ -158,14 +153,7 @@ header {
         span.point {
             display: none;
         }
-
-
-
-
     }
-
-
-
 }
 
 .small_heading {
@@ -250,10 +238,13 @@ header {
     border-radius: 12px;
     margin: 50px 0px;
 
-
     img {
         max-height: 100%;
         width: auto;
+    }
+
+    @include mobilelarge {
+        height: fit-content;
     }
 }
 

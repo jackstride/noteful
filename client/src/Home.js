@@ -140,10 +140,7 @@ const Home = ({ history }) => {
       </div>
       <div className="inner_container">
         <div className="row heading">
-          <h2
-            ref={two}
-            style={{ textAlign: "center", paddingTop: "50px", opacity: "0" }}
-          >
+          <h2 ref={two} style={{ textAlign: "center", opacity: "0" }}>
             Taking notes can help you focus <br></br>and better understand
             concepts
           </h2>

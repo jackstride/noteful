@@ -10,9 +10,7 @@ const Navigation = ({ auth }) => {
   const [light, isLight] = useState(false);
   const history = useHistory();
 
-  // Tooo lonmgggg
   useEffect(() => {
-    console.log("updated");
     if (
       history.location.pathname.includes("reg") ||
       history.location.pathname.includes("log") ||
@@ -22,7 +20,6 @@ const Navigation = ({ auth }) => {
     } else {
       isLight(false);
     }
-    console.log(light);
   }, [history.location.pathname]);
 
   return (

@@ -2,7 +2,6 @@ import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Form from "./loginForm";
 import SocialAuth from "../Register/socialAuth";
-import { ReactComponent as Jumping } from "../../../images/jumping.svg";
 import { clearErrors } from "../../../actions/errorActions";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import { Link } from "react-router-dom";
@@ -32,7 +31,7 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
                 <Logo className="mobile_change" />
               </Link>
               <h2>Welcome back</h2>
-              {errors ? <h2>{errors}</h2> : null}
+              {loginErrors ? <h2>{loginErrors}</h2> : null}
               <p>
                 Sign up for an account? <Link to="/register">Sign up</Link>
               </p>
