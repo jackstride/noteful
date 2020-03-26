@@ -27,18 +27,20 @@ const Register = props => {
       <section className="register">
         <div className="reg_container">
           <div className="form_container">
-            <Link to="/">
-              <Logo />
-            </Link>
-            <h2>Sign up</h2>
-            <p>
-              Already have an account? <Link to="/login">Sign in</Link>
-            </p>
-            {error ? (
-              <span className="error">Error: {error.toString()}</span>
-            ) : null}
+            <div className="auth_header">
+              <Link to="/">
+                <Logo className="mobile_change" />
+              </Link>
+              <h2>Sign up</h2>
+              <p>
+                Already have an account? <Link to="/login">Sign in</Link>
+              </p>
+              {error ? (
+                <span className="error">Error: {error.toString()}</span>
+              ) : null}
+            </div>
             <RegisterForm />
-            <span className="or">- - - - - - - - Or - - - - - - - - </span>
+
             <SocialAuth history={props.history} />
           </div>
         </div>

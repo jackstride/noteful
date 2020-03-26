@@ -11,25 +11,25 @@ import { loadUser } from "../../../actions/authActions";
 const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
   let [loginErrors, setErrors] = useState("");
 
-  useEffect(() => {
-    loadUser();
-  }, []);
+  // useEffect(() => {
+  //   loadUser();
+  // }, []);
 
-  useEffect(() => {
-    setErrors(errors);
-    return () => {
-      clearErrors();
-    };
-  }, [errors]);
+  // useEffect(() => {
+  //   setErrors(errors);
+  //   return () => {
+  //     clearErrors();
+  //   };
+  // }, [errors]);
 
   return (
     <section className="login">
       <div className="log_left">
         <div className="login_container">
           <div className="form_container">
-            <div className="login_header">
+            <div className="auth_header">
               <Link to="/">
-                <Logo />
+                <Logo className="mobile_change" />
               </Link>
               <h2>Welcome back</h2>
               {errors ? <h2>{errors}</h2> : null}
@@ -40,9 +40,6 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
             <Form history={history} />
             <p style={{ margin: "10px 0px" }}>
               Forgot your password? Click here{" "}
-            </p>
-            <p style={{ margin: "20px 0px", textAlign: "center" }}>
-              - - - - - - - - Or - - - - - - - -{" "}
             </p>
             <SocialAuth />
           </div>

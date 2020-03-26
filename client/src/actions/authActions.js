@@ -35,7 +35,6 @@ export const loadUser = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      console.log(err);
       if (err.message) {
         dispatch(returnErrors(err.response.data, err.response.status));
         dispatch({

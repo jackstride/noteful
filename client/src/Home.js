@@ -120,18 +120,20 @@ const Home = ({ history }) => {
             All<br></br>Devices.
           </h4>
         </div>
-        <div className="row heading">
-          <h2
-            ref={one}
-            className="f1"
-            style={{ textAlign: "center", paddingTop: "50px" }}
-          >
-            Organising things in one <br></br> place helps to eleminate stress.
-          </h2>
-        </div>
       </div>
       <div ref={two} className="bg_gradient">
         <div className="inner_container">
+          <div className="row heading">
+            <h2
+              ref={one}
+              className="f1"
+              style={{ textAlign: "center", paddingTop: "50px" }}
+            >
+              Organising things in one <br></br> place helps to eleminate
+              stress.
+            </h2>
+          </div>
+
           <LargeHeader
             cn={"f2"}
             className="one"
