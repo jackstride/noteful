@@ -45,8 +45,6 @@
         }
     }
 
-
-
     @include tablet {
 
         p {
@@ -151,6 +149,10 @@ form.auth_form {
     }
 
     @include tablet {
+
+        input {
+            color: white;
+        }
 
         input::placeholder,
         label {

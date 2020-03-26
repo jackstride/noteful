@@ -19,8 +19,9 @@ const Home = ({ history }) => {
         "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!"
     },
     {
-      heading: "Easier Workflow.",
-      text: "Workflow has never been easier wand simpler. Try it yourself."
+      heading: "Secure",
+      text:
+        "Noteful will only use https. We also encrypt your personal data when logging in. When you sign out, that data is no longer available."
     }
   ]);
   const [heading, setHeadings] = useState([
@@ -68,7 +69,7 @@ const Home = ({ history }) => {
   }
   if (entry2.isIntersecting) {
     let tt = document.querySelectorAll(".f2");
-    tt.forEach(thing => thing.classList.add("animated", "fadeIn"));
+    tt.forEach(thing => thing.classList.add("animated", "fadeInUp"));
   }
   if (entry3.isIntersecting) {
     let pp = document.querySelectorAll(".f3");
@@ -133,7 +134,6 @@ const Home = ({ history }) => {
               stress.
             </h2>
           </div>
-
           <LargeHeader
             cn={"f2"}
             className="one"
@@ -165,6 +165,12 @@ const Home = ({ history }) => {
         </div>
       </div>
       <div className="inner_container">
+        <div className="row heading">
+          <h2 style={{ textAlign: "center", paddingTop: "50px" }}>
+            Taking notes can help you focus <br></br>and better understand
+            concepts
+          </h2>
+        </div>
         <div className="app_photo">
           <img src={DashboardOne} alt="Dashboard"></img>
         </div>
@@ -180,15 +186,25 @@ const Home = ({ history }) => {
             );
           })}
         </div>
-        <LargeHeader
-          color="blue"
-          title={"Dark Mode"}
-          paragraph={
-            "Even google hasn't got dark mode, We're always one step adhead. To enable dark mode, visit the settings menu."
-          }
-        />
-        <div className="phone_app_image">
-          <img alt="noteful on iphone" src={PhonePreview}></img>
+      </div>
+      <div className="bg_gradient">
+        <div className="inner_container">
+          <LargeHeader
+            color="blue"
+            title={"Dark Mode"}
+            paragraph={
+              "Even google hasn't got dark mode, We're always one step ahead. To enable dark mode, visit the settings menu."
+            }
+          />
+          <div className="phone_app_image">
+            <img alt="noteful on iphone" src={PhonePreview}></img>
+          </div>
+          <LargeHeader
+            color="#F1B505"
+            title={information[2].heading}
+            paragraph={information[2].text}
+            reverse={true}
+          />
         </div>
       </div>
     </div>
