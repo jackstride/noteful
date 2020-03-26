@@ -11,16 +11,16 @@ import { loadUser } from "../../../actions/authActions";
 const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
   let [loginErrors, setErrors] = useState("");
 
-  // useEffect(() => {
-  //   loadUser();
-  // }, []);
+  useEffect(() => {
+    loadUser();
+  }, []);
 
-  // useEffect(() => {
-  //   setErrors(errors);
-  //   return () => {
-  //     clearErrors();
-  //   };
-  // }, [errors]);
+  useEffect(() => {
+    setErrors(errors);
+    return () => {
+      clearErrors();
+    };
+  }, [errors]);
 
   return (
     <section className="login">

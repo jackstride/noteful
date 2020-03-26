@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1fd35e99981fb71df4e4792e89ac2962",
+    "revision": "f1ce08ba52685e3309edffaa7d1ea50e",
     "url": "/index.html"
   },
   {
-    "revision": "27cfee326d1604847a1c",
-    "url": "/static/css/main.fd01c602.chunk.css"
+    "revision": "fe67b84d142f8a64a4b2",
+    "url": "/static/css/main.b128bf6a.chunk.css"
   },
   {
-    "revision": "3aa8ae9f7520cdc570c7",
-    "url": "/static/js/2.12db0021.chunk.js"
+    "revision": "f19fdf94d2a75ec600a4",
+    "url": "/static/js/2.b8458aea.chunk.js"
   },
   {
     "revision": "7ff957ca521136d64f7f493dc27b7fac",
-    "url": "/static/js/2.12db0021.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.b8458aea.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "27cfee326d1604847a1c",
-    "url": "/static/js/main.09c3f95e.chunk.js"
+    "revision": "fe67b84d142f8a64a4b2",
+    "url": "/static/js/main.0b314377.chunk.js"
   },
   {
     "revision": "5d93c6b2d15332364552",
@@ -36,8 +36,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/google.7e5484e9.svg"
   },
   {
-    "revision": "4a7c15908292644263fab8a1b15456ae",
-    "url": "/static/media/header.4a7c1590.png"
+    "revision": "9363a385cfdd2ab742c6dbc42053aeb5",
+    "url": "/static/media/header.9363a385.jpg"
   },
   {
     "revision": "8c2b54c08dee8f2f00a2922a71a34311",
@@ -60,23 +60,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/noteful_logo.643d8225.svg"
   },
   {
-    "revision": "d748d1533598f2b67549e5082d08d4e0",
-    "url": "/static/media/pencil.d748d153.png"
+    "revision": "8ee820003f3bc06201cce3ee57d81e3a",
+    "url": "/static/media/pencil.8ee82000.png"
   },
   {
-    "revision": "d8068246462da9730fa2af934076cd84",
-    "url": "/static/media/reading_book.d8068246.png"
+    "revision": "a276f542c0e6e78f8c0b69ab33ce41cb",
+    "url": "/static/media/reading_book.a276f542.jpg"
   },
   {
     "revision": "33c6d7a5d86b5b29e04807f0255df2c4",
     "url": "/static/media/register_image.33c6d7a5.png"
   },
   {
-    "revision": "71a81e379e66a845d59f4d4eb4e93684",
-    "url": "/static/media/searching.71a81e37.png"
+    "revision": "133d03343e84ebff90844a6033df0177",
+    "url": "/static/media/searching.133d0334.jpg"
   },
   {
-    "revision": "3d59355a345697781c29d7e1593cf92c",
-    "url": "/static/media/stacking.3d59355a.png"
+    "revision": "5ea6c2a57c10590aa64ced9d7bb83523",
+    "url": "/static/media/stacking.5ea6c2a5.jpg"
   }
 ]);
