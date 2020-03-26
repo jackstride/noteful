@@ -131,7 +131,7 @@ let Mobilenav = ({ auth }) => {
                 </div>
               )}
               <div className="website_links">
-                <hr class="navhr"></hr>
+                <hr className="navhr"></hr>
                 <li onClick={() => handleOnClick()}>
                   <Link to="/features">Features</Link>
                 </li>

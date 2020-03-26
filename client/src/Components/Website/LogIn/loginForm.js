@@ -42,7 +42,7 @@ const Form = ({ isAuthenticated, error, history, login }) => {
         handleSubmit(event);
       }}
     >
-      <label for="email">Email Address</label>
+      <label htmlFor="email">Email Address</label>
       <input
         className={!emptyEmail ? "error" : null}
         onChange={e => setValues({ ...values, email: e.target.value })}
@@ -51,7 +51,7 @@ const Form = ({ isAuthenticated, error, history, login }) => {
         placeholder="example@noteful.app"
       ></input>
 
-      <label for="password">Password</label>
+      <label htmlFor="password">Password</label>
       <input
         className={!emptyPassword ? "error" : null}
         onChange={e => setValues({ ...values, password: e.target.value })}

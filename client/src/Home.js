@@ -4,7 +4,7 @@ import PhonePreview from "./images/iphone_preview.png";
 import HeaderImage from "./images/header.png";
 import LargeHeader from "./Components/Website/LargeHeader";
 import DashboardOne from "./images/dashboard_nav.jpg";
-import useIntersect from "./Components/Website/useIntersect";
+import HomeIntersect from "./Components/Intersects/HomeIntersect";
 
 const Home = ({ history }) => {
   const [information, setInformation] = useState([
@@ -54,27 +54,7 @@ const Home = ({ history }) => {
     }
   ]);
 
-  const [one, entry] = useIntersect({
-    threshold: 0.8
-  });
-  const [two, entry2] = useIntersect({
-    threshold: 0.5
-  });
-  const [three, entry3] = useIntersect({
-    threshold: 1
-  });
-  if (entry.isIntersecting) {
-    let things = document.querySelectorAll(".f1");
-    things.forEach(thing => thing.classList.add("animated", "fadeIn"));
-  }
-  if (entry2.isIntersecting) {
-    let tt = document.querySelectorAll(".f2");
-    tt.forEach(thing => thing.classList.add("animated", "fadeInUp"));
-  }
-  if (entry3.isIntersecting) {
-    let pp = document.querySelectorAll(".f3");
-    pp.forEach(thing => thing.classList.add("animated", "fadeInUp"));
-  }
+  let [one, two, three] = HomeIntersect();
 
   let handleSubmit = e => {
     e.preventDefault();
