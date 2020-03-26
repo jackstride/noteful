@@ -57,6 +57,8 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
         <ShowError
           toggleShow={() => {
             setShow(false);
+            clearErrors();
+            setShow(true);
           }}
           message={loginErrors}
         />

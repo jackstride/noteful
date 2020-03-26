@@ -3,24 +3,25 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { clearErrors } from "../../../actions/errorActions";
-
 import RegisterForm from "./registerForm";
 import SocialAuth from "./socialAuth.js";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import RegisterImage from "../../../images/register_image.png";
+import ShowError from "../ShowError";
 
-const Register = props => {
+const Register = ({ history, message, clearErrors }) => {
   const [error, setError] = useState();
+  let [sent, setSent] = useState(false);
+  let [show, setShow] = useState(true);
 
   useEffect(() => {
-    if (props.message) {
-      setError(props.message);
-    }
+    setError(message);
+    setSent(false);
+  }, [message]);
 
-    return () => {
-      props.clearErrors();
-    };
-  }, [props.message]);
+  useEffect(() => {
+    return () => clearErrors();
+  }, []);
 
   return (
     <Fragment>
@@ -36,13 +37,14 @@ const Register = props => {
                 <p>
                   Already have an account? <Link to="/login">Sign in</Link>
                 </p>
-                {error ? (
-                  <span className="error">Error: {error.toString()}</span>
-                ) : null}
               </div>
-              <RegisterForm />
-
-              <SocialAuth history={props.history} />
+              <RegisterForm
+                sent={sent}
+                toggleSent={() => {
+                  setSent(!sent);
+                }}
+              />
+              <SocialAuth />
             </div>
           </div>
         </div>
@@ -76,6 +78,16 @@ const Register = props => {
           </div>
         </div>
       </section>
+      {show ? (
+        <ShowError
+          toggleShow={() => {
+            setShow(false);
+            clearErrors();
+            setShow(true);
+          }}
+          message={error}
+        />
+      ) : null}
     </Fragment>
   );
 };

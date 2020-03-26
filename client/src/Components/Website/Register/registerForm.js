@@ -1,84 +1,97 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import { register } from "../../../actions/authActions";
 
-class R_Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formValues: {},
-      errors: []
-    };
-  }
+const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
+  let [formValues, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
 
-  static propTypes = {
-    isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired,
-    register: PropTypes.func.isRequired
+  // let propTypes = {
+  //   isAuthenticated: PropTypes.bool,
+  //   error: PropTypes.object.isRequired,
+  //   register: PropTypes.func.isRequired
+  // };
+
+  let handleSubmit = e => {
+    e.preventDefault();
+    toggleSent();
+    register(formValues);
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    this.setState({ errors: [] });
-    let { formValues } = this.state;
-    formValues.firstName = event.target.firstName.value;
-    formValues.lastName = event.target.lastName.value;
-    formValues.email = event.target.email.value;
-    formValues.password = event.target.password.value;
-    this.setState({ formValues });
-    this.props.register(formValues);
-  };
-
-  render() {
-    return (
-      <div>
-        {this.state.errors.length > 0 ? (
-          <div className="register_errors">
-            <h2>There appears to be some errors:</h2>
-            {this.state.errors.map((error, index) => {
-              return (
-                <li key={`${error}${index}`}>
-                  <span className="error">{error}</span>
-                </li>
-              );
-            })}
-          </div>
-        ) : null}
-        <form className="auth_form" onSubmit={this.handleSubmit}>
-          <label htmlFor="name">First Name</label>
-          <input type="text" name="firstName" placeholder="eg: John"></input>
-          <label htmlFor="lastName">Last Name</label>
-          <input
-            className={{}}
-            type="text"
-            name="lastName"
-            placeholder="eg: Smith"
-          ></input>
-          <label htmlFor="email">Last Name</label>
-          <input
-            type="text"
-            name="email"
-            placeholder="example@noteful.app"
-          ></input>
-          <label htmlFor="password">Last Name</label>
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-          ></input>
-          <span></span>
+  return (
+    <div>
+      <form method="post" className="auth_form" onSubmit={e => handleSubmit(e)}>
+        <label htmlFor="name">First Name</label>
+        <input
+          onChange={e => {
+            setValues({
+              ...formValues,
+              firstName: e.target.value
+            });
+          }}
+          type="text"
+          name="firstName"
+          placeholder="eg: John"
+        ></input>
+        <label htmlFor="lastName">Last Name</label>
+        <input
+          onChange={e => {
+            setValues({
+              ...formValues,
+              lastName: e.target.value
+            });
+          }}
+          type="text"
+          name="lastName"
+          placeholder="eg: Smith"
+        ></input>
+        <label htmlFor="email">Last Name</label>
+        <input
+          onChange={e => {
+            setValues({
+              ...formValues,
+              email: e.target.value
+            });
+          }}
+          type="text"
+          name="email"
+          placeholder="example@noteful.app"
+        ></input>
+        <label htmlFor="password">Last Name</label>
+        <input
+          onChange={e => {
+            setValues({
+              ...formValues,
+              password: e.target.value
+            });
+          }}
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+        ></input>
+        <span></span>
+        {sent ? (
+          <div className="loader"></div>
+        ) : (
           <input type="submit" name="submit" value="Sign up"></input>
-        </form>
-      </div>
-    );
-  }
-}
+        )}
+      </form>
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  error: state.error
+  isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { register })(R_Form);
+const mapDispatchToProps = () => dispatch => ({
+  register: values => dispatch(register(values))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(R_Form);

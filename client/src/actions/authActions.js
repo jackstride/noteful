@@ -42,6 +42,7 @@ export const loadUser = () => (dispatch, getState) => {
 };
 
 export const register = formValues => dispatch => {
+  console.log(formValues);
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/user/register", formValues)
     .then(res =>
@@ -52,7 +53,10 @@ export const register = formValues => dispatch => {
     )
     .catch(err => {
       dispatch(
-        returnErrors(err.response.data, err.response.status, "REGISTER_FAIL")
+        returnErrors(
+          err.response.data.error.message,
+          err.response.data.error.status
+        )
       );
       dispatch({
         type: REGISTER_FAIL
