@@ -5,6 +5,7 @@ header {
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 1fr;
+    margin-top: 100px;
 
     @include tablet {
         height: fit-content;
@@ -89,13 +90,11 @@ header {
     justify-content: center;
     padding: 20px;
 
-
     img {
-        max-width: 100%;
-        height: auto;
+        max-height: 100%;
+        width: auto;
     }
 }
-
 
 .row.heading {
     margin: 100px 0px;

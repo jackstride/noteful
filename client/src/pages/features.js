@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import "../fontawesome";
-import Swing from "../images/reading_book.png";
+import Swing from "../images/reading_book.jpg";
 import Pencil from "../images/pencil.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 import FeaturesIntersect from "../Components/Intersects/FeaturesIntersect";
@@ -46,7 +46,7 @@ const Features = () => {
       "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
   });
 
-  let [one, two] = FeaturesIntersect();
+  let [one, two, three] = FeaturesIntersect();
 
   return (
     <Fragment>
@@ -61,6 +61,7 @@ const Features = () => {
               </div>
               <div className="feature_image">
                 <LargeHeader
+                  ref={three}
                   cn="animated fadeInUp"
                   title="Jump straight in"
                   paragraph={section.text}

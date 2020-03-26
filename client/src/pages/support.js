@@ -2,7 +2,7 @@ import React, { Component, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontawesome";
 import LargeHeader from "../Components/Website/LargeHeader";
-import Stacking from "../images/stacking.png";
+import Stacking from "../images/stacking.jpg";
 import { connect } from "react-redux";
 import { supportRequest } from "../actions/authActions";
 import SupportIntersect from "../Components/Intersects/SupportIntersect";
@@ -70,11 +70,6 @@ const Support = ({ supportRequest }) => {
           </div>
         </div>
 
-        <LargeHeader
-          title="!@#%*#$%"
-          paragraph="We understand how you feel. Deep breathe. Use the below information to contact us! We aim to reply within an hour."
-          color="blue"
-        />
         <div className="support_bg">
           <section className="contact_cards">
             {social.map((item, i) => (

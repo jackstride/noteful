@@ -6,12 +6,15 @@ export default () => {
   });
 
   const [two, entry2] = useIntersect({
-    threshold: 0.5
+    threshold: 0.8
+  });
+
+  const [three, entry3] = useIntersect({
+    threshold: 0.8
   });
 
   if (entry.isIntersecting) {
     let el = document.querySelector(".features2 .small_heading");
-
     el.classList.add("animated", "fadeInUp");
   }
 
@@ -21,5 +24,9 @@ export default () => {
     el.forEach(element => element.classList.add("animated", "fadeInUp"));
     heading.classList.add("animated", "fadeInUp");
   }
-  return [one, two];
+  if (entry3.isIntersecting) {
+    entry3.target.classList.add("animated", "fadeInUp");
+  }
+
+  return [one, two, three];
 };

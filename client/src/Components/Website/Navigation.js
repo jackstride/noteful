@@ -12,14 +12,17 @@ const Navigation = ({ auth }) => {
 
   // Tooo lonmgggg
   useEffect(() => {
+    console.log("updated");
     if (
       history.location.pathname.includes("reg") ||
-      history.location.pathname.includes("log")
+      history.location.pathname.includes("log") ||
+      history.location.pathname.includes("fea")
     ) {
       isLight(true);
     } else {
       isLight(false);
     }
+    console.log(light);
   }, [history.location.pathname]);
 
   return (
@@ -27,22 +30,36 @@ const Navigation = ({ auth }) => {
       <div className="inner_container center_center">
         <div className="tablet_logo">
           <Link to="/">
-            <img alt="NoteFul Logo" src={Logo}></img>
+            {light ? (
+              <img alt="NoteFul Logo" src={WhiteLogo}></img>
+            ) : (
+              <img alt="NoteFul Logo" src={Logo}></img>
+            )}
           </Link>
         </div>
         <nav className="website_nav">
           <Link to="/">
-            <img alt="NoteFul Logo" src={Logo}></img>
+            {light ? (
+              <img alt="NoteFul Logo" src={WhiteLogo}></img>
+            ) : (
+              <img alt="NoteFul Logo" src={Logo}></img>
+            )}
           </Link>
           <ul>
             <li>
-              <Link to="/features">Features</Link>
+              <Link style={light ? { color: "white" } : null} to="/features">
+                Features
+              </Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link style={light ? { color: "white" } : null} to="/about">
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/support">Support</Link>
+              <Link style={light ? { color: "white" } : null} to="/support">
+                Support
+              </Link>
             </li>
           </ul>
         </nav>
@@ -51,7 +68,12 @@ const Navigation = ({ auth }) => {
             {!auth ? (
               <Fragment>
                 <li>
-                  <Link to="/register">Sign Up</Link>
+                  <Link
+                    style={light ? { color: "white" } : null}
+                    to="/register"
+                  >
+                    Sign Up
+                  </Link>
                 </li>
                 <span className="circle_border">
                   <Link to="/login">Login</Link>

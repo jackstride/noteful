@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PhonePreview from "./images/iphone_preview.png";
-import HeaderImage from "./images/header.png";
+import HeaderImage from "./images/header.jpg";
 import LargeHeader from "./Components/Website/LargeHeader";
 import DashboardOne from "./images/dashboard_nav.jpg";
 import HomeIntersect from "./Components/Intersects/HomeIntersect";

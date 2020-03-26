@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import Searching from "../images/searching.png";
+import Searching from "../images/searching.jpg";
 import LargeHeader from "../Components/Website/LargeHeader";
 import { Link } from "react-router-dom";
 import AboutInsersect from "../Components/Intersects/AboutInsersect";
@@ -22,28 +22,30 @@ const About = () => {
 
   return (
     <Fragment>
-      <div className="inner_container">
-        <div className="about_title">
-          <h2 ref={one}>
-            Smart,simple and <br></br> ready to use.
-          </h2>
+      <div className="about">
+        <div className="inner_container">
+          <div className="about_title">
+            <h2 ref={one}>
+              Smart,simple and <br></br> ready to use.
+            </h2>
+          </div>
+          <div ref={two} className="about_image">
+            <img src={Searching} alt="Man Searching"></img>
+          </div>
+          <LargeHeader
+            ref={three}
+            title={content[0].title}
+            paragraph={content[0].paragraph}
+            color="blue"
+          />
+          <LargeHeader
+            ref={four}
+            title={content[1].title}
+            paragraph={content[1].paragraph}
+            reverse={true}
+            color="#F1B505"
+          />
         </div>
-        <div ref={two} className="about_image">
-          <img src={Searching} alt="Man Searching"></img>
-        </div>
-        <LargeHeader
-          ref={three}
-          title={content[0].title}
-          paragraph={content[0].paragraph}
-          color="blue"
-        />
-        <LargeHeader
-          ref={four}
-          title={content[1].title}
-          paragraph={content[1].paragraph}
-          reverse={true}
-          color="#F1B505"
-        />
       </div>
       <div ref={five} className="bg_gradient">
         <div className="inner_container">
