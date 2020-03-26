@@ -81,6 +81,7 @@ const Register = ({ history, message, clearErrors }) => {
       {show ? (
         <ShowError
           toggleShow={() => {
+            // Probably a better way to do this but i'm tired
             setShow(false);
             clearErrors();
             setShow(true);

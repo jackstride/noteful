@@ -128,3 +128,13 @@ export const supportRequest = formValues => dispatch => {
       });
     });
 };
+
+export const forgotPassword = value => dispatch => {
+  axios
+    .post(process.env.REACT_APP_ENDPOINT + "/user/reset", value, {
+      withCredentials: true
+    })
+    .then(res => {
+      console.log("sent");
+    });
+};

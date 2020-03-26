@@ -137,11 +137,90 @@ router.patch("/update/:_id", async (req, res, next) => {
     if (update) {
       return res.status(200).json({ message: "User Updated" });
     } else {
-      returnnext(newcreateError(500, "Problem with server"));
+      return next(newcreateError(500, "Problem with server"));
     }
   } else {
     return next(newcreateError(500, "Problem with server"));
   }
+});
+
+router.post("/reset", async (req, res, next) => {
+  let { email } = req.body;
+  let saltRounds = 5;
+
+  let found = await User.find({ email }).exec();
+
+  if (found) {
+    let user = found[0]._id;
+
+    let string =
+      Math.random()
+        .toString(36)
+        .substring(2, 15) +
+      Math.random()
+        .toString(36)
+        .substring(2, 15);
+
+    let salt = await bcrypt.genSaltSync(saltRounds);
+
+    if (salt) {
+      hash = await bcrypt.hash(string, salt);
+
+      if (hash) {
+        console.log(hash);
+        let update = await User.findByIdAndUpdate({ _id: user });
+
+        return res.status(200).json({ message: "User Updated" });
+        //// Update the password here and send it in an email
+      } else {
+        return next(createError(500, "hash not found"));
+      }
+    } else {
+      return next(createError(500, "Salt Failed"));
+    }
+  } else {
+    return next(createError(500, "User not found"));
+  }
+
+  // if (found) {
+  // /// https://gist.github.com/6174/6062387 Did'nt want to spend long gen string
+  //   let random =
+  //     Math.random()
+  //       .toString(36)
+  //       .substring(2, 15) +
+  //     Math.random()
+  //       .toString(36)
+  //       .substring(2, 15);
+
+  //       if (user.length >= 1) {
+  //         return next(createError(409, "User Exists with this email"));
+  //       } else {
+  //         salt = await bcrypt.genSaltSync(saltRounds);
+  //       }
+
+  //       if (salt) {
+  //         hash = await bcrypt.hash(password, salt);
+  //       } else {
+  //         return next(createError(500, " Salt Server Error"));
+  //       }
+
+  //       if (hash) {
+  //         user = new User({
+  //           _id: new mongoose.Types.ObjectId(),
+  //           firstName: firstName,
+  //           lastName: lastName,
+  //           email: email,
+  //           password: hash
+  //         });
+  //       } else {
+  //         return next(createError(500, " Database register error"));
+  //       }
+
+  // } else {
+  //   next(newcreateError(500, "Problem with server"));
+  // }
+
+  res.status(200).json({ hi: "hi" });
 });
 
 module.exports = router;

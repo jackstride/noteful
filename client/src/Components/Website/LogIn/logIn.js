@@ -14,6 +14,7 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
   let [show, setShow] = useState(true);
 
   useEffect(() => {
+    loadUser();
     setErrors(errors);
     setSent(false);
   }, [errors]);
@@ -46,7 +47,7 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
               history={history}
             />
             <p style={{ margin: "10px 0px" }}>
-              Forgot your password? Click here{" "}
+              Forgot your password? <Link to="/login/forgot">Click here</Link>
             </p>
             <SocialAuth />
           </div>

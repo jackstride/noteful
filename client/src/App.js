@@ -16,6 +16,7 @@ import LogOut from "./Components/Website/logout";
 import Features from "./pages/features.js";
 import Support from "./pages/support";
 import About from "./pages/About";
+import Forgot from "./Components/Website/LogIn/ForgotPassword";
 
 class App extends Component {
   static propTypes = {
@@ -53,7 +54,8 @@ class App extends Component {
   LoginContainer = () => {
     return (
       <Fragment>
-        <Route path="/login" render={props => <LogIn {...props} />} />
+        <Route exact path="/login" render={props => <LogIn {...props} />} />
+        <Route path="/login/forgot" render={props => <Forgot {...props} />} />
       </Fragment>
     );
   };
