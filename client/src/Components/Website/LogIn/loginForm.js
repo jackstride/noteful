@@ -4,14 +4,13 @@ import PropTypes from "prop-types";
 
 import { login } from "../../../actions/authActions";
 
-const Form = ({ isAuthenticated, error, history, login }) => {
+const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
   let [values, setValues] = useState({
     email: " ",
     password: " "
   });
   let [emptyEmail, setEmptyEmail] = useState(true);
   let [emptyPassword, setEmptyPassword] = useState(true);
-  let [sent, setSent] = useState(false);
 
   let propTypes = {
     isAuthenticated: PropTypes.bool,
@@ -32,7 +31,7 @@ const Form = ({ isAuthenticated, error, history, login }) => {
   let handleSubmit = event => {
     event.preventDefault();
     login(values);
-    setSent(true);
+    setSent();
   };
 
   return (
@@ -60,12 +59,16 @@ const Form = ({ isAuthenticated, error, history, login }) => {
         placeholder="Enter your password"
       ></input>
       <span></span>
-      <input
-        className="login_submit"
-        style={sent ? { backgroundColor: "green" } : null}
-        type="submit"
-        value="Login"
-      ></input>
+      {!sent ? (
+        <input
+          className="login_submit"
+          style={sent ? { backgroundColor: "green" } : null}
+          type="submit"
+          value="Login"
+        ></input>
+      ) : (
+        <div className="loader"></div>
+      )}
     </form>
   );
 };

@@ -16,7 +16,7 @@ router.get("/", auth, async (req, res, next) => {
   } catch (err) {
     return res
       .send(401)
-      .json({ message: "there was an error" })
+      .json({ message: "" })
       .redirect("https://noteful.app/dashboard");
   }
 });

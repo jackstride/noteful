@@ -9,6 +9,6 @@ module.exports = async (req, res, next) => {
     req.user = decoded;
     return next();
   } catch (err) {
-    return next(createError(404, "There was an error"));
+    return res.status(401);
   }
 };

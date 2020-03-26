@@ -6,20 +6,23 @@ import { clearErrors } from "../../../actions/errorActions";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import { Link } from "react-router-dom";
 import { loadUser } from "../../../actions/authActions";
+import ShowError from "../ShowError";
 
 const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
-  let [loginErrors, setErrors] = useState("");
-
-  useEffect(() => {
-    loadUser();
-  }, []);
+  let [loginErrors, setErrors] = useState();
+  let [sent, setSent] = useState(false);
+  let [show, setShow] = useState(true);
 
   useEffect(() => {
     setErrors(errors);
+    setSent(false);
+  }, [errors]);
+
+  useEffect(() => {
     return () => {
       clearErrors();
     };
-  }, [errors]);
+  }, []);
 
   return (
     <section className="login">
@@ -31,12 +34,17 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
                 <Logo className="mobile_change" />
               </Link>
               <h2>Welcome back</h2>
-              {loginErrors ? <h2>{loginErrors}</h2> : null}
               <p>
                 Sign up for an account? <Link to="/register">Sign up</Link>
               </p>
             </div>
-            <Form history={history} />
+            <Form
+              setSent={() => {
+                setSent(!sent);
+              }}
+              sent={sent}
+              history={history}
+            />
             <p style={{ margin: "10px 0px" }}>
               Forgot your password? Click here{" "}
             </p>
@@ -45,6 +53,14 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
         </div>
       </div>
       <div className="log_right"></div>
+      {show ? (
+        <ShowError
+          toggleShow={() => {
+            setShow(false);
+          }}
+          message={loginErrors}
+        />
+      ) : null}
     </section>
   );
 };

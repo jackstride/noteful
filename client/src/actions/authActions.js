@@ -35,14 +35,9 @@ export const loadUser = () => (dispatch, getState) => {
       });
     })
     .catch(err => {
-      if (err.response) {
-        dispatch(returnErrors(err.response.data, err.response.status));
-        dispatch({
-          type: AUTH_ERROR
-        });
-      } else {
-        throw err;
-      }
+      dispatch({
+        type: AUTH_ERROR
+      });
     });
 };
 
@@ -66,24 +61,29 @@ export const register = formValues => dispatch => {
 };
 
 export const login = formValues => dispatch => {
-  console.log(formValues);
   axios({
     method: "post",
     url: process.env.REACT_APP_ENDPOINT + "/user/login",
     data: formValues,
     withCredentials: true
-  }).then(res => {
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data
+  })
+    .then(res => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch(
+        returnErrors(
+          err.response.data.error.message,
+          err.response.data.error.status
+        )
+      );
+      dispatch({
+        type: LOGIN_FAIL
+      });
     });
-  });
-  // .catch(err => {
-  //   dispatch(returnErrors(err.response.data));
-  //   dispatch({
-  //     type: LOGIN_FAIL
-  //   });
-  // });
 };
 
 export const logout = () => dispatch => {
