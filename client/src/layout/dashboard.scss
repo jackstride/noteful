@@ -121,7 +121,9 @@
 
 
     @include tablet {
-        height: calc(100vh / 3);
+        height: fit-content;
+        max-height: calc(100vh / 3);
+
 
         .widget_content ul {
             grid-auto-rows: 50px;
@@ -262,36 +264,32 @@
 
 .input_holder {
     .f_form {
-        position: relative;
-        width: inherit;
         background: transparent;
 
         input {
-            width: 100%;
-            // user-select: none;
+            padding-left: 10px;
+            width: calc(100% - 10px);
             border: none;
             font-size: 14px;
             color: $DarkGrey;
             font-weight: 500;
-            padding: 5px 0px;
-            background-color: transparent;
-            border-radius: 8px;
+            background-color: grey;
+            height: 30px;
+
         }
 
         input::placeholder {
             color: rgb(150, 150, 150);
         }
-
-
     }
-
 
     @include tablet {
         .f_form {
             input {
-                margin-left: 10px;
                 font-size: 1em;
                 font-weight: 500;
+                height: 50px;
+                background-color: lightgrey;
             }
         }
     }
@@ -361,13 +359,15 @@ form.task_form {
         }
 
         .complete {
-            color: green;
-            background-color: greenyellow;
+            color: #21bf73;
+            background-color: #b0eacd;
+            border: 1.5px solid #21bf73;
         }
 
         .outstanding {
             background-color: lightgrey;
-            color: grey;
+            color: rgb(180, 180, 180);
+            border: 1.5px solid rgb(180, 180, 180);
         }
 
 
