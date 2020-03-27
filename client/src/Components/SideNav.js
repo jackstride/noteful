@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Folders from "./Dashboard/NavItem/Folders";
 import Tasks from "./Dashboard/NavItem/Tasks";
+import Notes from "./Dashboard/NavItem/Notes";
+
 import { getFolder } from "../actions/FolderActions";
 import { loadTasks } from "../actions/taskActions";
 import { connect } from "react-redux";
@@ -67,6 +69,7 @@ class SideBar extends Component {
             <span>Sign out</span>
           </div>
         </Link>
+        <Notes />
         <Folders />
         <Tasks userId={this.props.userId} data={this.props.taskData} />
       </div>

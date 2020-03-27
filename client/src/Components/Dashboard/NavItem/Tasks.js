@@ -59,6 +59,7 @@ class Todo extends Component {
                 id={`check${index}`}
                 onChange={() => this.handleToggle(key._id)}
               />
+
               {key.isCompleted ? (
                 <div className="item complete">
                   <FontAwesomeIcon icon="check" />
@@ -85,22 +86,20 @@ class Todo extends Component {
               onClick={e => this.onRightClicked(e)}
               value={key.folder_name}
             >
-              <FontAwesomeIcon icon="ellipsis-v" size="1x"></FontAwesomeIcon>
+              <FontAwesomeIcon icon="ellipsis-v"></FontAwesomeIcon>
             </button>
             <button
               style={{ display: "block" }}
               onClick={e => this.onRemoveFolder(e, key._id)}
               value={key.folder_name}
             >
-              <FontAwesomeIcon icon="trash" size="1x"></FontAwesomeIcon>
+              <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
             </button>
           </div>
         ))}
       </form>
     );
   };
-
-  removeTask = () => {};
 
   render() {
     return (
