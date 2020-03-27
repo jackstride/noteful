@@ -90,7 +90,7 @@ router.post("/login", cookieParser(), async (req, res, next) => {
         if (token) {
           return res
             .cookie("__session", token, {
-              expires: new Date(Date.now() + 900000)
+              expires: new Date(Date.now() + 9000000)
               // httpOnly: true,
               // secure: true,
               // domain: ".noteful.app"

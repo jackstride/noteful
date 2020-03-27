@@ -275,7 +275,6 @@
             font-weight: 500;
             background-color: grey;
             height: 30px;
-
         }
 
         input::placeholder {
@@ -304,8 +303,7 @@ form.task_form {
 
     .task_data {
         display: grid;
-        grid-template-columns: 30px 150px 20px 20px;
-        gap: 20px;
+        grid-template-columns: 10% 60% 15% 15%;
         align-items: center;
         margin-left: 10px;
         align-items: center;
@@ -375,6 +373,11 @@ form.task_form {
             grid-template-rows: 50px;
         }
 
+    }
+
+    .task_isCompleted {
+        color: #21bf73 !important;
+        text-decoration: line-through;
     }
 
 
