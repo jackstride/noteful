@@ -69,7 +69,7 @@ class Folders extends Component {
                 name={key.folder_name}
                 to={`/dashboard/folder/${key._id}`}
               >
-                <li key={index}>{key.folder_name}</li>
+                {key.folder_name}
               </Link>
               <button
                 id={key._id}
@@ -104,16 +104,14 @@ class Folders extends Component {
           ></div>
         </div>
         <div className="widget_content">
-          <div className="w_contents">
-            {this.props.isOpen ? (
-              <WidgetSubmit
-                addFolder={this.props.addFolder}
-                userid={this.props.userId}
-                toggle={this.props.toggleFolderOpen}
-              />
-            ) : null}
-            {this.showFolders()}
-          </div>
+          {this.props.isOpen ? (
+            <WidgetSubmit
+              addFolder={this.props.addFolder}
+              userid={this.props.userId}
+              toggle={this.props.toggleFolderOpen}
+            />
+          ) : null}
+          {this.showFolders()}
         </div>
       </div>
     );

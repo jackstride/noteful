@@ -12,6 +12,16 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     animation: growRight .4s ease;
     z-index: 1;
+
+    @include tablet {
+        max-height: calc(100vh - 100px);
+        height: 100vh;
+        width: 95%;
+        top: 100px;
+        left: 0;
+        border-radius: 0px;
+        background-color: rgb(240, 240, 240);
+    }
 }
 
 
@@ -42,6 +52,15 @@
         color: $AppDarkGrey;
         margin-left: 5px;
         font-size: 14px;
+    }
+
+
+    @include tablet {
+        span {
+            font-size: 1em;
+            font-weight: 500;
+            color: rgb(80, 80, 80);
+        }
     }
 
 }
@@ -96,10 +115,59 @@
 .widget {
     max-height: 50%;
     height: 150px;
-    width: 90%;
-    margin: 10px auto;
+    width: 100%;
+    margin-top: 10px;
     border-radius: 5px;
-    overflow-y: scroll;
+
+
+    @include tablet {
+        height: calc(100vh / 3);
+
+        .widget_content ul {
+            grid-auto-rows: 50px;
+            align-items: center;
+
+            :last-child {
+                border-bottom: 1px solid #d3d3d3;
+            }
+
+            .input_multiple {
+                align-items: center;
+                border-top: 1px solid #d3d3d3;
+
+                a {
+                    font-weight: 500;
+                    letter-spacing: .2px;
+                    color: rgb(80, 80, 80);
+                    margin-left: 10px;
+                }
+
+
+                :nth-child(-n+2) {
+                    border-top: 1px solid #d3d3d3;
+                }
+
+
+                :nth-child(-n+3) {
+                    border-top: none;
+                    border-bottom: none;
+                }
+
+                :first-child,
+                :nth-child(3n+1) {
+                    border-left: none;
+
+                }
+
+                button {
+                    font-size: 16px;
+                    height: 100%;
+                }
+            }
+
+
+        }
+    }
 }
 
 .widget_header {
@@ -107,17 +175,25 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+
+    h4 {
+        margin-left: 10px;
+    }
 }
 
 .widget_content {
+    height: 100%;
     width: 100%;
     margin: 0 auto;
+    overflow-y: scroll;
+
 
     ul {
         height: 100%;
         display: grid;
         grid-auto-rows: 30px;
         align-items: center;
+
     }
 
 
@@ -144,6 +220,7 @@
             display: block;
             font-size: 12px;
 
+
             svg {
                 pointer-events: none;
             }
@@ -167,12 +244,6 @@
     }
 }
 
-.w_contents {
-
-    height: 100%;
-
-
-}
 
 .plus {
     display: inline-block;
@@ -203,8 +274,25 @@
             color: $DarkGrey;
             font-weight: 500;
             padding: 5px 0px;
-
+            background-color: transparent;
             border-radius: 8px;
+        }
+
+        input::placeholder {
+            color: rgb(150, 150, 150);
+        }
+
+
+    }
+
+
+    @include tablet {
+        .f_form {
+            input {
+                margin-left: 10px;
+                font-size: 1em;
+                font-weight: 500;
+            }
         }
     }
 }
@@ -212,14 +300,26 @@
 /* Tasks Form */
 
 form.task_form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-auto-rows: 30px;
+    gap: 10px;
 
     .task_data {
-        padding: 10px 0px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: 30px 150px 20px 20px;
+        gap: 20px;
+        align-items: center;
+        margin-left: 10px;
+        align-items: center;
+    }
+
+    p {
+        font-weight: 500;
+        letter-spacing: .2px;
+        color: rgb(80, 80, 80);
+        margin-left: 10px;
+        font-size: 1em;
+        ;
     }
 
     label {
@@ -231,13 +331,57 @@ form.task_form {
         width: 100%;
     }
 
-    input {
-        height: 20px;
-        width: 20px;
-        display: none;
-        cursor: pointer;
-        padding-right: 20px;
+
+    .task_toggle {
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        input {
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer;
+            padding-right: 20px;
+        }
+
+        .item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-color: blue;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .complete {
+            color: green;
+            background-color: greenyellow;
+        }
+
+        .outstanding {
+            background-color: lightgrey;
+            color: grey;
+        }
+
+
+        @include tablet {
+            grid-template-rows: 50px;
+        }
+
     }
+
+
+
+
+
+
 
     label {
         position: relative;
@@ -245,31 +389,41 @@ form.task_form {
         border-radius: 50%;
     }
 
-    label:before {
-        content: '';
-        height: 15px;
-        width: 15px;
-        background-color: transparent;
-        border: 1.5px solid rgba(128, 128, 128, 0.507);
-        display: inline-block;
-        position: relative;
-        vertical-align: middle;
-        cursor: pointer;
-        border-radius: 5px;
-        margin-right: 5px;
-    }
+    // label:before {
+    //     content: '';
+    //     height: 15px;
+    //     width: 15px;
+    //     background-color: transparent;
+    //     border: 1.5px solid rgba(128, 128, 128, 0.507);
+    //     display: inline-block;
+    //     position: relative;
+    //     vertical-align: middle;
+    //     cursor: pointer;
+    //     border-radius: 5px;
+    //     margin-right: 5px;
+    // }
 
-    input:checked+label:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 1px;
-        left: 0;
-        width: 15px;
-        height: 15px;
-        border-radius: 5px;
-        border: 2px solid #3ae095;
-        background-color: #3ae095;
+    // input:checked+label:after {
+    //     content: '';
+    //     display: block;
+    //     position: absolute;
+    //     top: 1px;
+    //     left: 0;
+    //     width: 15px;
+    //     height: 15px;
+    //     border-radius: 5px;
+    //     border: 2px solid #3ae095;
+    //     background-color: #3ae095;
+    // }
+
+
+    @include tablet {
+        grid-auto-rows: 40px;
+
+        button {
+            font-size: 16px;
+            height: 100%;
+        }
     }
 }
 
@@ -358,7 +512,7 @@ form.task_form {
 
     li {
         padding: 5px;
-        padding-left: 10px;
+        margin-left: 10px;
         display: block;
         cursor: pointer;
         position: relative;
@@ -393,7 +547,7 @@ form.task_form {
     li:hover {
         background-color: rgb(248, 248, 255);
         padding: 5px;
-        padding-left: 10px;
+        margin-left: 10px;
         display: block;
         cursor: pointer;
         position: relative;

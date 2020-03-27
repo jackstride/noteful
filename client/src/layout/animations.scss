@@ -61,6 +61,18 @@
   }
 }
 
+@include tablet {
+  @keyframes growRight {
+    0% {
+      width: 0px;
+    }
+
+    100% {
+      width: 95%;
+    }
+  }
+}
+
 // Animate css
 
 .f1,

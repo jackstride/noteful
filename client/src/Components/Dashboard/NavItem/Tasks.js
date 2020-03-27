@@ -51,18 +51,25 @@ class Todo extends Component {
     return (
       <form className="task_form">
         {this.props.data.map((key, index) => (
-          <div
-            onMouseLeave={e => this.handleLeave(e)}
-            className="task_data"
-            key={index}
-          >
-            <input
-              type="checkbox"
-              checked={key.isCompleted || false}
-              id={`check${index}`}
-              onChange={() => this.handleToggle(key._id)}
-            ></input>
-            <label
+          <div className="task_data" key={index}>
+            <div className="task_toggle">
+              <input
+                type="checkbox"
+                checked={key.isCompleted || false}
+                id={`check${index}`}
+                onChange={() => this.handleToggle(key._id)}
+              />
+              {key.isCompleted ? (
+                <div className="item complete">
+                  <FontAwesomeIcon icon="check" />
+                </div>
+              ) : (
+                <div className="item outstanding">
+                  <FontAwesomeIcon icon="times" />
+                </div>
+              )}
+            </div>
+            <p
               className={key.isCompleted ? "task_isCompleted" : null}
               onMouseEnter={e => this.handleHover(e)}
               id={key._id}
@@ -72,9 +79,16 @@ class Todo extends Component {
               onTouchStart={() => this.handleToggle(key._id)}
             >
               {key.task_name}
-            </label>
+            </p>
             <button
-              style={{ display: "none" }}
+              style={{ display: "block" }}
+              onClick={e => this.onRightClicked(e)}
+              value={key.folder_name}
+            >
+              <FontAwesomeIcon icon="ellipsis-v" size="1x"></FontAwesomeIcon>
+            </button>
+            <button
+              style={{ display: "block" }}
               onClick={e => this.onRemoveFolder(e, key._id)}
               value={key.folder_name}
             >
@@ -103,7 +117,7 @@ class Todo extends Component {
               toggle={this.props.toggleOpenTask}
             />
           ) : null}
-          <div className="w_contents">{this.showData()}</div>
+          {this.showData()}
         </div>
       </div>
     );
