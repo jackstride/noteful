@@ -114,6 +114,7 @@ class Todo extends Component {
               addFolder={this.props.addTask}
               userid={this.props.userId}
               toggle={this.props.toggleOpenTask}
+              values={{ id: "", title: "" }}
             />
           ) : null}
           {this.showData()}

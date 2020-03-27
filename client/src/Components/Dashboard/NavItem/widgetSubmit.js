@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 
-let widgetSubmit = props => {
+let widgetSubmit = ({ addFolder, userid, toggle, values }) => {
   const hanldeSubmit = e => {
     e.preventDefault();
-    let values = {};
-    values.title = e.target.title.value;
-    values.id = props.userid;
-    props.addFolder(values);
-    props.toggle();
+    let keys = Object.keys(values);
+    values[keys[0]] = userid;
+    values[keys[1]] = e.target.title.value;
+    addFolder(values);
+    // toggle();
   };
 
   return (

@@ -109,6 +109,7 @@ class Folders extends Component {
               addFolder={this.props.addFolder}
               userid={this.props.userId}
               toggle={this.props.toggleFolderOpen}
+              values={{ id: "", title: "" }}
             />
           ) : null}
           {this.showFolders()}

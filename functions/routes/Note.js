@@ -9,16 +9,19 @@ const Notes = require("../models/Notes");
 // Add a note
 router.post("/note/add", async (req, res, next) => {
   //Date feault to time of request
-  const { user_id, folder_id, body_data } = req.body;
+  const { user_id, folder_id, body_data, note_title } = req.body;
 
   const note = new Notes({
     _id: new mongoose.Types.ObjectId(),
     user_id,
-    folder_id
+    folder_id: folder_id || "Random",
+    note_title
   });
+
   const result = await note.save();
 
   if (result) {
+    console.log(result);
     return res.status(201).json({ message: "Note added", note: result });
   } else {
     return next(createError(500, "Error with creating Note"));
