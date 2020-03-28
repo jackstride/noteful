@@ -43,8 +43,6 @@ const ToolTipMenu = ({ children }) => {
       setShow(true);
     });
 
-    console.log(domSelection);
-
     let width = document.querySelector(".main_editor").offsetLeft;
     let y = domSelection.anchorNode.parentNode.offsetTop;
     let x = domSelection.anchorNode.parentNode.offsetLeft;

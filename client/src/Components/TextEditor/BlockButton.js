@@ -51,7 +51,6 @@ let ToolBarButton = ({ format, icon, size }) => {
           isBlockActive(editor, format) ? "b_icon_unactive" : "b_icon_active"
         }
         icon={icon}
-        size={size ? size : "1x"}
       />
     </button>
   );

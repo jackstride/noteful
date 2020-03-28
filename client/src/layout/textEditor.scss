@@ -22,7 +22,6 @@
     display: flex;
     align-items: center;
     margin: 0 auto;
-    padding-right: 250px;
 
 
     @include tablet {
@@ -38,7 +37,10 @@
         cursor: pointer;
         height: fit-content;
         width: auto;
-        padding: 5px;
+        padding: 0px 5px;
+        font-size: 1em;
+        height: 30px;
+        width: 30px;
     }
 
     button:nth-child(7) {
@@ -56,25 +58,33 @@
     button:hover {
         background-color: #e4e4e4;
     }
+
+
+    @include tablet {
+        width: 100%;
+        border: .1px solid black;
+    }
+
+    .e_button_active {
+        background-color: rgb(209, 208, 208);
+    }
+
+    .e_button_unactive {
+        // background-color: rgb(50, 50, 50);
+    }
+
+    .b_icon_active {
+        // color: #f8f8f8;
+        color: rgb(100, 100, 100);
+    }
+
+    .b_icon_unactive {
+        // color: #f8f8f8;
+        color: rgb(100, 100, 100);
+    }
 }
 
-.e_button_active {
-    background-color: rgb(100, 100, 100);
-}
 
-.e_button_unactive {
-    height: 25px;
-    width: 25px;
-    background-color: rgb(50, 50, 50);
-}
-
-.b_icon_active {
-    color: #f8f8f8;
-}
-
-.b_icon_unactive {
-    color: #f8f8f8;
-}
 
 
 
@@ -93,11 +103,6 @@
     @include mobilelarge {
         width: 95%;
     }
-
-
-
-
-
 
     li {
         list-style-type: circle;
@@ -161,20 +166,35 @@
     display: flex;
     align-items: center;
 
-
-
     button {
-        margin: 2px;
+        margin: 5px;
         border-radius: 4px;
         border: none;
         cursor: pointer;
-        height: fit-content;
-        width: auto;
-        padding: 10px;
+        height: 30px;
+        width: 30px;
     }
 
     li {
         cursor: pointer;
+    }
+
+    .e_button_active {
+        background-color: rgb(83, 83, 83);
+    }
+
+    .e_button_unactive {
+        background-color: transparent;
+    }
+
+    .b_icon_active {
+        color: #f8f8f8;
+        // color: rgb(100, 100, 100);
+    }
+
+    .b_icon_unactive {
+        color: #f8f8f8;
+        // color: rgb(100, 100, 100);
     }
 }
 
@@ -186,17 +206,48 @@
     button {
         background-color: rgb(50, 50, 50);
     }
+
+    .e_button_unactive {
+        background-color: rgb(50, 50, 50);
+    }
 }
 
 .tooltip_headings_container {
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 50px;
+    left: 15%;
 
     button {
         margin: 0;
         border-radius: 0;
+        height: 30px;
+        width: 30px;
     }
 
+}
+
+
+
+
+
+////////// Text Editor Insert ////////////////
+
+
+.editor_insert {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    border: 1px solid black;
+    position: relative;
+
+
+    .content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: black;
+        width: fit-content;
+        height: fit-content;
+    }
 }
