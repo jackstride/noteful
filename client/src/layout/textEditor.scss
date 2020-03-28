@@ -104,6 +104,10 @@
         width: 95%;
     }
 
+    @include tablet {
+        top: 0px;
+    }
+
     li {
         list-style-type: circle;
         display: list-item;
@@ -235,19 +239,48 @@
 
 
 .editor_insert {
-    width: 20px;
-    height: 20px;
+    width: fit-content;
+    height: fit-content;
     margin-left: auto;
-    border: 1px solid black;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    background-color: #f1f1f1;
+    padding: 10px 15px;
+    border: 1px solid #e2e2e2;
+    z-index: 1;
+
+    .icon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        h5 {
+            margin-right: 10px;
+            color: rgb(100, 100, 100);
+        }
+    }
 
 
     .content {
         position: absolute;
         top: 100%;
         left: 0;
-        background-color: black;
-        width: fit-content;
         height: fit-content;
+        width: 100%;
+        display: grid;
+        grid-auto-rows: 20px;
+        gap: 10px;
+        background-color: #f1f1f1;
+        border: 1px solid #e2e2e2;
+        color: rgb(110, 110, 110);
+
+        .content_background {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 }
