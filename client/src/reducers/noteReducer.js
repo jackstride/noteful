@@ -6,13 +6,15 @@ import {
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
   CHANGE_FOLDER,
-  CLEAR_NOTE
+  CLEAR_NOTE,
+  SORT_NOTE
 } from "../actions/types";
 const initalState = {
   user_id: null,
   folder_id: null,
   body_Data: null,
   noteData: [],
+  sortData: [],
   singleNoteData: []
 };
 export default (state = initalState, action) => {
@@ -66,6 +68,13 @@ export default (state = initalState, action) => {
       return {
         ...state,
         singleNoteData: []
+      };
+    case SORT_NOTE:
+      return {
+        ...state,
+        sortData: state.noteData.filter(
+          item => item.folder_id === action.payload
+        )
       };
     default:
       return state;

@@ -7,7 +7,8 @@ import {
   SINGLE_NOTE,
   DELETE_NOTE_BY_FOLDER,
   CHANGE_FOLDER,
-  CLEAR_NOTE
+  CLEAR_NOTE,
+  SORT_NOTE
 } from "../actions/types";
 
 const instance = axios.create({
@@ -75,6 +76,13 @@ export const removeAllByFolderId = folder_id => dispatch => {
         payload: folder_id
       });
     });
+};
+
+export const sortNotes = folder_id => dispatch => {
+  dispatch({
+    type: SORT_NOTE,
+    payload: folder_id
+  });
 };
 
 export const clearValues = () => dispatch => {

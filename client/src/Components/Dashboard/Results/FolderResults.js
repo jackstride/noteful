@@ -5,6 +5,7 @@ import {
   getNotes,
   addNote,
   removeNote,
+  sortNotes,
   clearValues
 } from "../../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -22,12 +23,14 @@ let Folders = ({
   folder,
   removeNote,
   showMenu,
-  clearValues
+  clearValues,
+  sortNotes
 }) => {
   const paramId = match.params.folder;
 
   useEffect(() => {
-    getNotes(paramId);
+    // getNotes(paramId);
+    sortNotes(paramId);
 
     return () => {
       clearValues();
@@ -128,7 +131,7 @@ let Folders = ({
 const mapStateToProps = state => {
   return {
     user_id: state.auth.user._id,
-    notes: state.note.noteData,
+    notes: state.note.sortData,
     folder: state.folder.data
   };
 };
@@ -138,7 +141,8 @@ const mapDispatchToProps = dispatch => ({
   addNote: values => dispatch(addNote(values)),
   removeNote: id => dispatch(removeNote(id)),
   showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
-  clearValues: id => dispatch(clearValues(id))
+  clearValues: id => dispatch(clearValues(id)),
+  sortNotes: folder_id => dispatch(sortNotes(folder_id))
 });
 
 export default withRouter(
