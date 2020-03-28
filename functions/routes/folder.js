@@ -50,16 +50,27 @@ router.delete("/folders/:folderid/", async (req, res, next) => {
   }
 });
 
-router.put("/folder/update/", async (req, res, next) => {
-  let { id, name } = req.body;
+// Update folder roptions
+router.put("/folder/update/:_id", async (req, res, next) => {
+  let { _id } = req.params;
 
-  let result = await Folder.findByIdAndUpdate(
-    { _id: id },
-    { folder_name: name }
-  );
+  let entries = Object.keys(req.body);
+  let updates = {};
+
+  for (let i = 0; i < entries.length; i++) {
+    updates[entries[i]] = Object.values(req.body)[i];
+  }
+
+  let result = await Folder.find({ _id });
 
   if (result) {
-    return res.status(200).json({ result });
+    let update = await Folder.findOneAndUpdate({ _id }, { $set: updates });
+
+    if (update) {
+      return res.status(200).json({ update });
+    } else {
+      return next(createError(500, "There was an error renaming the folder"));
+    }
   } else {
     return next(createError(500, "There was an error renaming the folder"));
   }

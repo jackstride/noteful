@@ -62,14 +62,17 @@ export const toggleFolderOpen = () => dispatch => {
   });
 };
 
-export const updateFolder = values => dispatch => {
+export const updateFolder = (
+  _id,
+  values,
+  passType = UPDATE_FOLDER
+) => dispatch => {
   instance
-    .put(process.env.REACT_APP_ENDPOINT + "/folder/update", values)
+    .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values)
     .then(res => {
-      console.log(res);
       dispatch({
-        type: UPDATE_FOLDER,
-        payload: values
+        type: passType,
+        payload: { values, _id }
       });
     });
 };

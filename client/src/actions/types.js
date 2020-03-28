@@ -18,6 +18,7 @@ export const GOT_URL = "GOT_URL";
 export const FOLDER_SUCCESS = "FOLDER_SUCCESS";
 export const FOLDER_LOADED = "FOLDER_LOADED";
 export const REMOVE_FOLDER = "REMOVE_FOLDER";
+export const UPDATE_FOLDER_COLOR = "UPDATE_FOLDER_COLOR";
 
 // Tasks
 export const TOGGLE_OPEN = "TOGGLE_OPEN";

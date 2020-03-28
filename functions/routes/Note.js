@@ -80,7 +80,6 @@ router.get("/note/all/:folder_id", async (req, res, next) => {
 // Edit Existing Note
 //https://dev.to/rubiin/mongoose-dynamic-update-hack-21ad - filter out what is empty
 router.patch("/note/edit/:_id", async (req, res, next) => {
-  console.log("hit");
   let { _id } = req.params;
   let entries = Object.keys(req.body);
   let updates = {};
@@ -93,7 +92,6 @@ router.patch("/note/edit/:_id", async (req, res, next) => {
 
   if (note) {
     let update = await Notes.findOneAndUpdate({ _id }, { $set: updates });
-
     if (update) {
       return res.status(200).json({ message: "done", note });
     } else {

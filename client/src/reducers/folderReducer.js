@@ -3,7 +3,8 @@ import {
   FOLDER_LOADED,
   REMOVE_FOLDER,
   TOGGLE_OPEN,
-  UPDATE_FOLDER
+  UPDATE_FOLDER,
+  UPDATE_FOLDER_COLOR
 } from "../actions/types";
 
 const initalState = {
@@ -36,11 +37,21 @@ export default (state = initalState, action) => {
         isOpen: !state.isOpen
       };
     case UPDATE_FOLDER:
+      console.log(action.payload);
       return {
         ...state,
         data: state.data.map(data =>
-          data._id === action.payload.id
-            ? { ...data, folder_name: action.payload.name }
+          data._id === action.payload._id
+            ? { ...data, folder_name: action.payload.values.folder_name }
+            : data
+        )
+      };
+    case UPDATE_FOLDER_COLOR:
+      return {
+        ...state,
+        data: state.data.map(data =>
+          data._id === action.payload._id
+            ? { ...data, folder_color: action.payload.values.folder_color }
             : data
         )
       };

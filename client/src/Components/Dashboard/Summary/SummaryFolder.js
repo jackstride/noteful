@@ -10,12 +10,6 @@ import LazyLoading from "../LazyLoading";
 const moment = require("moment");
 
 const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
-  const [colors, setColors] = useState([
-    "#fecaa2",
-    "#b2f1b3",
-    "#99d4fa",
-    "#ffaa6f"
-  ]);
   let handleContextMenu = e => {
     e.preventDefault();
     const { pageX, pageY } = e;
@@ -24,15 +18,12 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
       id: e.target.id
     });
   };
-  let num = 0;
+
   return (
     <div className="s_f_holder">
       {data ? (
         data.map((data, i) => {
           let noteData = notes.filter(notes => notes.folder_id == data._id);
-          if (num > 3) {
-            num = 0;
-          }
           return (
             <Link
               key={i}
@@ -42,7 +33,7 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
               to={`/dashboard/folder/${data._id}`}
             >
               <Item
-                color={colors[num++]}
+                color={data.folder_color}
                 key={i}
                 data={data}
                 noteData={noteData}

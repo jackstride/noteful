@@ -28,7 +28,6 @@ class Folders extends Component {
   }
 
   onRightClicked = e => {
-    console.log(e.target);
     e.preventDefault();
     const { pageX, pageY } = e;
     this.props.showMenu(pageX, pageY, "FoldersContextMenu", {
@@ -62,7 +61,12 @@ class Folders extends Component {
       return (
         <ul>
           {this.props.folder.map((key, index) => (
-            <div className="input_multiple" key={index}>
+            <div className="input_multiple folders" key={index}>
+              <FontAwesomeIcon
+                color={key.folder_color}
+                icon="circle"
+                size="1x"
+              ></FontAwesomeIcon>
               <Link
                 onContextMenu={e => this.onRightClicked(e)}
                 id={key._id}

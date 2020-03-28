@@ -1,75 +1,86 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { removeFolder, toggleFolderOpen } from "../../actions/FolderActions";
+import {
+  removeFolder,
+  toggleFolderOpen,
+  updateFolder
+} from "../../actions/FolderActions";
 import { hideMenu, showMenu } from "../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteConfirmation } from "../../actions/ResponseActions";
+import { UPDATE_FOLDER_COLOR } from "../../actions/types";
 
-class FolderContextMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      x: null,
-      y: null
-    };
-  }
+const FolderContextMenu = ({
+  deleteConfirmation,
+  showMenu,
+  type,
+  name,
+  id,
+  x,
+  y,
+  updateFolder
+}) => {
+  let [show, setShow] = useState(false);
 
-  handleRemove = (e, id) => {
+  let handleRemove = (e, id) => {
     e.preventDefault();
-    this.props.deleteConfirmation(id);
+    deleteConfirmation(id);
   };
 
-  addNote = e => {
+  let addNote = e => {
     this.props.showMenu(
-      this.props.x,
-      this.props.y,
+      x,
+      y,
       "EditContextMenu",
       {
-        name: this.props.name,
-        id: this.props.id
+        name: name,
+        id: id
       },
       "addfolder"
     );
   };
 
-  editFolderName = e => {
-    this.props.showMenu(
-      this.props.x,
-      this.props.y,
+  let editFolderName = e => {
+    showMenu(
+      x,
+      y,
       "EditContextMenu",
       {
-        name: this.props.name,
-        id: this.props.id
+        name: name,
+        id: id
       },
       "folders"
     );
   };
 
-  render() {
-    return (
-      <ul>
-        <span>
-          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-          <li onClick={e => this.addNote(e)}>
-            <a href="#">Add</a>
-          </li>
-        </span>
-        <span>
-          <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-          <li onClick={e => this.handleRemove(e, this.props.id)}>
-            <a href="#">Delete</a>
-          </li>
-        </span>
-        <span>
-          <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-          <li onClick={e => this.editFolderName(e)}>
-            <a href="#">Rename</a>
-          </li>
-        </span>
-      </ul>
-    );
-  }
-}
+  return (
+    <ul>
+      <span>
+        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+        <li onClick={e => addNote(e)}>
+          <a href="#">Add</a>
+        </li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+        <li onClick={e => handleRemove(e, id)}>
+          <a href="#">Delete</a>
+        </li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+        <li onClick={e => editFolderName(e)}>
+          <a href="#">Rename</a>
+        </li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+        <li onClick={e => setShow(!show)}>Set Color</li>
+        {show ? <SelectColor folderid={id} update={updateFolder} /> : null}
+      </span>
+    </ul>
+  );
+};
 
 const mapStateToProps = state => {
   return {
@@ -87,7 +98,57 @@ const mapDispatchToProps = dispatch => ({
   toggleFolderOpen: () => dispatch(toggleFolderOpen()),
   deleteConfirmation: id => dispatch(deleteConfirmation(id)),
   showMenu: (x, y, getType, args, name) =>
-    dispatch(showMenu(x, y, getType, args, name))
+    dispatch(showMenu(x, y, getType, args, name)),
+  updateFolder: (_id, values, passType) =>
+    dispatch(updateFolder(_id, values, passType))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(FolderContextMenu);
+
+const SelectColor = ({ update, folderid }) => {
+  const [colors, setColors] = useState([
+    {
+      hex: "#fecaa2",
+      name: "Salmon"
+    },
+    {
+      hex: "#b2f1b3",
+      name: "Light Green"
+    },
+    {
+      hex: "#99d4fa",
+      name: "LightBlue"
+    },
+    {
+      hex: "#ffaa6f",
+      name: "Orange"
+    }
+  ]);
+
+  return (
+    <div className="select_color">
+      <ul>
+        {colors.map((item, index) => {
+          return (
+            <li
+              onClick={() =>
+                update(
+                  folderid,
+                  { folder_color: item.hex },
+                  UPDATE_FOLDER_COLOR
+                )
+              }
+              key={index}
+            >
+              <div
+                style={{ backgroundColor: item.hex }}
+                className="item_color"
+              ></div>
+              <p>{item.name}</p>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+};

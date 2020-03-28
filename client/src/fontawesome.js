@@ -37,7 +37,8 @@ import {
   faEllipsisV,
   faFolder,
   faSignInAlt,
-  faExclamation
+  faExclamation,
+  faCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -79,5 +80,6 @@ library.add(
   faFolder,
   faUserPlus,
   faSignInAlt,
-  faExclamation
+  faExclamation,
+  faCircle
 );

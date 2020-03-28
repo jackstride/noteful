@@ -19,7 +19,8 @@ class EditContextMenu extends Component {
         this.props.editTask(values);
         break;
       case "folders":
-        this.props.updateFolder(values);
+        values = { folder_name: e.target.new_folder.value };
+        this.props.updateFolder(this.props.id, values);
         break;
       case "addfolder":
         values = {
@@ -75,7 +76,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  updateFolder: values => dispatch(updateFolder(values)),
+  updateFolder: (_id, values) => dispatch(updateFolder(_id, values)),
   editTask: values => dispatch(editTask(values)),
   editNote: values => dispatch(editNote(values)),
   hideMenu: () => dispatch(hideMenu()),

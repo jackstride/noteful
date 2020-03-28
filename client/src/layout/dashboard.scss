@@ -137,6 +137,8 @@
             height: 100%;
             align-items: center;
 
+
+
             a {
                 color: #0d0c22;
                 font-size: 14px;
@@ -144,6 +146,12 @@
                 margin-left: 10px;
             }
         }
+
+        .folders {
+            grid-template-columns: 10% 60% 15% 15%;
+        }
+
+
 
         .input_multiple:hover {
             background-color: rgb(240, 240, 240);
@@ -490,7 +498,7 @@ form.task_form {
     }
 
     li {
-        padding: 5px;
+        margin: 5px 0px;
         margin-left: 10px;
         display: block;
         cursor: pointer;
@@ -540,6 +548,48 @@ li {
     font-weight: 300;
     position: relative;
 }
+
+
+
+
+////////////// Handle Set Folder Colors //////////////
+
+.select_color {
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+
+    ul {
+        height: 100%;
+        overflow-y: scroll;
+        display: grid;
+        grid-auto-rows: 30px;
+
+        li {
+            display: grid;
+            grid-template-columns: 20% 80%;
+            align-items: center;
+
+            .item_color {
+                height: 20px;
+                width: 20px;
+                border-radius: 8px;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+        }
+    }
+
+
+
+}
+
 
 /////////// Handle Message //////////////@extend
 .handle_message_container {
