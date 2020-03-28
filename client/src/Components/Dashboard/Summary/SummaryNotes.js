@@ -85,7 +85,10 @@ const Item = ({ data, folder, context }) => {
   let returnName = () => {
     let getFolderId = data.folder_id;
     let name = folder.filter(data => data._id === getFolderId);
-    if (name) {
+
+    if (!name.length) {
+      name = "Untitled";
+    } else {
       name = name[0].folder_name;
     }
     setFolderName(name);

@@ -172,6 +172,10 @@
             background: none;
             border: none;
             cursor: pointer;
+
+            svg {
+                pointer-events: none;
+            }
         }
     }
 
@@ -559,7 +563,7 @@ li {
     top: 100%;
     left: 100%;
     width: 200px;
-    height: 100px;
+    height: 200px;
     background-color: white;
 
     ul {

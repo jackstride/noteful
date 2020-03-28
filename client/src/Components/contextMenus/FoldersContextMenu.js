@@ -122,6 +122,26 @@ const SelectColor = ({ update, folderid }) => {
     {
       hex: "#ffaa6f",
       name: "Orange"
+    },
+    {
+      hex: "#ffaaa5",
+      name: "Pink"
+    },
+    {
+      hex: "#5f6caf",
+      name: "Purple"
+    },
+    {
+      hex: "#204051",
+      name: "Navy Blue"
+    },
+    {
+      hex: "#5b8c5a",
+      name: "Dark Green"
+    },
+    {
+      hex: "#381460",
+      name: "Dark Purple"
     }
   ]);
 
