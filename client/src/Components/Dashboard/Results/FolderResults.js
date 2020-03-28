@@ -24,7 +24,8 @@ let Folders = ({
   removeNote,
   showMenu,
   clearValues,
-  sortNotes
+  sortNotes,
+  allNotes
 }) => {
   const paramId = match.params.folder;
 
@@ -35,7 +36,7 @@ let Folders = ({
     return () => {
       clearValues();
     };
-  }, [paramId, clearValues]);
+  }, [paramId, clearValues, allNotes]);
 
   const handleRemoveNote = _id => {
     removeNote(_id);
@@ -132,6 +133,7 @@ const mapStateToProps = state => {
   return {
     user_id: state.auth.user._id,
     notes: state.note.sortData,
+    allNotes: state.note.noteData,
     folder: state.folder.data
   };
 };
