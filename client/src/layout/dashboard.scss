@@ -149,6 +149,10 @@
 
         .folders {
             grid-template-columns: 10% 60% 15% 15%;
+
+            .fa-circle {
+                margin-left: 10px;
+            }
         }
 
 
@@ -269,13 +273,10 @@
             font-size: 14px;
             color: $DarkGrey;
             font-weight: 500;
-            background-color: grey;
+            background-color: rgb(240, 240, 240);
             height: 30px;
         }
 
-        input::placeholder {
-            color: rgb(150, 150, 150);
-        }
     }
 
     @include tablet {
@@ -435,8 +436,6 @@ form.task_form {
     flex-direction: row;
     align-items: center;
     height: 100px;
-
-
 
     span {
         height: 30px;

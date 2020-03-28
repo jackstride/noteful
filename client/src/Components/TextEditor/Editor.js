@@ -115,7 +115,7 @@ const TextEditor = ({
                 format={["heading-one", "heading-two", "heading-three"]}
               />
               <span className="editor_spacer"></span>
-              <BlockButton format="list-item" icon="list" />
+              <BlockButton format="bulleted-list" icon="list" />
               <BlockButton format="numbered-list" icon="list-ol" />
               <span className="editor_spacer"></span>
               <BlockButton format="align-left" icon="align-left" />

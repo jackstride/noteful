@@ -41,6 +41,7 @@
         font-size: 1em;
         height: 30px;
         width: 30px;
+        background-color: transparent;
     }
 
     button:nth-child(7) {
@@ -251,16 +252,28 @@
     padding: 10px 15px;
     border: 1px solid #e2e2e2;
     z-index: 1;
+    border-radius: 6px;
+
+    .rotate {
+        transition: all .5s ease;
+        transform: rotate(180deg);
+    }
 
     .icon {
+        transition: all .5s ease;
         display: flex;
         flex-direction: row;
         align-items: center;
+        cursor: pointer;
 
         h5 {
             margin-right: 10px;
             color: rgb(100, 100, 100);
         }
+    }
+
+    .icon:active:focus {
+        outline: none;
     }
 
 
@@ -276,6 +289,8 @@
         background-color: #f1f1f1;
         border: 1px solid #e2e2e2;
         color: rgb(110, 110, 110);
+        cursor: pointer;
+        z-index: 1;
 
         .content_background {
             display: flex;

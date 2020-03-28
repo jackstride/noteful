@@ -38,11 +38,6 @@ let Summary = ({ id, notes, getNotes, folder }) => {
                 Tasks
               </NavLink>
             </li>
-            <li>
-              <NavLink activeClassName="summary_active" to="/dashboard/stats">
-                Stats
-              </NavLink>
-            </li>
           </ul>
         </div>
         <div className="summary_content">

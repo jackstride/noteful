@@ -32,6 +32,8 @@ const ToolTipMenu = ({ children }) => {
       y: 40
     };
 
+    console.log(selection);
+
     const domSelection = window.getSelection();
     const domRange = domSelection.getRangeAt(0);
     const rect = domRange.getBoundingClientRect();
