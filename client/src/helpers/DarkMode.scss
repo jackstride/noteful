@@ -1,7 +1,13 @@
 // Dark app themes
-$DANavBG: #141414;
-$DABG: #161616;
+$DANavBG: rgb(20, 20, 20);
+$DABG: rgb(15, 15, 15);
+$DABGTwo: rgb(30, 30, 30);
+$DABGThree: rgb(40, 40, 40);
+$DABGFour: rgb(60, 60, 60);
+$DABGFive: rgb(80, 80, 80);
 $DABackgroundThree: rgba(255, 255, 255, 0.02);
+$DAText: #c2c2c2;
+
 
 
 // Shortest time way to do it but tedious
@@ -18,11 +24,12 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
     // Backgrounds
     .summary_container,
-    .dashboard_navigation,
     .folder_page,
     input {
         background-color: $DANavBG;
     }
+
+
 
     input {
         color: white;
@@ -33,17 +40,14 @@ $DAHeadingGrey: rgb(141, 141, 141);
     }
 
     input,
-    .folder_container {
-        background-color: $DABG;
-    }
-
-    .svg-inline--fa {
-        color: white;
+    .folder_container,
+    .dashboard_navigation {
+        background-color: $DABGTwo;
     }
 
     h4,
     h5 {
-        color: $DAHeading;
+        color: $DAText;
     }
 
     h6 {
@@ -59,7 +63,56 @@ $DAHeadingGrey: rgb(141, 141, 141);
         color: #d6d6d6;
     }
 
-    // Navigaton Bar
+
+
+
+    ///////////////////////////// Top Bar /////////////////////////////
+    .search_bar {
+        .app_search {
+            .search_container {
+                input {
+                    color: $DAText;
+                }
+
+                input::placeholder {
+                    color: $DAText;
+                }
+
+
+            }
+
+            .search_results_container {
+                background-color: $DABGThree;
+                border-color: rgb(60, 60, 60);
+
+                :hover {
+                    background-color: $DABGFour;
+                }
+
+                .result_holder {
+                    svg {
+                        color: $DAText;
+                    }
+
+
+
+                    a {
+                        svg {
+                            color: $DAText;
+                        }
+
+                        h5 {
+                            color: $DAText;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    /////////////// Navigaton Bar ///////////////////////////// 
     .top_bar {
         background-color: $DABG;
         border: none;
@@ -81,6 +134,60 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
     .widget {
         background-color: none;
+
+        .widget_content {
+            .input_multiple {
+                border-color: $DABGFive;
+
+                :nth-child(-n+2) {
+                    border-color: $DABGFive;
+                }
+
+                a {
+                    color: $DAHeading;
+                }
+            }
+
+            button {
+                color: $DABGFive;
+            }
+
+
+
+
+        }
+
+        .widget_content:last-child {
+
+            border-color: $DABGFive;
+
+        }
+
+        .input_multiple:hover {
+
+            background-color: $DABGFour;
+
+        }
+
+        a {
+            color: white;
+        }
+
+
+    }
+
+    .plus {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        background:
+            linear-gradient($DABGFour, $DABGFour),
+            linear-gradient($DABGFour, $DABGFour);
+        background-position: center;
+        background-size: 30% 2px, 2px 30%;
+        /*thickness = 2px, length = 50% (25px)*/
+        background-repeat: no-repeat;
+        cursor: pointer;
     }
 
     .profile_container {
@@ -105,13 +212,13 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 
 
-    ///// Side nav 
+    ///////////////////////////// Side nav  /////////////////////////////
 
     .dashboard:hover {
         background-color: $DAHeadingHover;
     }
 
-    //Folders widget
+    ///////////////////////////////Folders widget/////////////////////////////
 
     .w_contents {
         li a {
@@ -124,18 +231,23 @@ $DAHeadingGrey: rgb(141, 141, 141);
     }
 
     .fa-trash {
-        color: white;
+        color: $DABGFive;
     }
 
 
 
-    // Tasks
+    /////////////////////////////// Tasks/////////////////////////////
 
-    .task_form {
+    form.task_form {
+        p {
+            color: $DAHeading !important;
+        }
 
         .task_isCompleted {
             text-decoration: line-through;
             color: #00E676;
+
+
         }
 
         label {
@@ -150,8 +262,37 @@ $DAHeadingGrey: rgb(141, 141, 141);
     }
 
 
-    // Summary Page
 
+
+
+
+
+
+
+    /////////////////////////////// Summary Page/////////////////////////////
+
+    .summaries {
+        .summaries_nav {
+            ul {
+                border-color: $DABGThree;
+
+                li {
+                    .summary_active {
+                        color: white;
+                        border: $DABGThree;
+                        background-color: $DABGThree;
+                    }
+
+                    a {
+                        color: $DAHeadingHover;
+                        background-color: $DABGTwo;
+                        color: rgb(163, 163, 163);
+                    }
+                }
+            }
+
+        }
+    }
 
 
     .summary_holder {
@@ -168,12 +309,76 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 
 
-    // Folders holder //
+    /////////////////////////////  Summary /////////////////////////////
+
+    .summaries_nav {
+        border-color: $DABGThree;
+    }
+
+
+    .icon {
+        h3 {
+            color: $DAText;
+        }
+    }
+
+
+    .s_n_item {
+        border-color: $DABGFour;
+
+        .edit {
+            background-color: $DABGFour;
+
+            svg {
+                color: $DABGThree;
+            }
+        }
+    }
+
+
+    .s_f_item {
+        border-color: $DABGThree;
+    }
+
+    .s_n_item:hover {
+        transition: background .5s ease;
+        cursor: pointer;
+        background-color: $DABGThree;
+        border-top: 1px solid rgb(80, 80, 80);
+        border-bottom: 1px solid rgb(80, 80, 80);
+    }
+
+
+    .s_f_item:hover {
+        transition: background .5s ease;
+        cursor: pointer;
+        background-color: $DABGThree;
+        border-top: 1px solid rgb(80, 80, 80);
+        border-bottom: 1px solid rgb(80, 80, 80);
+    }
+
+}
 
 
 
+///////////////////////////// Settings /////////////////////////////
 
 
 
+.settings_nav {
+
+    nav {
+        ul {
+            background-color: $DABGTwo;
+            border-color: $DABGThree;
+
+            li {
+                .settings_active {
+                    background-color: $DABGThree;
+                    border-color: $DABGThree;
+                }
+            }
+        }
+    }
 
 }
