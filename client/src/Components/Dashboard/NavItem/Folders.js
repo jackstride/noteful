@@ -68,6 +68,7 @@ class Folders extends Component {
                 size="1x"
               ></FontAwesomeIcon>
               <Link
+                onClick={this.props.toggle}
                 onContextMenu={e => this.onRightClicked(e)}
                 id={key._id}
                 name={key.folder_name}

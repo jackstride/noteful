@@ -13,7 +13,8 @@ const initalState = {
   isAuthenticated: false,
   isLoading: false,
   user: null,
-  url: null
+  url: null,
+  redirect: false
 };
 export default (state = initalState, action) => {
   switch (action.type) {
@@ -29,15 +30,20 @@ export default (state = initalState, action) => {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        user: action.payload,
+        redirect: true
       };
     case LOGIN_SUCCESS:
-    case REGISTER_SUCCESS:
       return {
         ...state,
-        ...action.payload,
-        isAuthenticated: true,
+        isAuthenticated: false,
         isLoading: false
+      };
+    case REGISTER_SUCCESS:
+      return {
+        isAuthenticated: false,
+        isLoading: false,
+        redirect: true
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -47,7 +53,8 @@ export default (state = initalState, action) => {
         ...state,
         user: null,
         isAuthenticated: false,
-        isLoading: false
+        isLoading: false,
+        redirect: false
       };
     case GETTING_URL:
       return {

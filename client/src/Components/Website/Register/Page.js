@@ -9,7 +9,7 @@ import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import RegisterImage from "../../../images/register_image.png";
 import ShowError from "../ShowError";
 
-const Register = ({ history, message, clearErrors }) => {
+const Register = ({ history, message, clearErrors, redirect }) => {
   const [error, setError] = useState();
   let [sent, setSent] = useState(false);
   let [show, setShow] = useState(true);
@@ -22,6 +22,12 @@ const Register = ({ history, message, clearErrors }) => {
   useEffect(() => {
     return () => clearErrors();
   }, []);
+
+  useEffect(() => {
+    if (redirect) {
+      history.push("/login");
+    }
+  }, [redirect]);
 
   return (
     <Fragment>
@@ -95,7 +101,8 @@ const Register = ({ history, message, clearErrors }) => {
 
 const mapStateToProps = state => {
   return {
-    message: state.error.message
+    message: state.error.message,
+    redirect: state.auth.redirect
   };
 };
 

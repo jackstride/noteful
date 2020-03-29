@@ -151,6 +151,14 @@ const SelectColor = ({ update, folderid }) => {
         {colors.map((item, index) => {
           return (
             <li
+              onTouchStart={() =>
+                update(
+                  folderid,
+                  { folder_color: item.hex },
+                  UPDATE_FOLDER_COLOR
+                )
+              }
+              key={index}
               onClick={() =>
                 update(
                   folderid,

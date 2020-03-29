@@ -7,7 +7,8 @@ import {
   DELETE_NOTE_BY_FOLDER,
   CHANGE_FOLDER,
   CLEAR_NOTE,
-  SORT_NOTE
+  SORT_NOTE,
+  TOGGLE_ADD_NOTE
 } from "../actions/types";
 const initalState = {
   user_id: null,
@@ -15,7 +16,8 @@ const initalState = {
   body_Data: null,
   noteData: [],
   sortData: [],
-  singleNoteData: []
+  singleNoteData: [],
+  isOpen: false
 };
 export default (state = initalState, action) => {
   switch (action.type) {
@@ -75,6 +77,11 @@ export default (state = initalState, action) => {
         sortData: state.noteData.filter(
           item => item.folder_id === action.payload
         )
+      };
+    case TOGGLE_ADD_NOTE:
+      return {
+        ...state,
+        isOpen: !state.isOpen
       };
     default:
       return state;

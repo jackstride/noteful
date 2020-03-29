@@ -27,7 +27,7 @@ const TopBar = ({ firstName }) => {
       <div className="search_bar">
         <Search />
       </div>
-      {sideNav ? <SideNav /> : null}
+      {sideNav ? <SideNav toggle={() => setSideNav(!sideNav)} /> : null}
     </div>
   );
 };

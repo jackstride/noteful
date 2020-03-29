@@ -45,6 +45,7 @@ export const DELETE_NOTE_BY_FOLDER = "DELETE_NOTE_BY_FOLDER";
 export const CHANGE_FOLDER = "CHANGE_FOLDER";
 export const CLEAR_NOTE = "CLEAR_NOTE";
 export const SORT_NOTE = "SORT_NOTE";
+export const TOGGLE_ADD_NOTE = "TOGGLE_ADD_NOTE";
 
 // Responses
 export const HANDLE_SUCESS = "HANDLE_SUCESS";

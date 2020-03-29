@@ -44,7 +44,7 @@ const Support = ({ supportRequest }) => {
     let { name, email, message } = formValues;
 
     if (name.length > 0 && email.length > 0 && message.length > 0) {
-      // supportRequest(formValues);
+      supportRequest(formValues);
     }
   };
 

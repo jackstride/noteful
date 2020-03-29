@@ -23,6 +23,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "https://api.noteful.app/auth/google/callback"
+      // callbackURL: "http://localhost:5000/auth/google/callback"
     },
     (accessToken, refreshToken, profile, done) => {
       // AccessToken and refeshToken not use
@@ -74,6 +75,7 @@ passport.use(
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: "https://api.noteful.app/auth/github/callback",
+      // callbackURL: "http://localhost:5000/auth/github/callback",
       scope: "user:email"
     },
     (token, tokenSecret, profile, done) => {

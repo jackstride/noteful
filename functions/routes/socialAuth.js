@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const jtw = require("jsonwebtoken");
 const passport = require("passport");
+const ClearCookie = require("../middleware/clearCookies");
 
 //Google auth
 router.get(
   "/google",
+  ClearCookie,
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
@@ -36,8 +38,9 @@ router.get(
               secure: true,
               domain: ".noteful.app"
             })
-            .redirect("https://noteful.app/dashboard");
-          // .redirect("http://localhost:3000/dashboard");
+            .redirect("https://noteful.app/dashboard")
+            // .redirect("http://localhost:3000/dashboard")
+            .json({ user: payload });
         } else if (err) {
           console.log(err);
         }
@@ -48,7 +51,7 @@ router.get(
 
 // Router for twitter callback
 // Redirect url to app
-router.get("/github", passport.authenticate("github"));
+router.get("/github", ClearCookie, passport.authenticate("github"));
 
 router.get("/github/callback/", passport.authenticate("github"), (req, res) => {
   const payload = {
@@ -72,6 +75,7 @@ router.get("/github/callback/", passport.authenticate("github"), (req, res) => {
             domain: ".noteful.app"
           })
           .redirect("https://noteful.app/dashboard");
+        // .redirect("http://localhost:3000/dashboard");
       } else if (err) {
         console.log(err);
       }

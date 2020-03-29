@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { getNotes, addNote, removeNote } from "../../../actions/NoteActions";
+import {
+  getNotes,
+  addNote,
+  removeNote,
+  toggleNoteOpen
+} from "../../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetSubmit from "./widgetSubmit";
 
-const Notes = ({ _id, getNotes, notes, addNote, removeNote }) => {
-  let [open, setOpen] = useState(false);
-
+const Notes = ({
+  _id,
+  getNotes,
+  notes,
+  addNote,
+  removeNote,
+  toggleNoteOpen,
+  isOpen,
+  toggle
+}) => {
   useEffect(() => {
-    console.log("got");
     getNotes(_id);
   }, [_id]);
 
   let openNote = e => {
-    setOpen(!open);
+    toggleNoteOpen();
   };
 
   let handleAddNote = () => {
@@ -28,15 +39,15 @@ const Notes = ({ _id, getNotes, notes, addNote, removeNote }) => {
         <div className="plus" onClick={e => openNote(e)}></div>
       </div>
       <div className="widget_content">
-        {open ? (
+        {isOpen ? (
           <WidgetSubmit
             addFolder={addNote}
             userid={_id}
-            //   toggle={this.props.toggleOpenTask}
+            toggle={() => toggleNoteOpen()}
             values={{ user_id: "hello", note_title: "hello" }}
           />
         ) : null}
-        <ShowData remove={removeNote} data={notes} />
+        <ShowData toggle={toggle} remove={removeNote} data={notes} />
       </div>
     </div>
   );
@@ -45,25 +56,28 @@ const Notes = ({ _id, getNotes, notes, addNote, removeNote }) => {
 const mapStatetoProps = state => {
   return {
     _id: state.auth.user._id,
-    notes: state.note.noteData
+    notes: state.note.noteData,
+    isOpen: state.note.isOpen
   };
 };
 
 const mapDistpachToProps = () => dispatch => ({
   getNotes: _id => dispatch(getNotes(_id)),
   addNote: values => dispatch(addNote(values)),
-  removeNote: id => dispatch(removeNote(id))
+  removeNote: id => dispatch(removeNote(id)),
+  toggleNoteOpen: () => dispatch(toggleNoteOpen())
 });
 
 export default connect(mapStatetoProps, mapDistpachToProps)(Notes);
 
-let ShowData = ({ data, remove }) => {
+let ShowData = ({ data, remove, toggle }) => {
   if (data) {
     return (
       <ul>
         {data.map((key, index) => (
           <div className="input_multiple" key={index}>
             <Link
+              onClick={toggle}
               onContextMenu={e => this.onRightClicked(e)}
               id={key._id}
               name={key.folder_name}

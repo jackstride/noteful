@@ -33,7 +33,7 @@ class SideBar extends Component {
   render() {
     return (
       <div className="dashboard_navigation">
-        <Link to="/dashboard">
+        <Link onClick={this.props.toggle} to="/dashboard">
           <div className="dashboard">
             <div className="icon_circle">
               <FontAwesomeIcon
@@ -45,7 +45,7 @@ class SideBar extends Component {
             <span>Dashboard</span>
           </div>
         </Link>
-        <Link to="/dashboard/settings">
+        <Link onClick={this.props.toggle} to="/dashboard/settings">
           <div className="dashboard">
             <div className="icon_circle">
               <FontAwesomeIcon
@@ -57,7 +57,7 @@ class SideBar extends Component {
             <span>Settings</span>
           </div>
         </Link>
-        <Link to="/logout">
+        <Link onClick={this.props.toggle} to="/logout">
           <div className="dashboard">
             <div className="icon_circle">
               <FontAwesomeIcon
@@ -69,8 +69,8 @@ class SideBar extends Component {
             <span>Sign out</span>
           </div>
         </Link>
-        <Notes />
-        <Folders />
+        <Folders toggle={this.props.toggle} />
+        <Notes toggle={this.props.toggle} />
         <Tasks userId={this.props.userId} data={this.props.taskData} />
       </div>
     );

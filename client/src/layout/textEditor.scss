@@ -85,10 +85,6 @@
     }
 }
 
-
-
-
-
 .main_editor {
     grid-column: 2;
     grid-row: 1;
@@ -110,13 +106,15 @@
     }
 
     li {
-        list-style-type: circle;
+        list-style-type: disc;
         display: list-item;
+        margin-left: 10px;
     }
 
     ol {
         li {
             list-style: decimal;
+            margin-left: 10px;
         }
     }
 
@@ -129,16 +127,19 @@
 
     h1 {
         font-size: 42px !important;
+        line-height: 1.2em;
     }
 
     h2 {
         font-size: 32px !important;
         text-align: left;
+        line-height: 1.2em;
     }
 
     h3 {
         font-size: 18px !important;
         font-weight: 700;
+        line-height: 1em;
     }
 
     p {
@@ -200,6 +201,13 @@
     .b_icon_unactive {
         color: #f8f8f8;
         // color: rgb(100, 100, 100);
+    }
+
+    @include mobilelarge {
+        button {
+            height: 25px;
+            width: 25px;
+        }
     }
 }
 

@@ -8,7 +8,8 @@ import {
   DELETE_NOTE_BY_FOLDER,
   CHANGE_FOLDER,
   CLEAR_NOTE,
-  SORT_NOTE
+  SORT_NOTE,
+  TOGGLE_ADD_NOTE
 } from "../actions/types";
 
 const instance = axios.create({
@@ -88,5 +89,12 @@ export const sortNotes = folder_id => dispatch => {
 export const clearValues = () => dispatch => {
   dispatch({
     type: CLEAR_NOTE
+  });
+};
+
+export const toggleNoteOpen = () => dispatch => {
+  console.log("called");
+  dispatch({
+    type: TOGGLE_ADD_NOTE
   });
 };

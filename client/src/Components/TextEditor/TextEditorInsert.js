@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Portal } from "react-portal";
-import { Range, Editor, Transforms, Point } from "slate";
+import { Range, Editor, Transforms, Point, Element } from "slate";
 import { useSlate, ReactEditor } from "slate-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Icon, InlineIcon } from "@iconify/react";
@@ -45,19 +45,46 @@ const TextEditorIsnert = ({}) => {
     const LIST_TYPES = ["numbered-list", "bulleted-list"];
     const isList = LIST_TYPES.includes(type);
 
-    Transforms.insertNodes(editor, {
-      type: isList ? "list-item" : null,
-      children: [
-        {
-          text
-        }
-      ]
-    });
+    //Inserting list then heading will insert the heading as a list..
+    if (isList) {
+      Transforms.insertNodes(editor, {
+        type,
+        children: [
+          {
+            type: "list-item",
+            children: [
+              {
+                text
+              }
+            ]
+          }
+        ]
+      });
+      editor.insertBreak("heading-one");
+    } else {
+      Transforms.insertNodes(editor, {
+        type,
+        children: [
+          {
+            text
+          }
+        ]
+      });
+    }
 
-    Transforms.wrapNodes(editor, {
-      type
-    });
-    Transforms.unsetNodes(editor);
+    // Transforms.insertNodes(editor, {
+    //   type: isList ? "list-item" : null,
+    //   children: [
+    //     {
+    //       text
+    //     }
+    //   ]
+    // })
+
+    // Transforms.wrapNodes(editor, {
+    //   type
+    // });
+    // Transforms.unsetNodes(editor);
   };
 
   return (

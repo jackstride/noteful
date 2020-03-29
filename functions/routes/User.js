@@ -7,6 +7,7 @@ const createError = require("http-errors");
 const { userValidationRules, validate } = require("../middleware/validation");
 const User = require("../models/User");
 const cookieParser = require("cookie-parser");
+const ClearCookie = require("../middleware/clearCookies");
 
 // Register User
 // Error handling with express
@@ -47,8 +48,9 @@ router.post(
       }
 
       let result = await user.save();
+
       if (result) {
-        return res.status(201).json({ message: "Register Successful" });
+        return res.status(201).json({ user: "Register Successful" });
       } else {
         return next(newcreateError(500, "Problem with server"));
       }
@@ -59,7 +61,7 @@ router.post(
 );
 
 //User login
-router.post("/login", cookieParser(), async (req, res, next) => {
+router.post("/login", async (req, res, next) => {
   let { email, password } = req.body;
   console.log(email, password);
 
@@ -92,7 +94,7 @@ router.post("/login", cookieParser(), async (req, res, next) => {
             .cookie("__session", token, {
               expires: new Date(Date.now() + 9000000)
               // httpOnly: true,
-              // secure: true,
+              // secure: true
               // domain: ".noteful.app"
             })
             .status(200)
@@ -109,8 +111,14 @@ router.post("/login", cookieParser(), async (req, res, next) => {
 });
 
 //Logout and destroy cookie
-router.get("/logout", (req, res) => {
-  res.clearCookie("__session", { domain: ".noteful.app" }).sendStatus(200);
+router.get("/logout", async (req, res, next) => {
+  res
+    .clearCookie("__session", {
+      domain: ".noteful.app"
+      // httpOnly: true,
+      // secure: true
+    })
+    .send("all done");
 });
 
 // Update user route
@@ -220,7 +228,7 @@ router.post("/reset", async (req, res, next) => {
   //   next(newcreateError(500, "Problem with server"));
   // }
 
-  res.status(200).json({ hi: "hi" });
+  // res.status(200).json({ hi: "hi" });
 });
 
 module.exports = router;

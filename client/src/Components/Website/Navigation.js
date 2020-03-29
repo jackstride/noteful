@@ -130,20 +130,20 @@ let Mobilenav = ({ auth }) => {
             <ul>
               {auth ? (
                 <div className="dashboard_links">
-                  <li>
+                  <li onClick={() => handleOnClick()}>
                     <Link to="/dashboard">Dashboard</Link>
                   </li>
-                  <li>
+                  <li onClick={() => handleOnClick()}>
                     <Link to="/logout">Logout</Link>
                   </li>
                 </div>
               ) : (
                 <div className="dashboard_links">
-                  <li>
+                  <li onClick={() => handleOnClick()}>
                     <FontAwesomeIcon icon="user-plus" color="white" />
                     <Link to="/register">Sign Up</Link>
                   </li>
-                  <li>
+                  <li onClick={() => handleOnClick()}>
                     <FontAwesomeIcon icon="sign-in-alt" color="white" />
                     <Link to="/login">Login</Link>
                   </li>

@@ -41,11 +41,11 @@ app.use(
     origin: [
       "https://noteful.app",
       "https://api.noteful.app",
-      "https://api.noteful.app/dashboard",
       "http://localhost:5000",
-      "http://localhost:3000"
+      "http://localhost:3000",
+      "http://192.168.1.64:3000"
     ],
-    allowedHeaders: "Content-Type, Authorization, X-Requested-With"
+    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Set-Cookie"
   })
 );
 
@@ -65,10 +65,10 @@ passport.deserializeUser((user, done) => {
 app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
 app.use("/auth", socialAuthRoute);
+app.use("/", SupportRoute);
 app.use("/", auth, FolderRoute);
 app.use("/", auth, tasksRoute);
 app.use("/", auth, NoteRoute);
-app.use("/", SupportRoute);
 
 // Error handlers
 app.use((req, res, next) => {

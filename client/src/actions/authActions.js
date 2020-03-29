@@ -78,6 +78,7 @@ export const login = formValues => dispatch => {
       });
     })
     .catch(err => {
+      console.log(err);
       dispatch(
         returnErrors(
           err.response.data.error.message,
@@ -120,7 +121,7 @@ export const userUpdate = (_id, values) => distpach => {
 export const supportRequest = formValues => dispatch => {
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/support", formValues, {
-      withCredentials: true
+      withCredentials: false
     })
     .then(res => {
       dispatch({

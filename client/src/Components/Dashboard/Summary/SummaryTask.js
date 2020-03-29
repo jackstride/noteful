@@ -24,6 +24,7 @@ let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
       {task.map((data, i) => {
         return (
           <TaskItem
+            key={i}
             context={e => handleContextMenu(e)}
             handleToggle={id => {
               toggleTask(id);
