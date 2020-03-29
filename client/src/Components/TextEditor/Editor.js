@@ -6,7 +6,7 @@ import React, {
   useRef
 } from "react";
 import { Editable, withReact, Slate } from "slate-react";
-import { createEditor } from "slate";
+import { createEditor, Editor, Text } from "slate";
 import FormatToolbar from "./FormatToolbar";
 import ToolbarButton from "./ToolbarButton";
 import BlockButton from "./BlockButton";
@@ -71,6 +71,7 @@ const TextEditor = ({
           onChange={value => {
             setValue(value);
             const content = JSON.stringify(value);
+            console.log(editor);
             let note_title = editor.children[0].children[0].text.split(" ")[0];
             const values = {
               _id,

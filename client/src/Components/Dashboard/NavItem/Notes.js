@@ -7,6 +7,7 @@ import {
   removeNote,
   toggleNoteOpen
 } from "../../../actions/NoteActions";
+import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WidgetSubmit from "./widgetSubmit";
 
@@ -18,7 +19,9 @@ const Notes = ({
   removeNote,
   toggleNoteOpen,
   isOpen,
-  toggle
+  toggle,
+  showMenu,
+  hideMenu
 }) => {
   useEffect(() => {
     getNotes(_id);
@@ -30,6 +33,15 @@ const Notes = ({
 
   let handleAddNote = () => {
     addNote();
+  };
+
+  let onRightClicked = e => {
+    e.preventDefault();
+    const { pageX, pageY } = e;
+    showMenu(pageX, pageY, "NotesContextMenu", {
+      name: e.target.name,
+      id: e.target.id
+    });
   };
 
   return (
@@ -47,7 +59,12 @@ const Notes = ({
             values={{ user_id: "hello", note_title: "hello" }}
           />
         ) : null}
-        <ShowData toggle={toggle} remove={removeNote} data={notes} />
+        <ShowData
+          toggleMenu={e => onRightClicked(e)}
+          toggle={toggle}
+          remove={removeNote}
+          data={notes}
+        />
       </div>
     </div>
   );
@@ -65,12 +82,14 @@ const mapDistpachToProps = () => dispatch => ({
   getNotes: _id => dispatch(getNotes(_id)),
   addNote: values => dispatch(addNote(values)),
   removeNote: id => dispatch(removeNote(id)),
-  toggleNoteOpen: () => dispatch(toggleNoteOpen())
+  toggleNoteOpen: () => dispatch(toggleNoteOpen()),
+  showMenu: (x, y, getType, args, name) =>
+    dispatch(showMenu(x, y, getType, args, name))
 });
 
 export default connect(mapStatetoProps, mapDistpachToProps)(Notes);
 
-let ShowData = ({ data, remove, toggle }) => {
+let ShowData = ({ data, remove, toggle, toggleMenu }) => {
   if (data) {
     return (
       <ul>
@@ -78,18 +97,14 @@ let ShowData = ({ data, remove, toggle }) => {
           <div className="input_multiple" key={index}>
             <Link
               onClick={toggle}
-              onContextMenu={e => this.onRightClicked(e)}
+              onContextMenu={toggleMenu}
               id={key._id}
               name={key.folder_name}
               to={`/dashboard/notes/${key._id}`}
             >
               {key.note_title}
             </Link>
-            <button
-              id={key._id}
-              onClick={e => this.onRightClicked(e)}
-              value={key.folder_name}
-            >
+            <button id={key._id} onClick={toggleMenu} value={key.folder_name}>
               <FontAwesomeIcon icon="ellipsis-v" size="1x"></FontAwesomeIcon>
             </button>
             <button onClick={e => remove(key._id)} value={key.folder_name}>
