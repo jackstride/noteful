@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a7e6f391.chunk.css",
+    "main.js": "/static/js/main.4501e6b0.chunk.js",
+    "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
+    "static/js/2.5b0bbfb6.chunk.js": "/static/js/2.5b0bbfb6.chunk.js",
+    "index.html": "/index.html",
+    "precache-manifest.0a29816e3e863424f76de3863339e555.js": "/precache-manifest.0a29816e3e863424f76de3863339e555.js",
+    "service-worker.js": "/service-worker.js",
+    "static/js/2.5b0bbfb6.chunk.js.LICENSE.txt": "/static/js/2.5b0bbfb6.chunk.js.LICENSE.txt",
+    "static/media/dashboard_nav.jpg": "/static/media/dashboard_nav.afeb8580.jpg",
+    "static/media/github.svg": "/static/media/github.07883e93.svg",
+    "static/media/google.svg": "/static/media/google.7e5484e9.svg",
+    "static/media/header.jpg": "/static/media/header.9363a385.jpg",
+    "static/media/iphone_preview.png": "/static/media/iphone_preview.8c2b54c0.png",
+    "static/media/noteful_blue.svg": "/static/media/noteful_blue.4ff48a21.svg",
+    "static/media/noteful_bw.svg": "/static/media/noteful_bw.09017aa7.svg",
+    "static/media/noteful_logo.svg": "/static/media/noteful_logo.643d8225.svg",
+    "static/media/pencil.png": "/static/media/pencil.8ee82000.png",
+    "static/media/reading_book.jpg": "/static/media/reading_book.a276f542.jpg",
+    "static/media/register_image.png": "/static/media/register_image.33c6d7a5.png",
+    "static/media/searching.jpg": "/static/media/searching.133d0334.jpg",
+    "static/media/stacking.jpg": "/static/media/stacking.5ea6c2a5.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cea588d5.js",
+    "static/js/2.5b0bbfb6.chunk.js",
+    "static/css/main.a7e6f391.chunk.css",
+    "static/js/main.4501e6b0.chunk.js"
+  ]
+}
