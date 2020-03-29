@@ -27,7 +27,7 @@ export class ContextMenu extends Component {
       <MenuPosition
         left={location.x + 2}
         top={location.y}
-        className="contextMenu"
+        className={this.props.isDark ? "contextMenu dark-mode" : "contextMenu"}
         nodeRef={node => (this.node = node)}
       >
         {this.props.children}
@@ -36,9 +36,15 @@ export class ContextMenu extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    isDark: state.misc.isDark
+  };
+};
+
 const mapDispatchToProps = dispatch => ({
   hideMenu: () => dispatch(hideMenu()),
   showMenu: () => dispatch(showMenu())
 });
 
-export default connect(null, mapDispatchToProps)(ContextMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(ContextMenu);

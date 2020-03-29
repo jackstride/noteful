@@ -10,8 +10,8 @@ require("dotenv").config();
 // @Desc Get logged in urser
 // @access Private
 router.get("/", auth, async (req, res, next) => {
-  const user = await User.findById(req.user._id).select("-password");
   try {
+    const user = await User.findById(req.user._id).select("-password");
     return res
       .status(200)
       .json({ user })
@@ -20,7 +20,7 @@ router.get("/", auth, async (req, res, next) => {
     return res
       .send(401)
       .json({ message: "" })
-      .redirect("https://noteful.app/dashboard");
+      .redirect("https://noteful.app/");
   }
 });
 

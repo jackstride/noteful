@@ -6,7 +6,7 @@ $DABGThree: rgb(40, 40, 40);
 $DABGFour: rgb(60, 60, 60);
 $DABGFive: rgb(80, 80, 80);
 $DABackgroundThree: rgba(255, 255, 255, 0.02);
-$DAText: #c2c2c2;
+$DAText: #dfdfdf;
 
 
 
@@ -32,11 +32,13 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 
     input {
-        color: white;
+        color: $DAText;
+        border-color: $DABGThree;
     }
 
     input::placeholder {
-        color: white;
+        color: $DAText;
+
     }
 
     input,
@@ -59,12 +61,10 @@ $DAHeadingGrey: rgb(141, 141, 141);
     h3,
     span,
     a,
-    li {
-        color: #d6d6d6;
+    label,
+    p {
+        color: $DAText;
     }
-
-
-
 
     ///////////////////////////// Top Bar /////////////////////////////
     .search_bar {
@@ -275,6 +275,7 @@ $DAHeadingGrey: rgb(141, 141, 141);
         .summaries_nav {
             ul {
                 border-color: $DABGThree;
+                background-color: $DABGTwo;
 
                 li {
                     .summary_active {
@@ -357,28 +358,87 @@ $DAHeadingGrey: rgb(141, 141, 141);
         border-bottom: 1px solid rgb(80, 80, 80);
     }
 
-}
 
 
 
-///////////////////////////// Settings /////////////////////////////
 
+    .tasks_holder {
+        .task_item:hover {
+            transition: background .5s ease;
+            cursor: pointer;
+            background-color: $DABGThree;
+            border-top: 1px solid rgb(80, 80, 80);
+            border-bottom: 1px solid rgb(80, 80, 80);
+        }
 
+        .task_item {
+            .task_icon {
+                background-color: $DABGFour;
 
-.settings_nav {
-
-    nav {
-        ul {
-            background-color: $DABGTwo;
-            border-color: $DABGThree;
-
-            li {
-                .settings_active {
-                    background-color: $DABGThree;
-                    border-color: $DABGThree;
+                svg {
+                    color: $DABGThree;
                 }
             }
         }
+    }
+
+
+
+
+    ///////////////////////////// Settings /////////////////////////////
+    .settings_nav {
+
+        .settings_hr {
+            border-color: $DABGThree;
+        }
+
+        nav {
+            ul {
+                background-color: $DABGTwo;
+                border-color: $DABGThree;
+
+                li {
+                    .settings_active {
+                        background-color: $DABGThree;
+                        border-color: $DABGThree;
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+.contextMenu.dark-mode {
+    background-color: $DABGThree;
+
+
+
+    li {
+        color: $DAText;
+    }
+
+    .fa-plus,
+    .fa-pencil-alt,
+    .fa-keyboard,
+    .fa-trash,
+    .fa-exchange-alt {
+        color: $DABGFive;
+    }
+
+    input {
+        background-color: $DABGFour;
+        color: $DAText;
+    }
+
+    input::placeholder {
+        color: $DAText;
+    }
+
+    span:hover {
+        background-color: $DABGFive;
     }
 
 }

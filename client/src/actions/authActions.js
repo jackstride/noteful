@@ -72,12 +72,9 @@ export const login = formValues => dispatch => {
     withCredentials: true
   })
     .then(res => {
+      console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.user
-      });
-      dispatch({
-        type: USER_LOADED,
         payload: res.data.user
       });
     })

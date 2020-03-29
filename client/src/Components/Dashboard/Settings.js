@@ -3,20 +3,18 @@ import { NavLink, Route, Switch } from "react-router-dom";
 import Profile from "./NavItem/profileIcon";
 import Account from "./settings/Account";
 import Password from "./settings/Password";
+import { connect } from "react-redux";
+import { toggleDarkMode } from "../../actions/MiscAction";
 
-const Settings = () => {
+const Settings = ({ toggleDarkMode, isDark }) => {
   let [check, isChecked] = useState();
 
   useEffect(() => {
-    let dark = JSON.parse(localStorage.getItem("dark_mode"));
-    isChecked(dark);
-    dark
-      ? document.querySelector(".app_container").classList.add("dark-mode")
-      : document.querySelector(".app_container").classList.remove("dark-mode");
-  }, [check]);
+    isDark ? isChecked(isDark) : isChecked(isDark);
+  }, [isDark, isChecked]);
 
   let handleToggle = () => {
-    isChecked(!check);
+    toggleDarkMode();
     localStorage.setItem("dark_mode", JSON.stringify(!check));
   };
 
@@ -81,4 +79,14 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+const mapStateToProps = state => {
+  return {
+    isDark: state.misc.isDark
+  };
+};
+
+const mapDispatchToProps = () => dispatch => ({
+  toggleDarkMode: () => dispatch(toggleDarkMode())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

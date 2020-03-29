@@ -64,21 +64,33 @@ const NotesContextMenu = ({
   };
 
   return (
-    <ul
-      onMouseLeave={() => {
-        showAdd(false);
-      }}
-    >
+    <ul>
       <span>
         <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
         <li
-          onMouseOver={() => {
-            showAdd(true);
+          onClick={() => {
+            showAdd(!toggleAdd);
+          }}
+          onTouchStart={() => {
+            showAdd(!toggleAdd);
           }}
         >
           Add
         </li>
       </span>
+      {toggleAdd
+        ? AllFolders.map((folder, index) => (
+            <span>
+              <FontAwesomeIcon
+                color={folder.folder_color}
+                icon="folder"
+              ></FontAwesomeIcon>
+              <li key={index} id={folder._id} onClick={e => handleAdd(e)}>
+                {folder.folder_name}
+              </li>
+            </span>
+          ))
+        : null}
       <span>
         <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
         <li>
@@ -98,10 +110,13 @@ const NotesContextMenu = ({
         <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
         <li onClick={() => handleChangFolder(id)}>Change folder</li>
       </span>
-      {toggleFolders && (
-        <div className="show_change_folders">
-          <ul>
-            {AllFolders.map((folder, index) => (
+      {toggleFolders
+        ? AllFolders.map((folder, index) => (
+            <span>
+              <FontAwesomeIcon
+                color={folder.folder_color}
+                icon="folder"
+              ></FontAwesomeIcon>
               <li
                 key={index}
                 id={folder._id}
@@ -109,19 +124,9 @@ const NotesContextMenu = ({
               >
                 {folder.folder_name}
               </li>
-            ))}
-          </ul>
-        </div>
-      )}
-      {toggleAdd ? (
-        <div className="toggle_add_folder">
-          {AllFolders.map((folder, index) => (
-            <li key={index} id={folder._id} onClick={e => handleAdd(e)}>
-              {folder.folder_name}
-            </li>
-          ))}
-        </div>
-      ) : null}
+            </span>
+          ))
+        : null}
     </ul>
   );
 };

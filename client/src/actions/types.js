@@ -56,3 +56,7 @@ export const HANDLE_DELETE_FOLDER = "HANDLE_DELETE_FOLDER";
 
 // Support request
 export const SUPPORT_SUCCESS = "SUPPORT_SUCCESS";
+
+// Dark Mode
+
+export const TOGGLE_DARK = "TOGGLE_DARK";

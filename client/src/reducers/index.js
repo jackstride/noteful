@@ -7,6 +7,7 @@ import taskReducer from "./taskReducer";
 import contextMenuReducer from "./contextMenuReducer";
 import noteReducer from "./noteReducer";
 import handleResponse from "./handleResponse";
+import miscReducre from "./miscReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   task: taskReducer,
   contextMenu: contextMenuReducer,
   note: noteReducer,
-  handleResponse: handleResponse
+  handleResponse: handleResponse,
+  misc: miscReducre
 });

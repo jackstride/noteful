@@ -94,7 +94,7 @@ router.post("/login", async (req, res, next) => {
             .cookie("__session", token, {
               expires: new Date(Date.now() + 9000000)
               // httpOnly: true,
-              // secure: true
+              // secure: true,
               // domain: ".noteful.app"
             })
             .status(200)
@@ -114,7 +114,7 @@ router.post("/login", async (req, res, next) => {
 router.get("/logout", async (req, res, next) => {
   res
     .clearCookie("__session", {
-      domain: ".noteful.app"
+      // domain: ".noteful.app",
       // httpOnly: true,
       // secure: true
     })
