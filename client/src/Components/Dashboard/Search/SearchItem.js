@@ -14,9 +14,12 @@ const ShowResult = ({ data, folder, showMenu }) => {
   let returnName = () => {
     let folderId = data.folder_id;
     let name = folder.filter(data => data._id === folderId);
-    if (name) {
+    if (!name.length) {
+      name = "Untitled";
+    } else {
       name = name[0].folder_name;
     }
+
     setName(name);
   };
 

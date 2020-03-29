@@ -12,7 +12,10 @@ require("dotenv").config();
 router.get("/", auth, async (req, res, next) => {
   const user = await User.findById(req.user._id).select("-password");
   try {
-    return res.send(user);
+    return res
+      .status(200)
+      .json({ user })
+      .redirect("/dashboard");
   } catch (err) {
     return res
       .send(401)

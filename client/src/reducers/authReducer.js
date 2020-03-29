@@ -36,7 +36,7 @@ export default (state = initalState, action) => {
     case LOGIN_SUCCESS:
       return {
         ...state,
-        isAuthenticated: false,
+        isAuthenticated: true,
         isLoading: false
       };
     case REGISTER_SUCCESS:

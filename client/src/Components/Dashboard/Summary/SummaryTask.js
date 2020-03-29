@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { loadTasks, toggleTask } from "../../../actions/taskActions";
 import { showMenu } from "../../../actions/contextMenuActions";
 import LazyLoading from "../LazyLoading";
+const moment = require("moment");
 
 let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
   useEffect(() => {
@@ -54,6 +55,15 @@ let mapDispatchToProps = dispatch => ({
 export default connect(mapStateToProps, mapDispatchToProps)(TasksHolder);
 
 const TaskItem = ({ data, context, handleToggle }) => {
+  let dueDate = () => {
+    let date = data.due_date;
+    date = moment()
+      .subtract(date)
+      .calendar();
+    // date = moment(date);
+    return date;
+  };
+
   let [complete, setComplete] = useState(data.isCompleted);
 
   useEffect(() => {
@@ -82,9 +92,11 @@ const TaskItem = ({ data, context, handleToggle }) => {
       <h5 className={complete ? "task_text_complete" : null}>
         {data.task_name}
       </h5>
+      <h1>{dueDate()}</h1>
       <h6 className={complete ? "task_text_complete" : null}>
         {data.isCompleted ? "Completed" : "Not Completed"}
       </h6>
+
       <div
         style={{ cursor: "pointer" }}
         onClick={e => {

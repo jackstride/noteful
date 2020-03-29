@@ -74,7 +74,11 @@ export const login = formValues => dispatch => {
     .then(res => {
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data
+        payload: res.data.user
+      });
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data.user
       });
     })
     .catch(err => {
