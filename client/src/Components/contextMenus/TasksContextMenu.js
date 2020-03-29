@@ -9,6 +9,7 @@ import {
 } from "../../actions/taskActions";
 import { UPDATE_TASK_DATE } from "../../actions/types";
 import { hideMenu, showMenu } from "../../actions/contextMenuActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 let TasksContextMenu = ({
   showMenu,
@@ -87,17 +88,32 @@ let TasksContextMenu = ({
 
   return (
     <ul>
-      <li
-        onClick={() => {
-          handleToggleAdd();
-        }}
-      >
-        Add Tasks
-      </li>
-      <li onClick={e => handleRename(e, id)}>Rename Task</li>
-      <li onClick={e => handleDelete(e, id)}> Delete Task</li>
-      <li onClick={e => handleMarkTask(e, id)}>Mark Task</li>
-      <li onClick={e => setDateMenu(!dateMenu)}>Change Due Date</li>
+      <span>
+        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+        <li
+          onClick={() => {
+            handleToggleAdd();
+          }}
+        >
+          Add Tasks
+        </li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+        <li onClick={e => handleRename(e, id)}>Rename Task</li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+        <li onClick={e => handleDelete(e, id)}> Delete Task</li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+        <li onClick={e => handleMarkTask(e, id)}>Mark Task</li>
+      </span>
+      <span>
+        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+        <li onClick={e => setDateMenu(!dateMenu)}>Change Due Date</li>
+      </span>
       {dateMenu ? (
         <div className="date_menu">
           {days.map((days, index) => {

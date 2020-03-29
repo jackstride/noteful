@@ -76,32 +76,27 @@ const NotesContextMenu = ({
             showAdd(true);
           }}
         >
-          <a>Add</a>
+          Add
         </li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
         <li>
-          <Link to={`/dashboard/notes/${id}`}>Edit</Link>
+          <Link to={`/dashboard/notes/${id}`}></Link>
+          Edit
         </li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="keyboard"></FontAwesomeIcon>
-        <li onClick={() => handleEdit()}>
-          <a>Rename</a>
-        </li>
+        <li onClick={() => handleEdit()}>Rename</li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-        <li onClick={() => handleDeleteNote(id)}>
-          <a>Delete</a>
-        </li>
+        <li onClick={() => handleDeleteNote(id)}>Delete</li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
-        <li onClick={() => handleChangFolder(id)}>
-          <a>Change folder</a>
-        </li>
+        <li onClick={() => handleChangFolder(id)}>Change folder</li>
       </span>
       {toggleFolders && (
         <div className="show_change_folders">

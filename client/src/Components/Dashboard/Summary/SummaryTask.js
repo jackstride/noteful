@@ -60,7 +60,7 @@ const TaskItem = ({ data, context, handleToggle }) => {
     let date = data.due_date;
     date = moment.duration(moment(date).diff(x));
     date = date._data.days;
-    console.log(date);
+
     switch (date) {
       case 0:
         date = "Due Today";
@@ -71,7 +71,7 @@ const TaskItem = ({ data, context, handleToggle }) => {
       default:
         date = date + " days left";
     }
-    console.log(date);
+
     return date;
   };
 

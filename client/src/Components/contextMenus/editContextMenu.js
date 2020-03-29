@@ -63,7 +63,7 @@ class EditContextMenu extends Component {
     return (
       <form onSubmit={e => this.handleSubmit(e)}>
         <input type="text" placeholder="Untitled" name="new_folder" autoFocus />
-        <input type="hidden" />
+        <input type="submit" name="submit" vale="Add" />
       </form>
     );
   }

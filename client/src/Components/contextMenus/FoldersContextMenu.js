@@ -28,7 +28,7 @@ const FolderContextMenu = ({
   };
 
   let addNote = e => {
-    this.props.showMenu(
+    showMenu(
       x,
       y,
       "EditContextMenu",
@@ -56,28 +56,22 @@ const FolderContextMenu = ({
   return (
     <ul>
       <span>
-        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li onClick={e => addNote(e)}>
-          <a href="#">Add</a>
-        </li>
+        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+        <li onClick={e => editFolderName(e)}>Rename</li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-        <li onClick={e => handleRemove(e, id)}>
-          <a href="#">Delete</a>
-        </li>
+        <li onClick={e => handleRemove(e, id)}>Delete</li>
       </span>
       <span>
-        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-        <li onClick={e => editFolderName(e)}>
-          <a href="#">Rename</a>
-        </li>
+        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+        <li onClick={e => addNote(e)}>New Folder</li>
       </span>
       <span>
         <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
         <li onClick={e => setShow(!show)}>Set Color</li>
-        {show ? <SelectColor folderid={id} update={updateFolder} /> : null}
       </span>
+      {show ? <SelectColor folderid={id} update={updateFolder} /> : null}
     </ul>
   );
 };
@@ -145,38 +139,23 @@ const SelectColor = ({ update, folderid }) => {
     }
   ]);
 
-  return (
-    <div className="select_color">
-      <ul>
-        {colors.map((item, index) => {
-          return (
-            <li
-              onTouchStart={() =>
-                update(
-                  folderid,
-                  { folder_color: item.hex },
-                  UPDATE_FOLDER_COLOR
-                )
-              }
-              key={index}
-              onClick={() =>
-                update(
-                  folderid,
-                  { folder_color: item.hex },
-                  UPDATE_FOLDER_COLOR
-                )
-              }
-              key={index}
-            >
-              <div
-                style={{ backgroundColor: item.hex }}
-                className="item_color"
-              ></div>
-              <p>{item.name}</p>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
+  return colors.map((item, index) => {
+    return (
+      <span>
+        <div style={{ backgroundColor: item.hex }} className="item_color"></div>
+        <li
+          onTouchStart={() =>
+            update(folderid, { folder_color: item.hex }, UPDATE_FOLDER_COLOR)
+          }
+          key={index}
+          onClick={() =>
+            update(folderid, { folder_color: item.hex }, UPDATE_FOLDER_COLOR)
+          }
+          key={index}
+        >
+          {item.name}
+        </li>
+      </span>
+    );
+  });
 };
