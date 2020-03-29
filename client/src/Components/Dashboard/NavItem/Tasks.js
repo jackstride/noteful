@@ -72,13 +72,13 @@ class Todo extends Component {
               )}
             </div>
             <p
+              style={{ cursor: "pointer" }}
               className={key.isCompleted ? "task_isCompleted" : null}
               onMouseEnter={e => this.handleHover(e)}
               id={key._id}
               name={key.task_name}
               onContextMenu={e => this.onRightClicked(e)}
               htmlFor={`check${index}`}
-              onTouchStart={() => this.handleToggle(key._id)}
             >
               {key.task_name}
             </p>

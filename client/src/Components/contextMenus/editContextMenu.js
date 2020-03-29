@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { updateFolder, addFolder } from "../../actions/FolderActions";
 import { editTask, addTask } from "../../actions/taskActions";
 import { hideMenu } from "../../actions/contextMenuActions";
 import { editNote, addNote } from "../../actions/NoteActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class EditContextMenu extends Component {
   handleSubmit = e => {
@@ -61,10 +62,24 @@ class EditContextMenu extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.handleSubmit(e)}>
-        <input type="text" placeholder="Untitled" name="new_folder" autoFocus />
-        <input type="submit" name="submit" vale="Add" />
-      </form>
+      <Fragment>
+        <div
+          style={{ cursor: "pointer" }}
+          onClick={() => this.props.hideMenu()}
+          className="context_close"
+        >
+          <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+        </div>
+        <form onSubmit={e => this.handleSubmit(e)}>
+          <input
+            type="text"
+            placeholder="Untitled"
+            name="new_folder"
+            autoFocus
+          />
+          <input type="submit" name="submit" vale="Add" />
+        </form>
+      </Fragment>
     );
   }
 }

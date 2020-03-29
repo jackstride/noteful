@@ -5,6 +5,7 @@ $DABGTwo: rgb(30, 30, 30);
 $DABGThree: rgb(40, 40, 40);
 $DABGFour: rgb(60, 60, 60);
 $DABGFive: rgb(80, 80, 80);
+$DABGSix: rgb(100, 100, 100);
 $DABackgroundThree: rgba(255, 255, 255, 0.02);
 $DAText: #dfdfdf;
 
@@ -433,6 +434,12 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 .contextMenu.dark-mode {
     background-color: $DABGThree;
+
+    .context_close {
+        svg {
+            color: $DABGSix;
+        }
+    }
 
 
 

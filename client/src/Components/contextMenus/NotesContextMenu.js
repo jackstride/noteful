@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import { isSuccess, handleClose } from "../../actions/ResponseActions";
 import { addNote, removeNote, editNote } from "../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { showMenu } from "../../actions/contextMenuActions";
+import { showMenu, hideMenu } from "../../actions/contextMenuActions";
 import { CHANGE_FOLDER } from "../../actions/types";
 const NotesContextMenu = ({
   isSuccess,
@@ -15,7 +15,8 @@ const NotesContextMenu = ({
   x,
   y,
   showMenu,
-  name
+  name,
+  hideMenu
 }) => {
   const [toggleFolders, showFolders] = useState(false);
   const [toggleAdd, showAdd] = useState(false);
@@ -64,70 +65,77 @@ const NotesContextMenu = ({
   };
 
   return (
-    <ul>
-      <span>
-        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li
-          onClick={() => {
-            showAdd(!toggleAdd);
-          }}
-          onTouchStart={() => {
-            showAdd(!toggleAdd);
-          }}
-        >
-          Add
-        </li>
-      </span>
-      {toggleAdd
-        ? AllFolders.map((folder, index) => (
-            <span>
-              <FontAwesomeIcon
-                color={folder.folder_color}
-                icon="folder"
-              ></FontAwesomeIcon>
-              <li key={index} id={folder._id} onClick={e => handleAdd(e)}>
-                {folder.folder_name}
-              </li>
-            </span>
-          ))
-        : null}
-      <span>
-        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-        <li>
-          <Link to={`/dashboard/notes/${id}`}></Link>
-          Edit
-        </li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="keyboard"></FontAwesomeIcon>
-        <li onClick={() => handleEdit()}>Rename</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-        <li onClick={() => handleDeleteNote(id)}>Delete</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
-        <li onClick={() => handleChangFolder(id)}>Change folder</li>
-      </span>
-      {toggleFolders
-        ? AllFolders.map((folder, index) => (
-            <span>
-              <FontAwesomeIcon
-                color={folder.folder_color}
-                icon="folder"
-              ></FontAwesomeIcon>
-              <li
-                key={index}
-                id={folder._id}
-                onClick={e => handleSubmitFolderChange(e)}
-              >
-                {folder.folder_name}
-              </li>
-            </span>
-          ))
-        : null}
-    </ul>
+    <Fragment>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => hideMenu()}
+        className="context_close"
+      >
+        <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+      </div>
+      <ul>
+        <span>
+          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+          <li
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              showAdd(!toggleAdd);
+            }}
+          >
+            Add
+          </li>
+        </span>
+        {toggleAdd
+          ? AllFolders.map((folder, index) => (
+              <span>
+                <FontAwesomeIcon
+                  color={folder.folder_color}
+                  icon="folder"
+                ></FontAwesomeIcon>
+                <li key={index} id={folder._id} onClick={e => handleAdd(e)}>
+                  {folder.folder_name}
+                </li>
+              </span>
+            ))
+          : null}
+        <span>
+          <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+          <li>
+            <Link to={`/dashboard/notes/${id}`}></Link>
+            Edit
+          </li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="keyboard"></FontAwesomeIcon>
+          <li onClick={() => handleEdit()}>Rename</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+          <li onClick={() => handleDeleteNote(id)}>Delete</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+          <li onClick={() => handleChangFolder(id)}>Change folder</li>
+        </span>
+        {toggleFolders
+          ? AllFolders.map((folder, index) => (
+              <span>
+                <FontAwesomeIcon
+                  color={folder.folder_color}
+                  icon="folder"
+                ></FontAwesomeIcon>
+                <li
+                  key={index}
+                  id={folder._id}
+                  onClick={e => handleSubmitFolderChange(e)}
+                >
+                  {folder.folder_name}
+                </li>
+              </span>
+            ))
+          : null}
+      </ul>
+    </Fragment>
   );
 };
 
@@ -149,7 +157,8 @@ const mapDispatchToProps = dispatch => ({
   removeNote: id => dispatch(removeNote(id)),
   editNote: (values, type) => dispatch(editNote(values, type)),
   showMenu: (x, y, getType, args, name) =>
-    dispatch(showMenu(x, y, getType, args, name))
+    dispatch(showMenu(x, y, getType, args, name)),
+  hideMenu: () => dispatch(hideMenu())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesContextMenu);

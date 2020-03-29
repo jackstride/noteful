@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -87,46 +87,56 @@ let TasksContextMenu = ({
   };
 
   return (
-    <ul>
-      <span>
-        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li
-          onClick={() => {
-            handleToggleAdd();
-          }}
-        >
-          Add Tasks
-        </li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-        <li onClick={e => handleRename(e, id)}>Rename Task</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-        <li onClick={e => handleDelete(e, id)}> Delete Task</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
-        <li onClick={e => handleMarkTask(e, id)}>Mark Task</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
-        <li onClick={e => setDateMenu(!dateMenu)}>Change Due Date</li>
-      </span>
-      {dateMenu
-        ? days.map((days, index) => {
-            return (
-              <span>
-                <span></span>
-                <li onClick={e => editDueDate(e)} id={days.value}>
-                  {days.day}
-                </li>
-              </span>
-            );
-          })
-        : null}
-    </ul>
+    <Fragment>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => hideMenu()}
+        className="context_close"
+      >
+        <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+      </div>
+
+      <ul>
+        <span>
+          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+          <li
+            onClick={() => {
+              handleToggleAdd();
+            }}
+          >
+            Add Tasks
+          </li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+          <li onClick={e => handleRename(e, id)}>Rename Task</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+          <li onClick={e => handleDelete(e, id)}> Delete Task</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+          <li onClick={e => handleMarkTask(e, id)}>Mark Task</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
+          <li onClick={e => setDateMenu(!dateMenu)}>Change Due Date</li>
+        </span>
+        {dateMenu
+          ? days.map((days, index) => {
+              return (
+                <span>
+                  <span></span>
+                  <li onClick={e => editDueDate(e)} id={days.value}>
+                    {days.day}
+                  </li>
+                </span>
+              );
+            })
+          : null}
+      </ul>
+    </Fragment>
   );
 };
 

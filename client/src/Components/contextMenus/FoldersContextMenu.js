@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { connect } from "react-redux";
 import {
   removeFolder,
@@ -18,7 +18,8 @@ const FolderContextMenu = ({
   id,
   x,
   y,
-  updateFolder
+  updateFolder,
+  hideMenu
 }) => {
   let [show, setShow] = useState(false);
 
@@ -54,25 +55,34 @@ const FolderContextMenu = ({
   };
 
   return (
-    <ul>
-      <span>
-        <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
-        <li onClick={e => editFolderName(e)}>Rename</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
-        <li onClick={e => handleRemove(e, id)}>Delete</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li onClick={e => addNote(e)}>New Folder</li>
-      </span>
-      <span>
-        <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
-        <li onClick={e => setShow(!show)}>Set Color</li>
-      </span>
-      {show ? <SelectColor folderid={id} update={updateFolder} /> : null}
-    </ul>
+    <Fragment>
+      <div
+        style={{ cursor: "pointer" }}
+        onClick={() => hideMenu()}
+        className="context_close"
+      >
+        <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+      </div>
+      <ul>
+        <span>
+          <FontAwesomeIcon size="xs" icon="pencil-alt"></FontAwesomeIcon>
+          <li onClick={e => editFolderName(e)}>Rename</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="trash"></FontAwesomeIcon>
+          <li onClick={e => handleRemove(e, id)}>Delete</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+          <li onClick={e => addNote(e)}>New Folder</li>
+        </span>
+        <span>
+          <FontAwesomeIcon size="xs" icon="plus"></FontAwesomeIcon>
+          <li onClick={e => setShow(!show)}>Set Color</li>
+        </span>
+        {show ? <SelectColor folderid={id} update={updateFolder} /> : null}
+      </ul>
+    </Fragment>
   );
 };
 
@@ -144,9 +154,7 @@ const SelectColor = ({ update, folderid }) => {
       <span>
         <div style={{ backgroundColor: item.hex }} className="item_color"></div>
         <li
-          onTouchStart={() =>
-            update(folderid, { folder_color: item.hex }, UPDATE_FOLDER_COLOR)
-          }
+          style={{ cursor: "pointer" }}
           key={index}
           onClick={() =>
             update(folderid, { folder_color: item.hex }, UPDATE_FOLDER_COLOR)
