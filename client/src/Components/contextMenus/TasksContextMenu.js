@@ -114,19 +114,18 @@ let TasksContextMenu = ({
         <FontAwesomeIcon size="xs" icon="exchange-alt"></FontAwesomeIcon>
         <li onClick={e => setDateMenu(!dateMenu)}>Change Due Date</li>
       </span>
-      {dateMenu ? (
-        <div className="date_menu">
-          {days.map((days, index) => {
+      {dateMenu
+        ? days.map((days, index) => {
             return (
-              <div key={index}>
+              <span>
+                <span></span>
                 <li onClick={e => editDueDate(e)} id={days.value}>
                   {days.day}
                 </li>
-              </div>
+              </span>
             );
-          })}
-        </div>
-      ) : null}
+          })
+        : null}
     </ul>
   );
 };
