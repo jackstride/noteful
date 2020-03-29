@@ -26,6 +26,7 @@ export const ADD_TASK = "ADD_TASK";
 export const REMOVE_TASK = "REMOVE_TASK";
 export const TOGGLE_TASK = "TOGGLE_TASK";
 export const GET_TASKS = "GET_TASKS";
+export const UPDATE_TASK_DATE = "UPDATE_TASK_DATE";
 
 // Conect Menu
 export const CONTEXT_MENU_SHOW = "CONTEXT_MENU_SHOW";

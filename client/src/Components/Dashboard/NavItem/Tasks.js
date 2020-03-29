@@ -24,6 +24,7 @@ class Todo extends Component {
   };
 
   onRightClicked = e => {
+    console.log(e.target.id);
     e.preventDefault();
     const { pageX, pageY } = e;
     this.props.showMenu(pageX, pageY, "TasksContextMenu", {
@@ -85,6 +86,7 @@ class Todo extends Component {
               style={{ display: "block" }}
               onClick={e => this.onRightClicked(e)}
               value={key.folder_name}
+              id={key._id}
             >
               <FontAwesomeIcon icon="ellipsis-v"></FontAwesomeIcon>
             </button>

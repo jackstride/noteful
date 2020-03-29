@@ -6,6 +6,7 @@ let widgetSubmit = ({ addFolder, userid, toggle, values }) => {
     let keys = Object.keys(values);
     values[keys[0]] = userid;
     values[keys[1]] = e.target.title.value;
+    console.log(values);
     addFolder(values);
     toggle();
   };

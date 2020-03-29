@@ -16,8 +16,7 @@ const TaskSchema = new Schema({
   },
   due_date: {
     type: Date,
-    default: () => Date.now() + 7 * 24 * 60 * 60 * 1000,
-    required: true
+    default: () => Date.now() + 7 * 24 * 60 * 60 * 1000
   }
 });
 

@@ -56,11 +56,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(TasksHolder);
 
 const TaskItem = ({ data, context, handleToggle }) => {
   let dueDate = () => {
+    let x = new moment();
     let date = data.due_date;
-    date = moment()
-      .subtract(date)
-      .calendar();
-    // date = moment(date);
+    date = moment.duration(moment(date).diff(x));
+    date = date._data.days;
+    console.log(date);
+    switch (date) {
+      case 0:
+        date = "Due Today";
+        break;
+      case 1:
+        date = "Due Tomorrow";
+        break;
+      default:
+        date = date + " days left";
+    }
+    console.log(date);
     return date;
   };
 
@@ -92,7 +103,9 @@ const TaskItem = ({ data, context, handleToggle }) => {
       <h5 className={complete ? "task_text_complete" : null}>
         {data.task_name}
       </h5>
-      <h1>{dueDate()}</h1>
+      <h5 className={complete ? "task_text_complete" : null}>
+        {complete ? "Finsihed, well done!" : dueDate()}
+      </h5>
       <h6 className={complete ? "task_text_complete" : null}>
         {data.isCompleted ? "Completed" : "Not Completed"}
       </h6>

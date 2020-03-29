@@ -16,7 +16,10 @@ class EditContextMenu extends Component {
     };
     switch (this.props.widgetName) {
       case "tasks":
-        this.props.editTask(values);
+        this.props.editTask({
+          _id: this.props.id,
+          task_name: e.target.new_folder.value
+        });
         break;
       case "folders":
         values = { folder_name: e.target.new_folder.value };

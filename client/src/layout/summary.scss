@@ -339,9 +339,7 @@
     display: grid;
     grid-template-columns: 10% 60% 15% 15%;
     position: relative;
-    border: 1px solid rgb(220, 220, 220);
-    background-color: white;
-    border-radius: 12px;
+    border-radius: 8px;
     height: 100%;
     width: 100%;
     align-items: center;
@@ -350,6 +348,15 @@
     h6 {
         padding: 5px 0px;
     }
+}
+
+.task_item:hover {
+    transition: background .5s ease;
+    cursor: pointer;
+    background-color: rgb(209, 229, 255);
+    border-top: 1px solid rgb(197, 221, 252);
+    border-bottom: 1px solid rgb(197, 221, 252);
+
 }
 
 

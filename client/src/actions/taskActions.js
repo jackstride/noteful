@@ -78,13 +78,13 @@ export const toggleOpenTask = () => dispatch => {
   });
 };
 
-export const editTask = values => dispatch => {
+export const editTask = (values, passType = UPDATE_TASK) => dispatch => {
   instance
     .put(process.env.REACT_APP_ENDPOINT + "/task/update", values)
     .then(res => {
       dispatch({
-        type: UPDATE_TASK,
-        payload: values
+        type: passType,
+        payload: { data: res.data.result, values }
       });
     });
 };

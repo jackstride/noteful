@@ -78,17 +78,36 @@ router.delete("/deletetask/:_id", async (req, res, next) => {
   }
 });
 
-
 // Update task
 router.put("/task/update", async (req, res, next) => {
-  let { id, name } = req.body;
+  let { _id } = req.body;
+  let entries = Object.keys(req.body);
+  let updates = {};
 
-  let result = await Tasks.findByIdAndUpdate({ _id: id }, { task_name: name });
+  for (let i = 0; i < entries.length; i++) {
+    updates[entries[i]] = Object.values(req.body)[i];
+  }
 
-  if (result) {
-    return res.status(200).json({ result });
+  if (updates.due_date) {
+    updates.due_date = Date.now() + updates.due_date * 24 * 60 * 60 * 1000;
+  }
+  let task = await Tasks.find({ _id });
+
+  if (task) {
+    let result = await Tasks.findOneAndUpdate(
+      { _id },
+      { $set: updates },
+      // Get new
+      { new: true }
+    );
+    if (result) {
+      console.log(result);
+      return res.status(200).json({ result });
+    } else {
+      return next(createError(500, "There was an error saving the note "));
+    }
   } else {
-    return next(createError(500, "There was an error renaming the folder"));
+    return next(createError(500, "There was an issue"));
   }
 });
 
