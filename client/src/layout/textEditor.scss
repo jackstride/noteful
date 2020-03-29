@@ -95,13 +95,14 @@
         width: 80%;
     }
 
-    @include mobilelarge {
-        width: 95%;
+    @include tablet {
+        top: 25px;
     }
 
-    @include tablet {
-        top: 0px;
+    @include mobilelarge {
+        width: 90%;
     }
+
 
     li {
         list-style-type: disc;
@@ -259,6 +260,8 @@
     border: 1px solid #e2e2e2;
     z-index: 1;
     border-radius: 6px;
+
+    margin-top: 20px;
 
     .rotate {
         transition: all .5s ease;

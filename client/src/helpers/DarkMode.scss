@@ -408,6 +408,26 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
     }
 
+    .main_editor {
+        li {
+            color: white;
+        }
+
+        ol {
+            li {
+                color: white;
+            }
+        }
+
+
+        ul {
+            li {
+                color: white;
+            }
+        }
+    }
+
+
 }
 
 
@@ -441,4 +461,37 @@ $DAHeadingGrey: rgb(141, 141, 141);
         background-color: $DABGFive;
     }
 
+}
+
+
+
+
+///////////////////////////// Editor /////////////////////////////
+
+////////////////// Shortcuts ///////////////
+
+.shortcut.dark-mode {
+
+    .shortcut_container {
+        background-color: rgb(56, 56, 219);
+    }
+
+}
+
+
+.shortcut_folder.dark-mode {
+    background-color: $DABGThree;
+
+    h5 {
+        color: $DAText;
+        padding-bottom: 20px;
+        margin-left: 5px;
+        font-weight: 600;
+    }
+
+    ul {
+        li {
+            color: $DAText
+        }
+    }
 }

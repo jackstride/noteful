@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { showMenu } from "../../actions/contextMenuActions";
 
-const ShortcutAdd = ({ showMenu, folder }) => {
+const ShortcutAdd = ({ showMenu, folder, isDark }) => {
   let [show, setShow] = useState(false);
   let [showFolders, setShowFolders] = useState(false);
 
@@ -55,44 +55,48 @@ const ShortcutAdd = ({ showMenu, folder }) => {
 
   return (
     <Portal>
-      <div className="shortcut">
+      <div className={isDark ? "shortcut dark-mode" : "shortcut"}>
         <div onClick={e => handleShow(e)} className="shortcut_container">
           <FontAwesomeIcon icon="plus" size="1x" color="white" />
         </div>
         {show ? (
           <div className="shortcut_items">
-            <ShortcutItem icon="sticky-note" action={e => handleAddNote(e)}>
-              {showFolders ? (
-                <ShowFolderMenu
-                  noteaction={e => {
-                    const { pageX, pageY } = e;
-                    showMenu(
-                      pageX,
-                      pageY,
-                      "EditContextMenu",
-                      {
-                        name: e.target.name,
-                        id: e.target.id
-                      },
-                      "addnote"
-                    );
-                  }}
-                  data={folder}
-                />
-              ) : null}
-            </ShortcutItem>
+            <ShortcutItem
+              icon="sticky-note"
+              action={e => handleAddNote(e)}
+            ></ShortcutItem>
             <ShortcutItem icon="folder" action={e => handleAddFolder(e)} />
             <ShortcutItem icon="tasks" action={e => handleAddTask(e)} />
           </div>
         ) : null}
       </div>
+      {showFolders ? (
+        <ShowFolderMenu
+          dark={isDark}
+          noteaction={e => {
+            const { pageX, pageY } = e;
+            showMenu(
+              pageX,
+              pageY,
+              "EditContextMenu",
+              {
+                name: e.target.name,
+                id: e.target.id
+              },
+              "addnote"
+            );
+          }}
+          data={folder}
+        />
+      ) : null}
     </Portal>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    folder: state.folder.data
+    folder: state.folder.data,
+    isDark: state.misc.isDark
   };
 };
 
@@ -112,17 +116,19 @@ let ShortcutItem = ({ icon, action, children }) => {
   );
 };
 
-let ShowFolderMenu = ({ data, noteaction }) => {
+let ShowFolderMenu = ({ data, noteaction, dark }) => {
   let folders = data.map((data, i) => {
     return (
       <li key={i} onClick={noteaction} id={data._id}>
+        <FontAwesomeIcon icon="folder" color={data.folder_color} />
         {data.folder_name}
       </li>
     );
   });
 
   return (
-    <div className="shortcut_folder">
+    <div className={dark ? "shortcut_folder dark-mode" : "shortcut_folder"}>
+      <h5>Select Folder</h5>
       <ul>{data ? <Fragment>{folders}</Fragment> : null}</ul>
     </div>
   );

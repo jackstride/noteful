@@ -1,10 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const MenuPosition = props => {
-  let [width, setWidth] = useState();
+  let [width, setWidth] = useState(window.innerWidth);
+  let [halfWay, setHalfWay] = useState(false);
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    let handleScroll = e => {
+      let half = window.innerWidth / 2;
+      if (e.clientX > half) {
+        setHalfWay(true);
+      } else {
+        setHalfWay(false);
+      }
+
+      console.log(halfWay);
+    };
+
+    window.addEventListener("click", handleScroll);
+
+    return () => {
+      window.removeEventListener("click", handleScroll);
+    };
   }, []);
 
   const { children, nodeRef } = props;
@@ -19,12 +35,13 @@ const MenuPosition = props => {
 
   const style2 = {
     position: "absolute",
-    top: props.top + 25
+    top: props.top - 200,
+    left: props.left - 300
   };
 
   return (
     <div
-      style={width <= 768 ? style2 : style}
+      style={width > 768 ? style2 : style}
       className={props.className}
       ref={nodeRef}
     >

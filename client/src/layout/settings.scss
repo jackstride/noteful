@@ -57,7 +57,7 @@
             height: 100%;
             width: 100%;
             padding: 0;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
         }
     }
 
@@ -203,6 +203,8 @@ input:checked+.slider:before {
         font-size: 18px;
         font-weight: 500;
         color: rgb(78, 78, 78);
+        background-color: rgb(241, 241, 241);
+        font-weight: 300;
 
         @include mobilelarge {
             margin: 10px;
@@ -222,7 +224,7 @@ input:checked+.slider:before {
     }
 
     input::placeholder {
-        color: lightgray;
+        color: rgb(134, 134, 134);
         font-size: 16px;
     }
 }
@@ -275,6 +277,11 @@ input:checked+.slider:before {
             display: flex;
             flex-direction: row;
             padding: 10px 0px;
+            align-items: center;
+
+            p {
+                font-size: 1em;
+            }
         }
     }
 

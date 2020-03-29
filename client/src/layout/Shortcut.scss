@@ -9,7 +9,6 @@
 .shortcut_container {
     height: 50px;
     width: 50px;
-    // background-color: rgb(210, 210, 210);
     background-color: $Blue;
     border-radius: 50%;
     display: flex;
@@ -29,9 +28,9 @@
 
 .shortcut_folder {
     position: absolute;
-    top: 0;
-    right: 50px;
-    width: 100px;
+    top: 100px;
+    left: 20px;
+    width: 250px;
     background-color: white;
     height: fit-content;
     padding: 10px;
@@ -45,6 +44,16 @@
     }
 
     li {
-        width: 100%;
+        font-weight: 400;
+        font-size: 1em;
+        color: rgb(50, 50, 50);
+        padding: 10px 2px;
+
+        svg {
+            margin-right: 10px;
+        }
     }
+
+
+
 }
