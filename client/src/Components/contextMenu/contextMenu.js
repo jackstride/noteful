@@ -10,11 +10,11 @@ export class ContextMenu extends Component {
     document.addEventListener("click", this.handleClickOutside, true);
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(e) {
     document.removeEventListener("click", this.handleClickOutside, true);
   }
 
-  handleClickOutside = e => {
+  handleClickOutside = (e) => {
     if (!this.node || !this.node.contains(e.target)) {
       this.props.hideMenu();
     }
@@ -28,7 +28,7 @@ export class ContextMenu extends Component {
         left={location.x + 2}
         top={location.y}
         className={this.props.isDark ? "contextMenu dark-mode" : "contextMenu"}
-        nodeRef={node => (this.node = node)}
+        nodeRef={(node) => (this.node = node)}
       >
         {this.props.children}
       </MenuPosition>
@@ -36,15 +36,15 @@ export class ContextMenu extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isDark: state.misc.isDark
+    isDark: state.misc.isDark,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   hideMenu: () => dispatch(hideMenu()),
-  showMenu: () => dispatch(showMenu())
+  showMenu: () => dispatch(showMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContextMenu);
