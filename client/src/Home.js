@@ -11,52 +11,51 @@ const Home = ({ history }) => {
     {
       heading: "Notes",
       text:
-        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!"
+        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!",
     },
     {
       heading: "Tasks",
       text:
-        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!"
+        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!",
     },
     {
       heading: "Secure",
       text:
-        "Noteful will only use https. We also encrypt your personal data when logging in. When you sign out, that data is no longer available."
-    }
+        "Noteful will only use https. We also encrypt your personal data when logging in. When you sign out, that data is no longer available.",
+    },
   ]);
   const [heading, setHeadings] = useState([
     {
       header: "Organising things in one place helps eliminate stress",
-      main: ""
+      main: "",
     },
     {
       header: "Dark Mode.",
       main:
-        "Surprisingly 99% of people type in the dark. As a result we created dark mode.. Okay, that's false but we thought it looked nice."
-    }
+        "Surprisingly 99% of people type in the dark. As a result we created dark mode.. Okay, that's false but we thought it looked nice.",
+    },
   ]);
   const [four, setFour] = useState([
     {
       title: "Track your tasks.",
-      main: "See your tasks within the menu or dashboard"
+      main: "See your tasks within the menu or dashboard",
     },
     {
       title: "Type Anywhere.",
-      main: "We're mobile, literally. Find us on any platform."
+      main: "We're mobile, literally. Find us on any platform.",
     },
     {
       title: "Easier workflow.",
-      main: "Simple and clear interface to make your workflow even smoother."
+      main: "Simple and clear interface to make your workflow even smoother.",
     },
     {
       title: "Support.",
-      main: "Have a problem? Contact us via the contact page."
-    }
+      main: "Have a problem? Contact us via the contact page.",
+    },
   ]);
-
   let [one, two, three] = HomeIntersect();
 
-  let handleSubmit = e => {
+  let handleSubmit = (e) => {
     e.preventDefault();
     history.push("/register");
   };

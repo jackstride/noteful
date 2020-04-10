@@ -17,15 +17,12 @@ import Features from "./pages/features.js";
 import Support from "./pages/support";
 import About from "./pages/About";
 import Forgot from "./Components/Website/LogIn/ForgotPassword";
+import ScrollTop from "./ScrollTop";
 
 class App extends Component {
   static propTypes = {
-    isAuthenticated: PropTypes.bool
+    isAuthenticated: PropTypes.bool,
   };
-
-  // componentDidMount() {
-  //   store.dispatch(loadUser());
-  // }
 
   HomeContainer = () => {
     return (
@@ -38,6 +35,7 @@ class App extends Component {
           <Route path="/support" component={Support} />
           <Route path="/about" component={About} />
           <Footer />
+          <ScrollTop />
         </Fragment>
       </div>
     );
@@ -54,8 +52,8 @@ class App extends Component {
   LoginContainer = () => {
     return (
       <Fragment>
-        <Route exact path="/login" render={props => <LogIn {...props} />} />
-        <Route path="/login/forgot" render={props => <Forgot {...props} />} />
+        <Route exact path="/login" render={(props) => <LogIn {...props} />} />
+        <Route path="/login/forgot" render={(props) => <Forgot {...props} />} />
       </Fragment>
     );
   };
@@ -88,12 +86,12 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { auth: state.auth };
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadUser: () => dispatch(loadUser())
+const mapDispatchToProps = (dispatch) => ({
+  loadUser: () => dispatch(loadUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
