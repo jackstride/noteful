@@ -46,9 +46,11 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
               sent={sent}
               history={history}
             />
-            <p style={{ margin: "10px 0px" }}>
-              Forgot your password? <Link to="/login/forgot">Click here</Link>
-            </p>
+            <div className="auth_header">
+              <p style={{ margin: "10px 0px" }}>
+                Forgot your password? <Link to="/login/forgot">Click here</Link>
+              </p>
+            </div>
             <SocialAuth />
           </div>
         </div>
@@ -68,14 +70,14 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
-  errors: state.error.message
+  errors: state.error.message,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
-  loadUser: () => dispatch(loadUser())
+  loadUser: () => dispatch(loadUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

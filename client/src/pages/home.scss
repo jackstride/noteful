@@ -323,7 +323,7 @@ header {
     justify-content: center;
 
     img {
-        height: auto;
+        max-height: 100%;
     }
 
 
@@ -433,8 +433,9 @@ header {
     position: relative;
     display: flex;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
     flex-direction: column;
+    margin-bottom: 100px;
 
     img {
         width: 800px;
@@ -464,12 +465,6 @@ header {
             width: 600px;
         }
     }
-
-
-
-
-
-
 
 
 

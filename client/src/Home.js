@@ -184,10 +184,8 @@ const Home = ({ history }) => {
           />
 
           <div className="gif-image">
-            <div className="gif_container">
-              <img src={BrowserHeader}></img>
-              <img src={GifTwo}></img>
-            </div>
+            <img src={BrowserHeader}></img>
+            <img src={GifTwo}></img>
           </div>
           <div className="heading">
             <h3>All at the flick of a switch!</h3>
