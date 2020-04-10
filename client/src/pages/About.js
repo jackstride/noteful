@@ -9,13 +9,13 @@ const About = () => {
     {
       title: "Always Free",
       paragraph:
-        "We've never thought about charging our users so why start now? You will never have to pay for your experience with noteful. Sign up below!"
+        "We've never thought about charging our users so why start now? You will never have to pay for your experience with noteful. Sign up below!",
     },
     {
       title: "Our Data promise",
       paragraph:
-        "We user the latest and strongest encryption standards so your data is kepy secure and private. We only ask for the minimum. Something we pride ourselves on. "
-    }
+        "We user the latest and strongest encryption standards so your data is kepy secure and private. We only ask for the minimum. Something we pride ourselves on. ",
+    },
   ]);
 
   let [one, two, three, four, five] = AboutInsersect();
@@ -54,7 +54,6 @@ const About = () => {
             <SmallHeading title="Tasks." main="Manage your whole week." />
             <SmallHeading title="Offile." main="Access anywhere." />
           </div>
-
           <div style={{ opacity: "0" }} className="about_title">
             <h2>
               Get started in seconds <br></br> Register Today

@@ -79,10 +79,17 @@ const Navigation = ({ auth }) => {
             ) : (
               <Fragment>
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link
+                    style={light ? { color: "white" } : null}
+                    to="/dashboard"
+                  >
+                    Dashboard
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/logout">Logout</Link>
+                  <Link style={light ? { color: "white" } : null} to="/logout">
+                    Logout
+                  </Link>
                 </li>
               </Fragment>
             )}
@@ -94,9 +101,9 @@ const Navigation = ({ auth }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    auth: state.auth.isAuthenticated
+    auth: state.auth.isAuthenticated,
   };
 };
 

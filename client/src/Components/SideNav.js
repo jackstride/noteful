@@ -77,17 +77,17 @@ class SideBar extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userId: state.auth.user._id,
     taskData: state.task.taskData,
-    folder: state.folder.data
+    folder: state.folder.data,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getFolder: id => dispatch(getFolder(id)),
-  loadTasks: id => dispatch(loadTasks(id))
+const mapDispatchToProps = (dispatch) => ({
+  getFolder: (id) => dispatch(getFolder(id)),
+  loadTasks: (id) => dispatch(loadTasks(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SideBar);

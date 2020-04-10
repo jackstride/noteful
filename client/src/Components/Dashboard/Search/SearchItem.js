@@ -13,7 +13,7 @@ const ShowResult = ({ data, folder, showMenu }) => {
 
   let returnName = () => {
     let folderId = data.folder_id;
-    let name = folder.filter(data => data._id === folderId);
+    let name = folder.filter((data) => data._id === folderId);
     if (!name.length) {
       name = "Untitled";
     } else {
@@ -23,12 +23,12 @@ const ShowResult = ({ data, folder, showMenu }) => {
     setName(name);
   };
 
-  let handleContext = e => {
+  let handleContext = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(pageX, pageY, "NotesContextMenu", {
       name: e.target.name,
-      id: e.target.id
+      id: e.target.id,
     });
   };
 
@@ -36,16 +36,11 @@ const ShowResult = ({ data, folder, showMenu }) => {
     <div className="result_holder">
       <Link to={`/dashboard/notes/${data._id}`}>
         <FontAwesomeIcon icon="sticky-note" />
-        <h5>
-          {data.note_title
-            .split(" ")
-            .slice(0, 2)
-            .join(" ")}
-        </h5>
+        <h5>{data.note_title.split(" ").slice(0, 2).join(" ")}</h5>
       </Link>
       <div
         id={data._id}
-        onClick={e => handleContext(e)}
+        onClick={(e) => handleContext(e)}
         className="search_context"
       >
         <FontAwesomeIcon icon="ellipsis-v" />
@@ -54,12 +49,12 @@ const ShowResult = ({ data, folder, showMenu }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {};
 };
 
-const mapDispatchToProps = dispatch => ({
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+const mapDispatchToProps = (dispatch) => ({
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
 });
 
 export default connect(null, mapDispatchToProps)(ShowResult);

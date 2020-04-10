@@ -14,11 +14,18 @@ const TopBar = ({ firstName }) => {
     setSideNav(false);
   };
 
+  let handleSidNav = () => {
+    setSideNav(!sideNav);
+
+    let test = document.querySelector(".dashboard_navigation");
+    test.classList.toggle("show_anim");
+  };
+
   return (
     <div className="top_bar">
       <div
         onClick={() => {
-          setSideNav(!sideNav);
+          handleSidNav();
         }}
         className="app_profile"
       >
@@ -27,16 +34,16 @@ const TopBar = ({ firstName }) => {
       <div className="search_bar">
         <Search />
       </div>
-      {sideNav ? <SideNav toggle={() => setSideNav(!sideNav)} /> : null}
+      <SideNav className="hello" toggle={() => setSideNav(!sideNav)} />
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     firstName: state.auth.user.firstName,
     taskData: state.task.taskData,
-    folder: state.folder.data
+    folder: state.folder.data,
   };
 };
 

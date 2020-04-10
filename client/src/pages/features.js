@@ -4,46 +4,48 @@ import Swing from "../images/reading_book.jpg";
 import Pencil from "../images/pencil.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 import FeaturesIntersect from "../Components/Intersects/FeaturesIntersect";
+import Third from "../images/third.gif";
+import BrowserHeader from "../images/browserheader.webp";
 
 const Features = () => {
   const [features, setFeatures] = useState([
     {
       heading: "Access Offline",
       body: "Get access to everything, even when you're offline.",
-      icon: "cloud"
+      icon: "cloud",
     },
     {
       heading: "Strong Encryption",
       body:
         "Noteful will always encrypt users private information with the last standards.",
-      icon: "lock"
+      icon: "lock",
     },
     {
       heading: "Stay Organised",
       body:
         "Our UI is intuative, easy to learn ready for you to get started out of the box.",
-      icon: "pencil-alt"
+      icon: "pencil-alt",
     },
     {
       heading: "Create Tasks",
       body:
-        "Tasks are like To-Do's but we call them tasks. Easily add, remove, and mark them off when complete!"
+        "Tasks are like To-Do's but we call them tasks. Easily add, remove, and mark them off when complete!",
     },
     {
       heading: "Type Notes",
       body:
-        "Create rich filled notes ready to leave and pick up anywhere, anytime!"
+        "Create rich filled notes ready to leave and pick up anywhere, anytime!",
     },
     {
       heading: "Have an event coming up?",
-      body: "Simple interface to manage your future events. Can we come?"
-    }
+      body: "Simple interface to manage your future events. Can we come?",
+    },
   ]);
 
   const [section, setSection] = useState({
     heading: "Smart,simple and ready to use.",
     text:
-      "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete."
+      "Not only can you create rich notes, you can also create tasks and events. It's quick and simple to add a note or task and just as satisfying to mark as complete.",
   });
 
   let [one, two, three] = FeaturesIntersect();
@@ -74,6 +76,10 @@ const Features = () => {
               {features.slice(0, 3).map((item, index) => {
                 return <SmallHeading title={item.heading} main={item.body} />;
               })}
+            </div>
+            <div className="gif-image">
+              <img src={BrowserHeader}></img>
+              <img src={Third}></img>
             </div>
           </div>
         </div>

@@ -3,9 +3,7 @@ import { useHistory } from "react-router-dom";
 
 const ScrollTop = () => {
   const history = useHistory();
-
   useEffect(() => {
-    console.log(history.location.pathname);
     window.scrollTo(0, 0);
   }, [history.location.pathname]);
 

@@ -61,6 +61,17 @@
   }
 }
 
+
+
+.show_anim {
+  width: 250px;
+  transition: all 200ms linear;
+
+  @include tablet {
+    width: 95%;
+  }
+}
+
 @include tablet {
   @keyframes growRight {
     0% {

@@ -1,10 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PhonePreview from "./images/iphone_preview.png";
+import PP from "./images/iphone_preview.webp";
 import HeaderImage from "./images/header.jpg";
 import LargeHeader from "./Components/Website/LargeHeader";
 import DashboardOne from "./images/dashboard_nav.jpg";
 import HomeIntersect from "./Components/Intersects/HomeIntersect";
+import GifOne from "./images/First.gif";
+import GifTwo from "./images/second.gif";
+import BrowserHeader from "./images/browserheader.webp";
 
 const Home = ({ history }) => {
   const [information, setInformation] = useState([
@@ -144,8 +147,9 @@ const Home = ({ history }) => {
             concepts
           </h2>
         </div>
-        <div className="app_photo">
-          <img src={DashboardOne} alt="Dashboard"></img>
+        <div className="gif-image">
+          <img src={BrowserHeader}></img>
+          <img src={GifOne}></img>
         </div>
         <div ref={three} style={{ opacity: "0" }} className="small_heading">
           {four.map((item, index) => {
@@ -157,22 +161,47 @@ const Home = ({ history }) => {
       </div>
       <div className="bg_gradient">
         <div className="inner_container">
-          <LargeHeader
-            color="blue"
-            title={"Dark Mode"}
-            paragraph={
-              "Even google hasn't got dark mode, We're always one step ahead. To enable dark mode, visit the settings menu."
-            }
-          />
-          <div className="phone_app_image">
-            <img alt="noteful on iphone" src={PhonePreview}></img>
+          <div className="heading">
+            <h2>Introducing Darkmode.</h2>
+            <p>
+              Even google hasn't got dark mode, We're always one step ahead. To
+              enable dark mode, visit the settings menu.
+            </p>
           </div>
+          <div className="phone_app_image">
+            <img alt="noteful on iphone" src={PP}></img>
+          </div>
+          <LargeHeader
+            color="#F1B505"
+            title={information[2].heading}
+            paragraph={information[2].text}
+          />
           <LargeHeader
             color="#F1B505"
             title={information[2].heading}
             paragraph={information[2].text}
             reverse={true}
           />
+
+          <div className="gif-image">
+            <div className="gif_container">
+              <img src={BrowserHeader}></img>
+              <img src={GifTwo}></img>
+            </div>
+          </div>
+          <div className="heading">
+            <h3>All at the flick of a switch!</h3>
+          </div>
+          <div className="about_title">
+            <h2>
+              Get started in seconds <br></br> Register Today
+            </h2>
+            <div className="register_button">
+              <Link to="/register">
+                <span>Register</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>

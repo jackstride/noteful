@@ -12,7 +12,7 @@ const SearchModal = ({
   query,
   getFolder,
   folder,
-  close
+  close,
 }) => {
   let history = useHistory();
   let [results, setResults] = useState([]);
@@ -24,20 +24,21 @@ const SearchModal = ({
     setResults(noteData);
     setNotes(noteData);
     getFolder(id);
-  }, [id, setNotes, setResults, results, notes]);
+  }, [id, setNotes, setResults, notes]);
 
   useEffect(() => {
     if (!query || !query.length) {
       setResults(noteData);
     } else {
-      let allNotes = notes.filter(note =>
+      console.log("this");
+      let allNotes = notes.filter((note) =>
         note.note_title.toLowerCase().includes(query.toLowerCase())
       );
       setResults(allNotes);
     }
   }, [query]);
 
-  let handleClick = e => {
+  let handleClick = (e) => {
     if (ref.current.contains(e.target)) {
       return;
     } else {
@@ -62,17 +63,17 @@ const SearchModal = ({
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     noteData: state.note.noteData,
     id: state.auth.user._id,
-    folder: state.folder.data
+    folder: state.folder.data,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getNotes: id => dispatch(getNotes(id)),
-  getFolder: id => dispatch(getFolder(id))
+const mapDispatchToProps = (dispatch) => ({
+  getNotes: (id) => dispatch(getNotes(id)),
+  getFolder: (id) => dispatch(getFolder(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchModal);
