@@ -176,8 +176,6 @@ router.post("/reset", async (req, res, next) => {
       Math.random().toString(36).substring(2, 15) +
       Math.random().toString(36).substring(2, 15);
 
-    console.log(string);
-
     let salt = await bcrypt.genSaltSync(saltRounds);
 
     if (salt) {
@@ -194,15 +192,7 @@ router.post("/reset", async (req, res, next) => {
             text: `Hello ${firstName}! You tempory password has been reset to ${string}, you are able to change your password again in the setttings meny. Thankyou `,
           });
 
-          try {
-            if (info) {
-              return res.send(200).json({ message: sent });
-            } else {
-              return next(createError(404, "There was an error"));
-            }
-          } catch (err) {
-            return next(createError(404, "There was an error"));
-          }
+          res.status(200).send();
         }
       } else {
         return next(createError(500, "hash not found"));

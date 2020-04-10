@@ -1,15 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { forgotPassword } from "../../../actions/authActions";
+import { forgotPassword, resetAuth } from "../../../actions/authActions";
 
-const ForgotPassword = ({ reset }) => {
+const ForgotPassword = ({ forgotPassword, success, resetAuth }) => {
   let [value, setValue] = useState({
-    email: ""
+    email: "",
   });
 
-  let handleSubmit = e => {
+  let [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    if (success === true) {
+      setSent(false);
+    }
+  }, [success, forgotPassword]);
+
+  useEffect(() => {
+    return () => {
+      resetAuth();
+    };
+  }, []);
+
+  let handleSubmit = (e) => {
     e.preventDefault();
-    reset(value);
+    forgotPassword(value);
+    setSent(true);
   };
 
   return (
@@ -22,29 +37,46 @@ const ForgotPassword = ({ reset }) => {
         <form
           className="auth_form"
           method="post"
-          onSubmit={e => handleSubmit(e)}
+          onSubmit={(e) => handleSubmit(e)}
         >
           <label htmlFor="emal"></label>
           <input
             placeholder="eg: frank@paddys.com"
             type="text"
             name="email"
-            onChange={e => {
+            onChange={(e) => {
               setValue({
-                email: e.target.value
+                email: e.target.value,
               });
             }}
           ></input>
           <span></span>
-          <input type="submit" name="submit" value="Submit"></input>
+          {sent ? (
+            <div className="loader"></div>
+          ) : (
+            <input
+              className={success ? "success" : null}
+              id="f_submit"
+              type="submit"
+              name="submit"
+              value={success ? "Sent!" : "Submit"}
+            ></input>
+          )}
         </form>
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  reset: value => dispatch(forgotPassword(value))
+const mapStateToProps = (state) => {
+  return {
+    success: state.auth.forgetRes,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  forgotPassword: (value) => dispatch(forgotPassword(value)),
+  resetAuth: () => dispatch(resetAuth()),
 });
 
-export default connect(null, mapDispatchToProps)(ForgotPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);

@@ -19,7 +19,8 @@ export const FOLDER_SUCCESS = "FOLDER_SUCCESS";
 export const FOLDER_LOADED = "FOLDER_LOADED";
 export const REMOVE_FOLDER = "REMOVE_FOLDER";
 export const UPDATE_FOLDER_COLOR = "UPDATE_FOLDER_COLOR";
-
+export const FORGOT_SUCCESS = "FORGOT_SUCCESS";
+export const RESET_AUTH = "RESET_AUTH";
 // Tasks
 export const TOGGLE_OPEN = "TOGGLE_OPEN";
 export const ADD_TASK = "ADD_TASK";

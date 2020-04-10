@@ -14,44 +14,46 @@ import {
   GOT_URL,
   USER_UPDATE,
   PASSWORD_UPDATE,
-  SUPPORT_SUCCESS
+  SUPPORT_SUCCESS,
+  FORGOT_SUCCESS,
+  RESET_AUTH,
 } from "./types";
 
 //Load user
 export const loadUser = () => (dispatch, getState) => {
   //User Loading
   dispatch({
-    type: USER_LOADING
+    type: USER_LOADING,
   });
 
   axios
     .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
-      withCredentials: true
+      withCredentials: true,
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: USER_LOADED,
-        payload: res.data
+        payload: res.data,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
-        type: AUTH_ERROR
+        type: AUTH_ERROR,
       });
     });
 };
 
-export const register = formValues => dispatch => {
+export const register = (formValues) => (dispatch) => {
   console.log(formValues);
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/user/register", formValues)
-    .then(res =>
+    .then((res) =>
       dispatch({
         type: REGISTER_SUCCESS,
-        payload: res.data
+        payload: res.data,
       })
     )
-    .catch(err => {
+    .catch((err) => {
       dispatch(
         returnErrors(
           err.response.data.error.message,
@@ -59,26 +61,26 @@ export const register = formValues => dispatch => {
         )
       );
       dispatch({
-        type: REGISTER_FAIL
+        type: REGISTER_FAIL,
       });
     });
 };
 
-export const login = formValues => dispatch => {
+export const login = (formValues) => (dispatch) => {
   axios({
     method: "post",
     url: process.env.REACT_APP_ENDPOINT + "/user/login",
     data: formValues,
-    withCredentials: true
+    withCredentials: true,
   })
-    .then(res => {
+    .then((res) => {
       console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.user
+        payload: res.data.user,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       dispatch(
         returnErrors(
@@ -87,56 +89,64 @@ export const login = formValues => dispatch => {
         )
       );
       dispatch({
-        type: LOGIN_FAIL
+        type: LOGIN_FAIL,
       });
     });
 };
 
-export const logout = () => dispatch => {
+export const logout = () => (dispatch) => {
   axios
     .get(process.env.REACT_APP_ENDPOINT + "/user/logout", {
-      withCredentials: true
+      withCredentials: true,
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
-        type: LOGOUT_SUCCESS
+        type: LOGOUT_SUCCESS,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
 
-export const userUpdate = (_id, values) => distpach => {
+export const userUpdate = (_id, values) => (distpach) => {
   console.log(_id, values);
   axios
     .patch(process.env.REACT_APP_ENDPOINT + `/user/update/${_id}`, values)
-    .then(res => {
+    .then((res) => {
       distpach({
         type: USER_UPDATE,
-        payload: values
+        payload: values,
       });
     });
 };
 
-export const supportRequest = formValues => dispatch => {
+export const supportRequest = (formValues) => (dispatch) => {
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/support", formValues, {
-      withCredentials: false
+      withCredentials: false,
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
-        type: SUPPORT_SUCCESS
+        type: SUPPORT_SUCCESS,
       });
     });
 };
 
-export const forgotPassword = value => dispatch => {
+export const forgotPassword = (value) => (dispatch) => {
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/user/reset", value, {
-      withCredentials: true
+      withCredentials: true,
     })
-    .then(res => {
-      console.log("sent");
+    .then((res) => {
+      dispatch({
+        type: FORGOT_SUCCESS,
+      });
     });
+};
+
+export const resetAuth = () => (dispatch) => {
+  dispatch({
+    type: RESET_AUTH,
+  });
 };

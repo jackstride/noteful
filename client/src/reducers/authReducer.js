@@ -7,14 +7,17 @@ import {
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  GETTING_URL
+  GETTING_URL,
+  FORGOT_SUCCESS,
+  RESET_AUTH,
 } from "../actions/types";
 const initalState = {
   isAuthenticated: false,
   isLoading: false,
   user: null,
   url: null,
-  redirect: false
+  redirect: false,
+  forgetRes: false,
 };
 export default (state = initalState, action) => {
   switch (action.type) {
@@ -23,7 +26,7 @@ export default (state = initalState, action) => {
         ...state,
         isLoading: true,
         isAuthenticated: false,
-        url: action.payload
+        url: action.payload,
       };
     case USER_LOADED:
       return {
@@ -31,20 +34,20 @@ export default (state = initalState, action) => {
         isAuthenticated: true,
         isLoading: false,
         user: action.payload.user,
-        redirect: true
+        redirect: true,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isAuthenticated: true,
         isLoading: false,
-        user: action.payload
+        user: action.payload,
       };
     case REGISTER_SUCCESS:
       return {
         isAuthenticated: false,
         isLoading: false,
-        redirect: true
+        redirect: true,
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:
@@ -55,12 +58,22 @@ export default (state = initalState, action) => {
         user: null,
         isAuthenticated: false,
         isLoading: false,
-        redirect: false
+        redirect: false,
       };
     case GETTING_URL:
       return {
         ...state,
-        url: action.payload
+        url: action.payload,
+      };
+    case FORGOT_SUCCESS:
+      return {
+        ...state,
+        forgetRes: true,
+      };
+    case RESET_AUTH:
+      return {
+        ...state,
+        forgetRes: false,
       };
     default:
       return state;
