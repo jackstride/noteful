@@ -8,6 +8,7 @@ const { userValidationRules, validate } = require("../middleware/validation");
 const User = require("../models/User");
 const cookieParser = require("cookie-parser");
 const ClearCookie = require("../middleware/clearCookies");
+const nodemailer = require("nodemailer");
 
 // Register User
 // Error handling with express
@@ -41,7 +42,7 @@ router.post(
           firstName: firstName,
           lastName: lastName,
           email: email,
-          password: hash
+          password: hash,
         });
       } else {
         return next(createError(500, " Database register error"));
@@ -79,20 +80,20 @@ router.post("/login", async (req, res, next) => {
     const payload = {
       email: user[0].email,
       _id: user[0].id,
-      firstName: user[0].firstName
+      firstName: user[0].firstName,
     };
 
     jtw.sign(
       payload,
       process.env.JWT_KEY,
       {
-        expiresIn: "2 days"
+        expiresIn: "2 days",
       },
       (err, token) => {
         if (token) {
           return res
             .cookie("__session", token, {
-              expires: new Date(Date.now() + 9000000)
+              expires: new Date(Date.now() + 9000000),
               // httpOnly: true,
               // secure: true,
               // domain: ".noteful.app"
@@ -152,6 +153,16 @@ router.patch("/update/:_id", async (req, res, next) => {
   }
 });
 
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.GMAIL_LOGIN, // generated ethereal user
+    pass: process.env.GMAIL_L_P, // generated ethereal password
+  },
+});
+
 router.post("/reset", async (req, res, next) => {
   let { email } = req.body;
   let saltRounds = 5;
@@ -159,15 +170,13 @@ router.post("/reset", async (req, res, next) => {
   let found = await User.find({ email }).exec();
 
   if (found) {
-    let user = found[0]._id;
+    let { _id, email, firstName } = found[0];
 
     let string =
-      Math.random()
-        .toString(36)
-        .substring(2, 15) +
-      Math.random()
-        .toString(36)
-        .substring(2, 15);
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+
+    console.log(string);
 
     let salt = await bcrypt.genSaltSync(saltRounds);
 
@@ -175,11 +184,26 @@ router.post("/reset", async (req, res, next) => {
       hash = await bcrypt.hash(string, salt);
 
       if (hash) {
-        console.log(hash);
-        let update = await User.findByIdAndUpdate({ _id: user });
+        let update = await User.findByIdAndUpdate({ _id }, { password: hash });
 
-        return res.status(200).json({ message: "User Updated" });
-        //// Update the password here and send it in an email
+        if (update) {
+          let info = await transporter.sendMail({
+            from: "support@noteful.app",
+            to: email,
+            subject: "Support Request",
+            text: `Hello ${firstName}! You tempory password has been reset to ${string}, you are able to change your password again in the setttings meny. Thankyou `,
+          });
+
+          try {
+            if (info) {
+              return res.send(200).json({ message: sent });
+            } else {
+              return next(createError(404, "There was an error"));
+            }
+          } catch (err) {
+            return next(createError(404, "There was an error"));
+          }
+        }
       } else {
         return next(createError(500, "hash not found"));
       }
