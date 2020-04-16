@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.a7e6f391.chunk.css",
-    "main.js": "/static/js/main.4501e6b0.chunk.js",
+    "main.css": "/static/css/main.c33b6eeb.chunk.css",
+    "main.js": "/static/js/main.6527a150.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
-    "static/js/2.5b0bbfb6.chunk.js": "/static/js/2.5b0bbfb6.chunk.js",
+    "static/js/2.2ce9507c.chunk.js": "/static/js/2.2ce9507c.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.0a29816e3e863424f76de3863339e555.js": "/precache-manifest.0a29816e3e863424f76de3863339e555.js",
+    "precache-manifest.fd76994542c07e6fde9aded771d3c5af.js": "/precache-manifest.fd76994542c07e6fde9aded771d3c5af.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.5b0bbfb6.chunk.js.LICENSE.txt": "/static/js/2.5b0bbfb6.chunk.js.LICENSE.txt",
+    "static/js/2.2ce9507c.chunk.js.LICENSE.txt": "/static/js/2.2ce9507c.chunk.js.LICENSE.txt",
+    "static/media/First.gif": "/static/media/First.1372b6df.gif",
+    "static/media/browserheader.webp": "/static/media/browserheader.9e7a7585.webp",
     "static/media/dashboard_nav.jpg": "/static/media/dashboard_nav.afeb8580.jpg",
     "static/media/github.svg": "/static/media/github.07883e93.svg",
     "static/media/google.svg": "/static/media/google.7e5484e9.svg",
     "static/media/header.jpg": "/static/media/header.9363a385.jpg",
-    "static/media/iphone_preview.png": "/static/media/iphone_preview.8c2b54c0.png",
+    "static/media/iphone_preview.webp": "/static/media/iphone_preview.cb924d85.webp",
     "static/media/noteful_blue.svg": "/static/media/noteful_blue.4ff48a21.svg",
     "static/media/noteful_bw.svg": "/static/media/noteful_bw.09017aa7.svg",
     "static/media/noteful_logo.svg": "/static/media/noteful_logo.643d8225.svg",
@@ -20,12 +22,14 @@
     "static/media/reading_book.jpg": "/static/media/reading_book.a276f542.jpg",
     "static/media/register_image.png": "/static/media/register_image.33c6d7a5.png",
     "static/media/searching.jpg": "/static/media/searching.133d0334.jpg",
-    "static/media/stacking.jpg": "/static/media/stacking.5ea6c2a5.jpg"
+    "static/media/second.gif": "/static/media/second.fd82d47e.gif",
+    "static/media/stacking.jpg": "/static/media/stacking.5ea6c2a5.jpg",
+    "static/media/third.gif": "/static/media/third.dc3f69de.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/js/2.5b0bbfb6.chunk.js",
-    "static/css/main.a7e6f391.chunk.css",
-    "static/js/main.4501e6b0.chunk.js"
+    "static/js/2.2ce9507c.chunk.js",
+    "static/css/main.c33b6eeb.chunk.css",
+    "static/js/main.6527a150.chunk.js"
   ]
 }

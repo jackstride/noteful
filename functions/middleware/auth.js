@@ -3,7 +3,6 @@ const createError = require("http-errors");
 
 module.exports = async (req, res, next) => {
   let token = req.cookies.__session;
-  console.log("hir");
   try {
     const decoded = await jwt.verify(token, process.env.JWT_KEY);
     req.user = decoded;

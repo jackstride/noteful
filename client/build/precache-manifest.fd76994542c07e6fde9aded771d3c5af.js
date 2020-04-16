@@ -1,27 +1,35 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "690b2a7d3bc23721bbc2b4dac8e12866",
+    "revision": "0d9eceda54395350f0b70555ec9a101b",
     "url": "/index.html"
   },
   {
-    "revision": "6492c13be65e43bb3edf",
-    "url": "/static/css/main.a7e6f391.chunk.css"
+    "revision": "3d1fdb455f027fa18a7e",
+    "url": "/static/css/main.c33b6eeb.chunk.css"
   },
   {
-    "revision": "eaf5c0fba30ee811ffa9",
-    "url": "/static/js/2.5b0bbfb6.chunk.js"
+    "revision": "0d928d6f819a1b5e5391",
+    "url": "/static/js/2.2ce9507c.chunk.js"
   },
   {
     "revision": "7ff957ca521136d64f7f493dc27b7fac",
-    "url": "/static/js/2.5b0bbfb6.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.2ce9507c.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6492c13be65e43bb3edf",
-    "url": "/static/js/main.4501e6b0.chunk.js"
+    "revision": "3d1fdb455f027fa18a7e",
+    "url": "/static/js/main.6527a150.chunk.js"
   },
   {
     "revision": "5d93c6b2d15332364552",
     "url": "/static/js/runtime-main.cea588d5.js"
+  },
+  {
+    "revision": "1372b6df00cc0c78d08fb2b44ac140ab",
+    "url": "/static/media/First.1372b6df.gif"
+  },
+  {
+    "revision": "9e7a758502b8e6c6f7435effdf59dbee",
+    "url": "/static/media/browserheader.9e7a7585.webp"
   },
   {
     "revision": "afeb8580ef19db69dac183b087c97961",
@@ -40,8 +48,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/header.9363a385.jpg"
   },
   {
-    "revision": "8c2b54c08dee8f2f00a2922a71a34311",
-    "url": "/static/media/iphone_preview.8c2b54c0.png"
+    "revision": "cb924d8560eabe0f59789b4eca9d3e70",
+    "url": "/static/media/iphone_preview.cb924d85.webp"
   },
   {
     "revision": "4ff48a21cad7bfcda1b335898d6833be",
@@ -72,7 +80,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/static/media/searching.133d0334.jpg"
   },
   {
+    "revision": "fd82d47e8a4cf7ce2d51dfabbab19489",
+    "url": "/static/media/second.fd82d47e.gif"
+  },
+  {
     "revision": "5ea6c2a57c10590aa64ced9d7bb83523",
     "url": "/static/media/stacking.5ea6c2a5.jpg"
+  },
+  {
+    "revision": "dc3f69dea7f2a555e5f32d46eeb23154",
+    "url": "/static/media/third.dc3f69de.gif"
   }
 ]);

@@ -21,6 +21,7 @@ const tasksRoute = require("./routes/tasks");
 const NoteRoute = require("./routes/Note");
 const SupportRoute = require("./routes/support");
 const auth = require("./middleware/auth");
+const push = require("./routes/pushNotifications");
 
 //Connect to database
 ConnectDB();
@@ -43,9 +44,9 @@ app.use(
       "https://api.noteful.app",
       "http://localhost:5000",
       "http://localhost:3000",
-      "http://192.168.1.64:3000"
+      "http://192.168.1.64:3000",
     ],
-    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Set-Cookie"
+    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Set-Cookie",
   })
 );
 
@@ -69,6 +70,7 @@ app.use("/", SupportRoute);
 app.use("/", auth, FolderRoute);
 app.use("/", auth, tasksRoute);
 app.use("/", auth, NoteRoute);
+app.use("/", push);
 
 // Error handlers
 app.use((req, res, next) => {
@@ -80,8 +82,8 @@ app.use((err, req, res, next) => {
   res.send({
     error: {
       status: err.status || 500,
-      message: err.message
-    }
+      message: err.message,
+    },
   });
 });
 
