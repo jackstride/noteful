@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.fd76994542c07e6fde9aded771d3c5af.js"
+  "/precache-manifest.8344da8948e7615433482c3767a94b85.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -24,6 +24,18 @@ self.addEventListener('message', (event) => {
 });
 
 workbox.core.clientsClaim();
+
+self.addEventListener('push', (e) => {
+   // axios({
+  //   method: "POST",
+  //   url: process.env.REACT_APP_ENDPOINT + "/subscribe",
+  //   data: JSON.stringify(push),
+  //   withCredentials: true,
+  //   headers: {
+  //     "Content-type": "application/json",
+  //   },
+  // });
+})
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to

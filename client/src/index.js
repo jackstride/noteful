@@ -19,26 +19,4 @@ render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 
-// Notification.requestPermission((status) => {
-//   console.log(status);
-// });
-
-// await axios.post("/subscribe", {
-//   withCredentials: true,
-//   body: JSON.stringify(sub),
-//   headers: {
-//     "content-type": "application/json",
-//   },
-// });
-
-//   await fetch("/subscribe", {
-//     method: "POST",
-//     body: JSON.stringify(sub),
-//     headers: {
-//       "content-type": "application/json",
-//     },
-//     credentials: "same-origin",
-//   });
-// }
-
 serviceWorker.register();

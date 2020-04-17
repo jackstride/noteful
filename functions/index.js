@@ -67,10 +67,10 @@ app.use("/user", userRoute);
 app.use("/dashboard", authRoute);
 app.use("/auth", socialAuthRoute);
 app.use("/", SupportRoute);
+app.use("/", push);
 app.use("/", auth, FolderRoute);
 app.use("/", auth, tasksRoute);
 app.use("/", auth, NoteRoute);
-app.use("/", push);
 
 // Error handlers
 app.use((req, res, next) => {
