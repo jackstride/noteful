@@ -280,30 +280,31 @@ router.post("/refresh", async (req, res, next) => {
         _id: decoded._id,
         firstName: decoded.firstName,
       };
-          jwt.sign(
-            payload,
-            process.env.JWT_KEY,
-            {
-              expiresIn: "25s",
-            },
-            (err, token) => {
-              console.log(token);
-              if (token) {
-                return res
-                    .cookie("__session", token, {
-                      expires: new Date(Date.now() + 9000000),
-                      // httpOnly: true,
-                      // secure: true,
-                      // domain: ".noteful.app"
-                    })
-                    .status(200).json({user: payload});
-              } else if (err) {
-                console.log("error")
-                return next(createError(401, "No Token"));
-              }
-              return next(createError(401, "No Token"));
-            }
-          );      
+      jwt.sign(
+        payload,
+        process.env.JWT_KEY,
+        {
+          expiresIn: "5m",
+        },
+        (err, token) => {
+          console.log(token);
+          if (token) {
+            return res
+              .cookie("__session", token, {
+                expires: new Date(Date.now() + 9000000),
+                // httpOnly: true,
+                // secure: true,
+                // domain: ".noteful.app"
+              })
+              .status(200)
+              .json({ user: payload });
+          } else if (err) {
+            console.log("error");
+            return next(createError(401, "No Token"));
+          }
+          return next(createError(401, "No Token"));
+        }
+      );
     } else {
       return next(createError(401, "No Token"));
     }
