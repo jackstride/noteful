@@ -61,3 +61,12 @@ export const SUPPORT_SUCCESS = "SUPPORT_SUCCESS";
 // Dark Mode
 
 export const TOGGLE_DARK = "TOGGLE_DARK";
+
+
+
+// Login Errors
+export const LOGIN_ERROR = "LOGIN_ERROR";
+
+// Register Errors
+
+export const REGISTER_ERROR = "REGISTER_ERROR";

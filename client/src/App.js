@@ -24,6 +24,10 @@ class App extends Component {
     isAuthenticated: PropTypes.bool,
   };
 
+  componentDidMount() {
+    loadUser();
+  }
+
   HomeContainer = () => {
     return (
       <div className="website_container">
@@ -74,7 +78,7 @@ class App extends Component {
             <AuthRoute
               path="/dashboard"
               authed={this.props.auth}
-              component={this.DefaultContainer}
+              component={Dashboard}
             />
             <Route path="/register" component={this.RegisterContainer} />
             <Route path="/login" component={this.LoginContainer} />
@@ -87,7 +91,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { auth: state.auth };
+  return { auth: state.auth.isAuthenticated };
 };
 
 const mapDispatchToProps = (dispatch) => ({

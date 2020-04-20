@@ -22,6 +22,10 @@ const UserSchema = new Schema({
     google_id: {
         type: String,
         default: null,
+    },
+    refresh_token: {
+        type: String,
+        default: null,
     }
 })
 

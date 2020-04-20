@@ -34,7 +34,6 @@ router.post("/subscribe", async (req, res) => {
   };
   webpush
     .sendNotification(subscription, payload, options)
-    .then(res => console.log(res))
     .catch((err) => console.error(err));
     res.status(201).json({ test: "test" });
 });

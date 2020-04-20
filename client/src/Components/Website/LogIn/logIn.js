@@ -8,13 +8,12 @@ import { Link } from "react-router-dom";
 import { loadUser } from "../../../actions/authActions";
 import ShowError from "../ShowError";
 
-const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
+const LogIn = ({ errors, clearErrors, loadUser, history, isAuth }) => {
   let [loginErrors, setErrors] = useState();
   let [sent, setSent] = useState(false);
   let [show, setShow] = useState(true);
 
   useEffect(() => {
-    loadUser();
     setErrors(errors);
     setSent(false);
   }, [errors]);
@@ -23,6 +22,12 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
     return () => {
       clearErrors();
     };
+  }, []);
+
+  useEffect(() => {
+    if (isAuth) {
+      history.push("/dashboard");
+    }
   }, []);
 
   return (
@@ -60,7 +65,7 @@ const LogIn = ({ isAuth, errors, clearErrors, loadUser, history }) => {
         <ShowError
           toggleShow={() => {
             setShow(false);
-            clearErrors();
+            // clearErrors();
             setShow(true);
           }}
           message={loginErrors}

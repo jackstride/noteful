@@ -17,11 +17,11 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
     error: PropTypes.object.isRequired
   };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push("/dashboard");
-    }
-  }, [isAuthenticated]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     history.push("/dashboard");
+  //   }
+  // }, [isAuthenticated]);
 
   useEffect(() => {
     !values.password ? setEmptyPassword(false) : setEmptyPassword(true);

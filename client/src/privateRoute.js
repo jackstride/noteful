@@ -1,24 +1,26 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 
-function AuthRoute({ component: Component, authed, ...rest }) {
+const AuthRoute = ({ component: Component, authed, ...rest }) => {
+  useEffect(() => {
+    console.log(authed);
+  });
   return (
     <Route
       {...rest}
-      render={props =>
-        authed.isAuthenticated === true ? (
+      render={(props) =>
+        authed === true ? (
           <Component {...props} />
         ) : (
           <Redirect
             to={{
-              pathname: "/login"
+              pathname: "/login",
             }}
           />
         )
       }
     />
   );
-}
+};
 
 export default AuthRoute;

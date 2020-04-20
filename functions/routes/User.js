@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const jtw = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const createError = require("http-errors");
 const { userValidationRules, validate } = require("../middleware/validation");
 const User = require("../models/User");
@@ -62,14 +62,14 @@ router.post(
 );
 
 //User login
+// Refresh token to be stored in database
+// Refresh token can be nullified if account stolen etc..
+//Check auth token to generate new token for persisted login
 router.post("/login", async (req, res, next) => {
   let { email, password } = req.body;
   console.log(email, password);
-
   email = email.toLowerCase();
-
   let user = await User.find({ email }).exec();
-
   if (user.length < 1) {
     return next(createError(401, "Please enter a valid email & Password"));
   } else {
@@ -83,31 +83,52 @@ router.post("/login", async (req, res, next) => {
       firstName: user[0].firstName,
     };
 
-    jtw.sign(
-      payload,
-      process.env.JWT_KEY,
-      {
-        expiresIn: "2 days",
-      },
-      (err, token) => {
-        if (token) {
-          return res
-            .cookie("__session", token, {
-              expires: new Date(Date.now() + 9000000),
-              // httpOnly: true,
-              // secure: true,
-              // domain: ".noteful.app"
-            })
-            .status(200)
-            .json({ user: payload });
-        } else if (err) {
-          return console.log(err);
+    // Generate Refresh Token
+    let refresh = await jwt.sign(payload, process.env.JWT_KEY);
+
+    if (refresh) {
+      const one = await User.update(
+        { _id: payload._id },
+        {
+          refresh_token: refresh,
         }
-        throw token;
+      );
+
+      if (one) {
+        // Generate Login Token
+        jwt.sign(
+          payload,
+          process.env.JWT_KEY,
+          {
+            expiresIn: "10s",
+          },
+          (err, token) => {
+            if (token) {
+              return res
+                .cookie("__session", token, {
+                  expires: new Date(Date.now() + 9000000),
+                  // httpOnly: true,
+                  // secure: true,
+                  // domain: ".noteful.app"
+                })
+                .status(200)
+                .json({ user: payload, refresh_token: refresh });
+            } else if (err) {
+              return console.log(err);
+            }
+            throw token;
+          }
+        );
+      } else {
+        return next(
+          createError(401, " Please enter a valid email or Password.")
+        );
       }
-    );
+    } else {
+      return next(createError(401, " Please enter a valid email or Password."));
+    }
   } else {
-    return next(createError(401, " Please enter a valid email or Password."));
+    console.log("error");
   }
 });
 
@@ -243,6 +264,50 @@ router.post("/reset", async (req, res, next) => {
   // }
 
   // res.status(200).json({ hi: "hi" });
+});
+
+router.post("/refresh", async (req, res, next) => {
+  let { key } = req.body;
+
+  if (!key) {
+    return next(createError(401, "No Token"));
+  } else {
+    const decoded = await jwt.verify(key, process.env.JWT_KEY);
+
+    if (decoded) {
+      const payload = {
+        email: decoded.email,
+        _id: decoded._id,
+        firstName: decoded.firstName,
+      };
+          jwt.sign(
+            payload,
+            process.env.JWT_KEY,
+            {
+              expiresIn: "25s",
+            },
+            (err, token) => {
+              console.log(token);
+              if (token) {
+                return res
+                    .cookie("__session", token, {
+                      expires: new Date(Date.now() + 9000000),
+                      // httpOnly: true,
+                      // secure: true,
+                      // domain: ".noteful.app"
+                    })
+                    .status(200).json({user: payload});
+              } else if (err) {
+                console.log("error")
+                return next(createError(401, "No Token"));
+              }
+              return next(createError(401, "No Token"));
+            }
+          );      
+    } else {
+      return next(createError(401, "No Token"));
+    }
+  }
 });
 
 module.exports = router;

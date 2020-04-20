@@ -83,14 +83,14 @@ self.addEventListener('fetch',e => {
       applicationServerKey: applicationServerKey,
     })
     console.log(JSON.stringify(push.endpoint));
-    fetch("http://localhost:5000/subscribe", {
-      method: "POST",
-      body: JSON.stringify(push),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include"
-    })
+    // fetch("http://localhost:5000/subscribe", {
+    //   method: "POST",
+    //   body: JSON.stringify(push),
+    //   headers: {
+    //     "Content-Type": "application/json"
+    //   },
+    //   credentials: "include"
+    // })
     return;
   }
   

@@ -20,12 +20,8 @@ import {
 } from "./types";
 
 //Load user
-export const loadUser = () => (dispatch, getState) => {
+export const loadUser = (token) => (dispatch, getState) => {
   //User Loading
-  dispatch({
-    type: USER_LOADING,
-  });
-
   axios
     .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
       withCredentials: true,
@@ -77,7 +73,7 @@ export const login = (formValues) => (dispatch) => {
       console.log(res);
       dispatch({
         type: LOGIN_SUCCESS,
-        payload: res.data.user,
+        payload: res.data,
       });
     })
     .catch((err) => {
@@ -149,4 +145,20 @@ export const resetAuth = () => (dispatch) => {
   dispatch({
     type: RESET_AUTH,
   });
+};
+
+export const refreshToken = (token) => (dispatch) => {
+  token = {
+    key: token,
+  };
+  axios
+    .post(process.env.REACT_APP_ENDPOINT + "/user/refresh", token, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data
+      })
+    });
 };

@@ -5,7 +5,8 @@ import {
   FOLDER_LOADED,
   REMOVE_FOLDER,
   TOGGLE_OPEN,
-  UPDATE_FOLDER
+  UPDATE_FOLDER,
+  AUTH_ERROR,
 } from "./types";
 
 import { isSuccess, isError } from "./ResponseActions";
@@ -25,7 +26,9 @@ export const addFolder = values => dispatch => {
       });
     })
     .catch(err => {
-      console.log(err);
+      dispatch({
+        type: AUTH_ERROR
+      })
     });
 };
 
