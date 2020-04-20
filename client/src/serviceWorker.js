@@ -29,37 +29,7 @@ export const register = () => {
   }
 };
 
-async function subscribe() {
-  let applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
-  let sw = await navigator.serviceWorker.ready;
-  let push = await sw.pushManager.subscribe({
-    userVisibleOnly: true,
-    applicationServerKey: applicationServerKey,
-  })
-  console.log(JSON.stringify(push.endpoint));
-  // axios({
-  //   method: "POST",
-  //   url: process.env.REACT_APP_ENDPOINT + "/subscribe",
-  //   data: JSON.stringify(push),
-  //   withCredentials: true,
-  //   headers: {
-  //     "Content-type": "application/json",
-  //   },
-  // });
-  return;
-}
 
-window.addEventListener('push', function(event) {
-
-  let sw = navigator.serviceWorker.ready;
-
-  sw.showNotification("hello")
-  if (event.data) {
-    console.log('This push event has data: ', event.data.text());
-  } else {
-    console.log('This push event has no data.');
-  }
-});
 
 
 
@@ -77,3 +47,36 @@ function urlBase64ToUint8Array(base64String) {
   }
   return outputArray;
 }
+
+
+
+async function subscribe() {
+  let applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
+  let sw = await navigator.serviceWorker.ready;
+  let push = await sw.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey,
+  })
+  console.log(JSON.stringify(push.endpoint));
+  axios({
+    method: "POST",
+    url: process.env.REACT_APP_ENDPOINT + "/subscribe",
+    data: JSON.stringify(push),
+    withCredentials: true,
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  return;
+}
+
+
+
+// fetch(process.env.REACT_APP_ENDPOINT + "/subscribe", {
+//   method: "POST",
+//   body: JSON.stringify(push),
+//   headers: {
+//     "Content-Type": "application/json"
+//   },
+//   credentials: "include"
+// })

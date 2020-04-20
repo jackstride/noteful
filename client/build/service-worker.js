@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.8344da8948e7615433482c3767a94b85.js"
+  "/precache-manifest.31d3a9333716708067a7ccd81003f2da.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -24,18 +24,6 @@ self.addEventListener('message', (event) => {
 });
 
 workbox.core.clientsClaim();
-
-self.addEventListener('push', (e) => {
-   // axios({
-  //   method: "POST",
-  //   url: process.env.REACT_APP_ENDPOINT + "/subscribe",
-  //   data: JSON.stringify(push),
-  //   withCredentials: true,
-  //   headers: {
-  //     "Content-type": "application/json",
-  //   },
-  // });
-})
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
@@ -48,4 +36,34 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
   
   blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
+});
+
+
+self.addEventListener('push', function(e) {
+  var body;
+
+  if (e.data) {
+    body = e.data.text();
+  } else {
+    body = 'Push message no payload';
+  }
+
+  var options = {
+    body: body,
+    icon: 'images/notification-flat.png',
+    vibrate: [100, 50, 100],
+    data: {
+      dateOfArrival: Date.now(),
+      primaryKey: 1
+    },
+    actions: [
+      {action: 'explore', title: 'Explore this new world',
+        icon: 'images/checkmark.png'},
+      {action: 'close', title: 'I don\'t want any of this',
+        icon: 'images/xmark.png'},
+    ]
+  };
+  e.waitUntil(
+    self.registration.showNotification('Push Notification', options)
+  );
 });
