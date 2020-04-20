@@ -1,4 +1,5 @@
 import axios from "axios";
+import { returnErrors } from "./errorActions";
 import {
   ADD_NOTE,
   EDIT_NOTE,
@@ -9,92 +10,103 @@ import {
   CHANGE_FOLDER,
   CLEAR_NOTE,
   SORT_NOTE,
-  TOGGLE_ADD_NOTE
+  TOGGLE_ADD_NOTE,
+  AUTH_ERROR,
 } from "../actions/types";
 
 const instance = axios.create({
-  withCredentials: true
+  withCredentials: true,
 });
 
 //Notes by folder id
-export const getNotes = id => dispatch => {
-  instance.get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`).then(res => {
-    dispatch({
-      type: NOTE_LOADED,
-      payload: res.data
+export const getNotes = (id) => (dispatch) => {
+  instance
+    .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`)
+    .then((res) => {
+      dispatch({
+        type: NOTE_LOADED,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response.status);
+      if ((err.response.status = 401)) {
+        dispatch({
+          type: AUTH_ERROR,
+        });
+      }
     });
-  });
 };
 
-export const addNote = values => dispatch => {
+export const addNote = (values) => (dispatch) => {
   instance
     .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: ADD_NOTE,
-        payload: res.data.note
+        payload: res.data.note,
       });
     });
 };
 
-export const editNote = (values, passType = EDIT_NOTE) => dispatch => {
+export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
   instance
     .patch(process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`, values)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: passType,
-        payload: values
+        payload: values,
       });
     });
 };
 
-export const getNoteById = _id => dispatch => {
-  instance.get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`).then(res => {
+export const getNoteById = (_id) => (dispatch) => {
+  instance.get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`).then((res) => {
     dispatch({
       type: SINGLE_NOTE,
-      payload: res.data.note
+      payload: res.data.note,
     });
   });
 };
 
-export const removeNote = _id => dispatch => {
+export const removeNote = (_id) => (dispatch) => {
   instance
     .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: DELETE_NOTE,
-        payload: _id
+        payload: _id,
       });
     });
 };
 
-export const removeAllByFolderId = folder_id => dispatch => {
+export const removeAllByFolderId = (folder_id) => (dispatch) => {
   instance
     .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: DELETE_NOTE_BY_FOLDER,
-        payload: folder_id
+        payload: folder_id,
       });
     });
 };
 
-export const sortNotes = folder_id => dispatch => {
+export const sortNotes = (folder_id) => (dispatch) => {
   dispatch({
     type: SORT_NOTE,
-    payload: folder_id
+    payload: folder_id,
   });
 };
 
-export const clearValues = () => dispatch => {
+export const clearValues = () => (dispatch) => {
   dispatch({
-    type: CLEAR_NOTE
+    type: CLEAR_NOTE,
   });
 };
 
-export const toggleNoteOpen = () => dispatch => {
+export const toggleNoteOpen = () => (dispatch) => {
   console.log("called");
   dispatch({
-    type: TOGGLE_ADD_NOTE
+    type: TOGGLE_ADD_NOTE,
   });
 };

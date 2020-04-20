@@ -5,10 +5,18 @@ import SocialAuth from "../Register/socialAuth";
 import { clearErrors } from "../../../actions/errorActions";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
 import { Link } from "react-router-dom";
-import { loadUser } from "../../../actions/authActions";
+import { loadUser, refreshToken } from "../../../actions/authActions";
 import ShowError from "../ShowError";
 
-const LogIn = ({ errors, clearErrors, loadUser, history, isAuth }) => {
+const LogIn = ({
+  errors,
+  clearErrors,
+  loadUser,
+  history,
+  isAuth,
+  refreshToken,
+  token,
+}) => {
   let [loginErrors, setErrors] = useState();
   let [sent, setSent] = useState(false);
   let [show, setShow] = useState(true);
@@ -25,10 +33,11 @@ const LogIn = ({ errors, clearErrors, loadUser, history, isAuth }) => {
   }, []);
 
   useEffect(() => {
+    refreshToken(token);
     if (isAuth) {
       history.push("/dashboard");
     }
-  }, []);
+  }, [isAuth]);
 
   return (
     <section className="login">
@@ -78,11 +87,13 @@ const LogIn = ({ errors, clearErrors, loadUser, history, isAuth }) => {
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   errors: state.error.message,
+  token: state.auth.refresh_token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
   loadUser: () => dispatch(loadUser()),
+  refreshToken: (token) => dispatch(refreshToken(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

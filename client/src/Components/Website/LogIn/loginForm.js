@@ -7,28 +7,22 @@ import { login } from "../../../actions/authActions";
 const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
   let [values, setValues] = useState({
     email: " ",
-    password: " "
+    password: " ",
   });
   let [emptyEmail, setEmptyEmail] = useState(true);
   let [emptyPassword, setEmptyPassword] = useState(true);
 
   let propTypes = {
     isAuthenticated: PropTypes.bool,
-    error: PropTypes.object.isRequired
+    error: PropTypes.object.isRequired,
   };
-
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     history.push("/dashboard");
-  //   }
-  // }, [isAuthenticated]);
 
   useEffect(() => {
     !values.password ? setEmptyPassword(false) : setEmptyPassword(true);
     !values.email ? setEmptyEmail(false) : setEmptyEmail(true);
   }, [values.password, values.email]);
 
-  let handleSubmit = event => {
+  let handleSubmit = (event) => {
     event.preventDefault();
     login(values);
     setSent();
@@ -37,14 +31,14 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
   return (
     <form
       className="auth_form"
-      onSubmit={event => {
+      onSubmit={(event) => {
         handleSubmit(event);
       }}
     >
       <label htmlFor="email">Email Address</label>
       <input
         className={!emptyEmail ? "error" : null}
-        onChange={e => setValues({ ...values, email: e.target.value })}
+        onChange={(e) => setValues({ ...values, email: e.target.value })}
         type="text"
         name="email"
         placeholder="example@noteful.app"
@@ -53,7 +47,7 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
       <label htmlFor="password">Password</label>
       <input
         className={!emptyPassword ? "error" : null}
-        onChange={e => setValues({ ...values, password: e.target.value })}
+        onChange={(e) => setValues({ ...values, password: e.target.value })}
         type="password"
         name="password"
         placeholder="Enter your password"
@@ -73,14 +67,14 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    error: state.error
+    error: state.error,
   };
 };
 
-const mapDispatchToProps = () => dispatch => ({
-  login: values => dispatch(login(values))
+const mapDispatchToProps = () => (dispatch) => ({
+  login: (values) => dispatch(login(values)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

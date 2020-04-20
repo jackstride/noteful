@@ -19,8 +19,16 @@ const Home = ({ getFolder, auth, id, isDark, refreshToken, token }) => {
 
   useEffect(() => {
     // getFolder(id);
+    return () => {
+      console.log("unmounted");
+    };
   }, [id]);
 
+  useEffect(() => {
+    if (!auth) {
+      refreshToken(token);
+    }
+  }, [auth]);
 
   return (
     <div className={isDark ? "app_container dark-mode" : "app_container"}>
@@ -44,19 +52,19 @@ const Home = ({ getFolder, auth, id, isDark, refreshToken, token }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     auth: state.auth.isAuthenticated,
     id: state.auth.user._id,
     isDark: state.misc.isDark,
-    token: state.auth.refresh_token
+    token: state.auth.refresh_token,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   loadUser: () => dispatch(loadUser()),
-  getFolder: id => dispatch(getFolder(id)),
-  refreshToken: token => dispatch(refreshToken(token))
+  getFolder: (id) => dispatch(getFolder(id)),
+  refreshToken: (token) => dispatch(refreshToken(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
