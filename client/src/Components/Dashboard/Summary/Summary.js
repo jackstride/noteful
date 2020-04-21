@@ -44,7 +44,7 @@ let Summary = ({ id, notes, getNotes, folder }) => {
           <Switch>
             <Route
               path="/dashboard/notes"
-              render={props => (
+              render={(props) => (
                 <SummaryNotes folder={folder} notes={notes} {...props} />
               )}
             />
@@ -54,7 +54,7 @@ let Summary = ({ id, notes, getNotes, folder }) => {
             <Route
               exact
               path="/dashboard"
-              render={props => (
+              render={(props) => (
                 <SummaryFolder data={folder} notes={notes} {...props} />
               )}
             />
@@ -65,18 +65,18 @@ let Summary = ({ id, notes, getNotes, folder }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.auth.user._id,
     notes: state.note.noteData,
     tasks: state.task.taskData,
-    folder: state.folder.data
+    folder: state.folder.data,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getNotes: id => dispatch(getNotes(id)),
-  getFolder: id => dispatch(getFolder(id))
+const mapDispatchToProps = (dispatch) => ({
+  getNotes: (id) => dispatch(getNotes(id)),
+  getFolder: (id) => dispatch(getFolder(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Summary);

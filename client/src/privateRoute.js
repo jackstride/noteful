@@ -2,9 +2,7 @@ import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 const AuthRoute = ({ component: Component, authed, ...rest }) => {
-  useEffect(() => {
-    console.log(authed);
-  });
+  useEffect(() => {});
   return (
     <Route
       {...rest}

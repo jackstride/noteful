@@ -1,22 +1,32 @@
 import React, { Fragment } from "react";
 
 let widgetSubmit = ({ addFolder, userid, toggle, values }) => {
-  const hanldeSubmit = e => {
+  const hanldeSubmit = (e) => {
     e.preventDefault();
     let keys = Object.keys(values);
     values[keys[0]] = userid;
     values[keys[1]] = e.target.title.value;
-    console.log(values);
     addFolder(values);
     toggle();
+  };
+
+  window.SyncTest = () => {
+    console.log("caleld");
+    navigator.serviceWorker.ready.then((reg) => {
+      reg.sync.register("test").then((res) => {
+        console.log("registered");
+      });
+    });
   };
 
   return (
     <div className="input_holder">
       <form
+        id="ButtonTest"
         className="f_form"
-        onSubmit={e => {
+        onSubmit={(e) => {
           hanldeSubmit(e);
+          window.SyncTest();
         }}
       >
         <input

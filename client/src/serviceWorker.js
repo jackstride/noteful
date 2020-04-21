@@ -10,13 +10,13 @@ export const register = () => {
           console.log("Service Worker Registered");
           reg.pushManager.getSubscription().then((sub) => {
             let isSubscribed = !(sub === null);
-            if(isSubscribed) {
+            if (isSubscribed) {
               subscribe();
               return;
             } else {
               Notification.requestPermission(function (status) {
                 console.log("Notification permission status:", status);
-                if(status){
+                if (status) {
                   subscribe();
                   return;
                 }
@@ -28,11 +28,6 @@ export const register = () => {
     });
   }
 };
-
-
-
-
-
 
 // Conver key to base64
 function urlBase64ToUint8Array(base64String) {
@@ -48,15 +43,15 @@ function urlBase64ToUint8Array(base64String) {
   return outputArray;
 }
 
-
-
 async function subscribe() {
-  let applicationServerKey = urlBase64ToUint8Array(process.env.REACT_APP_VAPID_PUBLIC);
+  let applicationServerKey = urlBase64ToUint8Array(
+    process.env.REACT_APP_VAPID_PUBLIC
+  );
   let sw = await navigator.serviceWorker.ready;
   let push = await sw.pushManager.subscribe({
     userVisibleOnly: true,
     applicationServerKey: applicationServerKey,
-  })
+  });
   console.log(JSON.stringify(push.endpoint));
   axios({
     method: "POST",
@@ -70,8 +65,6 @@ async function subscribe() {
   return;
 }
 
-
-
 // fetch(process.env.REACT_APP_ENDPOINT + "/subscribe", {
 //   method: "POST",
 //   body: JSON.stringify(push),
@@ -80,3 +73,8 @@ async function subscribe() {
 //   },
 //   credentials: "include"
 // })
+
+window.addEventListener("fetch", (e) => {
+  console.log("this");
+  e.respondWith(console.log(e.request));
+});

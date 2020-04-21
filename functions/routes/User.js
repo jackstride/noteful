@@ -109,7 +109,7 @@ router.post("/login", async (req, res, next) => {
                   expires: new Date(Date.now() + 9000000),
                   // httpOnly: true,
                   // secure: true,
-                  // domain: ".noteful.app"
+                  // domain: ".noteful.app",
                 })
                 .status(200)
                 .json({ user: payload, refresh_token: refresh });
@@ -294,7 +294,7 @@ router.post("/refresh", async (req, res, next) => {
                 expires: new Date(Date.now() + 9000000),
                 // httpOnly: true,
                 // secure: true,
-                // domain: ".noteful.app"
+                // domain: ".noteful.app",
               })
               .status(200)
               .json({ user: payload });

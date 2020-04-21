@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import {
   FOLDER_SUCCESS,
   FOLDER_LOADED,
@@ -8,74 +7,71 @@ import {
   UPDATE_FOLDER,
   AUTH_ERROR,
 } from "./types";
-
 import { isSuccess, isError } from "./ResponseActions";
 
 const instance = axios.create({
-  withCredentials: true
+  withCredentials: true,
 });
 
-export const addFolder = values => dispatch => {
+export const addFolder = (values) => (dispatch) => {
   instance
     .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values)
-    .then(res => {
+    .then((res) => {
       dispatch(isSuccess("Folder Added"));
       dispatch({
         type: FOLDER_SUCCESS,
-        payload: res.data.folder
+        payload: res.data.folder,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch({
-        type: AUTH_ERROR
-      })
+        type: AUTH_ERROR,
+      });
     });
 };
 
-export const getFolder = id => dispatch => {
+export const getFolder = (id) => (dispatch) => {
   instance
     .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: FOLDER_LOADED,
-        payload: res.data.folder
+        payload: res.data.folder,
       });
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 };
 
-export const removeFolder = id => dispatch => {
+export const removeFolder = (id) => (dispatch) => {
   instance
     .delete(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
-      data: { id: id }
+      data: { id: id },
     })
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: REMOVE_FOLDER,
-        payload: id
+        payload: id,
       });
     });
 };
 
-export const toggleFolderOpen = () => dispatch => {
+export const toggleFolderOpen = () => (dispatch) => {
   dispatch({
-    type: TOGGLE_OPEN
+    type: TOGGLE_OPEN,
   });
 };
 
-export const updateFolder = (
-  _id,
-  values,
-  passType = UPDATE_FOLDER
-) => dispatch => {
+export const updateFolder = (_id, values, passType = UPDATE_FOLDER) => (
+  dispatch
+) => {
   instance
     .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values)
-    .then(res => {
+    .then((res) => {
       dispatch({
         type: passType,
-        payload: { values, _id }
+        payload: { values, _id },
       });
     });
 };

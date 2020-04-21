@@ -1,23 +1,23 @@
-export const manifest = (self.__precacheManifest || []).concat([
+self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "32b24af5e61a0f977d6eaffb42d8d986",
+    "revision": "e33e0c9f26f7632a9af224a74c8c38cb",
     "url": "/index.html"
   },
   {
-    "revision": "2cef4d2769e619d7fe1f",
+    "revision": "da70ac069acb251fa733",
     "url": "/static/css/main.c33b6eeb.chunk.css"
   },
   {
-    "revision": "37494cea0081fc784312",
-    "url": "/static/js/2.ee82bd95.chunk.js"
+    "revision": "4666c73469dffda2778c",
+    "url": "/static/js/2.02330247.chunk.js"
   },
   {
     "revision": "7ff957ca521136d64f7f493dc27b7fac",
-    "url": "/static/js/2.ee82bd95.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.02330247.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2cef4d2769e619d7fe1f",
-    "url": "/static/js/main.b5abbe28.chunk.js"
+    "revision": "da70ac069acb251fa733",
+    "url": "/static/js/main.eac1d732.chunk.js"
   },
   {
     "revision": "5d93c6b2d15332364552",

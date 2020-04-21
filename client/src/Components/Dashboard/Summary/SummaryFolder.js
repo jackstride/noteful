@@ -10,26 +10,28 @@ import LazyLoading from "../LazyLoading";
 const moment = require("moment");
 
 const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
-  let handleContextMenu = e => {
+  let handleContextMenu = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(pageX, pageY, "FoldersContextMenu", {
       name: e.target.name,
-      id: e.target.id
+      id: e.target.id,
     });
   };
 
   return (
     <div className="s_f_holder">
-      {data ? (
+      <h2> Hello</h2>
+      {/* {data ? (
         data.map((data, i) => {
-          let noteData = notes.filter(notes => notes.folder_id == data._id);
+          // let noteData = notes.filter((notes) => notes.folder_id == data._id);
+          let noteData = data;
           return (
             <Link
               key={i}
               name={data.folder_name}
               id={data._id}
-              onContextMenu={e => handleContextMenu(e)}
+              onContextMenu={(e) => handleContextMenu(e)}
               to={`/dashboard/folder/${data._id}`}
             >
               <Item
@@ -43,24 +45,24 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
         })
       ) : (
         <LazyLoading />
-      )}
+      )} */}
     </div>
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.auth.user._id,
-    tasks: state.task.taskData
+    tasks: state.task.taskData,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadTasks: id => dispatch(loadTasks(id)),
-  getNotes: id => dispatch(getNotes(id)),
-  getFolder: id => dispatch(getFolder(id)),
-  toggleTask: id => dispatch(toggleTask(id)),
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+const mapDispatchToProps = (dispatch) => ({
+  loadTasks: (id) => dispatch(loadTasks(id)),
+  getNotes: (id) => dispatch(getNotes(id)),
+  getFolder: (id) => dispatch(getFolder(id)),
+  toggleTask: (id) => dispatch(toggleTask(id)),
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SummaryFolder);
@@ -93,7 +95,7 @@ const Circle = ({ position }) => {
       style={
         position === 1
           ? {
-              left: "0px"
+              left: "0px",
             }
           : position === 2
           ? {}

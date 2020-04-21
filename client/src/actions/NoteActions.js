@@ -1,5 +1,7 @@
 import axios from "axios";
 import { returnErrors } from "./errorActions";
+import dexie from "dexie";
+
 import {
   ADD_NOTE,
   EDIT_NOTE,
@@ -14,39 +16,68 @@ import {
   AUTH_ERROR,
 } from "../actions/types";
 
+const db = new dexie("Database");
+db.version(1).stores({ NoteData: "id" });
+
+window.addEventListener("online", () => detectOnline());
+window.addEventListener("offline", () => detectOnline());
+
+const detectOnline = () => {
+  let isOnline = window.navigator.onLine;
+  return isOnline;
+};
+
+let isOnline = detectOnline();
+
 const instance = axios.create({
   withCredentials: true,
 });
 
 //Notes by folder id
 export const getNotes = (id) => (dispatch) => {
-  instance
-    .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`)
-    .then((res) => {
-      dispatch({
-        type: NOTE_LOADED,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err.response.status);
-      if ((err.response.status = 401)) {
+  if (!isOnline) {
+    db.NoteData.toArray()
+      .then((res) => {
         dispatch({
-          type: AUTH_ERROR,
+          type: NOTE_LOADED,
+          payload: res,
         });
-      }
-    });
+      })
+      .catch((err) => console.log(err));
+  } else {
+    instance
+      .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`)
+      .then((res) => {
+        dispatch({
+          type: NOTE_LOADED,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        // console.log(err.response.status);
+        // if ((err.response.status = 401)) {
+        //   dispatch({
+        //     type: AUTH_ERROR,
+        //   });
+        // }
+      });
+  }
 };
 
 export const addNote = (values) => (dispatch) => {
-  instance
-    .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values)
-    .then((res) => {
-      dispatch({
-        type: ADD_NOTE,
-        payload: res.data.note,
+  if (!isOnline) {
+    console.log(values);
+    db.NoteData.put({ id: values.user_id, values: values });
+  } else {
+    instance
+      .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values)
+      .then((res) => {
+        dispatch({
+          type: ADD_NOTE,
+          payload: res.data.note,
+        });
       });
-    });
+  }
 };
 
 export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
@@ -105,7 +136,6 @@ export const clearValues = () => (dispatch) => {
 };
 
 export const toggleNoteOpen = () => (dispatch) => {
-  console.log("called");
   dispatch({
     type: TOGGLE_ADD_NOTE,
   });
