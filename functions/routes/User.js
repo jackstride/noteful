@@ -103,7 +103,7 @@ router.post("/login", async (req, res, next) => {
           payload,
           process.env.JWT_KEY,
           {
-            expiresIn: "1m",
+            expiresIn: "1d",
           },
           (err, refresh_token) => {
             if (refresh_token) {

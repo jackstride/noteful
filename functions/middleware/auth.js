@@ -33,11 +33,11 @@ module.exports = async (req, res, next) => {
                         payload,
                         process.env.JWT_KEY,
                         {
-                          expiresIn: "10s",
+                          expiresIn: "1d",
                         },
                         (err, token) => {
                           if (token) {
-                            console.log("NEW TOKEN SENT")
+                            console.log("NEW TOKEN GENERATED" + token)
                             req.token = token;
                             req.user = payload;
                             return next();
@@ -54,11 +54,8 @@ module.exports = async (req, res, next) => {
                   }
                   if(err) {
                     return next(createError(401, "No Token"));
-
                   }
                 })
-
-                
               } else {
                 return next(createError(401, "No Token"));
               }
@@ -67,7 +64,7 @@ module.exports = async (req, res, next) => {
             }
           }
           if (decoded) {
-            console.log("CALLLLLED");
+            console.log("OLD TOKEN WORKS");
             req.user = decoded;
             return next();
           }
