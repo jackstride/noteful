@@ -48,6 +48,7 @@ if(window.innerWidth <= 768) {
       className={props.className}
       ref={nodeRef}
       onMouseEnter={(e) => handleWidth(e)}
+      onTouchMove={(e) => handleWidth(e)}
       onTouchStart={(e) => handleWidth(e)}
     >
       {children}
