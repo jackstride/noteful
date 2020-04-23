@@ -21,6 +21,7 @@ import {
 
 //Load user
 export const loadUser = () => (dispatch, getState) => {
+  console.log("this");
   //User Loading
   let token = localStorage.getItem("token");
   axios

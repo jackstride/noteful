@@ -85,15 +85,15 @@ router.post("/login", async (req, res, next) => {
 
     // Generate Refresh Token
     // Needs to be stored as cookie
-    let refresh = await jwt.sign(payload, process.env.JWT_KEY, {
+    let access_token = await jwt.sign(payload, process.env.JWT_KEY, {
       expiresIn: "7d",
     });
 
-    if (refresh) {
+    if (access_token) {
       const one = await User.update(
         { _id: payload._id },
         {
-          refresh_token: refresh,
+          refresh_token: access_token,
         }
       );
 
@@ -105,21 +105,21 @@ router.post("/login", async (req, res, next) => {
           {
             expiresIn: "1m",
           },
-          (err, token) => {
-            if (token) {
+          (err, refresh_token) => {
+            if (refresh_token) {
               return res
-                .cookie("__session", refresh, {
+                .cookie("__session", access_token, {
                   expires: new Date(Date.now() + 9000000),
                   // httpOnly: true,
                   // secure: true,
                   // domain: ".noteful.app",
                 })
                 .status(200)
-                .json({ user: payload, token: token });
+                .json({ user: payload, token: refresh_token });
             } else if (err) {
               return console.log(err);
             }
-            throw token;
+            throw refresh_token;
           }
         );
       } else {

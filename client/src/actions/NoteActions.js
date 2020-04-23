@@ -1,6 +1,7 @@
 import axios from "axios";
 import { returnErrors } from "./errorActions";
 import dexie from "dexie";
+import { loadUser } from "./authActions";
 
 import {
   ADD_NOTE,
@@ -20,14 +21,13 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+instance.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("token");
+
 //Notes by folder id
 export const getNotes = (id) => (dispatch) => {
   instance
-    .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`)
     .then((res) => {
       dispatch({
         type: NOTE_LOADED,
@@ -47,11 +47,7 @@ export const getNotes = (id) => (dispatch) => {
 
 export const addNote = (values) => (dispatch) => {
   instance
-    .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values)
     .then((res) => {
       dispatch({
         type: ADD_NOTE,
@@ -62,15 +58,7 @@ export const addNote = (values) => (dispatch) => {
 
 export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
   instance
-    .patch(
-      process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`,
-      values,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      }
-    )
+    .patch(process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`, values)
     .then((res) => {
       dispatch({
         type: passType,
@@ -80,27 +68,17 @@ export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
 };
 
 export const getNoteById = (_id) => (dispatch) => {
-  instance
-    .get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-    .then((res) => {
-      dispatch({
-        type: SINGLE_NOTE,
-        payload: res.data.note,
-      });
+  instance.get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`).then((res) => {
+    dispatch({
+      type: SINGLE_NOTE,
+      payload: res.data.note,
     });
+  });
 };
 
 export const removeNote = (_id) => (dispatch) => {
   instance
-    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`)
     .then((res) => {
       dispatch({
         type: DELETE_NOTE,
@@ -111,11 +89,7 @@ export const removeNote = (_id) => (dispatch) => {
 
 export const removeAllByFolderId = (folder_id) => (dispatch) => {
   instance
-    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`)
     .then((res) => {
       dispatch({
         type: DELETE_NOTE_BY_FOLDER,

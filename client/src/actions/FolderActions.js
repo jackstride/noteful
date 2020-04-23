@@ -16,13 +16,12 @@ const instance = axios.create({
   withCredentials: true,
 });
 
+instance.defaults.headers.common["Authorization"] =
+  "Bearer " + localStorage.getItem("token");
+
 export const addFolder = (values) => (dispatch) => {
   instance
-    .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values)
     .then((res) => {
       dispatch(isSuccess("Folder Added"));
       dispatch({
@@ -39,11 +38,7 @@ export const addFolder = (values) => (dispatch) => {
 
 export const getFolder = (id) => (dispatch) => {
   instance
-    .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`)
     .then((res) => {
       dispatch({
         type: FOLDER_LOADED,
@@ -60,9 +55,6 @@ export const getFolder = (id) => (dispatch) => {
 export const removeFolder = (id) => (dispatch) => {
   instance
     .delete(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
       data: { id: id },
     })
     .then((res) => {
@@ -84,11 +76,7 @@ export const updateFolder = (_id, values, passType = UPDATE_FOLDER) => (
   dispatch
 ) => {
   instance
-    .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values, {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
+    .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values)
     .then((res) => {
       dispatch({
         type: passType,
