@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ProfileIcon from "./NavItem/profileIcon";
 import Search from "./NavItem/search";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SideNav from "../SideNav";
 
 const TopBar = ({ firstName }) => {
   const [settings, openSettings] = useState(false);
   const [sideNav, setSideNav] = useState(false);
+  const [isMobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth <= 425) {
+      setMobile(true);
+    }
+  });
 
   let closeSettings = () => {
     setSideNav(false);
@@ -16,7 +23,6 @@ const TopBar = ({ firstName }) => {
 
   let handleSidNav = () => {
     setSideNav(!sideNav);
-
     let test = document.querySelector(".dashboard_navigation");
     test.classList.toggle("show_anim");
   };
@@ -34,7 +40,13 @@ const TopBar = ({ firstName }) => {
       <div className="search_bar">
         <Search />
       </div>
-      <SideNav className="hello" toggle={() => setSideNav(!sideNav)} />
+      <SideNav
+        toggle={() => {
+          if (isMobile) {
+            handleSidNav();
+          }
+        }}
+      />
     </div>
   );
 };

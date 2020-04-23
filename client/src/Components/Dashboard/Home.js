@@ -12,6 +12,7 @@ import HandleMessage from "../HandleMessages/handlemessage";
 import TopBar from "./TopBar";
 import ShortcutAdd from "./ShortcutAdd";
 import Settings from "./Settings";
+import useMobile from "./useMobile";
 
 const Home = ({
   getFolder,
@@ -23,7 +24,10 @@ const Home = ({
   history,
   loadUser,
 }) => {
+  const mobile = useMobile();
   useEffect(() => {
+    console.log(mobile);
+
     getFolder(id);
     return () => {
       console.log("unmounted");
