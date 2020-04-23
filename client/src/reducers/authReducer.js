@@ -18,7 +18,6 @@ const initalState = {
   url: null,
   redirect: false,
   forgetRes: false,
-  refresh_token: null,
 };
 export default (state = initalState, action) => {
   switch (action.type) {
@@ -36,7 +35,6 @@ export default (state = initalState, action) => {
         isAuthenticated: true,
         isLoading: false,
         user: action.payload.user,
-        refresh_token: action.payload.refresh_token,
       };
     case REGISTER_SUCCESS:
       return {

@@ -12,7 +12,7 @@ router.post("/addFolder/", async (req, res, next) => {
   const folder = new Folder({
     _id: new mongoose.Types.ObjectId(),
     user_id: id,
-    folder_name: title
+    folder_name: title,
   });
 
   result = await folder.save();
@@ -27,9 +27,7 @@ router.post("/addFolder/", async (req, res, next) => {
 router.get("/folders/:user_id/", async (req, res, next) => {
   const { user_id } = req.params;
 
-  let folder = await Folder.find({ user_id })
-    .sort({ _id: -1 })
-    .exec();
+  let folder = await Folder.find({ user_id }).sort({ _id: -1 }).exec();
 
   if (folder) {
     return res.status(201).json({ folder });
@@ -39,6 +37,7 @@ router.get("/folders/:user_id/", async (req, res, next) => {
 });
 
 router.delete("/folders/:folderid/", async (req, res, next) => {
+  console.log("TRYING TO DELETE FOLDER");
   let { folderid } = req.params;
 
   let result = await Folder.findByIdAndRemove(folderid);

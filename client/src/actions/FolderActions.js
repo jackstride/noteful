@@ -9,13 +9,20 @@ import {
 } from "./types";
 import { isSuccess, isError } from "./ResponseActions";
 
+let token = localStorage.getItem("token");
+
+//Issue with setting headers for all requests
 const instance = axios.create({
   withCredentials: true,
 });
 
 export const addFolder = (values) => (dispatch) => {
   instance
-    .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values)
+    .post(process.env.REACT_APP_ENDPOINT + "/addFolder", values, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
     .then((res) => {
       dispatch(isSuccess("Folder Added"));
       dispatch({
@@ -32,7 +39,11 @@ export const addFolder = (values) => (dispatch) => {
 
 export const getFolder = (id) => (dispatch) => {
   instance
-    .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`)
+    .get(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
     .then((res) => {
       dispatch({
         type: FOLDER_LOADED,
@@ -40,16 +51,22 @@ export const getFolder = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      dispatch({
+        type: AUTH_ERROR,
+      });
     });
 };
 
 export const removeFolder = (id) => (dispatch) => {
   instance
     .delete(process.env.REACT_APP_ENDPOINT + `/folders/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       data: { id: id },
     })
     .then((res) => {
+      console.log(res);
       dispatch({
         type: REMOVE_FOLDER,
         payload: id,
@@ -67,7 +84,11 @@ export const updateFolder = (_id, values, passType = UPDATE_FOLDER) => (
   dispatch
 ) => {
   instance
-    .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values)
+    .put(process.env.REACT_APP_ENDPOINT + `/folder/update/${_id}`, values, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
     .then((res) => {
       dispatch({
         type: passType,

@@ -21,11 +21,9 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
 
   return (
     <div className="s_f_holder">
-      <h2> Hello</h2>
-      {/* {data ? (
+      {data ? (
         data.map((data, i) => {
-          // let noteData = notes.filter((notes) => notes.folder_id == data._id);
-          let noteData = data;
+          let noteData = notes.filter((notes) => notes.folder_id == data._id);
           return (
             <Link
               key={i}
@@ -45,7 +43,7 @@ const SummaryFolder = ({ data, id, tasks, showMenu, notes }) => {
         })
       ) : (
         <LazyLoading />
-      )} */}
+      )}
     </div>
   );
 };

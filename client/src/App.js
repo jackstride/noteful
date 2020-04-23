@@ -25,7 +25,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    loadUser();
+    // loadUser();
   }
 
   HomeContainer = () => {

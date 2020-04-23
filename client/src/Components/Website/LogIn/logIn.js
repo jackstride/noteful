@@ -15,7 +15,6 @@ const LogIn = ({
   history,
   isAuth,
   refreshToken,
-  token,
 }) => {
   let [loginErrors, setErrors] = useState();
   let [sent, setSent] = useState(false);
@@ -33,11 +32,21 @@ const LogIn = ({
   }, []);
 
   useEffect(() => {
-    refreshToken(token);
     if (isAuth) {
       history.push("/dashboard");
     }
   }, [isAuth]);
+
+  // useEffect(() => {
+  //   refreshToken(token);
+  //   if (isAuth) {
+  //     history.push("/dashboard");
+  //   }
+  // }, [isAuth]);
+
+  useEffect(() => {
+    loadUser();
+  });
 
   return (
     <section className="login">
@@ -87,12 +96,11 @@ const LogIn = ({
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuthenticated,
   errors: state.error.message,
-  token: state.auth.refresh_token,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   clearErrors: () => dispatch(clearErrors()),
-  loadUser: () => dispatch(loadUser()),
+  loadUser: (token) => dispatch(loadUser(token)),
   refreshToken: (token) => dispatch(refreshToken(token)),
 });
 

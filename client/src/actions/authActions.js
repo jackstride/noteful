@@ -20,13 +20,20 @@ import {
 } from "./types";
 
 //Load user
-export const loadUser = (token) => (dispatch, getState) => {
+export const loadUser = () => (dispatch, getState) => {
   //User Loading
+  let token = localStorage.getItem("token");
   axios
     .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
       withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + token,
+      },
     })
     .then((res) => {
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+      }
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -70,7 +77,8 @@ export const login = (formValues) => (dispatch) => {
     withCredentials: true,
   })
     .then((res) => {
-      console.log(res);
+      // Set short lived token in local storage;
+      localStorage.setItem("token", res.data.token);
       dispatch({
         type: LOGIN_SUCCESS,
         payload: res.data,
@@ -96,6 +104,7 @@ export const logout = () => (dispatch) => {
       withCredentials: true,
     })
     .then((res) => {
+      localStorage.clear();
       dispatch({
         type: LOGOUT_SUCCESS,
       });
@@ -158,7 +167,7 @@ export const refreshToken = (token) => (dispatch) => {
     .then((res) => {
       dispatch({
         type: USER_LOADED,
-        payload: res.data
-      })
+        payload: res.data,
+      });
     });
 };

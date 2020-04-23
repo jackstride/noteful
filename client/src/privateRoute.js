@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Redirect } from "react-router-dom";
+import { set } from "mongoose";
 
 const AuthRoute = ({ component: Component, authed, ...rest }) => {
-  useEffect(() => {});
   return (
     <Route
       {...rest}

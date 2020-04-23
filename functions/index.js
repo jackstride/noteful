@@ -46,7 +46,8 @@ app.use(
       "http://localhost:3000",
       "http://192.168.1.64:3000",
     ],
-    allowedHeaders: "Content-Type, Authorization, X-Requested-With, Set-Cookie",
+    allowedHeaders:
+      "Content-Type, Authorization, X-Requested-With, Set-Cookie, Origin",
   })
 );
 

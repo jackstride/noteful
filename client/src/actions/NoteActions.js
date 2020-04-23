@@ -16,73 +16,61 @@ import {
   AUTH_ERROR,
 } from "../actions/types";
 
-const db = new dexie("Database");
-db.version(1).stores({ NoteData: "id" });
-
-window.addEventListener("online", () => detectOnline());
-window.addEventListener("offline", () => detectOnline());
-
-const detectOnline = () => {
-  let isOnline = window.navigator.onLine;
-  return isOnline;
-};
-
-let isOnline = detectOnline();
-
 const instance = axios.create({
   withCredentials: true,
 });
 
 //Notes by folder id
 export const getNotes = (id) => (dispatch) => {
-  if (!isOnline) {
-    db.NoteData.toArray()
-      .then((res) => {
-        dispatch({
-          type: NOTE_LOADED,
-          payload: res,
-        });
-      })
-      .catch((err) => console.log(err));
-  } else {
-    instance
-      .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`)
-      .then((res) => {
-        dispatch({
-          type: NOTE_LOADED,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        // console.log(err.response.status);
-        // if ((err.response.status = 401)) {
-        //   dispatch({
-        //     type: AUTH_ERROR,
-        //   });
-        // }
+  instance
+    .get(process.env.REACT_APP_ENDPOINT + `/note/all/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: NOTE_LOADED,
+        payload: res.data,
       });
-  }
+    })
+    .catch((err) => {
+      // console.log(err.response.status);
+      // if ((err.response.status = 401)) {
+      //   dispatch({
+      //     type: AUTH_ERROR,
+      //   });
+      // }
+    });
+  // }
 };
 
 export const addNote = (values) => (dispatch) => {
-  if (!isOnline) {
-    console.log(values);
-    db.NoteData.put({ id: values.user_id, values: values });
-  } else {
-    instance
-      .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values)
-      .then((res) => {
-        dispatch({
-          type: ADD_NOTE,
-          payload: res.data.note,
-        });
+  instance
+    .post(process.env.REACT_APP_ENDPOINT + `/note/add`, values, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: ADD_NOTE,
+        payload: res.data.note,
       });
-  }
+    });
 };
 
 export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
   instance
-    .patch(process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`, values)
+    .patch(
+      process.env.REACT_APP_ENDPOINT + `/note/edit/${values._id}`,
+      values,
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      }
+    )
     .then((res) => {
       dispatch({
         type: passType,
@@ -92,17 +80,27 @@ export const editNote = (values, passType = EDIT_NOTE) => (dispatch) => {
 };
 
 export const getNoteById = (_id) => (dispatch) => {
-  instance.get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`).then((res) => {
-    dispatch({
-      type: SINGLE_NOTE,
-      payload: res.data.note,
+  instance
+    .get(process.env.REACT_APP_ENDPOINT + `/note/${_id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: SINGLE_NOTE,
+        payload: res.data.note,
+      });
     });
-  });
 };
 
 export const removeNote = (_id) => (dispatch) => {
   instance
-    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`)
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/${_id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
     .then((res) => {
       dispatch({
         type: DELETE_NOTE,
@@ -113,7 +111,11 @@ export const removeNote = (_id) => (dispatch) => {
 
 export const removeAllByFolderId = (folder_id) => (dispatch) => {
   instance
-    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`)
+    .delete(process.env.REACT_APP_ENDPOINT + `/note/delete/all/${folder_id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
     .then((res) => {
       dispatch({
         type: DELETE_NOTE_BY_FOLDER,
