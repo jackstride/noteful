@@ -12,7 +12,7 @@ const FolderSchema = new Schema({
   },
   folder_color: {
     type: String,
-    default: "#000000"
+    default: "#DCDCDC"
   }
 });
 

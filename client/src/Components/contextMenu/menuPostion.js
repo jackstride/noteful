@@ -5,7 +5,12 @@ const MenuPosition = (props) => {
   let [mouse, setMouse] = useState();
 
   useEffect(() => {
+if(window.innerWidth <= 768) {
+  setHalfWay(true)} else {
     window.addEventListener("contextmenu", handleWidth);
+  }
+
+    
 
     return () => {
       window.removeEventListener("contextmenu", handleWidth);
@@ -43,6 +48,7 @@ const MenuPosition = (props) => {
       className={props.className}
       ref={nodeRef}
       onMouseEnter={(e) => handleWidth(e)}
+      onTouchStart={(e) => handleWidth(e)}
     >
       {children}
     </div>

@@ -93,7 +93,7 @@ let TasksContextMenu = ({
         onClick={() => hideMenu()}
         className="context_close"
       >
-        <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+        <h5> Close </h5>
       </div>
 
       <ul>

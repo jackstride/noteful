@@ -95,6 +95,11 @@ let ShowData = ({ data, remove, toggle, toggleMenu }) => {
       <ul>
         {data.map((key, index) => (
           <div className="input_multiple" key={index}>
+            <FontAwesomeIcon
+                color={key.folder_color}
+                icon="sticky-note"
+                size="1x"
+              ></FontAwesomeIcon>
             <Link
               onClick={toggle}
               onContextMenu={toggleMenu}

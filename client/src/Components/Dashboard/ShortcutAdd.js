@@ -46,6 +46,7 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
       },
       "addtask"
     );
+    
   };
 
   let handleAddNote = () => {
@@ -85,6 +86,7 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
               },
               "addnote"
             );
+            setShowFolders(!showFolders)
           }}
           data={folder}
         />

@@ -68,7 +68,7 @@ class EditContextMenu extends Component {
           onClick={() => this.props.hideMenu()}
           className="context_close"
         >
-          <FontAwesomeIcon size="xs" icon="times"></FontAwesomeIcon>
+          <h5>Close</h5>
         </div>
         <form onSubmit={e => this.handleSubmit(e)}>
           <input
