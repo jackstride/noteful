@@ -10,7 +10,7 @@ import LazyLoading from "../LazyLoading";
 const moment = require("moment");
 
 let NotesHolder = ({ folder, showMenu, notes }) => {
-  let handleContext = e => {
+  let handleContext = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     console.log(e.target);
@@ -20,7 +20,7 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
       "NotesContextMenu",
       {
         name: e.target.name,
-        id: e.target.id
+        id: e.target.id,
       },
       "notes"
     );
@@ -40,11 +40,11 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
             <Link
               key={i}
               id={data._id}
-              onContextMenu={e => handleContext(e)}
+              onContextMenu={(e) => handleContext(e)}
               to={`/dashboard/notes/${data._id}`}
             >
               <Item
-                context={e => handleContext(e)}
+                context={(e) => handleContext(e)}
                 data={data}
                 folder={folder}
               />
@@ -58,19 +58,19 @@ let NotesHolder = ({ folder, showMenu, notes }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.auth.user._id,
-    tasks: state.task.taskData
+    tasks: state.task.taskData,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  loadTasks: id => dispatch(loadTasks(id)),
-  getNotes: id => dispatch(getNotes(id)),
-  getFolder: id => dispatch(getFolder(id)),
-  toggleTask: id => dispatch(toggleTask(id)),
-  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args))
+const mapDispatchToProps = (dispatch) => ({
+  loadTasks: (id) => dispatch(loadTasks(id)),
+  getNotes: (id) => dispatch(getNotes(id)),
+  getFolder: (id) => dispatch(getFolder(id)),
+  toggleTask: (id) => dispatch(toggleTask(id)),
+  showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotesHolder);
@@ -84,7 +84,7 @@ const Item = ({ data, folder, context }) => {
 
   let returnName = () => {
     let getFolderId = data.folder_id;
-    let name = folder.filter(data => data._id === getFolderId);
+    let name = folder.filter((data) => data._id === getFolderId);
 
     if (!name.length) {
       name = "Untitled";
@@ -95,15 +95,15 @@ const Item = ({ data, folder, context }) => {
   };
 
   return (
-    <div name={data.note_title} id={data._id} className="s_n_item">
+    <div name={data.note_title} id={data._id} className="s_n_item shadow">
       <div className="note_icon">
         <h6>{data.note_title[0]}</h6>
       </div>
       <div className="title">
         <h3>{data.note_title}</h3>
       </div>
-      <h5>{folderName}</h5>
-      <h5>{moment(data.date).calendar()}</h5>
+      <h3>{folderName}</h3>
+      <h3>{moment(data.date).calendar()}</h3>
       <div id={data._id} onClick={context} className="edit">
         <FontAwesomeIcon icon="ellipsis-v" color="white" />
       </div>

@@ -192,7 +192,9 @@ nav a {
 
     h3 {
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 400;
+        letter-spacing: .6px;
+        color: rgb(80, 80, 80)
     }
 
     h4 {
@@ -206,20 +208,14 @@ nav a {
         font-size: 1em;
         font-weight: 500;
         color: rgb(58, 58, 58);
-
-        @include mobilelarge {
-            font-size: .8em;
-        }
+        letter-spacing: .6px
     }
 
     h6 {
         font-size: 1em;
         color: rgb(126, 126, 126);
         font-weight: 500;
-
-        @include mobilelarge {
-            font-size: .8em;
-        }
+        letter-spacing: .6px
     }
 
 }

@@ -13,7 +13,7 @@ const Navigation = ({ auth }) => {
   useEffect(() => {
     if (
       history.location.pathname.includes("reg") ||
-      history.location.pathname.includes("log") ||
+      history.location.pathname.includes("login") ||
       history.location.pathname.includes("fea")
     ) {
       isLight(true);

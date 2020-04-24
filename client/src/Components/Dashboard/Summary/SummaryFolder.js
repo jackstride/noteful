@@ -67,7 +67,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(SummaryFolder);
 
 const Item = ({ data, noteData, color }) => {
   return (
-    <div name={data.folder_name} id={data._id} className="s_f_item">
+    <div name={data.folder_name} id={data._id} className="s_f_item shadow">
       <div className="icon">
         <FontAwesomeIcon
           icon="folder"

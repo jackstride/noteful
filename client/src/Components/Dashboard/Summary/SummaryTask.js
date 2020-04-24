@@ -11,12 +11,12 @@ let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
     loadTasks(id);
   }, [id]);
 
-  let handleContextMenu = e => {
+  let handleContextMenu = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(pageX, pageY, "TasksContextMenu", {
       name: e.target.name,
-      id: e.target.id
+      id: e.target.id,
     });
   };
 
@@ -26,8 +26,8 @@ let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
         return (
           <TaskItem
             key={i}
-            context={e => handleContextMenu(e)}
-            handleToggle={id => {
+            context={(e) => handleContextMenu(e)}
+            handleToggle={(id) => {
               toggleTask(id);
             }}
             data={data}
@@ -38,18 +38,18 @@ let TasksHolder = ({ task, showMenu, loadTasks, toggleTask, id }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     id: state.auth.user._id,
-    task: state.task.taskData
+    task: state.task.taskData,
   };
 };
 
-let mapDispatchToProps = dispatch => ({
+let mapDispatchToProps = (dispatch) => ({
   showMenu: (x, y, getType, args, name) =>
     dispatch(showMenu(x, y, getType, args, name)),
-  loadTasks: id => dispatch(loadTasks(id)),
-  toggleTask: id => dispatch(toggleTask(id))
+  loadTasks: (id) => dispatch(loadTasks(id)),
+  toggleTask: (id) => dispatch(toggleTask(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TasksHolder);
@@ -69,9 +69,16 @@ const TaskItem = ({ data, context, handleToggle }) => {
         date = "Due Tomorrow";
         break;
       default:
-        date = date + " days left";
+        date = "Due in " + date + " Days";
     }
+    return date;
+  };
 
+  let numDate = () => {
+    let x = new moment();
+    let date = data.due_date;
+    date = moment.duration(moment(date).diff(x));
+    date = date._data.days;
     return date;
   };
 
@@ -81,7 +88,9 @@ const TaskItem = ({ data, context, handleToggle }) => {
     setComplete(data.isCompleted);
   }, [data]);
   return data ? (
-    <div className={complete ? "task_item complete" : "task_item"}>
+    <div
+      className={complete ? "task_item shadow complete" : "task_item shadow"}
+    >
       <div
         id={data.id}
         className={complete ? "task_icon complete" : "task_icon"}
@@ -89,30 +98,22 @@ const TaskItem = ({ data, context, handleToggle }) => {
         {complete ? (
           <FontAwesomeIcon
             icon="check"
-            color="#50d890"
+            color="#62e980"
             size="2x"
           ></FontAwesomeIcon>
         ) : (
-          <FontAwesomeIcon
-            icon="times"
-            color="grey"
-            size="2x"
-          ></FontAwesomeIcon>
+          <h4>{numDate()}</h4>
         )}
       </div>
-      <h5 className={complete ? "task_text_complete" : null}>
+      <h5 className={complete ? "task_text_complete" : "task_text"}>
         {data.task_name}
       </h5>
-      <h5 className={complete ? "task_text_complete" : null}>
-        {complete ? "Finsihed, well done!" : dueDate()}
+      <h5 className={complete ? "task_text_complete" : "task_text"}>
+        {complete ? "Completed, well done!" : dueDate()}
       </h5>
-      <h6 className={complete ? "task_text_complete" : null}>
-        {data.isCompleted ? "Completed" : "Not Completed"}
-      </h6>
-
       <div
         style={{ cursor: "pointer" }}
-        onClick={e => {
+        onClick={(e) => {
           handleToggle(data._id);
         }}
         id={data._id}

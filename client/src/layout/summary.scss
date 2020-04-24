@@ -90,8 +90,8 @@
     width: 100%;
     height: 95%;
     display: grid;
-    grid-auto-rows: 75px;
-    gap: 10px;
+    grid-auto-rows: 90px;
+    gap: 20px;
     position: relative;
 
     a {
@@ -108,6 +108,8 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid #ececec;
+    background-color: #fafafa;
+    border-radius: 8px;
 
 
     .title {
@@ -164,7 +166,6 @@
         h6:nth-child(3) {
             display: none;
         }
-
     }
 }
 
@@ -176,22 +177,20 @@
     grid-auto-rows: 1fr;
     align-items: center;
     border-bottom: 1px solid #ececec;
-
-
+    background-color: #fafafa;
+    border-radius: 8px;
 
     @include tablet {
         grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
 
-
-
-        h5:nth-child(3) {
+        h3:nth-child(3) {
             display: none
         }
     }
 
     @include mobilelarge {
 
-        h5:nth-child(4) {
+        h3:nth-child(5) {
             font-size: .8em;
             color: rgb(200, 200, 200);
         }
@@ -217,6 +216,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 10px;
 
         h6 {
             color: white;
@@ -238,6 +238,7 @@
         align-items: center;
         justify-content: center;
         margin-left: auto;
+        margin-right: 10px;
 
         @include mobilelarge {
             height: 40px;
@@ -323,7 +324,7 @@
     height: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+    grid-template-columns: repeat(auto-fill, 225px);
     grid-auto-rows: 260px;
     gap: 20px;
 
@@ -333,6 +334,16 @@
         left: 0;
         height: 100%;
         width: 100%;
+    }
+
+
+    @include tablet {
+        grid-template-columns: repeat(auto-fill, 31%)
+    }
+
+    @include mobilelarge {
+        grid-template-columns: repeat(auto-fill, 45%);
+        grid-auto-rows: 200px;
     }
 }
 
@@ -350,6 +361,7 @@
     h5,
     h6 {
         padding: 5px 0px;
+        font-weight: 400 !important;
     }
 
 
@@ -386,11 +398,15 @@
 
 
 .task_text_complete {
-    color: white !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+.task_text {
+    color: rgb(80, 80, 80) !important;
 }
 
 .task_item.complete {
-    background-color: #50d890;
+    background-color: rgb(98, 233, 128)
 }
 
 
@@ -429,12 +445,9 @@
 .task_icon {
     position: relative;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    background-color: rgb(200, 200, 200);
-    margin-left: 10px;
-
-
+    width: 60px;
+    height: 60px;
+    background-color: rgba(142, 220, 243, .2);
 
     .fa-check,
     .fa-times {
@@ -443,14 +456,30 @@
         left: 50%;
         transform: translate(-50%, -50%);
         margin: 0;
-        font-size: 1em;
+        font-size: 1.2em;
+    }
+
+    h4 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: rgb(104, 212, 245) !important;
+        font-size: 1.2em !important;
+        font-weight: 400 !important;
     }
 }
 
 .task_icon.complete {
-    background-color: #18995b;
+    background-color: #6fff8e;
 }
 
+
+.shadow {
+    -webkit-box-shadow: 3px 10px 19px -8px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 3px 10px 19px -8px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 10px 19px -8px rgba(0, 0, 0, 0.1);
+}
 
 
 
