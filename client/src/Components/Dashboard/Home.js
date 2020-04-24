@@ -26,8 +26,6 @@ const Home = ({
 }) => {
   const mobile = useMobile();
   useEffect(() => {
-    console.log(mobile);
-
     getFolder(id);
     return () => {
       console.log("unmounted");
@@ -37,6 +35,10 @@ const Home = ({
   useEffect(() => {
     loadUser();
   }, [history.location.pathname]);
+
+  useEffect(() => {
+    console.log(mobile);
+  }, [mobile]);
 
   return (
     <div className={isDark ? "app_container dark-mode" : "app_container"}>
