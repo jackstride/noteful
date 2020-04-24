@@ -6,6 +6,10 @@ import MenuPosition from "./menuPostion";
 import { showMenu, hideMenu } from "../../actions/contextMenuActions";
 
 export class ContextMenu extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentDidMount() {
     document.addEventListener("click", this.handleClickOutside, true);
   }

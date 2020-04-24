@@ -1,17 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 
 const MenuPosition = (props) => {
+  const [width, setWidth] = useState(window.innerWidth);
+
   let [halfWay, setHalfWay] = useState(false);
+
   let [mouse, setMouse] = useState();
 
   useEffect(() => {
-if(window.innerWidth <= 768) {
-  setHalfWay(true)} else {
-    window.addEventListener("contextmenu", handleWidth);
-  }
+    let el = document.querySelector(".contextMenu");
+    let top = el.getBoundingClientRect().top;
+    console.log(top);
 
-    
-
+    if (top > window.innerWidth / 2) {
+      setHalfWay(true);
+    }
+    if (window.innerWidth <= 768) {
+      setHalfWay(true);
+    } else {
+      window.addEventListener("contextmenu", handleWidth);
+    }
     return () => {
       window.removeEventListener("contextmenu", handleWidth);
     };
@@ -26,6 +34,7 @@ if(window.innerWidth <= 768) {
     } else {
       setHalfWay(false);
     }
+    console.log(halfWay);
   };
 
   const style = {
@@ -47,9 +56,9 @@ if(window.innerWidth <= 768) {
       style={halfWay ? style2 : style}
       className={props.className}
       ref={nodeRef}
-      onMouseEnter={(e) => handleWidth(e)}
-      onTouchMove={(e) => handleWidth(e)}
-      onTouchStart={(e) => handleWidth(e)}
+      // onMouseEnter={(e) => handleWidth(e)}
+      // onTouchMove={(e) => handleWidth(e)}
+      // onTouchStart={(e) => handleWidth(e)}
     >
       {children}
     </div>
