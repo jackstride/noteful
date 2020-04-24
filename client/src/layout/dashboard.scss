@@ -134,7 +134,7 @@
 
         .input_multiple {
             display: grid;
-            grid-template-columns:  10% 60% 15% 15%;
+            grid-template-columns: 10% 60% 15% 15%;
             height: 100%;
             align-items: center;
 
@@ -153,7 +153,7 @@
         }
 
         .folders {
-            grid-template-columns: 10% 60%  15% 15%;
+            grid-template-columns: 10% 60% 15% 15%;
 
             .fa-circle {
                 margin-left: 10px;
@@ -491,13 +491,16 @@ form.task_form {
     }
 
     input[type=submit] {
-        background-color: $Blue;
+        background-color: grey;
         color: white;
         width: 50%;
         height: 40px;
-
+        cursor: pointer;
     }
 
+    input[type=submit]:hover {
+        background-color: $Blue;
+    }
 
     span {
         display: grid;
@@ -598,7 +601,7 @@ form.task_form {
 
         form {
             height: fit-content;
-            margin-top: 30%;
+            margin-top: 50px;
 
             input {
                 height: 30px;
@@ -612,23 +615,29 @@ form.task_form {
             }
 
             input[type=submit] {
+                background-color: grey;
+                width: 60%;
                 font-size: 1.1em;
-                width: 50%;
                 height: 50px;
             }
+
+            input[type=submit]:hover {
+                background-color: $Blue;
+            }
+
 
 
         }
     }
 
     .context_close {
-        width: 90%;
+        width: 80%;
         height: 60px;
         background-color: $Blue;
         justify-content: center;
         position: absolute;
         bottom: 20px;
-        left: 5%;
+        left: 10%;
         display: none;
         border-radius: 8px;
         align-items: center;

@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import { Portal } from "react-portal";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,11 +14,11 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
     }
   }, [show]);
 
-  let handleShow = e => {
+  let handleShow = (e) => {
     setShow(!show);
   };
 
-  let handleAddFolder = e => {
+  let handleAddFolder = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(
@@ -27,13 +27,13 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
       "EditContextMenu",
       {
         name: e.target.name,
-        id: e.target.id
+        id: e.target.id,
       },
       "addfolder"
     );
   };
 
-  let handleAddTask = e => {
+  let handleAddTask = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
     showMenu(
@@ -42,39 +42,40 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
       "EditContextMenu",
       {
         name: e.target.name,
-        id: e.target.id
+        id: e.target.id,
       },
       "addtask"
     );
-    
   };
 
   let handleAddNote = () => {
-    console.log(showFolders);
     setShowFolders(!showFolders);
   };
 
   return (
     <Portal>
       <div className={isDark ? "shortcut dark-mode" : "shortcut"}>
-        <div onClick={e => handleShow(e)} className="shortcut_container">
+        <div onClick={(e) => handleShow(e)} className="shortcut_container">
           <FontAwesomeIcon icon="plus" size="1x" color="white" />
         </div>
         {show ? (
           <div className="shortcut_items">
             <ShortcutItem
               icon="sticky-note"
-              action={e => handleAddNote(e)}
+              action={(e) => handleAddNote(e)}
             ></ShortcutItem>
-            <ShortcutItem icon="folder" action={e => handleAddFolder(e)} />
-            <ShortcutItem icon="tasks" action={e => handleAddTask(e)} />
+            <ShortcutItem icon="folder" action={(e) => handleAddFolder(e)} />
+            <ShortcutItem icon="tasks" action={(e) => handleAddTask(e)} />
           </div>
         ) : null}
       </div>
       {showFolders ? (
         <ShowFolderMenu
+          toggleShow={() => {
+            setShowFolders(!showFolders);
+          }}
           dark={isDark}
-          noteaction={e => {
+          noteaction={(e) => {
             const { pageX, pageY } = e;
             showMenu(
               pageX,
@@ -82,11 +83,11 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
               "EditContextMenu",
               {
                 name: e.target.name,
-                id: e.target.id
+                id: e.target.id,
               },
               "addnote"
             );
-            setShowFolders(!showFolders)
+            setShowFolders(!showFolders);
           }}
           data={folder}
         />
@@ -95,16 +96,16 @@ const ShortcutAdd = ({ showMenu, folder, isDark }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     folder: state.folder.data,
-    isDark: state.misc.isDark
+    isDark: state.misc.isDark,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   showMenu: (x, y, getType, args, name) =>
-    dispatch(showMenu(x, y, getType, args, name))
+    dispatch(showMenu(x, y, getType, args, name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShortcutAdd);
@@ -118,7 +119,27 @@ let ShortcutItem = ({ icon, action, children }) => {
   );
 };
 
-let ShowFolderMenu = ({ data, noteaction, dark }) => {
+let ShowFolderMenu = ({ data, noteaction, dark, toggleShow }) => {
+  let ref = useRef();
+
+  let handleClick = (e) => {
+    if (ref.current.contains(e.target)) {
+      return;
+    } else {
+      toggleShow();
+    }
+  };
+
+  useEffect(() => {
+    // Sort this out
+    document.addEventListener("mousedown", handleClick);
+
+    return () => {
+      console.log("fired");
+      document.removeEventListener("mousedown", handleClick);
+    };
+  }, []);
+
   let folders = data.map((data, i) => {
     return (
       <li key={i} onClick={noteaction} id={data._id}>
@@ -129,7 +150,10 @@ let ShowFolderMenu = ({ data, noteaction, dark }) => {
   });
 
   return (
-    <div className={dark ? "shortcut_folder dark-mode" : "shortcut_folder"}>
+    <div
+      ref={ref}
+      className={dark ? "shortcut_folder dark-mode" : "shortcut_folder"}
+    >
       <h5>Select Folder</h5>
       <ul>{data ? <Fragment>{folders}</Fragment> : null}</ul>
     </div>
