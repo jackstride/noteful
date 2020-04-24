@@ -48,7 +48,6 @@ export default (state = initalState, action) => {
     case REGISTER_FAIL:
       return {
         ...state,
-        user: null,
         isAuthenticated: false,
         isLoading: false,
         redirect: false,

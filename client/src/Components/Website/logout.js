@@ -43,6 +43,7 @@ const Logout = ({ isAuthenticated, logout, name }) => {
   // }, [setGif]);
 
   useEffect(() => {
+    console.log(history);
     if (!isAuthenticated) {
       history.push("/");
     }
@@ -52,7 +53,7 @@ const Logout = ({ isAuthenticated, logout, name }) => {
       <div className="logout_container">
         <div className="logout_card">
           <div className="profile"></div>
-          <h4> Logging out {name}?</h4>
+          <h4> Logging out {name} ?</h4>
           <div className="social_message">
             <h6> Remember to support us using the links below!</h6>
             <div className="social_links">
