@@ -43,7 +43,6 @@ const Logout = ({ isAuthenticated, logout, name }) => {
   // }, [setGif]);
 
   useEffect(() => {
-    console.log(history);
     if (!isAuthenticated) {
       history.push("/");
     }

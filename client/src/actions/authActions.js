@@ -23,12 +23,12 @@ import {
 export const loadUser = () => (dispatch, getState) => {
   console.log("this");
   //User Loading
-  let token = localStorage.getItem("token");
+
   axios
     .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
       withCredentials: true,
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + localStorage.getItem("token"),
       },
     })
     .then((res) => {
@@ -102,9 +102,13 @@ export const logout = () => (dispatch) => {
   axios
     .get(process.env.REACT_APP_ENDPOINT + "/user/logout", {
       withCredentials: true,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
     .then((res) => {
-      localStorage.clear();
+      console.log(res);
+      localStorage.removeItem("token");
       dispatch({
         type: LOGOUT_SUCCESS,
       });

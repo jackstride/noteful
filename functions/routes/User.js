@@ -137,13 +137,32 @@ router.post("/login", async (req, res, next) => {
 
 //Logout and destroy cookie
 router.get("/logout", async (req, res, next) => {
-  res
-    .clearCookie("__session", {
-      // domain: ".noteful.app",
-      // httpOnly: true,
-      // secure: true
-    })
-    .send("all done");
+  let token = req.headers.authorization.split(" ")[1];
+
+  console.log(token);
+
+  const decoded = jwt.verify(token, process.env.JWT_KEY);
+
+  User.findOneAndUpdate(
+    { _id: decoded._id },
+    { refresh_token: null },
+    { new: true },
+    (err, docs) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (docs) {
+          res
+            .clearCookie("__session", {
+              // domain: ".noteful.app",
+              // httpOnly: true,
+              // secure: true
+            })
+            .send("all done");
+        }
+      }
+    }
+  );
 });
 
 // Update user route
