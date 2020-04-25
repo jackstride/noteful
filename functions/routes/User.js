@@ -110,9 +110,9 @@ router.post("/login", async (req, res, next) => {
               return res
                 .cookie("__session", access_token, {
                   expires: new Date(Date.now() + 9000000),
-                  // httpOnly: true,
-                  // secure: true,
-                  // domain: ".noteful.app",
+                  httpOnly: true,
+                  secure: true,
+                  domain: ".noteful.app",
                 })
                 .status(200)
                 .json({ user: payload, token: refresh_token });
@@ -141,28 +141,31 @@ router.get("/logout", async (req, res, next) => {
 
   console.log(token);
 
-  const decoded = jwt.verify(token, process.env.JWT_KEY);
+  const decoded = await jwt.verify(token, process.env.JWT_KEY);
 
-  User.findOneAndUpdate(
-    { _id: decoded._id },
-    { refresh_token: null },
-    { new: true },
-    (err, docs) => {
-      if (err) {
-        console.log(err);
-      } else {
-        if (docs) {
-          res
-            .clearCookie("__session", {
-              // domain: ".noteful.app",
-              // httpOnly: true,
-              // secure: true
-            })
-            .send("all done");
+  if (decoded) {
+    User.findOneAndUpdate(
+      { _id: decoded._id },
+      { refresh_token: null },
+      { new: true },
+      (err, docs) => {
+        if (err) {
+          console.log(err);
+        } else {
+          if (docs) {
+            console.log("Trying to clear cookie");
+            res
+              .clearCookie("__session", {
+                domain: ".noteful.app",
+                httpOnly: true,
+                secure: true,
+              })
+              .send("all done");
+          }
         }
       }
-    }
-  );
+    );
+  }
 });
 
 // Update user route

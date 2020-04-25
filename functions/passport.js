@@ -22,8 +22,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://api.noteful.app/auth/google/callback"
-      // callbackURL: "http://localhost:5000/auth/google/callback"
+      callbackURL: "https://api.noteful.app/auth/google/callback",
+      // callbackURL: "http://localhost:5000/auth/google/callback",
     },
     (accessToken, refreshToken, profile, done) => {
       // AccessToken and refeshToken not use
@@ -35,30 +35,31 @@ passport.use(
         email: profile.emails[0].value,
         password: null,
         token: accessToken,
-        google_id: profile.id
+        google_id: profile.id,
       };
       User.find({ email: profile.emails[0].value })
-        .then(user => {
+        .then((user) => {
           if (user.length) {
+            console.log(user);
             return done(null, user[0]);
           } else {
             const user = new User(userData);
             user
               .save()
-              .then(result => {
+              .then((result) => {
                 if (result) {
                   return done(null, userData);
                 } else {
                   return console.log("error");
                 }
               })
-              .catch(err => {
+              .catch((err) => {
                 return console.log(err);
               });
           }
           throw user;
         })
-        .catch(err => {
+        .catch((err) => {
           return console.log(err);
         });
     }
@@ -76,7 +77,7 @@ passport.use(
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
       callbackURL: "https://api.noteful.app/auth/github/callback",
       // callbackURL: "http://localhost:5000/auth/github/callback",
-      scope: "user:email"
+      scope: "user:email",
     },
     (token, tokenSecret, profile, done) => {
       let userData = {
@@ -85,10 +86,10 @@ passport.use(
         lastName: null,
         email: profile._json.email,
         password: null,
-        twitter_id: profile._json.id
+        twitter_id: profile._json.id,
       };
       User.find({ email: profile._json.email })
-        .then(user => {
+        .then((user) => {
           if (user.length) {
             return done(null, user[0]);
           } else {
@@ -96,20 +97,20 @@ passport.use(
             console.log(user);
             user
               .save()
-              .then(result => {
+              .then((result) => {
                 if (result) {
                   return done(null, userData);
                 }
                 throw result;
               })
-              .catch(err => {
+              .catch((err) => {
                 console.log("error");
                 return console.log(err);
               });
           }
           throw user;
         })
-        .catch(err => {
+        .catch((err) => {
           return console.log(err);
         });
     }
