@@ -6,7 +6,7 @@ import {
   addNote,
   removeNote,
   sortNotes,
-  clearValues
+  clearValues,
 } from "../../../actions/NoteActions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { showMenu } from "../../../actions/contextMenuActions";
@@ -25,7 +25,7 @@ let Folders = ({
   showMenu,
   clearValues,
   sortNotes,
-  allNotes
+  allNotes,
 }) => {
   const paramId = match.params.folder;
 
@@ -38,18 +38,18 @@ let Folders = ({
     };
   }, [paramId, clearValues, allNotes]);
 
-  const handleRemoveNote = _id => {
+  const handleRemoveNote = (_id) => {
     removeNote(_id);
   };
 
-  const handleRemove = useCallback(_id => {
+  const handleRemove = useCallback((_id) => {
     handleRemoveNote(_id);
   }, []);
 
   let handleAddNote = () => {
     let values = {
       user_id,
-      folder_id: paramId
+      folder_id: paramId,
     };
     addNote(values);
   };
@@ -59,12 +59,12 @@ let Folders = ({
   }, [folder]);
 
   let getFolderName = () => {
-    let name = folder.filter(folder => paramId === folder._id);
+    let name = folder.filter((folder) => paramId === folder._id);
     name = name[0].folder_name;
     return name;
   };
 
-  let handleContext = e => {
+  let handleContext = (e) => {
     e.preventDefault();
     const { pageX, pageY } = e;
 
@@ -74,7 +74,7 @@ let Folders = ({
       "NotesContextMenu",
       {
         name: e.target.name,
-        id: e.target.id
+        id: e.target.id,
       },
       "notes"
     );
@@ -108,12 +108,12 @@ let Folders = ({
                 <Link
                   key={i}
                   id={data._id}
-                  onContextMenu={e => handleContext(e)}
+                  onContextMenu={(e) => handleContext(e)}
                   to={`/dashboard/notes/${data._id}`}
                 >
                   <Item
                     paramId={paramId}
-                    context={e => handleContext(e)}
+                    context={(e) => handleContext(e)}
                     data={data}
                     folder={folder}
                   />
@@ -129,22 +129,22 @@ let Folders = ({
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     user_id: state.auth.user._id,
     notes: state.note.sortData,
     allNotes: state.note.noteData,
-    folder: state.folder.data
+    folder: state.folder.data,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  getNotes: id => dispatch(getNotes(id)),
-  addNote: values => dispatch(addNote(values)),
-  removeNote: id => dispatch(removeNote(id)),
+const mapDispatchToProps = (dispatch) => ({
+  getNotes: (id) => dispatch(getNotes(id)),
+  addNote: (values) => dispatch(addNote(values)),
+  removeNote: (id) => dispatch(removeNote(id)),
   showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
-  clearValues: id => dispatch(clearValues(id)),
-  sortNotes: folder_id => dispatch(sortNotes(folder_id))
+  clearValues: (id) => dispatch(clearValues(id)),
+  sortNotes: (folder_id) => dispatch(sortNotes(folder_id)),
 });
 
 export default withRouter(
@@ -159,7 +159,7 @@ const Item = ({ data, folder, context, paramId }) => {
   }, [folder, data]);
 
   let returnName = () => {
-    let name = folder.filter(data => data._id === paramId);
+    let name = folder.filter((data) => data._id === paramId);
     if (name) {
       name = name[0].folder_name;
     }
@@ -174,8 +174,8 @@ const Item = ({ data, folder, context, paramId }) => {
       <div className="title">
         <h3>{data.note_title}</h3>
       </div>
-      <h5>{moment(data.date).calendar()}</h5>
-      <h5>{folderName}</h5>
+      <h3>{moment(data.date).calendar()}</h3>
+      <h3>{folderName}</h3>
       <div id={data._id} onClick={context} className="edit">
         <FontAwesomeIcon icon="ellipsis-v" color="white" />
       </div>

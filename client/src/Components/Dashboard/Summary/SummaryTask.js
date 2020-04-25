@@ -89,6 +89,10 @@ const TaskItem = ({ data, context, handleToggle }) => {
   }, [data]);
   return data ? (
     <div
+      onTouchStart={(e) => {
+        console.log("hello");
+        handleToggle(data._id);
+      }}
       className={complete ? "task_item shadow complete" : "task_item shadow"}
     >
       <div

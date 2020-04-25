@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { Link } from "react-router-dom";
 import {
   toggleTask,
   addTask,
   removeTask,
-  toggleOpenTask
+  toggleOpenTask,
 } from "../../../actions/taskActions";
 import WidgetSubmit from "./widgetSubmit";
 import { showMenu, hideMenu } from "../../../actions/contextMenuActions";
@@ -14,7 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../../../fontawesome";
 
 class Todo extends Component {
-  handleToggle = id => {
+  handleToggle = (id) => {
     this.props.toggleTask(id);
   };
 
@@ -23,29 +23,29 @@ class Todo extends Component {
     this.props.removeTask(id);
   };
 
-  onRightClicked = e => {
+  onRightClicked = (e) => {
     console.log(e.target.id);
     e.preventDefault();
     const { pageX, pageY } = e;
     this.props.showMenu(pageX, pageY, "TasksContextMenu", {
       name: e.target.name,
-      id: e.target.id
+      id: e.target.id,
     });
   };
 
-  openAddTask = e => {
+  openAddTask = (e) => {
     e.preventDefault();
     this.props.toggleOpenTask();
   };
 
-  handleHover = e => {
+  handleHover = (e) => {
     let item = e.target.nextSibling;
     item.style.display = "block";
   };
 
-  handleLeave = e => {
+  handleLeave = (e) => {
     let item = document.querySelectorAll(".task_data button");
-    item.forEach(item => (item.style.display = "none"));
+    item.forEach((item) => (item.style.display = "none"));
   };
 
   showData = () => {
@@ -71,20 +71,22 @@ class Todo extends Component {
                 </div>
               )}
             </div>
-            <p
+            <Link
               style={{ cursor: "pointer" }}
               className={key.isCompleted ? "task_isCompleted" : null}
-              onMouseEnter={e => this.handleHover(e)}
+              onMouseEnter={(e) => this.handleHover(e)}
               id={key._id}
               name={key.task_name}
-              onContextMenu={e => this.onRightClicked(e)}
+              onContextMenu={(e) => this.onRightClicked(e)}
               htmlFor={`check${index}`}
+              to="/dashboard/tasks"
             >
               {key.task_name}
-            </p>
+            </Link>
+
             <button
               style={{ display: "block" }}
-              onClick={e => this.onRightClicked(e)}
+              onClick={(e) => this.onRightClicked(e)}
               value={key.folder_name}
               id={key._id}
             >
@@ -92,7 +94,7 @@ class Todo extends Component {
             </button>
             <button
               style={{ display: "block" }}
-              onClick={e => this.onRemoveFolder(e, key._id)}
+              onClick={(e) => this.onRemoveFolder(e, key._id)}
               value={key.folder_name}
             >
               <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
@@ -108,7 +110,7 @@ class Todo extends Component {
       <div className="widget">
         <div className="widget_header">
           <h4>Tasks</h4>
-          <div className="plus" onClick={e => this.openAddTask(e)}></div>
+          <div className="plus" onClick={(e) => this.openAddTask(e)}></div>
         </div>
         <div className="widget_content">
           {this.props.isOpen ? (
@@ -126,20 +128,20 @@ class Todo extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     userId: state.auth.user._id,
-    isOpen: state.task.isOpen
+    isOpen: state.task.isOpen,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  toggleTask: id => dispatch(toggleTask(id)),
-  removeTask: id => dispatch(removeTask(id)),
-  addTask: values => dispatch(addTask(values)),
+const mapDispatchToProps = (dispatch) => ({
+  toggleTask: (id) => dispatch(toggleTask(id)),
+  removeTask: (id) => dispatch(removeTask(id)),
+  addTask: (values) => dispatch(addTask(values)),
   showMenu: (x, y, getType, args) => dispatch(showMenu(x, y, getType, args)),
   toggleOpenTask: () => dispatch(toggleOpenTask()),
-  hideMenu: () => dispatch(hideMenu())
+  hideMenu: () => dispatch(hideMenu()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todo);

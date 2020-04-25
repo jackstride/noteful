@@ -47,11 +47,17 @@
         font-weight: 400;
         font-size: 1em;
         color: rgb(50, 50, 50);
-        padding: 10px 2px;
+        padding: 10px 0px;
 
         svg {
             margin-right: 10px;
         }
+    }
+
+    li:hover {
+        background-color: #f4f4f4;
+        cursor: pointer;
+        margin: auto 0;
     }
 
 
