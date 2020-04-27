@@ -17,7 +17,7 @@ router.get(
 router.get(
   "/google/callback/",
   passport.authenticate("google", { session: false }),
-  (req, res) => {
+  async (req, res, next) => {
     console.log("hit");
 
     const payload = {
@@ -34,15 +34,19 @@ router.get(
 // Redirect url to app
 router.get("/github", ClearCookie, passport.authenticate("github"));
 
-router.get("/github/callback/", passport.authenticate("github"), (req, res) => {
-  const payload = {
-    _id: req.user._id,
-    email: req.user.email,
-    name: req.user.firstName,
-  };
+router.get(
+  "/github/callback/",
+  passport.authenticate("github"),
+  async (req, res, next) => {
+    const payload = {
+      _id: req.user._id,
+      email: req.user.email,
+      name: req.user.firstName,
+    };
 
-  sendTokens(payload, res);
-});
+    sendTokens(payload, res);
+  }
+);
 
 async function sendTokens(payload, res) {
   let access_token = await jwt.sign(payload, process.env.JWT_KEY, {
@@ -72,8 +76,9 @@ async function sendTokens(payload, res) {
                 secure: true,
                 domain: ".noteful.app",
               })
-              .redirect(200, "https://noteful.app/dashboard")
-              .json({ user: payload, token: refresh_token });
+              .redirect("https://noteful.app/dashboard")
+              .json({ user: payload, token: refresh_token })
+              .send(200);
           } else if (err) {
             return console.log(err);
           }

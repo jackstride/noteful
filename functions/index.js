@@ -90,3 +90,4 @@ app.use((err, req, res, next) => {
 
 // Export app to firebase functions
 exports.app = functions.https.onRequest(app);
+// exports.region = functions.region("europe-west2").https.onRequest(app);

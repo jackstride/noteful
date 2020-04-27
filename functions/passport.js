@@ -40,7 +40,6 @@ passport.use(
       User.find({ email: profile.emails[0].value })
         .then((user) => {
           if (user.length) {
-            console.log(user);
             return done(null, user[0]);
           } else {
             const user = new User(userData);
