@@ -78,7 +78,6 @@ const LogIn = ({
           </div>
         </div>
       </div>
-      <div className="log_right"></div>
       {show ? (
         <ShowError
           toggleShow={() => {

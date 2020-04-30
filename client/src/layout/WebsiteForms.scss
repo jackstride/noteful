@@ -2,17 +2,7 @@
 .register {
     width: 100%;
     display: grid;
-    grid-template-columns: 50% 50%;
     min-height: 100vh;
-
-    @include smalldesktop {
-        grid-template-columns: 60% 40%;
-    }
-
-    @include tablet {
-        grid-template-columns: 1fr;
-
-    }
 }
 
 .login {
@@ -144,15 +134,13 @@ form.auth_form {
 }
 
 .reg_container {
-    display: flex;
+    display: grid;
     align-items: center;
     height: 100%;
-    width: 45%;
+    width: 500px;
     margin: 0 auto;
 
-    @include desktop {
-        width: 70%;
-    }
+
 
     @include smalldesktop {
         width: 60%;
@@ -200,7 +188,7 @@ form.auth_form {
 
 //////////////////////// Login /////////////////////////
 .log_left {
-    width: 50%;
+    width: 100%;
     background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
     display: flex;
     align-items: center;
@@ -217,15 +205,12 @@ form.auth_form {
 
 
 .login_container {
-    width: 40%;
+    width: 500px;
     font-family: "HelveticaNeue", "Helvetica Neue", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     display: flex;
     align-items: center;
     height: 100%;
 
-    @include smalldesktop {
-        width: 80%;
-    }
 
     @include tablet {
         width: 60%;
