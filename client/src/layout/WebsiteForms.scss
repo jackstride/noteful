@@ -163,33 +163,6 @@ form.auth_form {
     }
 }
 
-.register_image {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-
-
-    @include tablet {
-        display: none;
-    }
-
-    .heading {
-        padding-left: 20px;
-        padding-top: 100px;
-
-        h2 {
-            color: $Blue;
-        }
-
-        p {
-            color: rgb(78, 78, 78);
-        }
-    }
-
-
-}
 
 .register_content {
     width: 90%;

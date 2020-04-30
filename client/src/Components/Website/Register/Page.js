@@ -1,12 +1,10 @@
 import React, { useState, useEffect, Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { clearErrors } from "../../../actions/errorActions";
 import RegisterForm from "./registerForm";
 import SocialAuth from "./socialAuth.js";
 import { ReactComponent as Logo } from "../../../images/noteful_blue.svg";
-import RegisterImage from "../../../images/register_image.png";
 import ShowError from "../ShowError";
 
 const Register = ({ history, message, clearErrors, redirect }) => {
@@ -54,35 +52,6 @@ const Register = ({ history, message, clearErrors, redirect }) => {
             </div>
           </div>
         </div>
-        <div className="register_image">
-          <div className="register_content">
-            <div className="heading">
-              <h2>
-                Take your notes with <br></br>you everywhere.
-              </h2>
-              <p>
-                Our progressive web app can be installed onto your phone and
-                <br></br>
-                inside your browser! Like any other normal app.
-              </p>
-            </div>
-            <div className="register_image">
-              <img src={RegisterImage} alt="Register with noteful"></img>
-            </div>
-            <div className="register_social">
-              <FontAwesomeIcon
-                icon={["fab", "twitter"]}
-                color="white"
-                size="2x"
-              ></FontAwesomeIcon>
-              <FontAwesomeIcon
-                icon={["fab", "instagram"]}
-                color="white"
-                size="2x"
-              ></FontAwesomeIcon>
-            </div>
-          </div>
-        </div>
       </section>
       {show ? (
         <ShowError
@@ -99,15 +68,15 @@ const Register = ({ history, message, clearErrors, redirect }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     message: state.error.message,
-    redirect: state.auth.redirect
+    redirect: state.auth.redirect,
   };
 };
 
-const mapDispatchToProps = () => dispatch => ({
-  clearErrors: () => dispatch(clearErrors())
+const mapDispatchToProps = () => (dispatch) => ({
+  clearErrors: () => dispatch(clearErrors()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
