@@ -9,6 +9,7 @@ import ShowError from "../ShowError";
 
 const Register = ({ history, message, clearErrors, redirect }) => {
   const [error, setError] = useState();
+  let [formError, setFormError] = useState(false);
   let [sent, setSent] = useState(false);
   let [show, setShow] = useState(true);
 
@@ -18,7 +19,10 @@ const Register = ({ history, message, clearErrors, redirect }) => {
   }, [message]);
 
   useEffect(() => {
-    return () => clearErrors();
+    return () => {
+      clearErrors();
+      setFormError(false);
+    };
   }, []);
 
   useEffect(() => {
@@ -26,6 +30,13 @@ const Register = ({ history, message, clearErrors, redirect }) => {
       history.push("/login");
     }
   }, [redirect]);
+
+  let hideError = () => {
+    setTimeout(() => {
+      setFormError(false);
+      setShow(false);
+    }, 5000);
+  };
 
   return (
     <Fragment>
@@ -43,6 +54,9 @@ const Register = ({ history, message, clearErrors, redirect }) => {
                 </p>
               </div>
               <RegisterForm
+                setErrorForm={() => {
+                  setFormError(true);
+                }}
                 sent={sent}
                 toggleSent={() => {
                   setSent(!sent);
@@ -53,17 +67,19 @@ const Register = ({ history, message, clearErrors, redirect }) => {
           </div>
         </div>
       </section>
-      {show ? (
-        <ShowError
-          toggleShow={() => {
-            // Probably a better way to do this but i'm tired
-            setShow(false);
-            clearErrors();
-            setShow(true);
-          }}
-          message={error}
-        />
-      ) : null}
+      {show &&
+        hideError(
+          <ShowError
+            toggleShow={() => {
+              // Probably a better way to do this but i'm tired
+              setShow(false);
+              clearErrors();
+              setShow(true);
+            }}
+            message={error}
+          />
+        )}
+      {formError && <ShowError message="Please ensure all fields are filled" />}
     </Fragment>
   );
 };

@@ -86,12 +86,13 @@ export const login = (formValues) => (dispatch) => {
       });
     })
     .catch((err) => {
-      // dispatch(
-      //   returnErrors(
-      //     err.response.data.error.message,
-      //     err.response.data.error.status
-      //   )
-      // );
+      console.log(err);
+      dispatch(
+        returnErrors(
+          err.response.data.error.message,
+          err.response.data.error.status
+        )
+      );
       dispatch({
         type: LOGIN_FAIL,
       });

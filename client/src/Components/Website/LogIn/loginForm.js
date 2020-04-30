@@ -6,8 +6,8 @@ import { login } from "../../../actions/authActions";
 
 const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
   let [values, setValues] = useState({
-    email: " ",
-    password: " ",
+    email: "",
+    password: "",
   });
   let [emptyEmail, setEmptyEmail] = useState(true);
   let [emptyPassword, setEmptyPassword] = useState(true);
@@ -17,15 +17,12 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
     error: PropTypes.object.isRequired,
   };
 
-  useEffect(() => {
-    !values.password ? setEmptyPassword(false) : setEmptyPassword(true);
-    !values.email ? setEmptyEmail(false) : setEmptyEmail(true);
-  }, [values.password, values.email]);
-
   let handleSubmit = (event) => {
     event.preventDefault();
-    login(values);
-    setSent();
+    if (values.email && values.password) {
+      login(values);
+      setSent();
+    }
   };
 
   return (
@@ -38,7 +35,12 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
       <label htmlFor="email">Email Address</label>
       <input
         className={!emptyEmail ? "error" : null}
-        onChange={(e) => setValues({ ...values, email: e.target.value })}
+        onChange={(e) => {
+          e.target.value.length == 0
+            ? setEmptyEmail(false)
+            : setEmptyEmail(true);
+          setValues({ ...values, email: e.target.value });
+        }}
         type="text"
         name="email"
         placeholder="example@noteful.app"
@@ -47,7 +49,12 @@ const Form = ({ isAuthenticated, error, history, login, sent, setSent }) => {
       <label htmlFor="password">Password</label>
       <input
         className={!emptyPassword ? "error" : null}
-        onChange={(e) => setValues({ ...values, password: e.target.value })}
+        onChange={(e) => {
+          !e.target.value.length
+            ? setEmptyPassword(false)
+            : setEmptyPassword(true);
+          setValues({ ...values, password: e.target.value });
+        }}
         type="password"
         name="password"
         placeholder="Enter your password"

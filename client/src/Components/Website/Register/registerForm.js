@@ -4,12 +4,18 @@ import PropTypes from "prop-types";
 
 import { register } from "../../../actions/authActions";
 
-const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
+const R_Form = ({
+  register,
+  isAuthenticated,
+  sent,
+  toggleSent,
+  setErrorForm,
+}) => {
   let [formValues, setValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
   });
 
   // let propTypes = {
@@ -18,21 +24,41 @@ const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
   //   register: PropTypes.func.isRequired
   // };
 
-  let handleSubmit = e => {
+  let checkFields = () => {
+    let valid = false;
+    formValues.firstName &&
+    formValues.lastName &&
+    formValues.email &&
+    formValues.password
+      ? (valid = true)
+      : (valid = false);
+
+    return valid;
+  };
+
+  let handleSubmit = (e) => {
     e.preventDefault();
-    toggleSent();
-    register(formValues);
+    if (checkFields()) {
+      toggleSent();
+      register(formValues);
+    } else {
+      setErrorForm();
+    }
   };
 
   return (
     <div>
-      <form method="post" className="auth_form" onSubmit={e => handleSubmit(e)}>
+      <form
+        method="post"
+        className="auth_form"
+        onSubmit={(e) => handleSubmit(e)}
+      >
         <label htmlFor="name">First Name</label>
         <input
-          onChange={e => {
+          onChange={(e) => {
             setValues({
               ...formValues,
-              firstName: e.target.value
+              firstName: e.target.value,
             });
           }}
           type="text"
@@ -41,10 +67,10 @@ const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
         ></input>
         <label htmlFor="lastName">Last Name</label>
         <input
-          onChange={e => {
+          onChange={(e) => {
             setValues({
               ...formValues,
-              lastName: e.target.value
+              lastName: e.target.value,
             });
           }}
           type="text"
@@ -53,10 +79,10 @@ const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
         ></input>
         <label htmlFor="email">Last Name</label>
         <input
-          onChange={e => {
+          onChange={(e) => {
             setValues({
               ...formValues,
-              email: e.target.value
+              email: e.target.value,
             });
           }}
           type="text"
@@ -65,10 +91,10 @@ const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
         ></input>
         <label htmlFor="password">Last Name</label>
         <input
-          onChange={e => {
+          onChange={(e) => {
             setValues({
               ...formValues,
-              password: e.target.value
+              password: e.target.value,
             });
           }}
           type="password"
@@ -86,12 +112,12 @@ const R_Form = ({ register, isAuthenticated, sent, toggleSent }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
 });
 
-const mapDispatchToProps = () => dispatch => ({
-  register: values => dispatch(register(values))
+const mapDispatchToProps = () => (dispatch) => ({
+  register: (values) => dispatch(register(values)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(R_Form);

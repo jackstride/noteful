@@ -131,7 +131,7 @@ router.post("/login", async (req, res, next) => {
       return next(createError(401, " Please enter a valid email or Password."));
     }
   } else {
-    console.log("error");
+    return next(createError(401, " Please enter a valid email or Password."));
   }
 });
 
