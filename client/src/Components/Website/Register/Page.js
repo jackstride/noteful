@@ -31,6 +31,12 @@ const Register = ({ history, message, clearErrors, redirect }) => {
     }
   }, [redirect]);
 
+  useEffect(() => {
+    if (show || formError) {
+      hideError();
+    }
+  }, [show]);
+
   let hideError = () => {
     setTimeout(() => {
       setFormError(false);
@@ -67,19 +73,20 @@ const Register = ({ history, message, clearErrors, redirect }) => {
           </div>
         </div>
       </section>
-      {show &&
-        hideError(
-          <ShowError
-            toggleShow={() => {
-              // Probably a better way to do this but i'm tired
-              setShow(false);
-              clearErrors();
-              setShow(true);
-            }}
-            message={error}
-          />
-        )}
-      {formError && <ShowError message="Please ensure all fields are filled" />}
+      {show ? (
+        <ShowError
+          toggleShow={() => {
+            // Probably a better way to do this but i'm tired
+            setShow(false);
+            clearErrors();
+            setShow(true);
+          }}
+          message={error}
+        />
+      ) : null}
+      {formError ? (
+        <ShowError message="Please ensure all fields are filled" />
+      ) : null}
     </Fragment>
   );
 };

@@ -21,9 +21,6 @@ import {
 
 //Load user
 export const loadUser = () => (dispatch, getState) => {
-  console.log("this");
-  //User Loading
-
   axios
     .get(`${process.env.REACT_APP_ENDPOINT}/dashboard`, {
       withCredentials: true,
@@ -86,7 +83,6 @@ export const login = (formValues) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch(
         returnErrors(
           err.response.data.error.message,

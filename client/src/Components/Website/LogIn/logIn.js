@@ -27,7 +27,9 @@ const LogIn = ({
 
   useEffect(() => {
     return () => {
-      clearErrors();
+      if (loginErrors) {
+        clearErrors();
+      }
     };
   }, []);
 
