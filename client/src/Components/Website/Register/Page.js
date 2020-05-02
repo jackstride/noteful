@@ -9,19 +9,21 @@ import ShowError from "../ShowError";
 
 const Register = ({ history, message, clearErrors, redirect }) => {
   const [error, setError] = useState();
-  let [formError, setFormError] = useState(false);
   let [sent, setSent] = useState(false);
+
+  let [formError, setFormError] = useState(false);
   let [show, setShow] = useState(true);
 
   useEffect(() => {
     setError(message);
     setSent(false);
+    setShow(true);
+    resetErrors();
   }, [message]);
 
   useEffect(() => {
     return () => {
-      clearErrors();
-      setFormError(false);
+      resetErrors();
     };
   }, []);
 
@@ -31,14 +33,15 @@ const Register = ({ history, message, clearErrors, redirect }) => {
     }
   }, [redirect]);
 
-  useEffect(() => {
-    if (show || formError) {
-      hideError();
-    }
-  }, [show]);
+  // useEffect(() => {
+  //   if (show || formError) {
+  //     hideError();
+  //   }
+  // }, [show]);
 
-  let hideError = () => {
+  let resetErrors = () => {
     setTimeout(() => {
+      clearErrors();
       setFormError(false);
       setShow(false);
     }, 5000);

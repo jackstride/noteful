@@ -38,7 +38,8 @@ import {
   faFolder,
   faSignInAlt,
   faExclamation,
-  faCircle
+  faCircle,
+  faCookieBite,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -81,5 +82,6 @@ library.add(
   faUserPlus,
   faSignInAlt,
   faExclamation,
-  faCircle
+  faCircle,
+  faCookieBite
 );

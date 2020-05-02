@@ -139,8 +139,6 @@ router.post("/login", async (req, res, next) => {
 router.get("/logout", async (req, res, next) => {
   let token = req.headers.authorization.split(" ")[1];
 
-  console.log(token);
-
   const decoded = await jwt.verify(token, process.env.JWT_KEY);
 
   if (decoded) {
@@ -215,7 +213,7 @@ router.post("/reset", async (req, res, next) => {
 
   let found = await User.find({ email }).exec();
 
-  if (found) {
+  if (found.length >= 1) {
     let { _id, email, firstName } = found[0];
 
     let string =
@@ -231,6 +229,7 @@ router.post("/reset", async (req, res, next) => {
         let update = await User.findByIdAndUpdate({ _id }, { password: hash });
 
         if (update) {
+          console.log("sent");
           let info = await transporter.sendMail({
             from: "support@noteful.app",
             to: email,

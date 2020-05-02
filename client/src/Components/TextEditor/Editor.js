@@ -3,7 +3,7 @@ import React, {
   useMemo,
   useState,
   useCallback,
-  useRef
+  useRef,
 } from "react";
 import { Editable, withReact, Slate } from "slate-react";
 import { createEditor, Editor, Text } from "slate";
@@ -25,7 +25,7 @@ const TextEditor = ({
   editNote,
   _id,
   getNoteById,
-  clearValues
+  clearValues,
 }) => {
   let [tablet, setTablet] = useState(false);
 
@@ -59,8 +59,8 @@ const TextEditor = ({
     }
   }, [note, setValue]);
 
-  const renderElement = useCallback(props => <Element {...props} />, []);
-  const renderLeaf = useCallback(props => <Leaf {...props} />, []);
+  const renderElement = useCallback((props) => <Element {...props} />, []);
+  const renderLeaf = useCallback((props) => <Leaf {...props} />, []);
 
   return (
     <div className="editor_container">
@@ -68,17 +68,17 @@ const TextEditor = ({
         <Slate
           editor={editor}
           value={value}
-          onChange={value => {
+          onChange={(value) => {
             setValue(value);
             const content = JSON.stringify(value);
             console.log(editor);
-            let note_title = editor.children[0].children[0].text.split(" ")[0];
+            // Removed from upload in values
+            // let note_title = editor.children[0].children[0].text.split(" ")[0];
             const values = {
               _id,
-              note_title,
               user_id,
               folder_id,
-              body_Data: content
+              body_Data: content,
             };
             // editNote(values);
           }}
@@ -237,25 +237,25 @@ const initialValue = [
     type: "heading-one",
     children: [
       {
-        text: "Begin tying your masterpiece.."
-      }
-    ]
-  }
+        text: "Begin tying your masterpiece..",
+      },
+    ],
+  },
 ];
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     note: state.note.singleNoteData.body_Data,
     user_id: state.auth.user._id,
     _id: state.note.singleNoteData._id,
-    folder_id: state.note.singleNoteData.folder_id
+    folder_id: state.note.singleNoteData.folder_id,
   };
 };
 
-const mapDispatchToProps = dispatch => ({
-  editNote: values => dispatch(editNote(values)),
-  getNoteById: values => dispatch(getNoteById(values)),
-  clearValues: () => dispatch(clearValues())
+const mapDispatchToProps = (dispatch) => ({
+  editNote: (values) => dispatch(editNote(values)),
+  getNoteById: (values) => dispatch(getNoteById(values)),
+  clearValues: () => dispatch(clearValues()),
 });
 
 export default withRouter(

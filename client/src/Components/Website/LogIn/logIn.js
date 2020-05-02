@@ -23,6 +23,7 @@ const LogIn = ({
   useEffect(() => {
     setErrors(errors);
     setSent(false);
+    removeErrors();
   }, [errors]);
 
   useEffect(() => {
@@ -32,6 +33,12 @@ const LogIn = ({
       }
     };
   }, []);
+
+  let removeErrors = () => {
+    setTimeout(() => {
+      clearErrors();
+    }, 5000);
+  };
 
   useEffect(() => {
     if (isAuth) {

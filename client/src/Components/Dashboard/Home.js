@@ -14,16 +14,7 @@ import ShortcutAdd from "./ShortcutAdd";
 import Settings from "./Settings";
 import useMobile from "./useMobile";
 
-const Home = ({
-  getFolder,
-  auth,
-  id,
-  isDark,
-  refreshToken,
-  token,
-  history,
-  loadUser,
-}) => {
+const Home = ({ getFolder, auth, id, isDark, history, loadUser }) => {
   const mobile = useMobile();
   useEffect(() => {
     getFolder(id);

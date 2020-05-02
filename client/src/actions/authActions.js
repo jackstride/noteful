@@ -139,15 +139,29 @@ export const supportRequest = (formValues) => (dispatch) => {
     });
 };
 
+// Reqest will be sent and handled on server
+// Not error corrections used
 export const forgotPassword = (value) => (dispatch) => {
+  setTimeout(() => {
+    dispatch({
+      type: FORGOT_SUCCESS,
+    });
+  }, 2000);
+
   axios
     .post(process.env.REACT_APP_ENDPOINT + "/user/reset", value, {
       withCredentials: true,
     })
     .then((res) => {
-      dispatch({
-        type: FORGOT_SUCCESS,
-      });
+      console.log("Sent");
+    })
+    .catch((err) => {
+      dispatch(
+        returnErrors(
+          err.response.data.error.message,
+          err.response.data.error.status
+        )
+      );
     });
 };
 

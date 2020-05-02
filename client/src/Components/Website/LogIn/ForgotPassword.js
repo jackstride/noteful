@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { forgotPassword, resetAuth } from "../../../actions/authActions";
+import ShowError from "../ShowError";
 
-const ForgotPassword = ({ forgotPassword, success, resetAuth }) => {
+const ForgotPassword = ({ forgotPassword, success, resetAuth, error }) => {
   let [value, setValue] = useState({
     email: "",
   });
 
   let [sent, setSent] = useState(false);
+
+  useEffect(() => {
+    console.log(error);
+  }, [error]);
 
   useEffect(() => {
     if (success === true) {
@@ -23,8 +28,12 @@ const ForgotPassword = ({ forgotPassword, success, resetAuth }) => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    forgotPassword(value);
-    setSent(true);
+    if (success) {
+      console.log("this");
+    } else if (value.email.replace(/\s+/g, "")) {
+      forgotPassword(value);
+      setSent(true);
+    }
   };
 
   return (
@@ -71,6 +80,7 @@ const ForgotPassword = ({ forgotPassword, success, resetAuth }) => {
 const mapStateToProps = (state) => {
   return {
     success: state.auth.forgetRes,
+    error: state.error.message,
   };
 };
 

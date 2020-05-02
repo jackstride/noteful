@@ -1,7 +1,4 @@
 import axios from "axios";
-import { returnErrors } from "./errorActions";
-import dexie from "dexie";
-import { loadUser } from "./authActions";
 
 import {
   ADD_NOTE,
@@ -35,14 +32,8 @@ export const getNotes = (id) => (dispatch) => {
       });
     })
     .catch((err) => {
-      // console.log(err.response.status);
-      // if ((err.response.status = 401)) {
-      //   dispatch({
-      //     type: AUTH_ERROR,
-      //   });
-      // }
+      console.log(err.response.status);
     });
-  // }
 };
 
 export const addNote = (values) => (dispatch) => {

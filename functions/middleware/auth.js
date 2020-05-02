@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 const User = require("../models/User");
 
 module.exports = async (req, res, next) => {
-  console.log("called");
   // Get short lived token and see if it's valid
   // Get token from headers and see if valid
   try {
@@ -20,10 +19,9 @@ module.exports = async (req, res, next) => {
               const decoded = jwt.verify(token, process.env.JWT_KEY);
 
               if (decoded) {
-
-                User.find({_id: decoded._id}, (err, docs) => {
-                  if(docs) {
-                    if(docs[0].refresh_token === token) {
+                User.find({ _id: decoded._id }, (err, docs) => {
+                  if (docs) {
+                    if (docs[0].refresh_token === token) {
                       const payload = {
                         email: decoded.email,
                         _id: decoded._id,
@@ -37,7 +35,6 @@ module.exports = async (req, res, next) => {
                         },
                         (err, token) => {
                           if (token) {
-                            console.log("NEW TOKEN GENERATED" + token)
                             req.token = token;
                             req.user = payload;
                             return next();
@@ -52,10 +49,10 @@ module.exports = async (req, res, next) => {
                       return next(createError(401, "No Token"));
                     }
                   }
-                  if(err) {
+                  if (err) {
                     return next(createError(401, "No Token"));
                   }
-                })
+                });
               } else {
                 return next(createError(401, "No Token"));
               }
@@ -64,7 +61,6 @@ module.exports = async (req, res, next) => {
             }
           }
           if (decoded) {
-            console.log("OLD TOKEN WORKS");
             req.user = decoded;
             return next();
           }

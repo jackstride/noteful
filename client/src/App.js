@@ -18,6 +18,7 @@ import Support from "./pages/support";
 import About from "./pages/About";
 import Forgot from "./Components/Website/LogIn/ForgotPassword";
 import ScrollTop from "./ScrollTop";
+import CookieConsent from "./Components/CookieConsent";
 
 class App extends Component {
   static propTypes = {
@@ -33,6 +34,7 @@ class App extends Component {
       <div className="website_container">
         <Fragment>
           <Navigation />
+          <CookieConsent />
           <Route exact path="/" component={Home} />
           <Route path="/logout" component={LogOut} />
           <Route path="/features" component={Features} />

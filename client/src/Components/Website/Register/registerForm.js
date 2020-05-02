@@ -12,10 +12,10 @@ const R_Form = ({
   setErrorForm,
 }) => {
   let [formValues, setValues] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: " ",
+    lastName: " ",
+    email: " ",
+    password: " ",
   });
 
   // let propTypes = {
@@ -24,12 +24,13 @@ const R_Form = ({
   //   register: PropTypes.func.isRequired
   // };
 
+  // Strips away a space to see if the field is empty of not.
   let checkFields = () => {
     let valid = false;
-    formValues.firstName &&
-    formValues.lastName &&
-    formValues.email &&
-    formValues.password
+    formValues.firstName.replace(/\s+/g, "") &&
+    formValues.lastName.replace(/\s+/g, "") &&
+    formValues.email.replace(/\s+/g, "") &&
+    formValues.password.replace(/\s+/g, "")
       ? (valid = true)
       : (valid = false);
 
@@ -55,6 +56,7 @@ const R_Form = ({
       >
         <label htmlFor="name">First Name</label>
         <input
+          className={!formValues.firstName ? "error" : null}
           onChange={(e) => {
             setValues({
               ...formValues,
@@ -67,6 +69,7 @@ const R_Form = ({
         ></input>
         <label htmlFor="lastName">Last Name</label>
         <input
+          className={!formValues.lastName ? "error" : null}
           onChange={(e) => {
             setValues({
               ...formValues,
@@ -79,6 +82,7 @@ const R_Form = ({
         ></input>
         <label htmlFor="email">Last Name</label>
         <input
+          className={!formValues.email ? "error" : null}
           onChange={(e) => {
             setValues({
               ...formValues,
@@ -91,6 +95,7 @@ const R_Form = ({
         ></input>
         <label htmlFor="password">Last Name</label>
         <input
+          className={!formValues.password ? "error" : null}
           onChange={(e) => {
             setValues({
               ...formValues,

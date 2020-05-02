@@ -11,39 +11,40 @@ const Support = ({ supportRequest }) => {
   const [section, setSection] = useState({
     heading: "Need Support? We got you",
     text:
-      "We understand how you feel. Deep breathe. Use the below information to contact us! We aim to reply within an hour."
+      "We understand how you feel. Deep breathe. Use the below information to contact us! We aim to reply within an hour.",
   });
 
   const [social, setSocial] = useState([
     {
       text: "support@noteful.app",
       link: "mailto:support@noteful.app?Subject=Hello%20again",
-      icon: "paper-plane"
+      icon: "paper-plane",
     },
     {
       text: "@notefulapp",
       link: "https://twitter.com/notefulapp",
-      icon: ["fab", "twitter"]
+      icon: ["fab", "twitter"],
     },
     {
       text: "@notefullapp",
       link: "https://instagram.com/notefulapp",
-      icon: ["fab", "instagram"]
-    }
+      icon: ["fab", "instagram"],
+    },
   ]);
 
   const [formValues, setValues] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
   });
 
-  let handleSubmit = e => {
+  let [sent, setSent] = useState(false);
+
+  let handleSubmit = (e) => {
     e.preventDefault();
-
     let { name, email, message } = formValues;
-
-    if (name.length > 0 && email.length > 0 && message.length > 0) {
+    if (name.length > 0 && email.length > 0 && message.length > 0 && !sent) {
+      setSent(true);
       supportRequest(formValues);
     }
   };
@@ -90,12 +91,12 @@ const Support = ({ supportRequest }) => {
         <section className="support_form">
           <form
             method="post"
-            onSubmit={e => {
+            onSubmit={(e) => {
               handleSubmit(e);
             }}
           >
             <input
-              onChange={e => {
+              onChange={(e) => {
                 setValues({ ...formValues, name: e.target.value });
               }}
               placeholder="Full Name"
@@ -103,7 +104,7 @@ const Support = ({ supportRequest }) => {
               type="text"
             ></input>
             <input
-              onChange={e => {
+              onChange={(e) => {
                 setValues({ ...formValues, email: e.target.value });
               }}
               placeholder="Email Address"
@@ -111,7 +112,7 @@ const Support = ({ supportRequest }) => {
               type="text"
             ></input>
             <textarea
-              onChange={e => {
+              onChange={(e) => {
                 setValues({ ...formValues, message: e.target.value });
               }}
               name="message"
@@ -119,8 +120,22 @@ const Support = ({ supportRequest }) => {
               placeholder="Describe your problem..."
             ></textarea>
             <div className="support_buttons">
-              <input type="submit"></input>
-              <input type="reset" value="Clear"></input>
+              {!sent ? (
+                <input type="submit"></input>
+              ) : (
+                <input
+                  style={{ backgroundColor: "#21bf73" }}
+                  value="Sent!"
+                  type="submit"
+                />
+              )}
+              <input
+                onClick={() => {
+                  setSent(false);
+                }}
+                type="reset"
+                value="Clear"
+              ></input>
             </div>
           </form>
         </section>
@@ -129,13 +144,13 @@ const Support = ({ supportRequest }) => {
   );
 };
 
-const mapDispatchToProps = state => dispatch => ({
-  supportRequest: formValues => dispatch(supportRequest(formValues))
+const mapDispatchToProps = (state) => (dispatch) => ({
+  supportRequest: (formValues) => dispatch(supportRequest(formValues)),
 });
 
 export default connect(null, mapDispatchToProps)(Support);
 
-let SocialCard = props => {
+let SocialCard = (props) => {
   return (
     <div className="contact_card">
       <FontAwesomeIcon icon={props.data.icon} size="3x" color="white" />
