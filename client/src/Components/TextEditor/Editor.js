@@ -63,15 +63,15 @@ const TextEditor = ({
             setValue(value);
             const content = JSON.stringify(value);
             console.log(editor);
-            // Removed from upload in values
-            // let note_title = editor.children[0].children[0].text.split(" ")[0];
+            let note_title = editor.children[0].children[0].text.split(" ")[0];
             const values = {
               _id,
               user_id,
               folder_id,
+              note_title,
               body_Data: content,
             };
-            // editNote(values);
+            editNote(values);
           }}
         >
           {mobile ? null : (
