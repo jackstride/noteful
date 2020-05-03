@@ -5,7 +5,7 @@ import Pencil from "../images/pencil.png";
 import LargeHeader from "../Components/Website/LargeHeader";
 import FeaturesIntersect from "../Components/Intersects/FeaturesIntersect";
 import Third from "../images/third.gif";
-import BrowserHeader from "../images/browserheader.webp";
+import BrowserHeader from "../images/browserheader.png";
 
 const Features = () => {
   const [features, setFeatures] = useState([

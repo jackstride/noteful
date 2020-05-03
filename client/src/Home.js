@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PP from "./images/iphone_preview.webp";
+import PP from "./images/iphone_preview.png";
 import HeaderImage from "./images/header.jpg";
 import LargeHeader from "./Components/Website/LargeHeader";
 import DashboardOne from "./images/dashboard_nav.jpg";
 import HomeIntersect from "./Components/Intersects/HomeIntersect";
 import GifOne from "./images/First.gif";
 import GifTwo from "./images/second.gif";
-import BrowserHeader from "./images/browserheader.webp";
+import BrowserHeader from "./images/browserheader.png";
 
 const Home = ({ history }) => {
   const [information, setInformation] = useState([
