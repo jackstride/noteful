@@ -71,7 +71,7 @@ const TextEditor = ({
               note_title,
               body_Data: content,
             };
-            editNote(values);
+            // editNote(values);
           }}
         >
           {mobile ? null : (

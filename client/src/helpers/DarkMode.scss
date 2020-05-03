@@ -471,6 +471,17 @@ $DAHeadingGrey: rgb(141, 141, 141);
         background-color: $DABGFive;
     }
 
+    .editor_container {
+        .editor_toolbar {
+
+            button {
+                svg {
+                    color: white;
+                }
+            }
+        }
+    }
+
 }
 
 
@@ -480,16 +491,7 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 ////////////////// Shortcuts ///////////////
 
-.editor_container {
-    .editor_toolbar {
 
-        button {
-            svg {
-                color: white;
-            }
-        }
-    }
-}
 
 .shortcut.dark-mode {}
 
