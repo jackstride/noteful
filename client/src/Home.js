@@ -14,17 +14,22 @@ const Home = ({ history }) => {
     {
       heading: "Notes",
       text:
-        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!",
+        "Simply create notes to beign typing your masterpiece! Updates are automaticlly saved meaning you will never have to worry about losing your work.",
     },
     {
       heading: "Tasks",
       text:
-        "Not only can you create rich notes, you can also set tasks and events ready for your busy week ahead. It's quick and simple to add a note or task and just as satisfying to mark as complete!",
+        "Not only can you create rich notes, you can create tasks ready for the week ahead. It's quick and simple to add a task and just as satisfying to mark as complete!",
     },
     {
       heading: "Secure",
       text:
-        "Noteful will only use https. We also encrypt your personal data when logging in. When you sign out, that data is no longer available.",
+        "Noteful will only use HTTPS. We also encrypt your personal data when logging in. When you sign out, that data is no longer available.",
+    },
+    {
+      heading: "Responsive",
+      text:
+        "Using a computer, mobile or tablet? Don't worry, the app is accessible across multiple devices meaning you'll always have access to Noteful.",
     },
   ]);
   const [heading, setHeadings] = useState([
@@ -178,8 +183,8 @@ const Home = ({ history }) => {
           />
           <LargeHeader
             color="#F1B505"
-            title={information[2].heading}
-            paragraph={information[2].text}
+            title={information[3].heading}
+            paragraph={information[3].text}
             reverse={true}
           />
 

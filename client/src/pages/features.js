@@ -37,8 +37,9 @@ const Features = () => {
         "Create rich filled notes ready to leave and pick up anywhere, anytime!",
     },
     {
-      heading: "Have an event coming up?",
-      body: "Simple interface to manage your future events. Can we come?",
+      heading: "Become more organised",
+      body:
+        "Noteful organises your tasks and notes at the click of a button. Why not start today?",
     },
   ]);
 
