@@ -480,6 +480,17 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 ////////////////// Shortcuts ///////////////
 
+.editor_container {
+    .editor_toolbar {
+
+        button {
+            svg {
+                color: white;
+            }
+        }
+    }
+}
+
 .shortcut.dark-mode {}
 
 

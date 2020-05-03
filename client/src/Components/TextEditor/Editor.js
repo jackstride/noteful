@@ -16,6 +16,7 @@ import { editNote, getNoteById, clearValues } from "../../actions/NoteActions";
 import CustomBlockButton from "./CustomBlockButton";
 import ToolTipMenu from "./ToolTipMenu";
 import TextEditorInsert from "./TextEditorInsert";
+import useMobile from "../Dashboard/useMobile";
 
 const TextEditor = ({
   match,
@@ -27,18 +28,8 @@ const TextEditor = ({
   getNoteById,
   clearValues,
 }) => {
-  let [tablet, setTablet] = useState(false);
-
-  useEffect(() => {
-    let width = window.innerWidth;
-    if (width <= 768) {
-      setTablet(true);
-    } else {
-      setTablet(false);
-    }
-  }, [window.innerWidth]);
+  const mobile = useMobile();
   const editor = useMemo(() => withReact(createEditor()), []);
-
   const paramId = match.params.notes;
   const [value, setValue] = useState(initialValue);
 
@@ -83,17 +74,17 @@ const TextEditor = ({
             // editNote(values);
           }}
         >
-          {tablet ? null : (
+          {mobile ? null : (
             <FormatToolbar>
               <ToolbarButton format="bold" icon="bold" />
               <ToolbarButton format="italic" icon="italic" />
               <span className="editor_spacer"></span>
               <ToolbarButton format="code" icon="code" />
               <ToolbarButton format="underline" icon="underline" />
-              <BlockButton format="heading-one" icon="underline" />
+              <BlockButton format="heading-one" icon="heading" />
               <span className="editor_spacer"></span>
-              <BlockButton format="heading-two" icon="underline" />
-              <BlockButton format="heading-three" icon="underline" />
+              <BlockButton format="heading-two" icon="heading" />
+              <BlockButton format="heading-three" icon="heading" />
               <span className="editor_spacer"></span>
               <BlockButton format="list-item" icon="list" />
               <BlockButton format="numbered-list" icon="list-ol" />
@@ -104,7 +95,7 @@ const TextEditor = ({
             </FormatToolbar>
           )}
 
-          {tablet ? (
+          {mobile ? (
             <ToolTipMenu>
               <ToolbarButton format="bold" icon="bold" />
               <ToolbarButton format="italic" icon="italic" />
@@ -124,8 +115,8 @@ const TextEditor = ({
               <BlockButton format="align-right" icon="align-right" />
             </ToolTipMenu>
           ) : null}
+          {mobile ? <TextEditorInsert /> : null}
 
-          <TextEditorInsert />
           <Editable
             className="main_editor"
             renderElement={renderElement}
