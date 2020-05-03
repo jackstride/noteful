@@ -1,0 +1,19 @@
+.policy_container {
+    width: 1440px;
+    margin: 0 auto;
+    margin-top: 150px;
+
+    h4 {
+        padding: 20px 0px;
+    }
+
+    p {
+        font-size: 1em;
+    }
+
+
+    @include smalldesktop {
+        width: 90%;
+    }
+
+}

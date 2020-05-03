@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.912c88a1.chunk.css",
-    "main.js": "/static/js/main.1159693e.chunk.js",
+    "main.css": "/static/css/main.083fd3b1.chunk.css",
+    "main.js": "/static/js/main.49051b4d.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
-    "static/js/2.a2e09ccc.chunk.js": "/static/js/2.a2e09ccc.chunk.js",
+    "static/js/2.371f77a5.chunk.js": "/static/js/2.371f77a5.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.b97cd5641215adede60897896775f72a.js": "/precache-manifest.b97cd5641215adede60897896775f72a.js",
+    "precache-manifest.f294d2e8230a4f20722358f7f1c2d332.js": "/precache-manifest.f294d2e8230a4f20722358f7f1c2d332.js",
     "service-worker.js": "/service-worker.js",
-    "static/js/2.a2e09ccc.chunk.js.LICENSE.txt": "/static/js/2.a2e09ccc.chunk.js.LICENSE.txt",
+    "static/js/2.371f77a5.chunk.js.LICENSE.txt": "/static/js/2.371f77a5.chunk.js.LICENSE.txt",
     "static/media/First.gif": "/static/media/First.1372b6df.gif",
     "static/media/browserheader.webp": "/static/media/browserheader.9e7a7585.webp",
     "static/media/dashboard_nav.jpg": "/static/media/dashboard_nav.afeb8580.jpg",
@@ -28,8 +28,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
-    "static/js/2.a2e09ccc.chunk.js",
-    "static/css/main.912c88a1.chunk.css",
-    "static/js/main.1159693e.chunk.js"
+    "static/js/2.371f77a5.chunk.js",
+    "static/css/main.083fd3b1.chunk.css",
+    "static/js/main.49051b4d.chunk.js"
   ]
 }

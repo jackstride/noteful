@@ -19,6 +19,9 @@ import About from "./pages/About";
 import Forgot from "./Components/Website/LogIn/ForgotPassword";
 import ScrollTop from "./ScrollTop";
 import CookieConsent from "./Components/CookieConsent";
+import Terms from "./pages/terms";
+import Privacy from "./pages/privacy";
+import CookiePolicy from "./pages/cookiepolicy";
 
 class App extends Component {
   static propTypes = {
@@ -40,6 +43,9 @@ class App extends Component {
           <Route path="/features" component={Features} />
           <Route path="/support" component={Support} />
           <Route path="/about" component={About} />
+          <Route path="/termsandconditions" component={Terms} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/cookie-policy" component={CookiePolicy} />
           <Footer />
           <ScrollTop />
         </Fragment>

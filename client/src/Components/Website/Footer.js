@@ -11,41 +11,41 @@ export default class footer extends Component {
       nav: [
         {
           title: "Features",
-          link: "/about"
+          link: "/features",
         },
         {
           title: "About",
-          link: "/about"
+          link: "/about",
         },
         {
           title: "Support",
-          link: "/about"
+          link: "/support",
         },
         {
           title: "Twitter",
-          link: "/about"
+          link: "https://twitter.com/notefulapp",
         },
         {
           title: "Instagram",
-          link: "/about"
+          link: "https://www.instagram.com/notefulapp/",
         },
         {
           title: "Email Us",
-          link: "/about"
+          link: "mailto:support@noteful.app",
         },
         {
           title: "Privacy",
-          link: "/about"
+          link: "/privacy",
         },
         {
           title: "Terms & Conditions",
-          link: "/about"
+          link: "/termsandconditions",
         },
         {
           title: "Cookies",
-          link: "/about"
-        }
-      ]
+          link: "/cookie-policy",
+        },
+      ],
     };
   }
   render() {
@@ -70,7 +70,7 @@ export default class footer extends Component {
               <ul>
                 {this.state.nav.slice(3, 6).map((test, index) => (
                   <li key={test + index}>
-                    <Link to={test.link}>{test.title}</Link>
+                    <a href={test.link}>{test.title}</a>
                   </li>
                 ))}
               </ul>
