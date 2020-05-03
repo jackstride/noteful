@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, Route, Switch } from "react-router-dom";
-import Profile from "./NavItem/profileIcon";
 import Account from "./settings/Account";
 import Password from "./settings/Password";
 import { connect } from "react-redux";
@@ -43,10 +42,7 @@ const Settings = ({ toggleDarkMode, isDark }) => {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  activeClassName="settings_active"
-                  to="/dashboard/settings/help"
-                >
+                <NavLink activeClassName="settings_active" to="/support">
                   Help
                 </NavLink>
               </li>
@@ -70,7 +66,6 @@ const Settings = ({ toggleDarkMode, isDark }) => {
         <div className="settings_content">
           <Switch>
             <Route path="/dashboard/settings/password" component={Password} />
-            <Route path="/dashboard/settings/help" component={Profile} />
             <Route exact path="/dashboard/settings" component={Account} />
           </Switch>
         </div>
@@ -79,14 +74,14 @@ const Settings = ({ toggleDarkMode, isDark }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isDark: state.misc.isDark
+    isDark: state.misc.isDark,
   };
 };
 
-const mapDispatchToProps = () => dispatch => ({
-  toggleDarkMode: () => dispatch(toggleDarkMode())
+const mapDispatchToProps = () => (dispatch) => ({
+  toggleDarkMode: () => dispatch(toggleDarkMode()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

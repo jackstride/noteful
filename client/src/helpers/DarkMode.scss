@@ -339,7 +339,13 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 
     .s_f_item {
-        border-color: $DABGThree;
+        border-color: rgb(30, 30, 30);
+        background-color: rgb(30, 30, 30);
+    }
+
+    .s_n_item {
+        border-color: rgb(30, 30, 30);
+        background-color: rgb(30, 30, 30);
     }
 
     .s_n_item:hover {
@@ -370,16 +376,13 @@ $DAHeadingGrey: rgb(141, 141, 141);
             background-color: $DABGThree;
             border-top: 1px solid rgb(80, 80, 80);
             border-bottom: 1px solid rgb(80, 80, 80);
+            border-color: rgb(30, 30, 30);
         }
 
         .task_item {
-            .task_icon {
-                background-color: $DABGFour;
 
-                svg {
-                    color: $DABGThree;
-                }
-            }
+
+            background-color: rgb(30, 30, 30);
         }
     }
 
@@ -477,13 +480,7 @@ $DAHeadingGrey: rgb(141, 141, 141);
 
 ////////////////// Shortcuts ///////////////
 
-.shortcut.dark-mode {
-
-    .shortcut_container {
-        background-color: rgb(56, 56, 219);
-    }
-
-}
+.shortcut.dark-mode {}
 
 
 .shortcut_folder.dark-mode {

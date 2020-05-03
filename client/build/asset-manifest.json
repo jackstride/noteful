@@ -1,20 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.083fd3b1.chunk.css",
-    "main.js": "/static/js/main.49051b4d.chunk.js",
+    "main.css": "/static/css/main.a212fd30.chunk.css",
+    "main.js": "/static/js/main.694ee172.chunk.js",
     "runtime-main.js": "/static/js/runtime-main.cea588d5.js",
     "static/js/2.371f77a5.chunk.js": "/static/js/2.371f77a5.chunk.js",
     "index.html": "/index.html",
-    "precache-manifest.f294d2e8230a4f20722358f7f1c2d332.js": "/precache-manifest.f294d2e8230a4f20722358f7f1c2d332.js",
+    "precache-manifest.004c9755cd3c43d35d575bffdfeddf63.js": "/precache-manifest.004c9755cd3c43d35d575bffdfeddf63.js",
     "service-worker.js": "/service-worker.js",
     "static/js/2.371f77a5.chunk.js.LICENSE.txt": "/static/js/2.371f77a5.chunk.js.LICENSE.txt",
     "static/media/First.gif": "/static/media/First.1372b6df.gif",
-    "static/media/browserheader.webp": "/static/media/browserheader.9e7a7585.webp",
     "static/media/dashboard_nav.jpg": "/static/media/dashboard_nav.afeb8580.jpg",
     "static/media/github.svg": "/static/media/github.2012c204.svg",
     "static/media/google.svg": "/static/media/google.7e5484e9.svg",
     "static/media/header.jpg": "/static/media/header.9363a385.jpg",
-    "static/media/iphone_preview.webp": "/static/media/iphone_preview.cb924d85.webp",
+    "static/media/iphone_preview.png": "/static/media/iphone_preview.c78b8c31.png",
     "static/media/App.scss": "/static/media/logout_space.6492db73.png",
     "static/media/noteful_blue.svg": "/static/media/noteful_blue.4ff48a21.svg",
     "static/media/noteful_bw.svg": "/static/media/noteful_bw.09017aa7.svg",
@@ -29,7 +28,7 @@
   "entrypoints": [
     "static/js/runtime-main.cea588d5.js",
     "static/js/2.371f77a5.chunk.js",
-    "static/css/main.083fd3b1.chunk.css",
-    "static/js/main.49051b4d.chunk.js"
+    "static/css/main.a212fd30.chunk.css",
+    "static/js/main.694ee172.chunk.js"
   ]
 }
